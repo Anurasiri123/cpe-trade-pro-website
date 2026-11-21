@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anurasiri123.github.io/cpe-trade-pro-website/sitemap.xml
+Sitemap: https://cpetradepro.com/sitemap.xml
