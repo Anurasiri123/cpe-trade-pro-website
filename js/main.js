@@ -14,20 +14,6 @@ const DOWNLOADS = {
 };
 
 /* ------------------------------------------------------------
-   Performance badge.
-   Publish a number ONLY from the app's own tracked $10 signal history.
-   Set winRatePercent to a real, tracked value to reveal the animated
-   badge in the hero. Leave it null and the badge stays hidden, so no
-   unverified figure is ever shown.
-   ------------------------------------------------------------ */
-const PERFORMANCE = {
-  winRatePercent: null,          // e.g. 61.7 — fill from tracked signals
-  trackedSignals: null,          // e.g. 240
-  periodLabel: "",               // e.g. "1 Sep – 20 Nov 2026"
-  caption: "tracked $10 signals · hypothetical, not a guarantee"
-};
-
-/* ------------------------------------------------------------
    Testimonials — add REAL customer quotes only.
    Each item: { quote, name, role, avatar }
    Leave the list empty and the section stays hidden.
@@ -35,66 +21,6 @@ const PERFORMANCE = {
 const TESTIMONIALS = [
   // { quote: "…", name: "Real Name", role: "Crypto trader", avatar: "" }
 ];
-
-/* ------------------------------------------------------------
-   Animate a 0–10 confidence ring, plus its number
-   ------------------------------------------------------------ */
-const RING_LENGTH = 113.1; // 2 * PI * r(18)
-function animateRing(circle, ratio, valueEl, value){
-  if(circle){
-    const offset = RING_LENGTH * (1 - Math.max(0, Math.min(1, ratio)));
-    requestAnimationFrame(() => { circle.style.strokeDashoffset = offset; });
-  }
-  if(valueEl && typeof value === "number" && isFinite(value)){
-    const target = value;
-    let cur = 0;
-    const step = Math.max(1, Math.ceil(target / 30));
-    const t = setInterval(() => {
-      cur += step;
-      if(cur >= target){ cur = target; clearInterval(t); }
-      valueEl.textContent = cur;
-    }, 28);
-  }
-}
-
-function initHeroExtras(){
-  // Signal quality ring in the hero visual (uses the real 0–10 scale)
-  const heroRing = document.getElementById("heroRing");
-  if(heroRing){
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if(!en.isIntersecting) return;
-        io.disconnect();
-        animateRing(heroRing, 9 / 10, document.getElementById("heroScore"), 9);
-      });
-    }, { threshold: 0.35 });
-    io.observe(heroRing);
-  }
-
-  // Performance badge — revealed only when a real tracked figure is set
-  const badge = document.getElementById("perfBadge");
-  if(!badge) return;
-  const pct = PERFORMANCE.winRatePercent;
-  if(typeof pct !== "number" || !isFinite(pct) || pct <= 0) return;
-  badge.hidden = false;
-
-  const capEl = document.getElementById("perfCaption");
-  if(capEl){
-    const bits = [PERFORMANCE.caption];
-    if(PERFORMANCE.trackedSignals) bits.unshift(PERFORMANCE.trackedSignals + " signals tracked");
-    if(PERFORMANCE.periodLabel) bits.push(PERFORMANCE.periodLabel);
-    capEl.textContent = bits.join(" · ");
-  }
-  const ring = document.getElementById("perfRing");
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if(!en.isIntersecting) return;
-      io.disconnect();
-      animateRing(ring, pct / 100, document.getElementById("perfValue"), Math.round(pct));
-    });
-  }, { threshold: 0.35 });
-  io.observe(badge);
-}
 
 /* ------------------------------------------------------------
    Apply download URLs to the cards
@@ -536,7 +462,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initModal();
   initInstallGuides();
   initCounters();
-  initHeroExtras();
   initTestimonials();
   initPaperCalculator();
   setYear();
