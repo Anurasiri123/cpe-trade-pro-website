@@ -152,11 +152,24 @@
       <p class="lead">Analyze Spot, Futures and Forex with clear BUY / SELL / HOLD signals, entry / stop / target levels and a 0–10 quality breakdown. In the app, each eligible signal is tracked as a <strong>$10 paper trade</strong> so you can review its outcome without placing a real order.</p>
 
       <div class="stats-row">
-        <div class="stat"><span class="stat-num" data-count="10">0</span><span class="stat-lbl">Signal quality points</span></div>
-        <div class="stat"><span class="stat-prefix">$</span><span class="stat-num" data-count="10">0</span><span class="stat-lbl">Paper stake per signal</span></div>
+        <div class="stat"><span class="stat-num" data-count="10">0</span><span class="stat-lbl">Quality points</span></div>
+        <div class="stat"><span class="stat-prefix">$</span><span class="stat-num" data-count="10">0</span><span class="stat-lbl">Paper stake / signal</span></div>
+        <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-lbl">Timeframes</span></div>
         <div class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-lbl">Markets</span></div>
-        <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-suf"></span><span class="stat-lbl">Platforms</span></div>
       </div>
+
+      <!-- Animated performance badge. Hidden until a real tracked figure is set in js/main.js -->
+      <div class="perf-badge" id="perfBadge" hidden>
+        <svg class="mini-ring big" viewBox="0 0 44 44" aria-hidden="true">
+          <circle class="ring-bg" cx="22" cy="22" r="18"></circle>
+          <circle class="ring-fg" id="perfRing" cx="22" cy="22" r="18"></circle>
+        </svg>
+        <div>
+          <strong><span id="perfValue">0</span>%</strong>
+          <small id="perfCaption">tracked $10 signals · hypothetical</small>
+        </div>
+      </div>
+
       <div class="hero-cta">
         <a href="#download" class="btn btn-primary btn-lg dl-trigger" id="heroPrimary">
           <span class="dl-icon"></span> Download Free
@@ -168,7 +181,7 @@
         <div><strong>$10</strong> tracked per signal</div>
         <div><strong>0–10</strong> quality score</div>
         <div><strong>15m</strong> scan option</div>
-        <div><strong>3</strong> markets</div>
+        <div><strong>4</strong> platforms</div>
       </div>
     </div>
 
@@ -179,6 +192,15 @@
           <img src="assets/screenshots/spot-desk.jpg" alt="CPE Trade Pro Spot Desk showing live Binance BUY/HOLD signals" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
           <div class="ph" style="display:none"><span>Spot Desk</span><small>Live signals · BUY / HOLD</small></div>
         </div>
+      </div>
+      <div class="float-card fc-a"><span class="fc-ico">🔮</span><div><strong>Forecast 3M</strong><small>prediction lines drawn</small></div></div>
+      <div class="float-card fc-b"><span class="fc-ico">🤖</span><div><strong>Auto Trade</strong><small>sessions running</small></div></div>
+      <div class="float-card fc-c">
+        <svg class="mini-ring" viewBox="0 0 44 44" aria-hidden="true">
+          <circle class="ring-bg" cx="22" cy="22" r="18"></circle>
+          <circle class="ring-fg" id="heroRing" cx="22" cy="22" r="18"></circle>
+        </svg>
+        <div><strong><span id="heroScore">0</span>/10</strong><small>signal quality</small></div>
       </div>
     </div>
   </div>
@@ -836,6 +858,18 @@
         <p>Compare open and closed $10 paper outcomes, including fees and exit reasons. Use a meaningful sample, not one win.</p>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS (real quotes only) ===================== -->
+<section id="testimonials" class="section alt" hidden>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">TRUSTED BY TRADERS</span>
+      <h2>What users say</h2>
+      <p>Real quotes from people using CPE Trade Pro.</p>
+    </div>
+    <div class="t-grid" id="testimonialGrid"></div>
   </div>
 </section>
 
