@@ -9,7 +9,8 @@
 <meta name="description" content="Explore CPE Trade Pro trading signals across Spot, Futures and Forex. Auto analysis, future prediction lines, manual &amp; auto trading, positions, signal history, news and a $10-per-signal paper history. Windows, macOS, Android and iPhone." />
 <meta name="keywords" content="CPE Trade Pro, crypto paper trading, $10 paper trading, auto trading, manual trading, trading positions, signal history, trading news, Spot signals, Futures signals, Forex signals, signal quality score, technical analysis, prediction line, forecast, Bollinger Bands, Fibonacci, RSI, MACD, Smart Money Concepts" />
 <meta name="author" content="CPE Trade Pro" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
 <link rel="canonical" href="https://anurasiri123.github.io/cpe-trade-pro-website/" />
 
 <!-- Open Graph -->
@@ -18,11 +19,15 @@
 <meta property="og:description" content="Understand BUY, SELL and HOLD signals, test a $10 paper-trade example, and explore technical analysis across Spot, Futures and Forex." />
 <meta property="og:url" content="https://anurasiri123.github.io/cpe-trade-pro-website/" />
 <meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="https://anurasiri123.github.io/cpe-trade-pro-website/assets/screenshots/spot-desk.jpg" />
+<meta property="og:image:alt" content="CPE Trade Pro Spot Desk with signals and chart" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="CPE Trade Pro — Signals &amp; $10 Paper Trade Tracking" />
 <meta name="twitter:description" content="Explore signal grades, technical analysis and a $10-per-signal paper-trade example." />
+<meta name="twitter:image" content="https://anurasiri123.github.io/cpe-trade-pro-website/assets/screenshots/spot-desk.jpg" />
 
 <!-- Favicon (inline SVG) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1729'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-family='Arial Black, Arial, sans-serif' font-size='30' font-weight='900' fill='%2300e5a8'%3ECPE%3C/text%3E%3C/svg%3E" />
@@ -34,7 +39,7 @@
 
 <link rel="stylesheet" href="css/style.css" />
 
-<!-- Structured data: SoftwareApplication -->
+<!-- Structured data: SoftwareApplication + Organization -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,14 +47,71 @@
   "name": "CPE Trade Pro",
   "operatingSystem": "Windows, macOS, Android, iOS",
   "applicationCategory": "FinanceApplication",
-  "description": "Trading analysis for Spot, Futures and Forex with signal quality details, trade levels, multi-timeframe context, and a $10-per-signal paper history.",
+  "softwareVersion": "5.5.1",
+  "description": "Trading analysis for Spot, Futures and Forex with signal quality details, trade levels, multi-timeframe context, auto and manual trading, positions, signal history, news and a $10-per-signal paper history.",
+  "url": "https://anurasiri123.github.io/cpe-trade-pro-website/",
+  "image": "https://anurasiri123.github.io/cpe-trade-pro-website/assets/screenshots/spot-desk.jpg",
+  "screenshot": "https://anurasiri123.github.io/cpe-trade-pro-website/assets/screenshots/spot-desk.jpg",
+  "softwareHelp": "https://anurasiri123.github.io/cpe-trade-pro-website/#faq",
+  "downloadUrl": "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/latest",
   "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD",
     "description": "Free to download. Activation via license."
   },
-  "author": { "@type": "Organization", "name": "CPE Trade Pro" }
+  "author": { "@type": "Organization", "name": "CPE Trade Pro", "url": "https://anurasiri123.github.io/cpe-trade-pro-website/" },
+  "publisher": { "@type": "Organization", "name": "CPE Trade Pro", "url": "https://anurasiri123.github.io/cpe-trade-pro-website/" }
+}
+</script>
+
+<!-- Structured data: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is CPE Trade Pro free to download?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The app is free to download and install. To unlock full features you activate a license key — contact us on WhatsApp for packages." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which app builds can I download?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Windows setup, macOS Intel and Apple Silicon DMGs, Android APK, and an unsigned iPhone IPA are listed on the site. A license is device-bound. The Android build is 5.5.1; the other listed installers are 5.5.0." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the $10 paper signal tracking work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The app records eligible BUY / SELL signals with valid entry, stop and target levels using a fixed $10 paper stake. It follows prices and records the outcome in Signal History. DEMO paper tracking does not place a real order." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the app trade automatically?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Auto Trade sessions open trades for the signal grades you choose, with money management, a martingale ladder, auto take-profit and auto trail TP + SL, and Stop All ends them. You can also trade yourself with Manual Trade. Real orders are placed only in LIVE mode with your own connected platform credentials — in DEMO everything stays paper-only." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I short a Spot signal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Spot is long-only in this app. A SELL or short-side setup applies only to a suitable Futures or supported Forex workflow; leverage can magnify losses." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are signal scores or probability guarantees?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The quality score summarizes five evidence groups. The probability is an estimate, not a guaranteed win rate or audited performance record. Every market setup can lose." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I install the iPhone build?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Download the unsigned IPA, install Sideloadly on a Windows PC or Mac, connect the iPhone by USB, and sign it with your Apple ID. A free Apple ID signature expires after 7 days and must be renewed. App Store distribution is not included." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which markets are covered?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Crypto Spot and Futures market analysis, plus supported Forex pairs and metals such as XAUUSD. Exact data and live-order support depends on the selected connection." }
+    }
+  ]
 }
 </script>
 </head>
