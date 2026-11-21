@@ -3,20 +3,17 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   DOWNLOAD LINKS  —  EDIT THESE AFTER YOU UPLOAD THE FILES
-   (Upload the 4 installers to a GitHub Release, then paste the
-    direct download URLs below. Right now they point to a
-    GitHub Release pattern — create the release first.)
+   Public download bundle. Platform builds may have different version numbers.
    ------------------------------------------------------------ */
 const DOWNLOADS = {
-  windows:  "https://github.com/Anurasiri123/CPE-Trade-Pro-5.3.0/releases/download/v5.3.0/CPE-Trade-Pro-Setup-5.3.0.exe",
-  macX64:   "https://github.com/Anurasiri123/CPE-Trade-Pro-5.3.0/releases/download/v5.3.0/CPE-Trade-Pro-5.3.0-x64.dmg",
-  macArm:   "https://github.com/Anurasiri123/CPE-Trade-Pro-5.3.0/releases/download/v5.3.0/CPE-Trade-Pro-5.3.0-arm64.dmg",
-  android:  "https://github.com/Anurasiri123/CPE-Trade-Pro-5.3.0/releases/download/v5.3.0/CPE-Trade-Pro-5.3.0.apk",
-  ios:      "https://github.com/Anurasiri123/CPE-Trade-Pro-5.3.0/releases/download/v5.3.0/CPETradePro-unsigned.ipa"
+  windows:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v5.5.1/CPE-Trade-Pro-Setup-5.5.0.exe",
+  macX64:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v5.5.1/CPE-Trade-Pro-5.5.0-x64.dmg",
+  macArm:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v5.5.1/CPE-Trade-Pro-5.5.0-arm64.dmg",
+  android:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v5.5.1/CPE-Trade-Pro-5.5.1.apk",
+  ios:      "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v5.5.1/CPE-Trade-Pro-5.5.0-unsigned.ipa"
 };
 
-const IOS_GUIDE_URL = "https://github.com/Anurasiri123/CPE-Trade-Pro-5.3.0/blob/main/CUSTOMER-iOS-Install-Guide.txt";
+const IOS_GUIDE_URL = "#ios-install";
 
 /* ------------------------------------------------------------
    Apply download URLs to the cards
@@ -43,7 +40,13 @@ function setDownloads(){
     }
   }
   const iosLink = document.getElementById("iosGuideLink");
-  if(iosLink) iosLink.href = IOS_GUIDE_URL;
+  if(iosLink){
+    iosLink.href = IOS_GUIDE_URL;
+    iosLink.addEventListener("click", () => {
+      const guide = document.getElementById("ios-install");
+      if(guide) guide.open = true;
+    });
+  }
 }
 
 /* ------------------------------------------------------------
@@ -273,6 +276,62 @@ function initCounters(){
 }
 
 /* ------------------------------------------------------------
+   $10 paper-trade example — mirrors the app's signal-history fee model
+   ------------------------------------------------------------ */
+function initPaperCalculator(){
+  const form = document.getElementById("paperCalc");
+  if(!form) return;
+  const fields = ["paperSide","paperMarket","paperEntry","paperExit","paperSymbol"]
+    .map(id => document.getElementById(id));
+  const fees = { SPOT: 0.20, FUTURES: 0.08, FOREX: 0.03 };
+  const byId = id => document.getElementById(id);
+  const signed = (value, digits, suffix = "") =>
+    `${value >= 0 ? "+" : "−"}${Math.abs(value).toFixed(digits)}${suffix}`;
+
+  function calculate(event){
+    event?.preventDefault();
+    const side = byId("paperSide").value;
+    const market = byId("paperMarket").value;
+    const entry = Number(byId("paperEntry").value);
+    const exit = Number(byId("paperExit").value);
+    const error = byId("paperError");
+    const result = byId("paperResult");
+    if(!(entry > 0) || !(exit > 0) || !Number.isFinite(entry) || !Number.isFinite(exit)){
+      error.hidden = false;
+      result.hidden = true;
+      return;
+    }
+
+    error.hidden = true;
+    result.hidden = false;
+    const direction = side === "SELL" ? -1 : 1;
+    const grossPct = direction * ((exit - entry) / entry) * 100;
+    const feePct = fees[market] || 0;
+    const netPct = grossPct - feePct;
+    const stakeUsd = 10;
+    const feeUsd = stakeUsd * feePct / 100;
+    const pnlUsd = stakeUsd * netPct / 100;
+    const symbol = byId("paperSymbol").value.trim().toUpperCase() || "Example";
+
+    byId("paperPnl").textContent = `${pnlUsd >= 0 ? "+" : "−"}$${Math.abs(pnlUsd).toFixed(2)}`;
+    byId("paperGross").textContent = signed(grossPct, 2, "%");
+    byId("paperFee").textContent = `$${feeUsd.toFixed(3)}`;
+    byId("paperNetPct").textContent = signed(netPct, 2, "%");
+    const spotShortNote = market === "SPOT" && side === "SELL"
+      ? " · Spot is long-only; short math only"
+      : "";
+    byId("paperResultNote").textContent =
+      `${symbol} · ${side} · hypothetical prices · $10 fixed stake${spotShortNote}`;
+    result.classList.toggle("is-negative", pnlUsd < 0);
+  }
+
+  form.addEventListener("submit", calculate);
+  fields.forEach(field => field.addEventListener("input", calculate));
+  fields.forEach(field => field.addEventListener("change", calculate));
+  calculate();
+}
+
+/* ------------------------------------------------------------
    Boot
    ------------------------------------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -284,6 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFAQ();
   initModal();
   initCounters();
+  initPaperCalculator();
   setYear();
   initReveal();
 });
