@@ -595,44 +595,89 @@
     </div>
     <div class="dl-grid">
       <!-- Windows -->
-      <a class="dl-card os-win" id="dlWin" href="#" data-url="#">
+      <article class="dl-card os-win" id="dlWin">
         <div class="dl-icon-big">🪟</div>
         <h3>Windows</h3>
-        <p>Version 5.5.0 · 84 MB</p>
-        <span class="dl-btn">Download .exe →</span>
-      </a>
+        <p>Version 5.5.0 · .exe setup</p>
+        <a class="dl-btn" href="#" data-dl="windows">Download .exe →</a>
+        <button class="dl-guide-btn" type="button" data-guide-open="windows">Install steps &amp; warnings</button>
+      </article>
       <!-- macOS x64 -->
-      <a class="dl-card os-mac" id="dlMacX64" href="#" data-url="#">
+      <article class="dl-card os-mac" id="dlMacX64">
         <div class="dl-icon-big">🍎</div>
         <h3>macOS (Intel)</h3>
         <p>Version 5.5.0 · Intel</p>
-        <span class="dl-btn">Download .dmg →</span>
-      </a>
+        <a class="dl-btn" href="#" data-dl="macX64">Download .dmg →</a>
+        <button class="dl-guide-btn" type="button" data-guide-open="macX64">Install steps &amp; warnings</button>
+      </article>
       <!-- macOS arm64 -->
-      <a class="dl-card os-mac" id="dlMacArm" href="#" data-url="#">
+      <article class="dl-card os-mac" id="dlMacArm">
         <div class="dl-icon-big">🍎</div>
         <h3>macOS (M1/M2/M3)</h3>
         <p>Version 5.5.0 · Apple Silicon</p>
-        <span class="dl-btn">Download .dmg →</span>
-      </a>
+        <a class="dl-btn" href="#" data-dl="macArm">Download .dmg →</a>
+        <button class="dl-guide-btn" type="button" data-guide-open="macArm">Install steps &amp; warnings</button>
+      </article>
       <!-- Android -->
-      <a class="dl-card os-and" id="dlAnd" href="#" data-url="#">
+      <article class="dl-card os-and" id="dlAnd">
         <div class="dl-icon-big">🤖</div>
         <h3>Android</h3>
-        <p>Version 5.5.1 · Android</p>
-        <span class="dl-btn">Download .apk →</span>
-      </a>
+        <p>Version 5.5.1 · .apk</p>
+        <a class="dl-btn" href="#" data-dl="android">Download .apk →</a>
+        <button class="dl-guide-btn" type="button" data-guide-open="android">Install steps &amp; warnings</button>
+      </article>
       <!-- iOS -->
-      <a class="dl-card os-ios" id="dlIos" href="#" data-url="#">
+      <article class="dl-card os-ios" id="dlIos">
         <div class="dl-icon-big">📱</div>
         <h3>iPhone / iOS</h3>
         <p>Version 5.5.0 · unsigned IPA</p>
-        <span class="dl-btn">Download .ipa →</span>
-      </a>
+        <a class="dl-btn" href="#" data-dl="ios">Download .ipa →</a>
+        <button class="dl-guide-btn" type="button" data-guide-open="ios">Install steps &amp; warnings</button>
+      </article>
     </div>
     <div class="dl-notice">
-      <strong>Install notes:</strong> macOS builds are unsigned (right-click → Open on first launch). iOS needs Sideloadly and Apple ID signing; a free signature expires after 7 days.
+      <strong>Install notes:</strong> CPE Trade Pro builds are not store-signed, so your device shows a security warning on first launch. This is expected — open each platform's <em>Install steps &amp; warnings</em> above for the exact clicks.
       <a href="#ios-install" id="iosGuideLink">Read the iPhone install steps</a>.
+    </div>
+
+    <!-- Per-platform install warnings, shown separately for each OS -->
+    <div class="dl-guides">
+      <details class="dl-guide" open>
+        <summary>🪟 Windows — “Windows protected your PC” warning</summary>
+        <ol>
+          <li>Run the downloaded <strong>CPE-Trade-Pro-Setup-5.5.0.exe</strong>.</li>
+          <li>If Windows SmartScreen appears, click <strong>More info</strong> → <strong>Run anyway</strong>. The build is simply not code-signed.</li>
+          <li>Approve the <strong>User Account Control</strong> prompt (<strong>Yes</strong>) if it appears.</li>
+          <li>If your antivirus quarantines the file, choose <strong>Allow / Keep</strong>, then run the installer again.</li>
+        </ol>
+      </details>
+      <details class="dl-guide">
+        <summary>🍎 macOS — “cannot be opened because the developer cannot be verified”</summary>
+        <ol>
+          <li>Open the <strong>.dmg</strong> and drag CPE Trade Pro into <strong>Applications</strong>.</li>
+          <li>First launch: <strong>right-click (Control-click) the app</strong> → <strong>Open</strong> → <strong>Open</strong> again.</li>
+          <li>Or go to <strong>System Settings → Privacy &amp; Security</strong> and click <strong>Open Anyway</strong>.</li>
+        </ol>
+      </details>
+      <details class="dl-guide">
+        <summary>🤖 Android — “unknown apps” and Play Protect warnings</summary>
+        <ol>
+          <li>Download the <strong>.apk</strong>. Chrome may warn it can harm your device — tap <strong>Download anyway</strong>.</li>
+          <li>Open the file. Android asks to allow installs from this source — enable <strong>Allow from this source</strong> for your browser or Files app.</li>
+          <li>If <strong>Play Protect</strong> says the app is unsafe, tap <strong>More details → Install anyway</strong>.</li>
+          <li>Tap <strong>Install → Open</strong>.</li>
+        </ol>
+      </details>
+      <details class="dl-guide" id="ios-install-details">
+        <summary>📱 iPhone / iOS — unsigned IPA signing</summary>
+        <ol>
+          <li>Install <strong>Sideloadly</strong> on a Windows PC or Mac.</li>
+          <li>Connect your iPhone by USB and tap <strong>Trust</strong> on the phone.</li>
+          <li>Drag the <strong>.ipa</strong> into Sideloadly, enter your Apple ID and click <strong>Start</strong>.</li>
+          <li>On the iPhone: <strong>Settings → General → VPN &amp; Device Management</strong> → trust the developer profile.</li>
+          <li>A free Apple ID signature expires after <strong>7 days</strong> — re-sign to keep using it.</li>
+        </ol>
+      </details>
     </div>
   </div>
 </section>
@@ -801,6 +846,20 @@
       </a>
     </div>
     <p class="modal-foot">After download, open the installer and follow the steps. Need help? <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp us</a>.</p>
+  </div>
+</div>
+
+<!-- ===================== INSTALL GUIDE MODAL ===================== -->
+<div class="modal" id="guideModal" aria-hidden="true">
+  <div class="modal-backdrop" data-guide-close></div>
+  <div class="modal-card">
+    <button class="modal-close" data-guide-close aria-label="Close">✕</button>
+    <h3 id="guideTitle">Install steps</h3>
+    <p id="guideIntro"></p>
+    <div class="guide-warn" id="guideWarn"></div>
+    <ol class="guide-steps" id="guideSteps"></ol>
+    <a class="btn btn-primary btn-block" id="guideDownload" href="#" download>Download now</a>
+    <p class="modal-foot">Installed but need help activating? <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp us</a>.</p>
   </div>
 </div>
 

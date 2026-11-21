@@ -13,40 +13,16 @@ const DOWNLOADS = {
   ios:      "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v5.5.1/CPE-Trade-Pro-5.5.0-unsigned.ipa"
 };
 
-const IOS_GUIDE_URL = "#ios-install";
-
 /* ------------------------------------------------------------
    Apply download URLs to the cards
    ------------------------------------------------------------ */
 function setDownloads(){
-  const map = {
-    dlWin: DOWNLOADS.windows,
-    dlMacX64: DOWNLOADS.macX64,
-    dlMacArm: DOWNLOADS.macArm,
-    dlAnd: DOWNLOADS.android,
-    dlIos: DOWNLOADS.ios
-  };
-  for(const id in map){
-    const el = document.getElementById(id);
-    if(!el) continue;
-    el.href = map[id];
+  document.querySelectorAll("[data-dl]").forEach(el => {
+    const url = DOWNLOADS[el.dataset.dl];
+    if(!url) return;
+    el.href = url;
     el.setAttribute("download","");
-    // warn if URL still looks like a placeholder pattern (no release yet)
-    if(map[id].indexOf("releases/download/") === -1){
-      el.addEventListener("click", function(e){
-        e.preventDefault();
-        alert("Download link not set yet. Please upload the installer to a GitHub Release first.");
-      });
-    }
-  }
-  const iosLink = document.getElementById("iosGuideLink");
-  if(iosLink){
-    iosLink.href = IOS_GUIDE_URL;
-    iosLink.addEventListener("click", () => {
-      const guide = document.getElementById("ios-install");
-      if(guide) guide.open = true;
-    });
-  }
+  });
 }
 
 /* ------------------------------------------------------------
@@ -332,6 +308,116 @@ function initPaperCalculator(){
 }
 
 /* ------------------------------------------------------------
+   Per-platform install guide popups.
+   Each platform shows its own first-launch security warning steps.
+   ------------------------------------------------------------ */
+const INSTALL_GUIDES = {
+  windows: {
+    title: "Install on Windows",
+    intro: "Run the installer, then allow the security warning that Windows shows for unsigned apps.",
+    warn: "You may see “Windows protected your PC” (SmartScreen). Click More info → Run anyway — the installer is simply not code-signed.",
+    steps: [
+      "Download and run <strong>CPE-Trade-Pro-Setup-5.5.0.exe</strong>.",
+      "On the SmartScreen popup click <strong>More info</strong> → <strong>Run anyway</strong>.",
+      "Approve the <strong>User Account Control</strong> prompt (<strong>Yes</strong>).",
+      "If antivirus blocks it, choose <strong>Allow / Keep</strong> and run the installer again.",
+      "Finish the setup and open CPE Trade Pro from the desktop shortcut."
+    ],
+    file: "CPE-Trade-Pro-Setup-5.5.0.exe"
+  },
+  macX64: {
+    title: "Install on macOS (Intel)",
+    intro: "Drag the app into Applications, then open it past Gatekeeper on first launch.",
+    warn: "macOS says the app “cannot be opened because the developer cannot be verified”. This is normal for an unsigned build.",
+    steps: [
+      "Open the downloaded <strong>.dmg</strong>.",
+      "Drag <strong>CPE Trade Pro</strong> into the <strong>Applications</strong> folder.",
+      "<strong>Right-click (Control-click)</strong> the app → <strong>Open</strong> → <strong>Open</strong> again.",
+      "Or use <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>."
+    ],
+    file: "CPE-Trade-Pro-5.5.0-x64.dmg"
+  },
+  macArm: {
+    title: "Install on macOS (Apple Silicon)",
+    intro: "Drag the app into Applications, then open it past Gatekeeper on first launch.",
+    warn: "macOS says the app “cannot be opened because the developer cannot be verified”. This is normal for an unsigned build.",
+    steps: [
+      "Open the downloaded <strong>.dmg</strong>.",
+      "Drag <strong>CPE Trade Pro</strong> into the <strong>Applications</strong> folder.",
+      "<strong>Right-click (Control-click)</strong> the app → <strong>Open</strong> → <strong>Open</strong> again.",
+      "Or use <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>."
+    ],
+    file: "CPE-Trade-Pro-5.5.0-arm64.dmg"
+  },
+  android: {
+    title: "Install on Android",
+    intro: "The APK is installed outside the Play Store, so Android asks you to allow installs from this source.",
+    warn: "Android shows an “unknown apps” or Play Protect warning for any APK installed from a browser. Allow this source, then install.",
+    steps: [
+      "Download the <strong>.apk</strong>. If Chrome warns it may harm your device, tap <strong>Download anyway</strong>.",
+      "Open the file and enable <strong>Allow from this source</strong> for your browser or Files app.",
+      "If <strong>Play Protect</strong> says the app is unsafe, tap <strong>More details → Install anyway</strong>.",
+      "Tap <strong>Install</strong>, then <strong>Open</strong>."
+    ],
+    file: "CPE-Trade-Pro-5.5.1.apk"
+  },
+  ios: {
+    title: "Install on iPhone / iOS",
+    intro: "iPhone installs of an unsigned IPA require Sideloadly and your Apple ID.",
+    warn: "A free Apple ID signature expires after 7 days. Re-sign with Sideloadly to keep using the app.",
+    steps: [
+      "Install <strong>Sideloadly</strong> on a Windows PC or Mac.",
+      "Connect your iPhone by USB and tap <strong>Trust</strong> on the phone.",
+      "Drag the <strong>.ipa</strong> into Sideloadly, enter your Apple ID and click <strong>Start</strong>.",
+      "On the iPhone open <strong>Settings → General → VPN &amp; Device Management</strong> and trust the developer profile.",
+      "Re-sign every <strong>7 days</strong> with a free Apple ID."
+    ],
+    file: "CPE-Trade-Pro-5.5.0-unsigned.ipa"
+  }
+};
+
+function initInstallGuides(){
+  const modal = document.getElementById("guideModal");
+  if(!modal) return;
+  const titleEl = document.getElementById("guideTitle");
+  const introEl = document.getElementById("guideIntro");
+  const warnEl  = document.getElementById("guideWarn");
+  const stepsEl = document.getElementById("guideSteps");
+  const dlEl    = document.getElementById("guideDownload");
+
+  function open(key){
+    const g = INSTALL_GUIDES[key];
+    if(!g) return;
+    titleEl.textContent = g.title;
+    introEl.textContent = g.intro;
+    warnEl.innerHTML = g.warn;
+    warnEl.classList.toggle("show", !!g.warn);
+    stepsEl.innerHTML = g.steps.map(s => `<li>${s}</li>`).join("");
+    dlEl.href = DOWNLOADS[key] || "#";
+    dlEl.textContent = g.file ? `Download ${g.file}` : "Download now";
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden","false");
+  }
+  function close(){
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden","true");
+  }
+
+  document.querySelectorAll("[data-guide-open]").forEach(btn =>
+    btn.addEventListener("click", () => open(btn.dataset.guideOpen))
+  );
+  modal.querySelectorAll("[data-guide-close]").forEach(el =>
+    el.addEventListener("click", close)
+  );
+  document.addEventListener("keydown", e => { if(e.key === "Escape") close(); });
+
+  const iosLink = document.getElementById("iosGuideLink");
+  if(iosLink){
+    iosLink.addEventListener("click", e => { e.preventDefault(); open("ios"); });
+  }
+}
+
+/* ------------------------------------------------------------
    Boot
    ------------------------------------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -342,6 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider();
   initFAQ();
   initModal();
+  initInstallGuides();
   initCounters();
   initPaperCalculator();
   setYear();
