@@ -1,7 +1,7 @@
 {
   "name": "CPE Trade Pro",
   "short_name": "CPE Trade Pro",
-  "description": "Trading analysis for 590+ crypto pairs and Forex with 90%+ signal accuracy, BUY / SELL / HOLD signals, LIVE and DEMO modes.",
+  "description": "Trading analysis for 590+ crypto pairs and Forex with an objective 0-10 signal quality score, BUY / SELL / HOLD signals, LIVE and DEMO modes.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
