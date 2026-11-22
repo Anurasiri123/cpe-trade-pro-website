@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Verify Your Download — SHA-256 Checksums | CPE Trade Pro</title>
+<meta name="description" content="Check that the CPE Trade Pro installer you downloaded is genuine. Compare the SHA-256 checksum of your file with the published values for every release (Windows, macOS, Android, iOS)." />
+<meta name="keywords" content="verify download, SHA-256, checksum, CPE Trade Pro installer, file integrity, authentic download" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/verify-download.html" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Verify Your Download — CPE Trade Pro" />
+<meta property="og:description" content="Compare the SHA-256 checksum of your installer with the published values so you know your download is genuine and uncorrupted." />
+<meta property="og:url" content="https://cpetradepro.com/verify-download.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/spot-desk.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1729'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-family='Arial Black, Arial, sans-serif' font-size='30' font-weight='900' fill='%2300e5a8'%3ECPE%3C/text%3E%3C/svg%3E" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Verify Your Download",
+  "url": "https://cpetradepro.com/verify-download.html",
+  "inLanguage": "en",
+  "description": "SHA-256 checksums and integrity verification instructions for CPE Trade Pro installers.",
+  "isPartOf": { "@type": "WebSite", "name": "CPE Trade Pro", "url": "https://cpetradepro.com/" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "url": "https://cpetradepro.com/",
+    "disambiguatingDescription": "CPE Trade Pro is independent analysis software. It is not a broker or exchange, does not hold customer funds, and is not affiliated with cTrader, CPT Markets or any other trading platform."
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Verify download", "item": "https://cpetradepro.com/verify-download.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/#features">Features</a>
+      <a href="/#app-screens">App screens</a>
+      <a href="/#paper-trading">Paper trades</a>
+      <a href="/#markets">Markets</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#download">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <span>Verify download</span>
+    </nav>
+    <span class="eyebrow">Security</span>
+    <h1>Check that your download is genuine</h1>
+    <p class="lead">Every CPE Trade Pro installer we publish has a unique <strong>SHA-256 fingerprint</strong>. Compare the fingerprint of the file on your computer with the value below — if they match, the file is exactly the one we released, unaltered and uncorrupted. If they do not match, do not install it.</p>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <h2 id="current">Current release: v5.5.1</h2>
+      <p>These are the checksums for the files attached to the latest release. The download links on this site point at the same files on our <a href="https://github.com/Anurasiri123/cpe-trade-pro-website/releases" target="_blank" rel="noopener">GitHub releases page</a>.</p>
+
+      <div class="callout info">
+        <span class="co-ico">🔢</span>
+        <div>
+          <strong>What a SHA-256 checksum is</strong>
+          A checksum is a fixed-length fingerprint calculated from every byte in a file. Change even a single character and the fingerprint changes completely. Because the value is unique to the exact file, it is a simple way to prove that what you downloaded is what we published — and that nothing (or no one) altered it on the way.
+        </div>
+      </div>
+
+      <h3>Windows installer</h3>
+      <ul>
+        <li><strong>File:</strong> CPE-Trade-Pro-Setup-5.5.0.exe</li>
+        <li><strong>Size:</strong> 88,589,468 bytes (84.49 MB)</li>
+      </ul>
+      <pre><code>F06F27D9E7B4D652254B8F374D9D8E05D31FB37E6DFF4FAF33AF1A9CC92802DE</code></pre>
+
+      <h3>macOS — Intel (x64)</h3>
+      <ul>
+        <li><strong>File:</strong> CPE-Trade-Pro-5.5.0-x64.dmg</li>
+        <li><strong>Size:</strong> 110,617,299 bytes (105.49 MB)</li>
+      </ul>
+      <pre><code>B18036B0BB5EA503315F96B82E54BA3F3C4C21142BA760A2313C0278C60AB2BD</code></pre>
+
+      <h3>macOS — Apple Silicon (arm64)</h3>
+      <ul>
+        <li><strong>File:</strong> CPE-Trade-Pro-5.5.0-arm64.dmg</li>
+        <li><strong>Size:</strong> 103,742,364 bytes (98.94 MB)</li>
+      </ul>
+      <pre><code>F850743004C4722D74448357EE44D1CE25EE046D57CB48E52652E644F6835972</code></pre>
+
+      <h3>Android (APK)</h3>
+      <ul>
+        <li><strong>File:</strong> CPE-Trade-Pro-5.5.1.apk</li>
+        <li><strong>Size:</strong> 968,191 bytes (0.92 MB)</li>
+      </ul>
+      <pre><code>8C578B485ACC6AF92B5E10242C41D97D69225D8C3E188F1E81972258C0493915</code></pre>
+
+      <h3>iOS (unsigned IPA)</h3>
+      <ul>
+        <li><strong>File:</strong> CPE-Trade-Pro-5.5.0-unsigned.ipa</li>
+        <li><strong>Size:</strong> 1,044,531 bytes (1.00 MB)</li>
+      </ul>
+      <pre><code>883889BABD7CD4D4D233C803AA5FD4D86BBC60E27162044141D2F08F97AD579D</code></pre>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>Filenames include the version number</strong>
+          If you see a checksum here for version 5.5.0 but the app on this site has moved to a newer release, the numbers will not match — download the file listed above, or ask us for the checksum of the current release. Never install a file whose fingerprint does not match the published one.
+        </div>
+      </div>
+
+      <h2 id="windows">How to check on Windows</h2>
+      <p>Open PowerShell (press <strong>Win</strong>, type <em>PowerShell</em>, press Enter), then run this with the path to your downloaded file:</p>
+      <pre><code>Get-FileHash "C:\Users\YourName\Downloads\CPE-Trade-Pro-Setup-5.5.0.exe" -Algorithm SHA256</code></pre>
+      <p>PowerShell prints a <strong>Hash</strong> value. Compare it, letter by letter, with the checksum above. Differences in upper or lower case do not matter.</p>
+
+      <h2 id="mac">How to check on macOS or Linux</h2>
+      <p>Open <strong>Terminal</strong> and run <code>shasum -a 256</code> (macOS) or <code>sha256sum</code> (Linux) with the path to your file:</p>
+      <pre><code>shasum -a 256 ~/Downloads/CPE-Trade-Pro-5.5.0-arm64.dmg</code></pre>
+      <p>The long string on the left is the file's fingerprint. It should equal the published value for that file.</p>
+
+      <h2 id="mismatch">If the checksum does not match</h2>
+      <p>A mismatch means one of two things: the download was interrupted or damaged, or the file is not the one we published. Either way, do the following:</p>
+      <ol>
+        <li><strong>Do not install the file.</strong> Delete it.</li>
+        <li><strong>Download it again</strong> from the links on this site or from our <a href="https://github.com/Anurasiri123/cpe-trade-pro-website/releases" target="_blank" rel="noopener">GitHub releases page</a>.</li>
+        <li><strong>Re-check the new file.</strong> A complete download should now match.</li>
+        <li><strong>Still not matching?</strong> Message us on <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp</a> or email <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a> with the filename and the hash you got, and we will confirm the current value.</li>
+      </ol>
+
+      <h2 id="fake">If you got a download from somewhere else</h2>
+      <p>We only publish installers on this site and on our GitHub releases page. If someone sent you a file directly on WhatsApp, Telegram or social media — or pointed you to another website — treat it as untrusted until its checksum matches ours.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">🛡️</span>
+        <div>
+          <strong>We will never ask you to pay to unlock a download or a withdrawal</strong>
+          Support, downloads and updates are all free with your licence. If anyone claiming to be CPE Trade Pro asks for a fee, a tax or an "unlock" payment, it is a scam. See the <a href="/contact.html">contact page</a> for the red flags and how to report an impersonator.
+        </div>
+      </div>
+
+      <h2 id="release">Every release, verifiable</h2>
+      <p>Because the source repository and every attached installer are public on GitHub, anyone can check the fingerprints independently. Older releases and their files are listed on the <a href="https://github.com/Anurasiri123/cpe-trade-pro-website/releases" target="_blank" rel="noopener">releases page</a>.</p>
+
+      <p class="fineprint">Educational and analysis content only. Nothing on this site is financial advice. CPE Trade Pro is analysis software, not a broker or exchange — it never holds your funds and never asks for a fee to withdraw. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Next</h3>
+        <ul>
+          <li><a href="/contact.html">Contact and support</a></li>
+          <li><a href="/about.html">About CPE Trade Pro</a></li>
+          <li><a href="/refund.html">Refund policy</a></li>
+          <li><a href="/risk-disclosure.html">Full risk disclosure</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Try it free for 7 days</h4>
+        <p>Install the app, explore every feature, and decide before you buy a licence.</p>
+        <a href="/#download" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#current">Current release v5.5.1</a>
+          <a href="#windows">Check on Windows</a>
+          <a href="#mac">Check on macOS / Linux</a>
+          <a href="#mismatch">If it does not match</a>
+          <a href="#fake">Downloads from elsewhere</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>Trust centre</h4>
+        <nav class="side-links">
+          <a href="/about.html">About</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/refund.html">Refund policy</a>
+          <a href="/risk-disclosure.html">Risk disclosure</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Download with confidence</h2>
+    <p>Get CPE Trade Pro free and try every feature with the 7-day trial.</p>
+    <div class="hero-cta">
+      <a href="/#download" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/#features">Features</a>
+      <a href="/#app-screens">App screens</a>
+      <a href="/#paper-trading">Paper trades</a>
+      <a href="/#signal-guide">Signal guide</a>
+      <a href="/#markets">Markets</a>
+      <a href="/#download">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">CPE Trade Pro is analysis software, not a broker or exchange. It never holds your funds and never asks for a fee to withdraw. Risk warning: Trading involves risk. Past signals do not guarantee future results.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

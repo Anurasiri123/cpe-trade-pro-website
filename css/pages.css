@@ -180,3 +180,12 @@
 
 /* ---------- Small print ---------- */
 .fineprint{font-size:.76rem;color:var(--muted);line-height:1.6;margin-top:1.6rem}
+
+/* ---------- Legal / trust links row in the footer ---------- */
+.footer-legal{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem .9rem;
+  margin-bottom:.9rem;padding-bottom:.9rem;
+  border-bottom:1px solid var(--line);
+}
+.footer-legal a{font-size:.78rem;color:var(--muted)}
+.footer-legal a:hover{color:var(--accent)}
