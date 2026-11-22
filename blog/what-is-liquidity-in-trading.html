@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>What Is Liquidity in Trading? Equal Highs, Equal Lows and Stop Hunts</title>
+<meta name="description" content="Liquidity in trading explained: how pending orders cluster at equal highs and equal lows, why price spikes through obvious levels in a stop hunt, and how the app marks resting liquidity with a LIQ label." />
+<meta name="keywords" content="liquidity in trading, equal highs, equal lows, liquidity grab, stop hunt, liquidity sweep, SMC, smart money concepts, trading guide" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/what-is-liquidity-in-trading.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="What Is Liquidity in Trading? Equal Highs, Equal Lows and Stop Hunts" />
+<meta property="og:description" content="How pending orders cluster at equal highs and lows, why price spikes through obvious levels, and how to read a liquidity sweep." />
+<meta property="og:url" content="https://cpetradepro.com/blog/what-is-liquidity-in-trading.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What Is Liquidity in Trading?" />
+<meta name="twitter:description" content="Equal highs, equal lows, stop hunts and liquidity sweeps, in plain English." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1729'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-family='Arial Black, Arial, sans-serif' font-size='30' font-weight='900' fill='%2300e5a8'%3ECPE%3C/text%3E%3C/svg%3E" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is Liquidity in Trading? Equal Highs, Equal Lows and Stop Hunts",
+  "description": "How pending orders cluster at equal highs and equal lows, why price spikes through obvious levels in a stop hunt, and how the app marks resting liquidity with a LIQ label.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/what-is-liquidity-in-trading.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "What is liquidity in trading?", "item": "https://cpetradepro.com/blog/what-is-liquidity-in-trading.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/#features">Features</a>
+      <a href="/#app-screens">App screens</a>
+      <a href="/#paper-trading">Paper trades</a>
+      <a href="/#markets">Markets</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#download">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>What is liquidity in trading?</span>
+    </nav>
+    <span class="eyebrow">Trading basics · SMC</span>
+    <h1>What is liquidity in trading?</h1>
+    <p class="lead">Liquidity is one of the most useful ideas in Smart Money Concepts — and one of the most misunderstood. This guide explains what liquidity really means, where it builds up, why price so often spikes through obvious levels, and how to manage risk when it sweeps.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Technical analysis</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Have you ever watched price sit just under a clear high, dip below it to look weak, and then explode upward? That sudden dip had a purpose: it collected orders sitting below the level. That is <strong>liquidity</strong>, and understanding it changes how you read the market.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Short version</strong>
+          Liquidity means clusters of pending orders. They pile up above equal highs (buy stops and breakout orders) and below equal lows (sell stops). Price often pushes into those clusters before reversing — a stop hunt or liquidity grab.
+        </div>
+      </div>
+
+      <h2 id="what">1. Liquidity is clusters of pending orders</h2>
+      <p>In everyday language, liquidity means how easily something can be bought or sold. In trading it has a second, more specific meaning: <strong>areas on the chart where a lot of pending orders are waiting</strong>.</p>
+      <p>Those pending orders come from other traders. Stop-losses, breakout orders and take-profit orders all have to sit somewhere, and they tend to sit in the same obvious places. When a large move needs to be filled, price is naturally drawn toward these clusters — there is simply more order flow there to trade against.</p>
+      <p>The practical takeaway: liquidity is not a signal by itself. It is a <strong>magnet</strong> that tells you where price may be pulled next.</p>
+
+      <h2 id="equal">2. Equal highs and equal lows</h2>
+      <p>The easiest liquidity to spot is at <strong>equal highs</strong> and <strong>equal lows</strong>:</p>
+      <ul>
+        <li><strong>Equal highs</strong> — two or more highs at roughly the same level. Traders see a “double top” or resistance and pile buy stops just above it, expecting a breakout.</li>
+        <li><strong>Equal lows</strong> — two or more lows at roughly the same level. Traders see a “double bottom” or support and place sell stops just below it.</li>
+      </ul>
+      <p>Because the level is so obvious, the orders stack up right beneath it. That is exactly why price is attracted to it: the cluster acts as a pool of liquidity that a larger move can trade into.</p>
+
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Equal highs</th><th>Equal lows</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Where price sits</td><td>Two or more highs at the same level</td><td>Two or more lows at the same level</td></tr>
+          <tr><td>What traders see</td><td>Resistance / possible breakout</td><td>Support / possible breakdown</td></tr>
+          <tr><td>Orders that cluster</td><td>Buy stops and breakout orders above</td><td>Sell stops and breakdown orders below</td></tr>
+          <tr><td>Typical liquidity move</td><td>A spike above, then a reversal down</td><td>A spike below, then a reversal up</td></tr>
+          <tr><td>App label</td><td><code>LIQ</code> line above</td><td><code>LIQ</code> line below</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="stop-hunt">3. Stop hunts and liquidity grabs</h2>
+      <p>A <strong>stop hunt</strong> (also called a <strong>liquidity grab</strong> or <strong>sweep</strong>) happens when price reaches into a cluster of orders, triggers them, and then moves the other way.</p>
+      <p>Think about it from the market’s point of view. To fill a large buy order, there needs to be selling on the other side. A pool of sell stops sitting below an equal low is a ready supply of sellers — once price dips into it, those stops fire as market sell orders, giving the larger buyer plenty to absorb.</p>
+      <p>That is why the move so often looks like a fake breakdown: price taps the level, sweeps the orders, and snaps back. The stop hunt was the goal — the direction change that follows is the real move.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>Not every sweep reverses</strong>
+          Sometimes price sweeps a level and keeps going — a genuine breakout. A sweep is a hint that liquidity was taken, not a promise that price will turn. Always wait for confirmation.
+        </div>
+      </div>
+
+      <h2 id="spike">4. Why price spikes through obvious levels, then reverses</h2>
+      <p>Obvious levels attract obvious orders. A high that everyone can see becomes a magnet for stops, and stops are fuel. When price pushes just past such a level, it triggers a burst of orders that can overshoot the actual intent of the move. Once those orders are filled, the pressure that dragged price there disappears, and price can reverse quickly.</p>
+      <p>This is why traders often say the market “takes liquidity” before making its real move. The spike is not random noise — it is the market reaching for the orders that sit beyond the obvious line.</p>
+
+      <h2 id="draw">5. How to draw liquidity levels</h2>
+      <p>Drawing liquidity is simple:</p>
+      <ol>
+        <li>Look for <strong>equal highs</strong> or <strong>equal lows</strong> — two or more touches at roughly the same price.</li>
+        <li>Draw a <strong>horizontal line</strong> just beyond the level (above the highs, below the lows), where the stops would sit.</li>
+        <li>Extend the line to the right so it is visible for future price action.</li>
+        <li>Treat it as a <strong>guide</strong>, not a trade signal — it marks a likely magnet.</li>
+        <li>When price sweeps it, note the reaction: a clean reversal from the level is far more meaningful than a slow drift through it.</li>
+      </ol>
+      <p>Keep the list short. The most obvious levels matter most; drawing every tiny high and low just clutters the chart.</p>
+
+      <h2 id="app">6. How the app marks resting liquidity</h2>
+      <p>CPE Trade Pro’s Smart Money Concepts overlay scans for equal highs and equal lows and marks them with a <code>LIQ</code> label on a horizontal line, so resting liquidity is visible without hand-drawing it. Alongside the liquidity lines, the app labels order blocks as <code>OB</code>, imbalances as <code>FVG</code>, and structure breaks as <code>BOS ↑</code> / <code>BOS ↓</code> and <code>CHoCH ↑</code> / <code>CHoCH ↓</code>. The zone behind the current signal is highlighted as <code>LIMIT ENTRY · <em>zone</em></code> or <code>MARKET ENTRY · <em>zone</em></code>.</p>
+      <p>On smaller screens, only the labels that fit are drawn, so the chart stays readable. The goal is simple: you see where liquidity sits and how it lines up with structure and zones, all at once.</p>
+
+      <h2 id="risk">7. Risk management around liquidity sweeps</h2>
+      <p>Liquidity is where accounts get hurt, so a few habits go a long way:</p>
+      <ul>
+        <li><strong>Do not place stops right at the obvious level.</strong> That is exactly where sweeps happen. Give stops room beyond the liquidity line, or accept a smaller position size.</li>
+        <li><strong>Wait for the sweep and the reaction.</strong> Trying to guess the exact turn against a running move is a low-percentage game.</li>
+        <li><strong>Size from the invalidation point.</strong> If the stop must be wide to survive a sweep, the position must be smaller.</li>
+        <li><strong>Combine with structure.</strong> A sweep into an order block that also flips structure is far more interesting than a sweep on its own.</li>
+        <li><strong>Respect leverage.</strong> Futures and supported Forex workflows use leverage, which can magnify losses. Spot trading in the app is long-only; shorting requires those leveraged workflows, so treat them with extra care.</li>
+      </ul>
+
+      <div class="callout info">
+        <span class="co-ico">📊</span>
+        <div>
+          <strong>Liquidity labels are context</strong>
+          A <code>LIQ</code> line is analysis, not an order. It shows where orders may sit and where price may be drawn. Entries only happen when the signal conditions line up and you decide to act — in DEMO as a paper trade, or in LIVE with your own connected platform. DEMO places no real orders.
+        </div>
+      </div>
+
+      <h2 id="mistakes">8. Common mistakes</h2>
+      <ul>
+        <li><strong>Treating every equal high or low as a trade.</strong> Liquidity is a magnet, not a signal.</li>
+        <li><strong>Assuming a sweep must reverse.</strong> Sometimes it is a real breakout — wait for confirmation.</li>
+        <li><strong>Putting stops on the obvious line.</strong> That is precisely where stop hunts reach.</li>
+        <li><strong>Ignoring the higher timeframe.</strong> Liquidity on a small timeframe is noise inside a bigger trend.</li>
+        <li><strong>Sizing too big.</strong> Wide stops around liquidity require smaller positions to keep risk fixed.</li>
+      </ul>
+
+      <h2 id="summary">9. Summary</h2>
+      <p>Liquidity is simply clusters of pending orders, and the easiest clusters to find sit above equal highs and below equal lows. Price is often drawn toward them and can sweep through before reversing — a stop hunt. Draw the most obvious levels, remember they are guides rather than signals, and manage risk so that a sweep cannot take you out at the worst possible moment. Combined with structure and order blocks, liquidity turns from a surprise into something you can plan around.</p>
+      <p>Want to see liquidity levels drawn for you? <a href="/#download">Download CPE Trade Pro free</a> and open the chart — the SMC overlay is one of the layers you can toggle.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/what-is-smart-money-concepts.html">What are Smart Money Concepts?</a></li>
+          <li><a href="/blog/bos-vs-choch.html">BOS vs CHoCH — what is the difference?</a></li>
+          <li><a href="/blog/how-to-read-order-blocks.html">How to read order blocks on a chart</a></li>
+          <li><a href="/blog/spot-vs-futures-trading.html">Spot vs futures trading</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See liquidity on live charts</h4>
+        <p>Order blocks, FVG, liquidity and structure breaks are drawn and labelled inside the app.</p>
+        <a href="/#download" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">1. Liquidity = pending orders</a>
+          <a href="#equal">2. Equal highs and lows</a>
+          <a href="#stop-hunt">3. Stop hunts</a>
+          <a href="#spike">4. Why price spikes</a>
+          <a href="#draw">5. How to draw levels</a>
+          <a href="#app">6. LIQ in the app</a>
+          <a href="#risk">7. Risk management</a>
+          <a href="#mistakes">8. Common mistakes</a>
+          <a href="#summary">9. Summary</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/crypto-signals.html">Crypto signals</a>
+          <a href="/forex-signals.html">Forex signals</a>
+          <a href="/binance-signals.html">Binance signals</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Ready to trade smarter?</h2>
+    <p>Download CPE Trade Pro free. Activate in minutes.</p>
+    <div class="hero-cta">
+      <a href="/#download" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/#features">Features</a>
+      <a href="/#app-screens">App screens</a>
+      <a href="/#paper-trading">Paper trades</a>
+      <a href="/#signal-guide">Signal guide</a>
+      <a href="/#markets">Markets</a>
+      <a href="/#download">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

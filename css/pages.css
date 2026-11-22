@@ -1,0 +1,182 @@
+/* ============================================================
+   CPE Trade Pro — inner pages (features, blog, guides)
+   Loaded AFTER style.css so the tokens in :root are already set.
+   ============================================================ */
+
+/* ---------- Breadcrumb ---------- */
+.crumbs{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;
+  font-size:.78rem;color:var(--muted);padding:1.4rem 0 .2rem;
+}
+.crumbs a{color:var(--muted)}
+.crumbs a:hover{color:var(--accent)}
+.crumbs span.sep{opacity:.5}
+
+/* ---------- Page hero ---------- */
+.page-hero{position:relative;padding:1.4rem 0 2.4rem;overflow:hidden}
+.page-hero .hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(700px 380px at 12% 0%,rgba(0,229,168,.13),transparent 62%),
+    radial-gradient(600px 400px at 88% 20%,rgba(59,130,246,.14),transparent 62%);
+}
+.page-hero .container{position:relative;z-index:1}
+.page-hero h1{
+  font:800 clamp(1.7rem,4vw,2.6rem)/1.18 'Sora',sans-serif;
+  letter-spacing:-.4px;margin-bottom:.8rem;max-width:900px;
+}
+.page-hero .lead{max-width:760px;color:var(--muted);font-size:1.02rem}
+.page-hero .lead strong{color:var(--text)}
+
+.page-meta{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1.1rem;
+  font-size:.78rem;color:var(--muted);
+}
+.page-meta b{color:var(--accent);font-weight:600}
+
+/* ---------- Layout: prose + sidebar ---------- */
+.page-body{padding:0 0 4rem}
+.page-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) 300px;
+  gap:2.2rem;align-items:start;
+}
+@media(max-width:940px){
+  .page-grid{grid-template-columns:1fr}
+}
+
+/* ---------- Prose ---------- */
+.prose{font-size:1rem;line-height:1.75;color:var(--text);min-width:0}
+.prose>*+*{margin-top:1rem}
+.prose h2{
+  font:800 1.34rem/1.3 'Sora',sans-serif;letter-spacing:-.2px;
+  margin-top:2.2rem;padding-top:.4rem;scroll-margin-top:88px;
+}
+.prose h3{
+  font:700 1.08rem/1.35 'Sora',sans-serif;
+  margin-top:1.7rem;scroll-margin-top:88px;
+}
+.prose h2:first-child,.prose h3:first-child{margin-top:0}
+.prose p{color:#d3ddec}
+.prose strong{color:#fff}
+.prose em{color:var(--accent);font-style:normal}
+.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.prose a:hover{color:#5cf5c8}
+.prose ul,.prose ol{padding-left:1.25rem;color:#d3ddec}
+.prose ul{list-style:disc}
+.prose ol{list-style:decimal}
+.prose li+li{margin-top:.42rem}
+.prose li::marker{color:var(--accent)}
+
+.prose blockquote{
+  margin:1.6rem 0;padding:1rem 1.2rem;border-left:3px solid var(--accent);
+  background:rgba(0,229,168,.06);border-radius:0 12px 12px 0;color:#d3ddec;
+}
+.prose blockquote p{margin:0}
+
+.prose code{
+  font-family:'JetBrains Mono',Consolas,monospace;font-size:.86em;
+  background:rgba(255,255,255,.07);padding:.15em .4em;border-radius:5px;color:#9ef0d5;
+}
+.prose pre{
+  background:#0c1424;border:1px solid var(--line);border-radius:12px;
+  padding:1rem;overflow-x:auto;font-size:.84rem;line-height:1.6;
+}
+.prose pre code{background:none;padding:0;color:#cfe2f5}
+
+.prose img{border-radius:14px;border:1px solid var(--line);margin:1.4rem 0}
+.prose hr{border:none;border-top:1px solid var(--line);margin:2rem 0}
+
+.prose table{
+  width:100%;border-collapse:collapse;font-size:.88rem;margin:1.4rem 0;
+  display:block;overflow-x:auto;
+}
+.prose th,.prose td{
+  border:1px solid var(--line);padding:.6rem .75rem;text-align:left;vertical-align:top;
+}
+.prose th{background:rgba(255,255,255,.05);font-weight:700;color:#fff;white-space:nowrap}
+.prose td{color:#cdd8e8}
+
+/* ---------- Callouts ---------- */
+.callout{
+  margin:1.6rem 0;padding:1rem 1.15rem;border-radius:14px;
+  border:1px solid var(--line);background:var(--panel);
+  display:flex;gap:.8rem;align-items:flex-start;font-size:.92rem;color:#d3ddec;
+}
+.callout .co-ico{font-size:1.15rem;line-height:1.4;flex:0 0 auto}
+.callout.warn{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.08)}
+.callout.tip{border-color:rgba(0,229,168,.4);background:rgba(0,229,168,.07)}
+.callout.info{border-color:rgba(59,130,246,.4);background:rgba(59,130,246,.08)}
+.callout strong{display:block;margin-bottom:.2rem;color:#fff}
+
+/* ---------- Key facts strip ---------- */
+.fact-row{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:.8rem;margin:1.6rem 0;
+}
+.fact{
+  border:1px solid var(--line);border-radius:14px;padding:.95rem 1rem;
+  background:linear-gradient(150deg,var(--panel),rgba(12,19,35,.94));
+}
+.fact b{display:block;font:800 1.35rem 'Sora',sans-serif;color:var(--accent)}
+.fact span{font-size:.76rem;color:var(--muted);line-height:1.45;display:block;margin-top:.15rem}
+
+/* ---------- Sidebar ---------- */
+.side{display:grid;gap:1rem;position:sticky;top:88px}
+@media(max-width:940px){.side{position:static}}
+.side-card{
+  border:1px solid var(--line);border-radius:16px;padding:1.15rem;
+  background:linear-gradient(150deg,var(--panel),rgba(12,19,35,.94));
+}
+.side-card h4{font:700 .95rem 'Sora',sans-serif;margin-bottom:.7rem}
+.side-card .btn{width:100%;margin-top:.55rem}
+.side-links{display:grid;gap:.45rem;font-size:.86rem}
+.side-links a{color:var(--muted)}
+.side-links a:hover{color:var(--accent)}
+.side-card p{font-size:.84rem;color:var(--muted);line-height:1.6}
+
+.side-cta{background:linear-gradient(150deg,rgba(0,229,168,.13),rgba(59,130,246,.1));border-color:rgba(0,229,168,.32)}
+.side-cta p{color:#cfeee3}
+
+/* ---------- Blog index ---------- */
+.post-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1.1rem;margin-top:1.4rem;
+}
+.post-card{
+  display:flex;flex-direction:column;gap:.55rem;
+  border:1px solid var(--line);border-radius:16px;padding:1.2rem;
+  background:linear-gradient(150deg,var(--panel),rgba(12,19,35,.94));
+  transition:transform .15s,border-color .2s;
+}
+.post-card:hover{transform:translateY(-3px);border-color:rgba(0,229,168,.45)}
+.post-tag{
+  align-self:flex-start;font-size:.68rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);
+  background:rgba(0,229,168,.1);border:1px solid rgba(0,229,168,.28);
+  padding:.16rem .5rem;border-radius:999px;
+}
+.post-card h3{font:700 1.02rem/1.35 'Sora',sans-serif;color:var(--text)}
+.post-card p{font-size:.86rem;color:var(--muted);line-height:1.6}
+.post-card .post-more{font-size:.82rem;color:var(--accent);font-weight:600;margin-top:auto}
+
+/* ---------- Related links at end of an article ---------- */
+.related{margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.related h3{font:700 1.05rem 'Sora',sans-serif;margin-bottom:.9rem}
+.related ul{list-style:none;padding:0;display:grid;gap:.5rem}
+.related li a{color:var(--accent);font-size:.92rem}
+
+/* ---------- Feature page blocks ---------- */
+.f-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1rem;margin:1.6rem 0;
+}
+.f-box{
+  border:1px solid var(--line);border-radius:16px;padding:1.15rem;
+  background:linear-gradient(150deg,var(--panel),rgba(12,19,35,.94));
+}
+.f-box .fb-ico{font-size:1.3rem;display:block;margin-bottom:.5rem}
+.f-box strong{display:block;font:700 .96rem 'Sora',sans-serif;margin-bottom:.35rem}
+.f-box span{font-size:.85rem;color:var(--muted);line-height:1.6;display:block}
+
+/* ---------- Small print ---------- */
+.fineprint{font-size:.76rem;color:var(--muted);line-height:1.6;margin-top:1.6rem}

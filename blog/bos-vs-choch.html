@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>BOS vs CHoCH: The Difference Between Structure Break and Change of Character</title>
+<meta name="description" content="BOS vs CHoCH explained: how swing points define market structure, why a Break of Structure signals continuation, why a Change of Character only warns of a possible reversal, and how to combine both with order blocks." />
+<meta name="keywords" content="BOS, CHoCH, break of structure, change of character, market structure, swing points, SMC, trend continuation, reversal, trading guide" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/bos-vs-choch.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="BOS vs CHoCH: The Difference Between Structure Break and Change of Character" />
+<meta property="og:description" content="Break of Structure means continuation. Change of Character means a possible reversal. Here is the difference and how to use both." />
+<meta property="og:url" content="https://cpetradepro.com/blog/bos-vs-choch.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="BOS vs CHoCH — What's the Difference?" />
+<meta name="twitter:description" content="Structure break vs change of character, explained in plain English." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1729'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-family='Arial Black, Arial, sans-serif' font-size='30' font-weight='900' fill='%2300e5a8'%3ECPE%3C/text%3E%3C/svg%3E" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "BOS vs CHoCH: The Difference Between Structure Break and Change of Character",
+  "description": "How swing points define market structure, why a Break of Structure signals continuation, why a Change of Character only warns of a possible reversal, and how to combine both with order blocks.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/bos-vs-choch.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "BOS vs CHoCH", "item": "https://cpetradepro.com/blog/bos-vs-choch.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/#features">Features</a>
+      <a href="/#app-screens">App screens</a>
+      <a href="/#paper-trading">Paper trades</a>
+      <a href="/#markets">Markets</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#download">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>BOS vs CHoCH</span>
+    </nav>
+    <span class="eyebrow">Trading basics · SMC</span>
+    <h1>BOS vs CHoCH: structure break or change of character?</h1>
+    <p class="lead">Two labels sit at the heart of reading market structure: a Break of Structure and a Change of Character. One is a continuation signal, the other is a warning. Confusing them is one of the most common mistakes in Smart Money Concepts trading.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Technical analysis</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Before you can find an order block or a fair value gap worth trading, you need to know which way the market is going. That judgment comes from <strong>market structure</strong>, and the two events that describe it are the <strong>Break of Structure (BOS)</strong> and the <strong>Change of Character (CHoCH)</strong>. They look similar on a chart and are easy to mix up, but they mean different things.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Short version</strong>
+          BOS = price breaks a swing point <em>with</em> the trend → continuation. CHoCH = price breaks a swing point <em>against</em> the trend → possible reversal. A CHoCH is a warning, not a confirmation.
+        </div>
+      </div>
+
+      <h2 id="swings">1. Swing points and how structure is defined</h2>
+      <p>Structure is built from <strong>swing points</strong>:</p>
+      <ul>
+        <li>A <strong>swing high</strong> is a candle high with lower highs on both sides of it.</li>
+        <li>A <strong>swing low</strong> is a candle low with higher lows on both sides of it.</li>
+      </ul>
+      <p>Line those swings up and you get a sequence. If each high is above the previous high and each low is above the previous low, structure is <strong>bullish</strong> (higher highs, higher lows). If each high is below the previous high and each low is below the previous low, structure is <strong>bearish</strong>. When the swings neither rise nor fall consistently, the market is <strong>ranging</strong> — and range conditions are exactly where structure signals tend to be misleading.</p>
+      <p>Every BOS and CHoCH is defined relative to these swings, so the first skill is simply learning to mark them cleanly.</p>
+
+      <h2 id="bos">2. Break of Structure — continuation</h2>
+      <p>A <strong>Break of Structure (BOS)</strong> happens when price closes beyond the most recent swing point <strong>in the direction of the current trend</strong>.</p>
+      <ul>
+        <li>In an <strong>uptrend</strong>, a BOS is price closing above the previous swing high.</li>
+        <li>In a <strong>downtrend</strong>, a BOS is price closing below the previous swing low.</li>
+      </ul>
+      <p>A BOS is a <strong>continuation</strong> signal. It says the trend just confirmed itself again. Traders usually respond by looking for the next pullback into a demand or supply zone, rather than buying or selling the breakout candle itself — because chasing the break often means entering at the worst price.</p>
+
+      <h2 id="choch">3. Change of Character — possible reversal</h2>
+      <p>A <strong>Change of Character (CHoCH)</strong> is the opposite event: price breaks a swing point <strong>against</strong> the current trend.</p>
+      <ul>
+        <li>In an <strong>uptrend</strong>, a CHoCH is price failing to make a new high and instead closing below the last meaningful swing low.</li>
+        <li>In a <strong>downtrend</strong>, a CHoCH is price failing to make a new low and instead closing above the last meaningful swing high.</li>
+      </ul>
+      <p>CHoCH is an early <strong>reversal warning</strong>, not a guaranteed turning point. It tells you the character of the market may be changing, so long setups (or short setups) now need extra evidence before you trust them.</p>
+
+      <h2 id="table">4. BOS vs CHoCH at a glance</h2>
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>BOS</th><th>CHoCH</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>What it breaks</td><td>The last swing point with the trend</td><td>The last swing point against the trend</td></tr>
+          <tr><td>Direction relative to trend</td><td>Same as trend</td><td>Opposite to trend</td></tr>
+          <tr><td>What it usually means</td><td>Trend continuation</td><td>Possible reversal</td></tr>
+          <tr><td>First reaction</td><td>Look for a pullback entry with the trend</td><td>Stop chasing the old trend; wait for confirmation</td></tr>
+          <tr><td>Strength</td><td>Stronger confirmation of the current trend</td><td>Weaker on its own; needs follow-through</td></tr>
+          <tr><td>App label</td><td><code>BOS ↑</code> / <code>BOS ↓</code></td><td><code>CHoCH ↑</code> / <code>CHoCH ↓</code></td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="label">5. How to label them on a chart</h2>
+      <p>Labeling is simple once your swings are marked:</p>
+      <ol>
+        <li>Mark the most recent swing high and swing low.</li>
+        <li>Wait for price to <strong>close</strong> beyond one of them — not just wick through it.</li>
+        <li>Ask which direction that break points relative to the trend.</li>
+        <li>If the break is with the trend, label it <strong>BOS</strong>. If it is against the trend, label it <strong>CHoCH</strong>.</li>
+        <li>Add an arrow to show the direction: up for a bullish break, down for a bearish break.</li>
+        <li>Update the trend assumption, then repeat with the next swings.</li>
+      </ol>
+      <p>Consistency matters more than perfection. If you mark swings the same way every time, your BOS and CHoCH labels will mean the same thing from chart to chart.</p>
+
+      <h2 id="not-confirm">6. Why CHoCH alone is not a reversal confirmation</h2>
+      <p>This is the part beginners get wrong. A CHoCH only tells you that a structure point failed — it does not prove the market has reversed. In a strong uptrend, price can dip below a minor swing low, trigger a CHoCH, and then rip straight back to new highs. Traders call that a <strong>failed CHoCH</strong>, and it traps anyone who sold the first break.</p>
+      <p>To treat a CHoCH as a real reversal, look for extra evidence:</p>
+      <ul>
+        <li><strong>Follow-through.</strong> Price makes a lower high after the CHoCH instead of reclaiming the level.</li>
+        <li><strong>A clean supply zone.</strong> The bounce that creates the lower high comes from a real order block, not a random candle.</li>
+        <li><strong>Higher-timeframe agreement.</strong> The higher timeframe is also losing its structure.</li>
+        <li><strong>Momentum shifting.</strong> Indicators like RSI or MACD start to disagree with the old trend.</li>
+      </ul>
+      <p>Without at least some of these, a CHoCH is best treated as “slow down”, not “flip direction”.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>One CHoCH is not a trend</strong>
+          Structure changes often need more than one break to confirm. The first CHoCH warns you; the following structure is what confirms the new direction.
+        </div>
+      </div>
+
+      <h2 id="combine">7. Combining BOS / CHoCH with order blocks</h2>
+      <p>Structure tells you the direction; order blocks tell you where to act. The two work best together:</p>
+      <ul>
+        <li><strong>BOS then pullback.</strong> After a BOS confirms the trend, wait for price to return to the order block that caused the move. The BOS gives you direction, the block gives you a location.</li>
+        <li><strong>CHoCH then new zone.</strong> After a CHoCH, look for the order block that produced the reversal leg. That zone is your candidate area for the first trade in the new direction.</li>
+        <li><strong>Rejection of a zone.</strong> If price returns to an old zone and blows straight through it, that is extra confirmation that structure has changed.</li>
+      </ul>
+      <p>In both cases the sequence is the same: <strong>structure first, zone second, entry third, risk always</strong>.</p>
+
+      <h2 id="false">8. False breaks and how to filter them</h2>
+      <p>Not every break is real. A candle can poke beyond a swing point and close back inside it — a wick, not a break. To filter weak signals:</p>
+      <ul>
+        <li><strong>Use candle closes, not wicks.</strong> A break that closes beyond the level is far more reliable than one that only wicks through it.</li>
+        <li><strong>Respect the higher timeframe.</strong> A tiny break on the 1-minute chart is noise if the daily chart disagrees.</li>
+        <li><strong>Wait for the retest.</strong> Price that breaks and then holds the level on the retest is showing real intent.</li>
+        <li><strong>Watch volume and momentum if you have them.</strong> A break with no follow-through is suspect.</li>
+        <li><strong>Beware obvious levels.</strong> A high or low that everyone can see is a magnet for stop hunts — sometimes it is more about liquidity than structure.</li>
+      </ul>
+
+      <h2 id="app">9. How the app labels structure</h2>
+      <p>CPE Trade Pro runs a Smart Money Concepts engine over the candles and marks the latest structure breaks for you. Breaks with the trend are labelled <code>BOS ↑</code> / <code>BOS ↓</code>, and breaks against the trend are labelled <code>CHoCH ↑</code> / <code>CHoCH ↓</code>, each drawn as a labelled level line. The order blocks behind those moves are labelled <code>OB</code>, imbalances are labelled <code>FVG</code>, and resting liquidity is labelled <code>LIQ</code>. The zone behind the current signal is highlighted as <code>LIMIT ENTRY · <em>zone</em></code> or <code>MARKET ENTRY · <em>zone</em></code>.</p>
+      <p>That lets you read the story of the chart — structure, zone and signal — on one screen, without hand-drawing every swing.</p>
+
+      <div class="callout info">
+        <span class="co-ico">📊</span>
+        <div>
+          <strong>Labels are analysis, not orders</strong>
+          A BOS or CHoCH label does not place a trade. Entries happen when the signal conditions line up and you decide to act — in DEMO as a paper trade, or in LIVE with your own connected platform. Spot trading in the app is long-only; shorting requires Futures or a supported Forex workflow, where leverage can magnify losses.
+        </div>
+      </div>
+
+      <h2 id="summary">10. Summary</h2>
+      <p>A Break of Structure and a Change of Character describe two different things. BOS is price continuing in the direction of the trend; CHoCH is price breaking against it and warning that the trend may be ending. Learn to mark swings consistently, label breaks by their direction relative to the trend, and treat every CHoCH as a question rather than an answer. Combine structure with order blocks and strict risk control, and you have a workable way to read any chart.</p>
+      <p>Want to see structure drawn for you? <a href="/#download">Download CPE Trade Pro free</a> and open the chart — the SMC overlay is one of the layers you can toggle.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/what-is-smart-money-concepts.html">What are Smart Money Concepts?</a></li>
+          <li><a href="/blog/how-to-read-order-blocks.html">How to read order blocks on a chart</a></li>
+          <li><a href="/blog/what-is-liquidity-in-trading.html">What is liquidity in trading?</a></li>
+          <li><a href="/blog/what-is-a-trading-signal.html">What is a trading signal?</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See structure on live charts</h4>
+        <p>Order blocks, FVG, liquidity and structure breaks are drawn and labelled inside the app.</p>
+        <a href="/#download" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#swings">1. Swing points</a>
+          <a href="#bos">2. Break of Structure</a>
+          <a href="#choch">3. Change of Character</a>
+          <a href="#table">4. BOS vs CHoCH</a>
+          <a href="#label">5. Labelling on a chart</a>
+          <a href="#not-confirm">6. CHoCH is not confirmation</a>
+          <a href="#combine">7. With order blocks</a>
+          <a href="#false">8. False breaks</a>
+          <a href="#app">9. Labels in the app</a>
+          <a href="#summary">10. Summary</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/crypto-signals.html">Crypto signals</a>
+          <a href="/forex-signals.html">Forex signals</a>
+          <a href="/binance-signals.html">Binance signals</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Ready to trade smarter?</h2>
+    <p>Download CPE Trade Pro free. Activate in minutes.</p>
+    <div class="hero-cta">
+      <a href="/#download" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/#features">Features</a>
+      <a href="/#app-screens">App screens</a>
+      <a href="/#paper-trading">Paper trades</a>
+      <a href="/#signal-guide">Signal guide</a>
+      <a href="/#markets">Markets</a>
+      <a href="/#download">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

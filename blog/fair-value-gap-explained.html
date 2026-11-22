@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Fair Value Gaps (FVG) Explained: What They Are and How Traders Use Them</title>
+<meta name="description" content="Fair value gaps explained in plain English: the three-candle imbalance, bullish vs bearish FVG, why gaps form and get filled, how FVG differs from an order block, and how the app labels FVG on the chart." />
+<meta name="keywords" content="fair value gap, FVG, imbalance, three candle imbalance, bullish FVG, bearish FVG, FVG vs order block, smart money concepts, trading guide" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/fair-value-gap-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Fair Value Gaps (FVG) Explained: What They Are and How Traders Use Them" />
+<meta property="og:description" content="The three-candle imbalance, bullish vs bearish FVG, when gaps get filled, and how FVG differs from an order block." />
+<meta property="og:url" content="https://cpetradepro.com/blog/fair-value-gap-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fair Value Gaps (FVG) Explained" />
+<meta name="twitter:description" content="What a fair value gap is and how traders use it, in plain English." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1729'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-family='Arial Black, Arial, sans-serif' font-size='30' font-weight='900' fill='%2300e5a8'%3ECPE%3C/text%3E%3C/svg%3E" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fair Value Gaps (FVG) Explained: What They Are and How Traders Use Them",
+  "description": "The three-candle imbalance, bullish vs bearish fair value gaps, why gaps form and get filled, how FVG differs from an order block, and how the app labels FVG on the chart.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/fair-value-gap-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Fair value gaps explained", "item": "https://cpetradepro.com/blog/fair-value-gap-explained.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/#features">Features</a>
+      <a href="/#app-screens">App screens</a>
+      <a href="/#paper-trading">Paper trades</a>
+      <a href="/#markets">Markets</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#download">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Fair value gaps (FVG)</span>
+    </nav>
+    <span class="eyebrow">Trading basics · SMC</span>
+    <h1>Fair value gaps (FVG) explained</h1>
+    <p class="lead">A fair value gap is a small piece of your chart where price moved so fast that one side barely traded. Traders watch these gaps because price often comes back to them. Here is what they are, how to spot them, and how to use them without over-trading.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Technical analysis</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>If an order block shows you <em>where</em> large orders were filled, a <strong>fair value gap</strong> shows you <em>where price skipped through a level too quickly</em>. Both are Smart Money Concepts tools, and they are often used together. This guide focuses on the fair value gap: what it is, how to recognise it, when it tends to get filled, and how it differs from an order block.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Short version</strong>
+          A fair value gap is a three-candle pattern where the wicks of candle 1 and candle 3 do not overlap. The empty space between them is the gap — and price often revisits it later.
+        </div>
+      </div>
+
+      <h2 id="what">1. What is a fair value gap?</h2>
+      <p>A <strong>fair value gap (FVG)</strong>, also called an <strong>imbalance</strong>, is an area on the chart where buying and selling were not balanced. It forms during a fast move, when price travels through a range so quickly that it does not trade evenly on the way.</p>
+      <p>In practical terms, an FVG is the space left between the wicks of the candles that made the move. Because price moved so fast, that area is seen as “unfair” — one side of the market did not get a fair chance to trade. Many traders expect the market to return to that space later, filling in the imbalance before continuing.</p>
+
+      <h2 id="3candle">2. The three-candle imbalance</h2>
+      <p>The cleanest way to spot an FVG is with a three-candle pattern:</p>
+      <ol>
+        <li>Look at candle 1 and candle 3.</li>
+        <li>Check whether their wicks overlap.</li>
+        <li>If they do <strong>not</strong> overlap, the space between them is the fair value gap.</li>
+      </ol>
+      <p>The middle candle (candle 2) is the one that did all the work — it moved so strongly that it left a gap between the candles on either side. A gap like this is only meaningful when the middle candle is part of a genuine displacement, not a random quiet candle.</p>
+
+      <h2 id="bull-bear">3. Bullish vs bearish FVG</h2>
+      <p>The pattern mirrors itself depending on direction:</p>
+      <ul>
+        <li><strong>Bullish FVG</strong> — the low of candle 3 sits completely above the high of candle 1. The gap sits below current price and is usually treated as a demand area.</li>
+        <li><strong>Bearish FVG</strong> — the high of candle 3 sits completely below the low of candle 1. The gap sits above current price and is usually treated as a supply area.</li>
+      </ul>
+
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Bullish FVG</th><th>Bearish FVG</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Which wicks do not overlap</td><td>Low of candle 3 above high of candle 1</td><td>High of candle 3 below low of candle 1</td></tr>
+          <tr><td>Direction of the move</td><td>Strong up</td><td>Strong down</td></tr>
+          <tr><td>Where the gap sits</td><td>Below price</td><td>Above price</td></tr>
+          <tr><td>Typical role</td><td>Demand / support</td><td>Supply / resistance</td></tr>
+          <tr><td>Common trade idea</td><td>Buy on the pullback into the gap</td><td>Sell on the bounce into the gap</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="why">4. Why a gap forms</h2>
+      <p>Gaps form because of <strong>speed</strong>. When a lot of buying (or selling) hits the market at once, price jumps through levels instead of trading through them candle by candle. The result is a stretch on the chart where very few trades took place.</p>
+      <p>That is why displacement matters. A slow, grinding move tends to leave balanced price action with no gaps. A sharp, urgent move leaves gaps behind. Traders read those gaps as a sign that institutional-size orders were active — the same reason order blocks form.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>Size matters</strong>
+          A tiny gap on a noisy chart is not useful. Mark the gaps that are clearly tied to a strong move, and skip the ones that look like normal market noise.
+        </div>
+      </div>
+
+      <h2 id="fill">5. When price fills a gap — and when it does not</h2>
+      <p>Not every gap gets filled, and no gap is guaranteed. A few general tendencies are worth knowing:</p>
+      <ul>
+        <li><strong>Trending markets may leave gaps unfilled.</strong> If demand is strong, price can keep running and never return to the gap.</li>
+        <li><strong>Pullbacks often reach the nearest gap first.</strong> The closest unfilled gap is the most likely area to be tested.</li>
+        <li><strong>Partial fills are common.</strong> Price often enters the gap and reverses before fully filling it — traders sometimes call this a “50% fill”.</li>
+        <li><strong>Gaps lose value once filled.</strong> After price trades through the whole gap, it is no longer an imbalance.</li>
+      </ul>
+      <p>Because there is no guarantee of a fill, an FVG should be treated as a <strong>location of interest</strong>, not a promise. You still need a reason to act — a reaction candle, a structure shift, or confluence with another level.</p>
+
+      <h2 id="fvg-vs-ob">6. FVG vs order block</h2>
+      <p>Fair value gaps and order blocks are closely related — both come from displacement — but they are not the same thing:</p>
+      <table>
+        <thead>
+          <tr><th>Aspect</th><th>Order block (OB)</th><th>Fair value gap (FVG)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>What it is</td><td>The last opposite candle before the move</td><td>The empty space between candle wicks</td></tr>
+          <tr><td>How it is found</td><td>Stepping back from the displacement</td><td>Overlap check across three candles</td></tr>
+          <tr><td>What it represents</td><td>Where orders were likely filled</td><td>Where price moved too fast to trade evenly</td></tr>
+          <tr><td>Zone shape</td><td>A candle body or full-candle box</td><td>The gap between wicks</td></tr>
+          <tr><td>Typical use</td><td>Entry zone on a retest</td><td>Entry area or target for a retrace</td></tr>
+        </tbody>
+      </table>
+      <p>In practice, the strongest setups are where an order block and an FVG sit at the same price. That overlap gives you two independent reasons to expect a reaction in one zone.</p>
+
+      <h2 id="structure">7. Combining FVG with structure</h2>
+      <p>An FVG on its own is just a gap. It becomes a trade idea when it lines up with structure:</p>
+      <ul>
+        <li><strong>Direction first.</strong> Decide the trend with swings, <code>BOS</code> and <code>CHoCH</code> on a higher timeframe.</li>
+        <li><strong>Then location.</strong> Look for an FVG that sits in the direction of that trend.</li>
+        <li><strong>Then timing.</strong> Wait for price to reach the gap and show a reaction before acting.</li>
+      </ul>
+      <p>A bullish FVG below price in an uptrend is a pullback location. The same gap in a strong downtrend is far less interesting. Structure gives the gap meaning.</p>
+
+      <h2 id="app">8. How the app marks fair value gaps</h2>
+      <p>CPE Trade Pro’s Smart Money Concepts overlay draws each imbalance as a shaded box and labels it <code>FVG</code>, right next to the price action. Order blocks are labelled <code>OB</code>, liquidity lines are labelled <code>LIQ</code>, and the structure breaks that put the gap in context are labelled <code>BOS ↑</code> / <code>BOS ↓</code> and <code>CHoCH ↑</code> / <code>CHoCH ↓</code>. The entry zone behind the current signal is highlighted as <code>LIMIT ENTRY · <em>zone</em></code> or <code>MARKET ENTRY · <em>zone</em></code>.</p>
+      <p>On a smaller screen, only the labels that fit are drawn, so the chart stays readable instead of turning into a wall of text. You still see the signal and the reason behind it on one screen.</p>
+
+      <h2 id="example">9. A worked example (described, not priced)</h2>
+      <p>Picture a chart where price has been drifting sideways. Suddenly a wide green candle appears: it opens near its low and closes near its high. The candle before it is a small red candle, and the candle after it is also green.</p>
+      <p>Now line up the three candles. The low of the third candle sits above the high of the first candle, so the wicks do not overlap — a bullish fair value gap has formed. The gap is the empty slice between those two wicks.</p>
+      <p>Price continues higher for a while, then pulls back. As it drifts down, it reaches the top of the gap and slows. This is the moment the gap becomes a decision point: either buyers step in and price bounces, or price pushes deeper and fills more of the gap. Either way, the trader who marked the gap in advance has a location to watch — instead of reacting to every candle on the screen. That is the whole point of the concept.</p>
+
+      <h2 id="mistakes">10. Common mistakes</h2>
+      <ul>
+        <li><strong>Marking every gap.</strong> Noisy markets create tiny gaps constantly. Only the ones tied to real displacement matter.</li>
+        <li><strong>Expecting every gap to fill.</strong> Strong trends often leave gaps behind. A gap is a possibility, not a promise.</li>
+        <li><strong>Ignoring direction.</strong> A gap against the higher-timeframe trend is a low-quality idea.</li>
+        <li><strong>Entering without confirmation.</strong> A gap is a location. Wait for a reaction before you act.</li>
+        <li><strong>Forgetting the stop.</strong> If price closes through the gap, the idea is wrong — plan the invalidation before you enter.</li>
+      </ul>
+
+      <h2 id="summary">11. Summary</h2>
+      <p>A fair value gap is a simple idea: a fast move leaves an empty space between candles, and price often returns to that space later. Learn to spot the three-candle pattern, mark only the gaps that come from real displacement, and combine them with structure, order blocks and strict risk control. Treated as a location to watch rather than a guarantee, the FVG becomes a genuinely useful tool.</p>
+      <p>Want to see gaps drawn and labelled for you? <a href="/#download">Download CPE Trade Pro free</a> and open the chart — the SMC overlay is one of the layers you can toggle.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/what-is-smart-money-concepts.html">What are Smart Money Concepts?</a></li>
+          <li><a href="/blog/how-to-read-order-blocks.html">How to read order blocks on a chart</a></li>
+          <li><a href="/blog/bos-vs-choch.html">BOS vs CHoCH — what is the difference?</a></li>
+          <li><a href="/order-block-signals.html">Order block signals in CPE Trade Pro</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See FVG on live charts</h4>
+        <p>Order blocks, FVG, liquidity and structure breaks are drawn and labelled inside the app.</p>
+        <a href="/#download" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">1. What is an FVG?</a>
+          <a href="#3candle">2. The three-candle imbalance</a>
+          <a href="#bull-bear">3. Bullish vs bearish</a>
+          <a href="#why">4. Why a gap forms</a>
+          <a href="#fill">5. When it gets filled</a>
+          <a href="#fvg-vs-ob">6. FVG vs order block</a>
+          <a href="#structure">7. Combining with structure</a>
+          <a href="#app">8. How the app marks FVG</a>
+          <a href="#example">9. A worked example</a>
+          <a href="#mistakes">10. Common mistakes</a>
+          <a href="#summary">11. Summary</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/crypto-signals.html">Crypto signals</a>
+          <a href="/forex-signals.html">Forex signals</a>
+          <a href="/binance-signals.html">Binance signals</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Ready to trade smarter?</h2>
+    <p>Download CPE Trade Pro free. Activate in minutes.</p>
+    <div class="hero-cta">
+      <a href="/#download" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/#features">Features</a>
+      <a href="/#app-screens">App screens</a>
+      <a href="/#paper-trading">Paper trades</a>
+      <a href="/#signal-guide">Signal guide</a>
+      <a href="/#markets">Markets</a>
+      <a href="/#download">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>
