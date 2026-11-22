@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>How CPE Trade Pro Analyses a Chart: Signals, Score &amp; Levels</title>
+<meta name="description" content="How the CPE Trade Pro analysis engine works: BUY, SELL and HOLD signals, the entry, stop and two targets, and the 0-10 quality score built from Clarity, Trend, Momentum, Volume and Levels." />
+<meta name="keywords" content="how trading signals work, CPE Trade Pro analysis, signal quality score, 0-10 score, clarity trend momentum volume levels, signal grade A+ A B C D, entry stop loss take profit, auto analysis, crypto signal engine" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/how-cpe-trade-pro-analyses-a-chart.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How CPE Trade Pro Analyses a Chart: Signals, Score &amp; Levels" />
+<meta property="og:description" content="From candles to a decision: BUY / SELL / HOLD, the entry-stop-target plan, and the 0-10 quality score built from five measurable parts." />
+<meta property="og:url" content="https://cpetradepro.com/blog/how-cpe-trade-pro-analyses-a-chart.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How CPE Trade Pro Analyses a Chart" />
+<meta name="twitter:description" content="Signals, the full entry-stop-target plan, and how the 0-10 quality score is actually built." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122d" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How CPE Trade Pro Analyses a Chart: Signals, Score and Levels",
+  "description": "How the CPE Trade Pro analysis engine works: BUY, SELL and HOLD signals, the entry, stop and two targets, and the 0-10 quality score built from Clarity, Trend, Momentum, Volume and Levels.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/how-cpe-trade-pro-analyses-a-chart.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "How CPE Trade Pro analyses a chart", "item": "https://cpetradepro.com/blog/how-cpe-trade-pro-analyses-a-chart.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the 0-10 quality score a win rate?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The 0-10 score measures how much of the analysis checklist agrees — clarity, trend, momentum, volume and levels. It is not a win rate, not a probability of profit and not an audited performance record." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does HOLD mean in CPE Trade Pro?",
+      "acceptedAnswer": { "@type": "Answer", "text": "HOLD means no qualified setup was found on that pair and timeframe right now. Waiting is a deliberate answer, not a missing one." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>How the analysis works</span>
+    </nav>
+    <span class="eyebrow">How it works · Analysis</span>
+    <h1>How CPE Trade Pro analyses a chart</h1>
+    <p class="lead">No black box. Here is exactly what the app reads, how a signal is built step by step, what the <strong>0-10 quality score</strong> actually measures, and where the entry, stop and targets come from.</p>
+    <div class="page-meta">
+      <span><b>11 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>How it works</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Most signal tools show you a badge and nothing else: <em>BUY</em>. You are left to guess why, where to enter, where it is wrong and where to get out. CPE Trade Pro is built the other way round — the analysis comes first, and every conclusion is readable on the chart.</p>
+      <p>This page walks through the whole chain: candles in, decision out.</p>
+
+      <h2 id="engine">1. From candles to a decision</h2>
+      <p>At the smallest level, a chart is just a list of candles — open, high, low, close and volume for each time period. The engine's job is to turn that list into a <strong>structured conclusion</strong>: a direction, a place to enter, a place where the idea is proven wrong, targets to aim at, and a score that says how clean the setup is.</p>
+      <p>It does this for one pair on one timeframe at a time. Change the pair or the timeframe and the analysis runs again from scratch — which is why the same coin can read BUY on the 4-hour chart and HOLD on the 15-minute chart. Both answers are correct for their own chart.</p>
+
+      <h2 id="anatomy">2. What a finished signal contains</h2>
+      <p>A direction on its own is not tradeable. A complete CPE Trade Pro signal carries the direction, four prices and a score:</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 330" role="img" aria-label="A candle chart labelled with a BUY direction, entry, stop loss, target 1, target 2, an order block zone, a break of structure and an 8.5 out of 10 quality score">
+          <rect class="a-panel" x="0" y="0" width="720" height="330" rx="14"/>
+          <text class="a-t" x="22" y="24">BUY · BTCUSDT · 4H</text>
+          <rect class="a-chip" x="588" y="8" width="114" height="24" rx="12"/>
+          <text class="a-m" x="645" y="24" text-anchor="middle">8.5/10 · A+</text>
+
+          <rect x="20" y="104" width="672" height="92" fill="rgba(0,229,168,.05)"/>
+          <rect x="20" y="196" width="672" height="18" fill="rgba(239,68,68,.10)"/>
+
+          <g class="a-grid">
+            <line x1="20" y1="60" x2="692" y2="60"/>
+            <line x1="20" y1="100" x2="692" y2="100"/>
+            <line x1="20" y1="140" x2="692" y2="140"/>
+            <line x1="20" y1="180" x2="692" y2="180"/>
+            <line x1="20" y1="220" x2="692" y2="220"/>
+            <line x1="20" y1="260" x2="692" y2="260"/>
+          </g>
+
+          <rect class="a-zone-ob" x="410" y="192" width="58" height="24" rx="4"/>
+          <text class="a-s" x="439" y="208" text-anchor="middle" style="fill:#60a5fa">OB</text>
+
+          <g>
+            <line class="a-wbull" x1="40" y1="242" x2="40" y2="256"/><rect class="a-bull" x="34" y="246" width="12" height="6" rx="1.5"/>
+            <line class="a-wbull" x1="70" y1="236" x2="70" y2="250"/><rect class="a-bull" x="64" y="240" width="12" height="6" rx="1.5"/>
+            <line class="a-wbear" x1="100" y1="236" x2="100" y2="252"/><rect class="a-bear" x="94" y="240" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="130" y1="234" x2="130" y2="252"/><rect class="a-bull" x="124" y="238" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="160" y1="224" x2="160" y2="242"/><rect class="a-bull" x="154" y="228" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="190" y1="224" x2="190" y2="236"/><rect class="a-bear" x="184" y="228" width="12" height="4" rx="1.5"/>
+            <line class="a-wbull" x1="220" y1="214" x2="220" y2="236"/><rect class="a-bull" x="214" y="218" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="250" y1="204" x2="250" y2="222"/><rect class="a-bull" x="244" y="208" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="280" y1="204" x2="280" y2="218"/><rect class="a-bear" x="274" y="208" width="12" height="6" rx="1.5"/>
+            <line class="a-wbull" x1="310" y1="196" x2="310" y2="218"/><rect class="a-bull" x="304" y="200" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="340" y1="186" x2="340" y2="204"/><rect class="a-bull" x="334" y="190" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="370" y1="186" x2="370" y2="200"/><rect class="a-bear" x="364" y="190" width="12" height="6" rx="1.5"/>
+            <line class="a-wbear" x1="400" y1="192" x2="400" y2="210"/><rect class="a-bear" x="394" y="196" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="430" y1="196" x2="430" y2="212"/><rect class="a-bull" x="424" y="200" width="12" height="6" rx="1.5"/>
+            <line class="a-wbull" x1="460" y1="182" x2="460" y2="204"/><rect class="a-bull" x="454" y="186" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="490" y1="166" x2="490" y2="190"/><rect class="a-bull" x="484" y="170" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="520" y1="156" x2="520" y2="174"/><rect class="a-bull" x="514" y="160" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="550" y1="142" x2="550" y2="164"/><rect class="a-bull" x="544" y="146" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="580" y1="132" x2="580" y2="150"/><rect class="a-bull" x="574" y="136" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="610" y1="120" x2="610" y2="140"/><rect class="a-bull" x="604" y="124" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="640" y1="108" x2="640" y2="128"/><rect class="a-bull" x="634" y="112" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="670" y1="96" x2="670" y2="116"/><rect class="a-bull" x="664" y="100" width="12" height="12" rx="1.5"/>
+          </g>
+
+          <text class="a-s" x="298" y="172" style="fill:#00e5a8">BOS ↑</text>
+
+          <line class="a-tp2" x1="20" y1="104" x2="692" y2="104"/>
+          <line class="a-tp1" x1="20" y1="150" x2="692" y2="150"/>
+          <line class="a-entry" x1="20" y1="196" x2="692" y2="196"/>
+          <line class="a-sl" x1="20" y1="214" x2="692" y2="214"/>
+
+          <circle cx="430" cy="196" r="4.5" style="fill:#22d3ee"/>
+
+          <text class="a-s" x="688" y="99" text-anchor="end" style="fill:#fbbf24">TARGET 2</text>
+          <text class="a-s" x="688" y="145" text-anchor="end" style="fill:#00e5a8">TARGET 1</text>
+          <text class="a-s" x="688" y="191" text-anchor="end" style="fill:#22d3ee">ENTRY</text>
+          <text class="a-s" x="688" y="231" text-anchor="end" style="fill:#ef4444">STOP LOSS</text>
+        </svg>
+        <figcaption><strong>Signal anatomy.</strong> Direction, <b>entry</b>, <b>stop loss</b>, <b>target 1</b> and <b>target 2</b> — plus the 0-10 quality score. The chart also labels <em>why</em>: <b>BOS ↑</b> is a break of structure and <b>OB</b> is the order block the entry is placed on. Green shading is the reward zone, red is the risk zone.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Part</th><th>What it is</th><th>Why it matters</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Direction</strong></td><td>BUY, SELL or HOLD</td><td>Which side of the market the setup favours</td></tr>
+          <tr><td><strong>Entry</strong></td><td>A price, market or limit</td><td>Where the trade is taken. The app shows <code>MARKET ENTRY</code> or <code>LIMIT ENTRY</code> with the zone</td></tr>
+          <tr><td><strong>Stop loss</strong></td><td>A price</td><td>The level where the idea is proven wrong — this defines your risk before you enter</td></tr>
+          <tr><td><strong>Target 1</strong></td><td>A nearer price</td><td>Where partial profit is usually taken</td></tr>
+          <tr><td><strong>Target 2</strong></td><td>A further price</td><td>Where the rest of the position may be closed</td></tr>
+          <tr><td><strong>Quality score</strong></td><td>0-10 with a letter grade</td><td>How much of the checklist agreed — see section 4</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>The four prices are the signal</strong>
+          If you only take one thing from this page: a direction without an entry, a stop and targets is not a plan. The app never shows a direction on its own.
+        </div>
+      </div>
+
+      <h2 id="directions">3. BUY, SELL and HOLD — the only three answers</h2>
+      <p>Every pair and timeframe ends in one of three states. There is no "maybe", because a maybe is what makes people hesitate and then chase.</p>
+      <table>
+        <thead>
+          <tr><th>Direction</th><th>Meaning</th><th>Where it applies</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>BUY</strong></td><td>A qualified bullish setup</td><td>Spot and Futures</td></tr>
+          <tr><td><strong>SELL</strong></td><td>A qualified bearish setup</td><td>Futures and Forex, where shorting is possible. On Spot it reads as "avoid or exit longs"</td></tr>
+          <tr><td><strong>HOLD</strong></td><td>No qualified setup right now</td><td>Everywhere. It means wait — do not force a trade</td></tr>
+        </tbody>
+      </table>
+      <p>HOLD is not an error and it is not the app "having no idea". It appears when the conditions genuinely do not line up: structure is unclear, momentum contradicts the trend, price is stuck mid-range, or there is no sensible place to put a stop. Those are exactly the conditions where most losses are made, so the app says nothing instead of saying something wrong.</p>
+      <p>Read more about that in <a href="/blog/what-is-a-trading-signal.html">What is a trading signal?</a></p>
+
+      <h2 id="score">4. The 0-10 quality score, part by part</h2>
+      <p>Once a direction qualifies, the app does not stop. It grades the setup with a <strong>0-10 quality score</strong> built from <strong>five measurable parts, each worth up to 2 points</strong>. Every part reads a different kind of evidence, so a high score means several independent checks agreed — not one indicator shouting loudly.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="Bar chart breaking the 0-10 quality score into five parts: Clarity 2.0, Trend 1.8, Momentum 1.5, Volume 1.2 and Levels 2.0, giving a total of 8.5 out of 10 and a grade of A plus">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="32">Signal quality · 0-10</text>
+          <text class="a-s" x="696" y="20" text-anchor="end" style="fill:#00e5a8">TOTAL 8.5 / 10</text>
+          <text class="a-s" x="696" y="36" text-anchor="end" style="fill:#9fb0c8">Grade A+</text>
+
+          <text class="a-t" x="24" y="80">Clarity</text>
+          <text class="a-s" x="24" y="96">Pattern &amp; candle evidence</text>
+          <rect class="a-track" x="170" y="64" width="470" height="16" rx="8"/>
+          <rect class="aa-bar" x="170" y="64" width="470" height="16" rx="8" style="fill:#00e5a8;animation-delay:.55s"/>
+          <text class="a-s" x="650" y="77" style="fill:#00e5a8">2.0</text>
+
+          <text class="a-t" x="24" y="120">Trend</text>
+          <text class="a-s" x="24" y="136">Structure, higher timeframe, ADX</text>
+          <rect class="a-track" x="170" y="104" width="470" height="16" rx="8"/>
+          <rect class="aa-bar" x="170" y="104" width="423" height="16" rx="8" style="fill:#22d3ee;animation-delay:.7s"/>
+          <text class="a-s" x="603" y="117" style="fill:#22d3ee">1.8</text>
+
+          <text class="a-t" x="24" y="160">Momentum</text>
+          <text class="a-s" x="24" y="176">RSI, MACD, Stochastic, divergence</text>
+          <rect class="a-track" x="170" y="144" width="470" height="16" rx="8"/>
+          <rect class="aa-bar" x="170" y="144" width="353" height="16" rx="8" style="fill:#60a5fa;animation-delay:.85s"/>
+          <text class="a-s" x="533" y="157" style="fill:#60a5fa">1.5</text>
+
+          <text class="a-t" x="24" y="200">Volume</text>
+          <text class="a-s" x="24" y="216">Participation behind the move</text>
+          <rect class="a-track" x="170" y="184" width="470" height="16" rx="8"/>
+          <rect class="aa-bar" x="170" y="184" width="282" height="16" rx="8" style="fill:#a855f7;animation-delay:1s"/>
+          <text class="a-s" x="462" y="197" style="fill:#a855f7">1.2</text>
+
+          <text class="a-t" x="24" y="240">Levels</text>
+          <text class="a-s" x="24" y="256">Position in range &amp; volatility</text>
+          <rect class="a-track" x="170" y="224" width="470" height="16" rx="8"/>
+          <rect class="aa-bar" x="170" y="224" width="470" height="16" rx="8" style="fill:#fbbf24;animation-delay:1.15s"/>
+          <text class="a-s" x="650" y="237" style="fill:#fbbf24">2.0</text>
+        </svg>
+        <figcaption><strong>Five parts, two points each.</strong> Each bar is capped at 2.0, so the maximum is 10. This example scores 8.5 — four checks strongly agreed and volume was only moderate.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Part</th><th>What the app is asking</th><th>Reads from</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Clarity</strong></td><td>Is there a clean pattern agreeing with the direction?</td><td>Chart patterns, candlestick patterns</td></tr>
+          <tr><td><strong>Trend</strong></td><td>Do structure, the higher timeframe and trend strength point the same way?</td><td>Market structure, higher-timeframe bias, ADX, Smart Money Concepts bias</td></tr>
+          <tr><td><strong>Momentum</strong></td><td>Are the oscillators confirming instead of fighting?</td><td>RSI, MACD histogram, Stochastic crosses, RSI and MACD divergence</td></tr>
+          <tr><td><strong>Volume</strong></td><td>Is the move backed by real participation?</td><td>Volume spike versus average, Money Flow Index, recent change</td></tr>
+          <tr><td><strong>Levels</strong></td><td>Is this a sensible place to enter, in a calm enough market?</td><td>Bollinger band edges, Parabolic SAR, support and resistance map, volatility level</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Why five parts and not one score</strong>
+          A single number hides its reasoning. Five parts let you see instantly <em>why</em> a setup is strong or weak — for example a 7.5 built on Trend and Levels is a different trade from a 7.5 built on Momentum alone.
+        </div>
+      </div>
+
+      <h2 id="grades">5. Grades: A+, A, B, C and D</h2>
+      <p>The raw 0-10 score is also bucketed into a letter grade, which is simply easier to scan across a watchlist than a decimal.</p>
+      <table>
+        <thead>
+          <tr><th>Score</th><th>Grade</th><th>Plain English</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>8.0 - 10</td><td><strong>A+</strong></td><td>Almost every check agreed</td></tr>
+          <tr><td>6.5 - 7.99</td><td><strong>A</strong></td><td>Most checks agreed</td></tr>
+          <tr><td>5.0 - 6.49</td><td><strong>B</strong></td><td>A workable setup with some gaps</td></tr>
+          <tr><td>3.5 - 4.99</td><td><strong>C</strong></td><td>Thin evidence — be selective</td></tr>
+          <tr><td>Below 3.5</td><td><strong>D</strong></td><td>Little agreement. Usually best skipped</td></tr>
+        </tbody>
+      </table>
+      <p>The app also shows a plain tier label alongside the plan — <code>CAUTION</code>, <code>STRONG</code> and <code>HIGHER STRONG</code> — so you can filter a long list quickly. A higher grade means more of the checklist was satisfied. It does not mean a trade cannot lose.</p>
+
+      <h2 id="auto">6. How the analysis happens automatically</h2>
+      <p>You are not drawing anything. The app picks the pair and timeframe, pulls the candles, runs the studies and lands on the decision. Seen from the outside it looks like one motion: a scan across the chart, a focus on the region that matters, then the result.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="Animation of the automatic analysis: a scan line sweeps across a candle chart, stops on the region that matters, and a magnified panel on the right shows the order block, fair value gap, break of structure and the final quality score">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <rect class="a-soft" x="14" y="12" width="692" height="30" rx="8"/>
+          <circle cx="30" cy="27" r="3.5" style="fill:#ef4444"/>
+          <circle cx="44" cy="27" r="3.5" style="fill:#fbbf24"/>
+          <circle cx="58" cy="27" r="3.5" style="fill:#22c55e"/>
+          <text class="a-t" x="74" y="31">CPE Trade Pro · AUTO ANALYSIS</text>
+          <text class="a-s" x="694" y="31" text-anchor="end">BTCUSDT · 4H</text>
+
+          <rect class="a-soft" x="14" y="54" width="390" height="272" rx="10"/>
+          <g class="a-grid">
+            <line x1="24" y1="90" x2="394" y2="90"/>
+            <line x1="24" y1="130" x2="394" y2="130"/>
+            <line x1="24" y1="170" x2="394" y2="170"/>
+            <line x1="24" y1="210" x2="394" y2="210"/>
+            <line x1="24" y1="250" x2="394" y2="250"/>
+            <line x1="24" y1="290" x2="394" y2="290"/>
+          </g>
+          <g>
+            <line class="a-wbull" x1="46" y1="246" x2="46" y2="266"/><rect class="a-bull" x="40" y="250" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="76" y1="238" x2="76" y2="258"/><rect class="a-bear" x="70" y="242" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="106" y1="226" x2="106" y2="248"/><rect class="a-bull" x="100" y="230" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="136" y1="214" x2="136" y2="234"/><rect class="a-bull" x="130" y="218" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="166" y1="210" x2="166" y2="230"/><rect class="a-bear" x="160" y="214" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="196" y1="200" x2="196" y2="226"/><rect class="a-bull" x="190" y="204" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="226" y1="188" x2="226" y2="210"/><rect class="a-bull" x="220" y="192" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="256" y1="184" x2="256" y2="204"/><rect class="a-bear" x="250" y="188" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="286" y1="172" x2="286" y2="198"/><rect class="a-bull" x="280" y="176" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="316" y1="158" x2="316" y2="180"/><rect class="a-bull" x="310" y="162" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="346" y1="144" x2="346" y2="168"/><rect class="a-bull" x="340" y="148" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="376" y1="130" x2="376" y2="154"/><rect class="a-bull" x="370" y="134" width="12" height="16" rx="1.5"/>
+          </g>
+
+          <g class="aa-scan" style="--aa-x:344px">
+            <rect x="24" y="54" width="26" height="272" fill="rgba(34,211,238,.12)"/>
+            <line x1="50" y1="54" x2="50" y2="326" style="stroke:#22d3ee;stroke-width:2"/>
+          </g>
+
+          <rect class="a-focus aa-reveal" x="150" y="150" width="106" height="94" rx="6" style="animation-delay:2.2s"/>
+          <text class="a-s aa-reveal" x="203" y="144" text-anchor="middle" style="fill:#fbbf24;animation-delay:2.35s">auto focus</text>
+
+          <path class="a-arrow aa-reveal" d="M258 197 L 428 197" style="animation-delay:2.5s"/>
+
+          <rect class="a-panel" x="436" y="54" width="270" height="272" rx="10"/>
+          <text class="a-s" x="448" y="74">Analysed region · zoomed</text>
+
+          <g class="aa-reveal" style="animation-delay:2.9s">
+            <line class="a-wbull" x1="474" y1="176" x2="474" y2="212"/><rect class="a-bull" x="464" y="182" width="20" height="24" rx="2"/>
+            <line class="a-wbear" x1="514" y1="166" x2="514" y2="200"/><rect class="a-bear" x="504" y="170" width="20" height="24" rx="2"/>
+            <line class="a-wbull" x1="554" y1="150" x2="554" y2="192"/><rect class="a-bull" x="544" y="156" width="20" height="30" rx="2"/>
+            <line class="a-wbull" x1="594" y1="132" x2="594" y2="170"/><rect class="a-bull" x="584" y="138" width="20" height="26" rx="2"/>
+            <line class="a-wbull" x1="634" y1="116" x2="634" y2="152"/><rect class="a-bull" x="624" y="122" width="20" height="26" rx="2"/>
+            <line class="a-wbull" x1="674" y1="102" x2="674" y2="134"/><rect class="a-bull" x="664" y="108" width="20" height="22" rx="2"/>
+          </g>
+
+          <rect class="a-zone-ob aa-reveal" x="452" y="212" width="96" height="30" rx="5" style="animation-delay:3.2s"/>
+          <text class="a-s aa-reveal" x="500" y="231" text-anchor="middle" style="fill:#60a5fa;animation-delay:3.25s">ORDER BLOCK</text>
+
+          <rect class="a-zone-fvg aa-reveal" x="584" y="176" width="112" height="26" rx="5" style="animation-delay:3.5s"/>
+          <text class="a-s aa-reveal" x="640" y="193" text-anchor="middle" style="fill:#c084fc;animation-delay:3.55s">FAIR VALUE GAP</text>
+
+          <text class="a-t aa-reveal" x="448" y="264" style="fill:#00e5a8;animation-delay:3.8s">BOS ↑ confirmed</text>
+
+          <rect class="a-chip aa-reveal" x="448" y="280" width="246" height="32" rx="10" style="animation-delay:4.05s"/>
+          <text class="a-m aa-reveal" x="571" y="301" text-anchor="middle" style="animation-delay:4.1s">Quality 8.5/10 · Grade A+</text>
+        </svg>
+        <figcaption><strong>Automatic analysis, step by step.</strong> The scan (cyan) sweeps the chart, the app focuses on the region that actually matters, and the zoomed panel reports what it found — the order block, the fair value gap, the break of structure — and finally the quality score. Nothing is typed in by hand.</figcaption>
+      </figure>
+
+      <h2 id="levels">7. Where the entry, stop and targets come from</h2>
+      <p>The levels are not round numbers pulled from a hat. They are taken from the chart's own structure:</p>
+      <ul>
+        <li><strong>Entry</strong> — placed at the zone the setup is based on: a Bollinger band, a Fibonacci level, an order block or a fair value gap. The app labels it <code>MARKET ENTRY</code> if it is taken at price, or <code>LIMIT ENTRY</code> if it waits at a zone.</li>
+        <li><strong>Stop loss</strong> — placed beyond the level that would prove the idea wrong, usually just past the swing or the Smart Money Concepts invalidation point. A minimum gap is enforced so the stop is never unrealistically tight.</li>
+        <li><strong>Target 1</strong> — the first logical level in front of price: the middle or opposite band, or a nearby Fibonacci level.</li>
+        <li><strong>Target 2</strong> — the further objective, such as the opposite band or a Fibonacci extension.</li>
+      </ul>
+      <p>Every level is drawn on the chart with its label, so the plan is visible rather than hidden behind a button. That also means you can look at the distance between entry and stop, and between entry and targets, and judge whether the trade is worth taking before you click anything.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>A stop is not optional</strong>
+          A signal without a defined invalidation point is not a signal. The app always computes one — use it, and never widen it after entering.
+        </div>
+      </div>
+
+      <h2 id="markets">8. What it analyses</h2>
+      <p>The same engine runs across crypto and Forex:</p>
+      <ul>
+        <li><strong>Spot crypto</strong> — 590+ pairs, long-only by nature, so SELL reads as "avoid or exit".</li>
+        <li><strong>Futures crypto</strong> — USDT perpetuals, where both BUY and SELL setups are usable.</li>
+        <li><strong>Forex and metals</strong> — pairs such as XAUUSD, through OANDA, FXCM and the MetaTrader 4 / 5 bridges, plus a Forex demo rate feed.</li>
+      </ul>
+      <p>Connections cover Binance, Bybit, OKX, KuCoin, Bitget, Gate.io, MEXC, Kraken and Coinbase Advanced. You can run everything in <strong>DEMO</strong> first with no exchange account, then connect your own API keys for <strong>LIVE</strong>. See <a href="/blog/demo-trading-before-live.html">why you should demo trade before going live</a>.</p>
+
+      <h2 id="not">9. What the score is not</h2>
+      <p>Be precise about this, because the words matter:</p>
+      <ul>
+        <li>It is <strong>not a win rate</strong>. It does not know the outcome of the trade.</li>
+        <li>It is <strong>not a probability of profit</strong> and it is not "accuracy".</li>
+        <li>It is <strong>not an audited track record</strong>. It grades the setup in front of it, nothing more.</li>
+      </ul>
+      <p>What it is: a transparent summary of how many independent checks agreed, so you can compare setups and be more selective. The decision, the position size and the risk stay with you.</p>
+
+      <h2 id="routine">10. How to use it — a simple routine</h2>
+      <ol>
+        <li><strong>Start with DEMO</strong> so you can learn the app's language without risking money.</li>
+        <li><strong>Pick a market you understand</strong> — a handful of crypto pairs, or a couple of Forex pairs. Not the whole list.</li>
+        <li><strong>Work one or two timeframes.</strong> Higher timeframes give cleaner structure; lower ones give more noise.</li>
+        <li><strong>Read the five parts, not just the total.</strong> A high score with weak Volume tells you something specific.</li>
+        <li><strong>Check the plan before the direction.</strong> If the stop is too far for your risk per trade, the trade is too big — not "too good to miss".</li>
+        <li><strong>Prefer HOLD to forcing.</strong> Waiting for a qualified setup is the skill that survives longest.</li>
+        <li><strong>Journal the outcome</strong> in the app's signal history, then review what you actually did — not what the app said.</li>
+      </ol>
+      <p>Ready to see it on live charts? <a href="/download.html">Download CPE Trade Pro free</a> and watch a signal build from candles to a full plan.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/how-the-cpe-engines-work.html">Inside the CPE engines: how the analysis is built</a></li>
+          <li><a href="/blog/what-is-a-trading-signal.html">What is a trading signal?</a></li>
+          <li><a href="/blog/fomo-and-trading-psychology.html">FOMO and trading psychology</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#engine">1. Candles to a decision</a>
+          <a href="#anatomy">2. What a signal contains</a>
+          <a href="#directions">3. BUY, SELL, HOLD</a>
+          <a href="#score">4. The 0-10 score</a>
+          <a href="#grades">5. Grades A+ to D</a>
+          <a href="#auto">6. Automatic analysis</a>
+          <a href="#levels">7. Where levels come from</a>
+          <a href="#markets">8. What it analyses</a>
+          <a href="#not">9. What the score is not</a>
+          <a href="#routine">10. How to use it</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/how-the-cpe-engines-work.html">The engines explained</a>
+          <a href="/signal-guide.html">Signal guide</a>
+          <a href="/paper-trading.html">Paper trading</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Understand the score, then trade it</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

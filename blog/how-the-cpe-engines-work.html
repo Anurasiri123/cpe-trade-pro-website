@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Inside the CPE Engines: How the Analysis Is Built | CPE Trade Pro</title>
+<meta name="description" content="A plain-English tour of the CPE Trade Pro engines: the analysis core, market context, structure and pattern engines, and the safe connections to your exchange — and how they combine into one signal." />
+<meta name="keywords" content="CPE Trade Pro engines, trading analysis engine, market regime, order flow, open interest funding, liquidation zones, smart money concepts engine, chart pattern engine, HMAC API keys, how signals are built" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/how-the-cpe-engines-work.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Inside the CPE Engines: How the Analysis Is Built" />
+<meta property="og:description" content="The analysis core, market context, structure and pattern engines, and the connections to your exchange — explained without the jargon." />
+<meta property="og:url" content="https://cpetradepro.com/blog/how-the-cpe-engines-work.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Inside the CPE Engines" />
+<meta name="twitter:description" content="How the analysis core, market context and pattern engines combine into one signal." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122d" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Inside the CPE Engines: How the Analysis Is Built",
+  "description": "A plain-English tour of the CPE Trade Pro engines: the analysis core, market context, structure and pattern engines, and the safe connections to your exchange.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/how-the-cpe-engines-work.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Inside the CPE engines", "item": "https://cpetradepro.com/blog/how-the-cpe-engines-work.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Inside the CPE engines</span>
+    </nav>
+    <span class="eyebrow">How it works · Engines</span>
+    <h1>Inside the CPE engines</h1>
+    <p class="lead">Under the hood, CPE Trade Pro is a set of small engines that each do one job — read the chart, judge the market mood, find structure, talk to your exchange. Here is what each one does and how they combine into a single signal.</p>
+    <div class="page-meta">
+      <span><b>12 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>How it works</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>"Engine" sounds like a marketing word. In this app it means something specific: a <strong>self-contained module with a single responsibility</strong>. One reads candles. One builds the trade plan. One measures whether the market is calm or wild. One places an order.</p>
+      <p>Splitting the work that way has a practical benefit: if one engine cannot get its data — say an exchange is rate-limiting — the others still run, and the signal still arrives with slightly less context. Nothing collapses because one opinion was missing.</p>
+
+      <h2 id="what">1. Why it is built in pieces</h2>
+      <p>A single giant "AI that predicts the market" is impossible to inspect and impossible to trust. A stack of small engines can be checked one at a time: this one measures momentum, that one measures fear, that one just signs an API request.</p>
+      <p>It also means the analysis can be explained. When the app says BUY, it can point at the order block that supports it, the higher-timeframe bias that agrees with it and the volume that confirms it — because each of those came from a separate engine with its own output.</p>
+
+      <h2 id="pipeline">2. The pipeline: candles in, signal out</h2>
+      <p>Every analysis follows the same six steps, in the same order. The order matters: the app narrows down from wide context to a specific plan.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 430" role="img" aria-label="Flow diagram of the analysis pipeline: fetch candles, compute the studies, weighted vote, regime gate, structure and patterns, then score and package — ending in an output card showing direction BUY, entry, stop loss, target 1, target 2, risk to reward, quality 8.5 out of 10 and grade A plus">
+          <defs>
+            <marker id="aaArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#2b3a52"/>
+            </marker>
+          </defs>
+          <rect class="a-panel" x="0" y="0" width="720" height="430" rx="14"/>
+
+          <g>
+            <circle class="a-chip" cx="42" cy="39" r="13"/><text class="a-t" x="42" y="43" text-anchor="middle">1</text>
+            <text class="a-t" x="66" y="37">Fetch candles</text>
+            <text class="a-s" x="66" y="53">OHLCV from the exchange you chose</text>
+          </g>
+          <path class="a-arrow" d="M202 62 L 202 76"/>
+
+          <g>
+            <circle class="a-chip" cx="42" cy="101" r="13"/><text class="a-t" x="42" y="105" text-anchor="middle">2</text>
+            <text class="a-t" x="66" y="99">Compute the studies</text>
+            <text class="a-s" x="66" y="115">More than a dozen indicators per bar</text>
+          </g>
+          <path class="a-arrow" d="M202 124 L 202 138"/>
+
+          <g>
+            <circle class="a-chip" cx="42" cy="163" r="13"/><text class="a-t" x="42" y="167" text-anchor="middle">3</text>
+            <text class="a-t" x="66" y="161">Weighted vote</text>
+            <text class="a-s" x="66" y="177">Every study adds a bullish or bearish check</text>
+          </g>
+          <path class="a-arrow" d="M202 186 L 202 200"/>
+
+          <g>
+            <circle class="a-chip" cx="42" cy="225" r="13"/><text class="a-t" x="42" y="229" text-anchor="middle">4</text>
+            <text class="a-t" x="66" y="223">Regime gate</text>
+            <text class="a-s" x="66" y="239">Trend, volatility and market mood must agree</text>
+          </g>
+          <path class="a-arrow" d="M202 248 L 202 262"/>
+
+          <g>
+            <circle class="a-chip" cx="42" cy="287" r="13"/><text class="a-t" x="42" y="291" text-anchor="middle">5</text>
+            <text class="a-t" x="66" y="285">Structure &amp; patterns</text>
+            <text class="a-s" x="66" y="301">SMC, order blocks, FVG, candles, chart patterns</text>
+          </g>
+          <path class="a-arrow" d="M202 310 L 202 324"/>
+
+          <g>
+            <circle class="a-chip" cx="42" cy="349" r="13"/><text class="a-t" x="42" y="353" text-anchor="middle">6</text>
+            <text class="a-t" x="66" y="347">Score &amp; package</text>
+            <text class="a-s" x="66" y="363">0-10 quality, grade, entry · stop · targets</text>
+          </g>
+
+          <path class="a-arrow" d="M392 349 L 408 349"/>
+
+          <rect class="a-panel" x="412" y="54" width="292" height="316" rx="12"/>
+          <text class="a-s" x="428" y="76">OUTPUT</text>
+          <rect class="a-chip" x="612" y="62" width="76" height="22" rx="11"/>
+          <text class="a-m" x="650" y="78" text-anchor="middle" style="fill:#22c55e">BUY</text>
+          <line class="a-grid" x1="428" y1="94" x2="688" y2="94"/>
+
+          <text class="a-s" x="428" y="120">Entry</text><text class="a-t" x="688" y="120" text-anchor="end">41,250</text>
+          <text class="a-s" x="428" y="148">Stop loss</text><text class="a-t" x="688" y="148" text-anchor="end">40,120</text>
+          <text class="a-s" x="428" y="176">Target 1</text><text class="a-t" x="688" y="176" text-anchor="end">43,400</text>
+          <text class="a-s" x="428" y="204">Target 2</text><text class="a-t" x="688" y="204" text-anchor="end">45,900</text>
+          <text class="a-s" x="428" y="232">Risk : reward</text><text class="a-t" x="688" y="232" text-anchor="end">1 : 1.9</text>
+          <text class="a-s" x="428" y="260">Quality</text><text class="a-t" x="688" y="260" text-anchor="end">8.5 / 10</text>
+          <text class="a-s" x="428" y="288">Grade</text><text class="a-t" x="688" y="288" text-anchor="end" style="fill:#00e5a8">A+</text>
+          <line class="a-grid" x1="428" y1="302" x2="688" y2="302"/>
+
+          <rect class="a-track" x="428" y="318" width="260" height="10" rx="5"/>
+          <rect class="aa-bar" x="428" y="318" width="221" height="10" rx="5" style="fill:#00e5a8"/>
+          <text class="a-s" x="428" y="346">0-10 quality score</text>
+          <text class="a-s" x="688" y="346" text-anchor="end" style="fill:#00e5a8">8.5</text>
+          <text class="a-s" x="428" y="362">Illustrative values</text>
+        </svg>
+        <figcaption><strong>The pipeline.</strong> Six stages turn raw candles into a complete plan. Steps 1-2 gather and measure, step 3 compares, step 4 refuses bad conditions, step 5 adds structure, and step 6 writes the plan you actually read.</figcaption>
+      </figure>
+
+      <h2 id="engines">3. The engines, group by group</h2>
+      <p>There are thirteen engines. Grouping them makes the picture much clearer than a list.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 430" role="img" aria-label="Map of the CPE Trade Pro engines in four groups. Analysis core: analysis.js, signalQuality.js and signalLab.js. Market context: regime.js, orderflow.js, derivatives.js, liquidation.js and news.js. Structure and patterns: smc.js and patterns.js. Connections and data: exchanges.js, platforms.js and binance.js">
+          <rect class="a-panel" x="0" y="0" width="720" height="430" rx="14"/>
+
+          <rect class="a-soft" x="16" y="16" width="336" height="192" rx="12"/>
+          <text class="a-h" x="32" y="44">Analysis core</text>
+          <text class="a-s" x="32" y="62">Turns candles into a decision</text>
+          <rect class="a-chip" x="32" y="80" width="140" height="28" rx="8"/><text class="a-m" x="44" y="99">analysis.js</text>
+          <rect class="a-chip" x="184" y="80" width="152" height="28" rx="8"/><text class="a-m" x="196" y="99">signalQuality.js</text>
+          <rect class="a-chip" x="32" y="116" width="140" height="28" rx="8"/><text class="a-m" x="44" y="135">signalLab.js</text>
+          <text class="a-s" x="32" y="172">Indicators · vote · levels ·</text>
+          <text class="a-s" x="32" y="188">score · plan · recorded results</text>
+
+          <rect class="a-soft" x="368" y="16" width="336" height="192" rx="12"/>
+          <text class="a-h" x="384" y="44">Market context</text>
+          <text class="a-s" x="384" y="62">The mood around the trade</text>
+          <rect class="a-chip" x="384" y="80" width="140" height="28" rx="8"/><text class="a-m" x="396" y="99">regime.js</text>
+          <rect class="a-chip" x="536" y="80" width="152" height="28" rx="8"/><text class="a-m" x="548" y="99">orderflow.js</text>
+          <rect class="a-chip" x="384" y="116" width="152" height="28" rx="8"/><text class="a-m" x="396" y="135">derivatives.js</text>
+          <rect class="a-chip" x="548" y="116" width="140" height="28" rx="8"/><text class="a-m" x="560" y="135">liquidation.js</text>
+          <rect class="a-chip" x="384" y="152" width="140" height="28" rx="8"/><text class="a-m" x="396" y="171">news.js</text>
+
+          <rect class="a-soft" x="16" y="222" width="336" height="192" rx="12"/>
+          <text class="a-h" x="32" y="250">Structure &amp; patterns</text>
+          <text class="a-s" x="32" y="268">What price is actually doing</text>
+          <rect class="a-chip" x="32" y="286" width="140" height="28" rx="8"/><text class="a-m" x="44" y="305">smc.js</text>
+          <rect class="a-chip" x="184" y="286" width="140" height="28" rx="8"/><text class="a-m" x="196" y="305">patterns.js</text>
+          <text class="a-s" x="32" y="340">Order blocks · fair value gaps ·</text>
+          <text class="a-s" x="32" y="356">liquidity sweeps · BOS / CHoCH ·</text>
+          <text class="a-s" x="32" y="372">chart &amp; candle patterns · Elliott count</text>
+
+          <rect class="a-soft" x="368" y="222" width="336" height="192" rx="12"/>
+          <text class="a-h" x="384" y="250">Connections &amp; data</text>
+          <text class="a-s" x="384" y="268">Talks to your accounts safely</text>
+          <rect class="a-chip" x="384" y="286" width="140" height="28" rx="8"/><text class="a-m" x="396" y="305">exchanges.js</text>
+          <rect class="a-chip" x="536" y="286" width="152" height="28" rx="8"/><text class="a-m" x="548" y="305">platforms.js</text>
+          <rect class="a-chip" x="384" y="322" width="140" height="28" rx="8"/><text class="a-m" x="396" y="341">binance.js</text>
+          <text class="a-s" x="384" y="372">Signed requests · keys stay local</text>
+        </svg>
+        <figcaption><strong>Thirteen engines, four jobs.</strong> Each engine owns one question. The analysis core decides, market context checks the weather, structure and patterns read the price itself, and the connection engines handle data and orders.</figcaption>
+      </figure>
+
+      <h3>Analysis core</h3>
+      <table>
+        <thead>
+          <tr><th>Engine</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>analysis.js</code></td><td>The heart. Computes the indicators, runs the weighted vote, applies context-aware weightings, builds the entry, stop and targets from bands, Fibonacci levels and structure, and attaches the higher-timeframe bias.</td></tr>
+          <tr><td><code>signalQuality.js</code></td><td>Grades the finished signal: the <strong>0-10 quality score</strong> from Clarity, Trend, Momentum, Volume and Levels, the letter grade, and the trade plan with risk-to-reward and a risk-based position size.</td></tr>
+          <tr><td><code>signalLab.js</code></td><td>The lab bench. Records paper trades and signal history, tracks how a position behaves as price moves — including a trailing stop — and keeps the app's own record of what happened so you can review it.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Market context</h3>
+      <table>
+        <thead>
+          <tr><th>Engine</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>regime.js</code></td><td>Reads the overall market mood: whether altcoins or bitcoin are leading, a dominance proxy, an RSI heat map across the market and a composite regime score. This is the "weather" the trade happens in.</td></tr>
+          <tr><td><code>orderflow.js</code></td><td>Looks inside the candles — footprint data, cumulative volume delta, buy/sell imbalance and absorption — to see whether buyers or sellers are actually in control.</td></tr>
+          <tr><td><code>derivatives.js</code></td><td>Reads the futures picture: open interest, funding rates, long/short ratios and taker volume, then relates the change in open interest to the change in price.</td></tr>
+          <tr><td><code>liquidation.js</code></td><td>Maps liquidation magnet zones by leverage tier — the price areas where clusters of positions would be forced to close.</td></tr>
+          <tr><td><code>news.js</code></td><td>Pulls headlines from public crypto news feeds and a market Fear &amp; Greed reading, so sentiment is part of the picture rather than an afterthought.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Structure &amp; patterns</h3>
+      <table>
+        <thead>
+          <tr><th>Engine</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>smc.js</code></td><td>Smart Money Concepts: structure and break of structure, change of character, order blocks, fair value gaps, liquidity sweeps and a fixed-range volume profile. These are the labels you see drawn on the chart.</td></tr>
+          <tr><td><code>patterns.js</code></td><td>Recognises chart formations and runs a light Elliott wave count, so shape-based setups can join the vote.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Connections &amp; data</h3>
+      <table>
+        <thead>
+          <tr><th>Engine</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>exchanges.js</code></td><td>The secure bridge to your accounts. Signs each private request with HMAC-SHA256 (and the variant each venue expects), tests your keys, places orders and closes positions.</td></tr>
+          <tr><td><code>platforms.js</code></td><td>The registry of supported venues: Binance, Bybit, OKX, KuCoin, Bitget, Gate.io, MEXC, Kraken and Coinbase Advanced, plus OANDA, FXCM and the MetaTrader 4 / 5 bridges for Forex.</td></tr>
+          <tr><td><code>binance.js</code></td><td>The Binance market-data client, with request pacing and rate-limit handling so heavy analysis does not get your connection blocked.</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="walkthrough">4. One signal, end to end</h2>
+      <p>Follow a single BUY through the stack:</p>
+      <ol>
+        <li><strong>Candles arrive.</strong> The data engine pulls the OHLCV series for the pair and timeframe you picked.</li>
+        <li><strong>Studies are computed.</strong> Band position, RSI, EMA crosses, MACD, Stochastic, ADX, Ichimoku, VWAP, ATR, Parabolic SAR, OBV, Money Flow Index, Williams %R, CCI and divergence — each produces a reading on the latest bar.</li>
+        <li><strong>The vote happens.</strong> Each study adds a bullish or bearish check, weighted by how relevant it is in the current context — so a momentum reading confirms an uptrend rather than fighting it.</li>
+        <li><strong>Context is applied.</strong> The regime engine says whether conditions suit a trade at all, and the higher-timeframe engine says whether the larger chart agrees.</li>
+        <li><strong>Structure is read.</strong> Smart Money Concepts finds the order block, the fair value gap and the structure break that justify the entry; the pattern engine adds any chart formation.</li>
+        <li><strong>Levels are placed.</strong> Entry at the zone, stop beyond the invalidation point, two targets at the next logical levels.</li>
+        <li><strong>The signal is scored and enriched.</strong> The quality score is computed from the five parts, the grade is attached, the plan is written — and separately, the context engines attach open interest, funding, order flow, liquidation zones and the market regime to the same view.</li>
+      </ol>
+      <p>The user-facing result is one card: direction, four prices, a score, and a side panel of context. Underneath, that card is the agreement of roughly a dozen engines.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>What you see in the app</strong>
+          The context engines surface in the app's Pro Data view — open interest, funding, long/short ratios, footprint, liquidation zones and the market regime — while the structure engine draws its labels directly on the chart. Same engines, two ways to look at them.
+        </div>
+      </div>
+
+      <h2 id="security">5. How your accounts are connected</h2>
+      <p>Connecting an exchange account is where most people get nervous, and they should. The design here is deliberately conservative:</p>
+      <ul>
+        <li><strong>Your keys stay with you.</strong> API keys are entered by you and are not shared with third parties.</li>
+        <li><strong>Every private call is signed, not sent with a password.</strong> Requests are signed with HMAC-SHA256 — the same mechanism exchanges require from their own clients.</li>
+        <li><strong>Withdrawal is not part of the app.</strong> The connection is for reading balances and placing or closing trades. There is no withdraw button, by design.</li>
+        <li><strong>DEMO first.</strong> You can run the whole analysis, plan and history without connecting anything at all.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>CPE Trade Pro is not a broker</strong>
+          It is analysis software. It never holds your funds, never takes deposits, and never asks for a fee to withdraw. You connect your own exchange or broker account with your own API keys.
+        </div>
+      </div>
+
+      <h2 id="not">6. What the engines deliberately do not do</h2>
+      <ul>
+        <li>They do not predict the future. They describe the present as carefully as possible.</li>
+        <li>They do not guarantee anything. A score of 10 is still a trade that can lose.</li>
+        <li>They do not hide their reasoning — every level and label is drawn on the chart or shown in the panel.</li>
+        <li>They do not hold your money, and they do not take a cut of your trades.</li>
+      </ul>
+      <p>If a piece of software claims to remove risk from trading, it is describing something that does not exist. The honest goal of a stack like this is narrower and more useful: <strong>make the reasoning visible, and make the risk explicit.</strong></p>
+
+      <h2 id="summary">7. Summary</h2>
+      <p>CPE Trade Pro is thirteen small engines rather than one big black box. Six of them decide — data, studies, vote, regime, structure and scoring. Five describe the environment — market regime, order flow, derivatives, liquidation and news. Two connect you safely to your accounts. Together they produce a single signal with a direction, four prices, a 0-10 quality score and the reasoning drawn on the chart.</p>
+      <p>Want to see the pipeline running on real charts? <a href="/download.html">Download CPE Trade Pro free</a>, pick a pair, and watch the analysis build.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. Live trading uses the API keys you supply; keep them restricted and never share them. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/blog/what-is-smart-money-concepts.html">What are Smart Money Concepts?</a></li>
+          <li><a href="/blog/spot-vs-futures-trading.html">Spot vs futures trading</a></li>
+          <li><a href="/features.html">Every feature in the app</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the engines at work</h4>
+        <p>Structure labels on the chart, market context in the Pro Data panel, and a full plan on every signal.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">1. Why it is built in pieces</a>
+          <a href="#pipeline">2. The pipeline</a>
+          <a href="#engines">3. The engines, group by group</a>
+          <a href="#walkthrough">4. One signal, end to end</a>
+          <a href="#security">5. Connecting your accounts</a>
+          <a href="#not">6. What it does not do</a>
+          <a href="#summary">7. Summary</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How the analysis works</a>
+          <a href="/blog/fomo-and-trading-psychology.html">FOMO and psychology</a>
+          <a href="/features.html">Features</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Every engine, one download</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

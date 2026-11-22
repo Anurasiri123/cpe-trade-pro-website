@@ -220,3 +220,69 @@
 }
 .footer-legal a{font-size:.78rem;color:var(--muted)}
 .footer-legal a:hover{color:var(--accent)}
+
+/* ============================================================
+   App-style figures + auto-analysis animation (blog · academy)
+   Inline SVG diagrams drawn in the app's own dark/teal language.
+   ============================================================ */
+.app-figure{
+  margin:1.7rem 0;padding:.7rem;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(160deg,#0e1728,#0a1120);
+  box-shadow:0 18px 50px rgba(0,0,0,.35);
+  overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+}
+.app-figure svg{display:block;width:100%;height:auto;border-radius:12px}
+.app-figure figcaption{padding:.7rem .35rem .15rem;color:var(--muted);font-size:.78rem;line-height:1.55}
+.app-figure figcaption strong{color:var(--accent)}
+.app-figure figcaption b{color:var(--text);font-weight:600}
+@media(max-width:640px){.app-figure svg{min-width:500px}}
+
+/* SVG text + shape tokens */
+.app-figure .a-h{font:700 12px 'Sora',Inter,sans-serif;fill:#e6edf7}
+.app-figure .a-t{font:600 11px Inter,sans-serif;fill:#cbd5e1}
+.app-figure .a-s{font:500 9.5px Inter,sans-serif;fill:#8fa0b8}
+.app-figure .a-m{font:600 10px 'JetBrains Mono',Consolas,monospace;fill:#9ef0d5}
+.app-figure .a-panel{fill:#101a2c;stroke:#1e2a3f;stroke-width:1}
+.app-figure .a-soft{fill:#0c1424;stroke:#1b2537;stroke-width:1}
+.app-figure .a-chip{fill:#152038;stroke:#243349;stroke-width:1}
+.app-figure .a-grid{stroke:#1b2537;stroke-width:1}
+.app-figure .a-bull{fill:#22c55e}
+.app-figure .a-bear{fill:#ef4444}
+.app-figure .a-wbull{stroke:#22c55e;stroke-width:2.5;stroke-linecap:round}
+.app-figure .a-wbear{stroke:#ef4444;stroke-width:2.5;stroke-linecap:round}
+.app-figure .a-entry{stroke:#22d3ee;stroke-width:2;stroke-dasharray:7 6}
+.app-figure .a-sl{stroke:#ef4444;stroke-width:2;stroke-dasharray:7 6}
+.app-figure .a-tp1{stroke:#00e5a8;stroke-width:2;stroke-dasharray:7 6}
+.app-figure .a-tp2{stroke:#fbbf24;stroke-width:2;stroke-dasharray:7 6}
+.app-figure .a-price{fill:none;stroke:#35d6b0;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.app-figure .a-track{fill:#182338}
+.app-figure .a-link{stroke:#2b3a52;stroke-width:2;fill:none}
+.app-figure .a-arrow{stroke:#2b3a52;stroke-width:2;fill:none;marker-end:url(#aaArrow)}
+.app-figure .a-focus{fill:none;stroke:#fbbf24;stroke-width:2;stroke-dasharray:6 5}
+.app-figure .a-zone-ob{fill:rgba(96,165,250,.16);stroke:#60a5fa;stroke-width:1.5}
+.app-figure .a-zone-fvg{fill:rgba(168,85,247,.16);stroke:#a855f7;stroke-width:1.5}
+
+/* Utility: small pill label inside a figure */
+.app-figure .a-pill{fill:#0a1120;stroke:#243349;stroke-width:1}
+
+/* ---------- Auto-analysis animation ---------- */
+.aa-scan{opacity:0}
+.aa-reveal{opacity:1}
+
+@media (prefers-reduced-motion: no-preference){
+  .aa-scan{opacity:1;animation:aaScan 5.2s cubic-bezier(.45,0,.25,1) .3s infinite}
+  @keyframes aaScan{
+    0%{transform:translateX(0)}
+    52%{transform:translateX(var(--aa-x,360px))}
+    72%,100%{transform:translateX(var(--aa-x,360px))}
+  }
+  .aa-reveal{opacity:0;animation:aaFade .7s ease-out both}
+  @keyframes aaFade{
+    from{opacity:0;transform:translateY(5px)}
+    to{opacity:1;transform:none}
+  }
+  .aa-bar{transform-box:fill-box;transform-origin:left center;animation:aaGrow .95s cubic-bezier(.4,0,.2,1) both}
+  @keyframes aaGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .aa-soft{animation:aaGlow 2.6s ease-in-out infinite}
+  @keyframes aaGlow{0%,100%{opacity:.35}50%{opacity:1}}
+}
