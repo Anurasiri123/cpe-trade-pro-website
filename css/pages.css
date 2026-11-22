@@ -387,6 +387,7 @@
 .edu-card.purple{border-color:rgba(168,85,247,.42)}
 .edu-card.cyan{border-color:rgba(34,211,238,.42)}
 .edu-card.pink{border-color:rgba(251,113,133,.42)}
+.edu-card.red{border-color:rgba(239,68,68,.45)}
 
 /* Colourful "choose one" chips */
 .edu-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0}
@@ -402,3 +403,4 @@
 .edu-chip.purple i{color:#a855f7}
 .edu-chip.cyan i{color:#22d3ee}
 .edu-chip.pink i{color:#fb7185}
+.edu-chip.red i{color:#ef4444}
