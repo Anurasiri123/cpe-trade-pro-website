@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Footprint Charts Explained: Reading Buying and Selling Pressure</title>
+<meta name="description" content="What a footprint chart shows - bid and ask volume at each price - bid/ask imbalance, absorption and delta, and how to read it step by step." />
+<meta name="keywords" content="footprint chart, bid ask volume, delta, absorption, imbalance, order flow" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/footprint-charts-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Footprint Charts Explained: Reading Buying and Selling Pressure" />
+<meta property="og:description" content="Bid and ask volume at every price — imbalance, delta and absorption, explained step by step." />
+<meta property="og:url" content="https://cpetradepro.com/blog/footprint-charts-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Footprint Charts Explained" />
+<meta name="twitter:description" content="How a footprint chart splits a candle into bid and ask volume, and what delta and absorption reveal." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Footprint Charts Explained: Reading Buying and Selling Pressure",
+  "description": "What a footprint chart shows - bid and ask volume at each price - bid/ask imbalance, absorption and delta, and how to read it step by step.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/footprint-charts-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Footprint charts", "item": "https://cpetradepro.com/blog/footprint-charts-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does a footprint chart show that a normal candle does not?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A candle shows the open, high, low and close over a period. A footprint chart also shows how much volume traded at each price inside that period, split into buying (ask) and selling (bid) volume." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is positive delta always bullish?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Positive delta means more aggressive buying than selling in that window, but a large positive delta that fails to move price can actually signal absorption and a possible reversal. Context always matters." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro include a footprint chart?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CPE Trade Pro focuses on volume analysis, order blocks, fair value gaps and market structure rather than a full bid/ask footprint. Footprint charts are covered here as education for advanced order-flow traders." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Footprint charts</span>
+    </nav>
+    <span class="eyebrow">Learn · Order Flow</span>
+    <h1>Footprint Charts Explained: Reading Buying and Selling Pressure</h1>
+    <p class="lead">A footprint chart cracks a candle open and shows the volume traded at every price inside it. Here is how to read the <strong>bid</strong>, the <strong>ask</strong>, delta and absorption.</p>
+    <div class="page-meta">
+      <span><b>10 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Most charts tell you <em>what</em> price did. A footprint chart tells you <em>how</em> it got there — how much volume traded at each individual price level inside a candle, and whether the aggression came from buyers or sellers. It is one of the deeper tools in the professional order-flow toolkit, and it rewards patience.</p>
+      <p>This guide is an honest introduction. We will cover what a footprint chart is, the two columns of bid and ask volume, delta, imbalance, absorption, how to read one step by step, and where — realistically — it fits alongside CPE Trade Pro's volume and order-block analysis. Educational content only; nothing here is financial advice.</p>
+
+      <h2 id="what">What a footprint chart is</h2>
+      <p>A standard candle compresses a whole period into four numbers: open, high, low and close. A <strong>footprint chart</strong> refuses to compress. For every candle, it lays out a small price ladder and shows how much volume traded at each price rung — and, crucially, it splits that volume into the two sides of the order book.</p>
+      <p>The result is a candle with its engine exposed. Instead of guessing whether a long wick was buyers rejecting a low or sellers being absorbed, you can see the numbers. Footprint charts are most common in futures and, increasingly, crypto, where trades are printed to a usable tick size.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 360" role="img" aria-label="A footprint chart price ladder showing each price row with a bid volume number and an ask volume number, with the ask-heavy upper rows tinted green and the bid-heavy lower rows tinted red">
+          <rect class="a-panel" x="0" y="0" width="720" height="360" rx="14"/>
+          <text class="a-h" x="24" y="30">Footprint · BTCUSDT · 1m</text>
+          <rect class="a-chip" x="566" y="12" width="136" height="24" rx="12"/>
+          <text class="a-m" x="634" y="28" text-anchor="middle">BID × ASK / PRICE</text>
+
+          <text class="a-s" x="70" y="62" text-anchor="middle">PRICE</text>
+          <text class="a-s" x="240" y="62" text-anchor="middle" style="fill:#ef4444">BID (sell)</text>
+          <text class="a-s" x="380" y="62" text-anchor="middle" style="fill:#22c55e">ASK (buy)</text>
+
+          <rect class="a-fill-green aa-pop" x="30" y="72" width="470" height="88" rx="6"/>
+          <rect class="a-fill-red aa-pop" x="30" y="228" width="470" height="88" rx="6" style="animation-delay:.35s"/>
+
+          <g class="a-grid">
+            <line x1="30" y1="116" x2="500" y2="116"/>
+            <line x1="30" y1="160" x2="500" y2="160"/>
+            <line x1="30" y1="204" x2="500" y2="204"/>
+            <line x1="30" y1="248" x2="500" y2="248"/>
+            <line x1="30" y1="292" x2="500" y2="292"/>
+          </g>
+
+          <g>
+            <text class="a-s" x="70" y="96" text-anchor="middle">67,240</text><text class="a-m" x="240" y="96" text-anchor="middle" style="fill:#fb7185">4</text><text class="a-m" x="380" y="96" text-anchor="middle" style="fill:#22c55e">22</text>
+            <text class="a-s" x="70" y="140" text-anchor="middle">67,235</text><text class="a-m" x="240" y="140" text-anchor="middle" style="fill:#fb7185">6</text><text class="a-m" x="380" y="140" text-anchor="middle" style="fill:#22c55e">30</text>
+            <text class="a-s" x="70" y="184" text-anchor="middle">67,230</text><text class="a-m" x="240" y="184" text-anchor="middle" style="fill:#fb7185">9</text><text class="a-m" x="380" y="184" text-anchor="middle" style="fill:#22c55e">41</text>
+            <text class="a-s" x="70" y="228" text-anchor="middle">67,225</text><text class="a-m" x="240" y="228" text-anchor="middle" style="fill:#fb7185">12</text><text class="a-m" x="380" y="228" text-anchor="middle" style="fill:#22c55e">36</text>
+            <text class="a-s" x="70" y="272" text-anchor="middle">67,220</text><text class="a-m" x="240" y="272" text-anchor="middle" style="fill:#fb7185">27</text><text class="a-m" x="380" y="272" text-anchor="middle" style="fill:#22c55e">11</text>
+            <text class="a-s" x="70" y="316" text-anchor="middle">67,215</text><text class="a-m" x="240" y="316" text-anchor="middle" style="fill:#fb7185">33</text><text class="a-m" x="380" y="316" text-anchor="middle" style="fill:#22c55e">8</text>
+          </g>
+
+          <text class="a-s" x="514" y="104" style="fill:#22c55e">ask-heavy</text>
+          <text class="a-s" x="514" y="120" style="fill:#8fa0b8">buyers lifting</text>
+          <text class="a-s" x="514" y="256" style="fill:#ef4444">bid-heavy</text>
+          <text class="a-s" x="514" y="272" style="fill:#8fa0b8">sellers hitting</text>
+        </svg>
+        <figcaption><strong>The ladder.</strong> Each row is a price; the left number is <b>bid</b> volume (sell aggression) and the right is <b>ask</b> volume (buy aggression). The upper rows here are ask-heavy (green) — buyers lifting offers into the highs.</figcaption>
+      </figure>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Bid and ask are aggression, not identity</strong>
+          "Ask volume" means trades that hit the offer — aggressive buying. "Bid volume" means trades that hit the bid — aggressive selling. Neither tells you who was on the other side.
+        </div>
+      </div>
+
+      <h2 id="two-columns">The two columns: bid and ask</h2>
+      <p>Every footprint row reads <em>bid × ask</em>. Bid volume is the market sell orders that traded into resting buy limit orders; ask volume is the market buy orders that lifted resting sell limits.</p>
+      <table>
+        <thead>
+          <tr><th>Column</th><th>What it is</th><th>You read it as</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Bid</strong></td><td>Volume traded at the bid</td><td>Aggressive selling — sellers hitting resting buy orders</td></tr>
+          <tr><td><strong>Ask</strong></td><td>Volume traded at the ask</td><td>Aggressive buying — buyers lifting resting sell orders</td></tr>
+          <tr><td><strong>Delta</strong></td><td>Ask minus bid</td><td>Net aggressive pressure for that row or bar</td></tr>
+        </tbody>
+      </table>
+      <p>Reading the columns together is where the skill lies. A row with 30 on the ask and 5 on the bid tells a different story from a row with 18 on each — the first is one-sided aggression, the second is a two-way battle.</p>
+
+      <h2 id="delta">Delta: the balance of pressure</h2>
+      <p><strong>Delta</strong> is simply ask volume minus bid volume. A positive delta means buyers were more aggressive; a negative delta means sellers were. Add it up across a whole session and you get <em>cumulative delta</em> — a running score of who has been winning the aggression battle over time.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="A bar chart of per-bar delta with green bars above a baseline and red bars below, plus a rising cumulative delta line across the panel">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="30">Delta · per bar + cumulative</text>
+          <rect class="a-chip" x="556" y="12" width="146" height="24" rx="12"/>
+          <text class="a-m" x="629" y="28" text-anchor="middle">ASK − BID</text>
+
+          <line class="a-grid" x1="30" y1="180" x2="700" y2="180"/>
+
+          <g class="aa-bar" style="animation-delay:.15s"><rect class="a-bar-green" x="60" y="140" width="22" height="40" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.25s"><rect class="a-bar-green" x="110" y="152" width="22" height="28" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.35s"><rect class="a-bar-red" x="160" y="180" width="22" height="26" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.45s"><rect class="a-bar-green" x="210" y="132" width="22" height="48" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.55s"><rect class="a-bar-green" x="260" y="120" width="22" height="60" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.65s"><rect class="a-bar-red" x="310" y="180" width="22" height="34" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.75s"><rect class="a-bar-red" x="360" y="180" width="22" height="22" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.85s"><rect class="a-bar-green" x="410" y="140" width="22" height="40" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.95s"><rect class="a-bar-green" x="460" y="122" width="22" height="58" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1.05s"><rect class="a-bar-red" x="510" y="180" width="22" height="18" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1.15s"><rect class="a-bar-green" x="560" y="142" width="22" height="38" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1.25s"><rect class="a-bar-green" x="610" y="128" width="22" height="52" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1.35s"><rect class="a-bar-red" x="660" y="180" width="22" height="24" rx="3"/></g>
+
+          <path class="aa-line" d="M71 168 L 171 158 L 271 138 L 371 150 L 471 128 L 571 116 L 671 100" style="fill:none;stroke:#22d3ee;stroke-width:3;stroke-linecap:round;stroke-linejoin:round" pathLength="1"/>
+
+          <text class="a-s" x="40" y="200" style="fill:#8fa0b8">bars = delta per bar</text>
+          <text class="a-s" x="560" y="98" text-anchor="end" style="fill:#22d3ee">cumulative delta →</text>
+        </svg>
+        <figcaption><strong>Delta bars and cumulative delta.</strong> Green bars are positive delta (buying), red are negative (selling). The cyan line adds it all up: here cumulative delta drifts higher even as individual bars flip, showing buyers slightly in control overall.</figcaption>
+      </figure>
+
+      <h2 id="imbalance">Imbalance and stacked imbalances</h2>
+      <p>When one side of the book dramatically outweighs the other at a price, traders call it an <strong>imbalance</strong>. A common rule of thumb is a 3:1 ratio — a row with 30 on the ask against 10 on the bid is a buy imbalance; flip it for a sell imbalance.</p>
+      <p>A single imbalanced row is interesting. Several imbalanced rows in a row — at a price the market is leaving behind quickly — is a <strong>stacked imbalance</strong>, and it usually marks a place where buyers or sellers were genuinely urgent. Stacked imbalances often line up with the fair value gaps and order blocks that structure-based traders already watch.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card red">
+          <span class="ec-ico">🔻</span>
+          <strong>Bid imbalance</strong>
+          <span>Bid volume dwarfs ask volume — aggressive selling dominating that price.</span>
+        </div>
+        <div class="edu-card green">
+          <span class="ec-ico">🔺</span>
+          <strong>Ask imbalance</strong>
+          <span>Ask volume dwarfs bid volume — aggressive buying dominating that price.</span>
+        </div>
+        <div class="edu-card cyan">
+          <span class="ec-ico">🧱</span>
+          <strong>Stacked imbalance</strong>
+          <span>Several imbalanced rows in a row — urgent, one-sided participation.</span>
+        </div>
+      </div>
+
+      <div class="edu-chips">
+        <span class="edu-chip green"><i>◆</i> Ask imbalance</span>
+        <span class="edu-chip red"><i>◆</i> Bid imbalance</span>
+        <span class="edu-chip cyan"><i>◆</i> Stacked</span>
+        <span class="edu-chip amber"><i>◆</i> Absorption</span>
+        <span class="edu-chip purple"><i>◆</i> Exhaustion</span>
+      </div>
+
+      <h2 id="absorption">Absorption explained</h2>
+      <p>Absorption is the subtle one, and the most valuable. It happens when a huge amount of volume trades at a price — typically on one side — yet price barely moves. Someone is absorbing all that aggression with passive limit orders.</p>
+      <p>Picture a bar with a strongly <em>positive</em> delta (lots of aggressive buying) that fails to push higher. Buyers threw everything at it, and the sellers absorbed it. That is often a warning that the buying is exhausted and the move may reverse. The mirror image at a low — massive selling with no downward progress — suggests sellers are being absorbed.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 320" role="img" aria-label="A footprint ladder with four consecutive ask-heavy rows highlighted as a stacked buy imbalance, with a bracket and label">
+          <rect class="a-panel" x="0" y="0" width="720" height="320" rx="14"/>
+          <text class="a-h" x="24" y="30">Stacked imbalance</text>
+          <rect class="a-chip" x="566" y="12" width="136" height="24" rx="12"/>
+          <text class="a-m" x="634" y="28" text-anchor="middle">3:1 OR MORE</text>
+
+          <text class="a-s" x="80" y="62" text-anchor="middle">PRICE</text>
+          <text class="a-s" x="250" y="62" text-anchor="middle" style="fill:#ef4444">BID</text>
+          <text class="a-s" x="400" y="62" text-anchor="middle" style="fill:#22c55e">ASK</text>
+
+          <g class="a-grid">
+            <line x1="30" y1="76" x2="520" y2="76"/>
+            <line x1="30" y1="118" x2="520" y2="118"/>
+            <line x1="30" y1="160" x2="520" y2="160"/>
+            <line x1="30" y1="202" x2="520" y2="202"/>
+            <line x1="30" y1="244" x2="520" y2="244"/>
+            <line x1="30" y1="286" x2="520" y2="286"/>
+          </g>
+
+          <rect class="a-fill-cyan aa-slide" x="180" y="80" width="250" height="42" rx="5" style="animation-delay:.2s"/>
+          <rect class="a-fill-cyan aa-slide" x="180" y="122" width="250" height="42" rx="5" style="animation-delay:.4s"/>
+          <rect class="a-fill-cyan aa-slide" x="180" y="164" width="250" height="42" rx="5" style="animation-delay:.6s"/>
+          <rect class="a-fill-cyan aa-slide" x="180" y="206" width="250" height="42" rx="5" style="animation-delay:.8s"/>
+
+          <g>
+            <text class="a-s" x="80" y="98" text-anchor="middle">67,240</text><text class="a-m" x="250" y="98" text-anchor="middle" style="fill:#fb7185">5</text><text class="a-m" x="400" y="98" text-anchor="middle" style="fill:#22c55e">34</text>
+            <text class="a-s" x="80" y="140" text-anchor="middle">67,235</text><text class="a-m" x="250" y="140" text-anchor="middle" style="fill:#fb7185">6</text><text class="a-m" x="400" y="140" text-anchor="middle" style="fill:#22c55e">39</text>
+            <text class="a-s" x="80" y="182" text-anchor="middle">67,230</text><text class="a-m" x="250" y="182" text-anchor="middle" style="fill:#fb7185">8</text><text class="a-m" x="400" y="182" text-anchor="middle" style="fill:#22c55e">44</text>
+            <text class="a-s" x="80" y="224" text-anchor="middle">67,225</text><text class="a-m" x="250" y="224" text-anchor="middle" style="fill:#fb7185">9</text><text class="a-m" x="400" y="224" text-anchor="middle" style="fill:#22c55e">37</text>
+            <text class="a-s" x="80" y="266" text-anchor="middle">67,220</text><text class="a-m" x="250" y="266" text-anchor="middle" style="fill:#fb7185">24</text><text class="a-m" x="400" y="266" text-anchor="middle" style="fill:#22c55e">10</text>
+          </g>
+
+          <path class="aa-line" d="M470 92 L 470 236" style="fill:none;stroke:#22d3ee;stroke-width:2.5" pathLength="1"/>
+          <path class="aa-line" d="M470 92 L 482 92 M470 236 L 482 236" style="fill:none;stroke:#22d3ee;stroke-width:2.5" pathLength="1"/>
+          <text class="a-s" x="492" y="168" style="fill:#22d3ee">stacked buy</text>
+          <text class="a-s" x="492" y="184" style="fill:#22d3ee">imbalance</text>
+        </svg>
+        <figcaption><strong>Four rows of ask dominance.</strong> Consecutive imbalanced rows form a stack. This often aligns with a fair value gap or an order block, which is why order-flow and structure reading pair well together.</figcaption>
+      </figure>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Absorption beats raw delta</strong>
+          Big delta with little price movement is more informative than big delta with a big move. The first says "someone is stopping this"; the second just says "this is working".
+        </div>
+      </div>
+
+      <h2 id="step-by-step">How to read one step by step</h2>
+      <ol>
+        <li><strong>Start with the bar's overall shape.</strong> Where did it open and close, and where are the extremes?</li>
+        <li><strong>Find the busiest prices.</strong> High total volume marks where the market cared — often support or resistance.</li>
+        <li><strong>Check the bid/ask split.</strong> Is one side clearly dominant at those extremes, or is it balanced?</li>
+        <li><strong>Look for imbalances and stacks.</strong> A 3:1 row is a clue; a stack of them is a statement.</li>
+        <li><strong>Compute the delta.</strong> Net positive means buying led; net negative means selling led.</li>
+        <li><strong>Watch for absorption.</strong> Large volume that fails to move price is a warning flag.</li>
+        <li><strong>Tie it back to structure.</strong> Does the activity sit at an order block, a fair value gap or a key level? Alone, it is noise; in context, it is information.</li>
+      </ol>
+
+      <h2 id="app">Where it fits with CPE Trade Pro</h2>
+      <p>Be honest about the level here: footprint charts and order-flow analysis are <strong>advanced professional tools</strong>, and this page explains them as education. They take time to read, they depend on clean tick data, and they do not make a strategy for you.</p>
+      <p>CPE Trade Pro approaches the same underlying question — where did real participation happen? — with a different, more automatic toolkit. It reads <strong>volume</strong> (a spike versus the average, money-flow and recent change) as one of the five parts of its quality score, and it detects and draws <strong>order blocks</strong>, fair value gaps, liquidity zones and BOS / CHoCH automatically. Those zones and gaps are exactly the areas where a footprint chart would show stacked imbalances, so the two approaches describe the same places from different angles.</p>
+      <p>Put plainly: a footprint chart is a microscope for advanced traders; CPE Trade Pro is a structured, automatic read of volume, structure and levels that anyone can start with in DEMO mode. To remember the honesty line — the app's 0-10 quality score is built from five measurable parts (Clarity, Trend, Momentum, Volume and Levels), each worth up to 2 points. It is <em>not</em> a win rate, not a probability of profit and not an audited record.</p>
+      <p>If you want the volume and order-block side of this without hand-reading a ladder, <a href="/download.html">download CPE Trade Pro</a> and explore it with no exchange account.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/order-flow-tools-explained.html">Order flow tools explained</a></li>
+          <li><a href="/blog/volume-analysis-guide.html">Volume analysis guide</a></li>
+          <li><a href="/blog/order-block-strategy-guide.html">Order blocks: a complete strategy guide</a></li>
+          <li><a href="/academy.html">The built-in academy</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>Automatic order blocks, fair value gaps and volume read — plus BUY / SELL / HOLD with a 0-10 quality score.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What a footprint chart is</a>
+          <a href="#two-columns">Bid and ask columns</a>
+          <a href="#delta">Delta</a>
+          <a href="#imbalance">Imbalance and stacks</a>
+          <a href="#absorption">Absorption</a>
+          <a href="#step-by-step">How to read one</a>
+          <a href="#app">With CPE Trade Pro</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/order-flow-tools-explained.html">Order flow tools</a>
+          <a href="/blog/volume-analysis-guide.html">Volume analysis</a>
+          <a href="/blog/order-block-strategy-guide.html">Order blocks guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read participation without the ladder</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, automatic order blocks, fair value gaps, liquidity zones and BOS / CHoCH, a volume component inside the 0-10 quality score, LIVE and DEMO modes and a built-in academy all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

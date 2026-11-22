@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Chart Drawing Tools Explained: Trend Line, Ray, Extended Line, Horizontal, Zone and R:R</title>
+<meta name="description" content="Every drawing tool in the CPE Trade Pro chart — trend line, ray, extended line, horizontal line, zones and the risk-reward tool — and what each one is actually for." />
+<meta name="keywords" content="trend line, ray, extended line, horizontal line, zone tool, risk reward tool, chart drawing tools" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/chart-drawing-tools-guide.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Chart Drawing Tools Explained: Trend Line, Ray, Extended Line, Horizontal, Zone and R:R" />
+<meta property="og:description" content="Trend line, ray, extended line, horizontal line, zones and the risk-reward tool — and what each one is actually for." />
+<meta property="og:url" content="https://cpetradepro.com/blog/chart-drawing-tools-guide.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Chart Drawing Tools Explained" />
+<meta name="twitter:description" content="Trend line, ray, extended line, horizontal, zones and the risk-reward tool." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chart Drawing Tools Explained: Trend Line, Ray, Extended Line, Horizontal, Zone and R:R",
+  "description": "Every drawing tool in the CPE Trade Pro chart — trend line, ray, extended line, horizontal line, zones and the risk-reward tool — and what each one is actually for.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/chart-drawing-tools-guide.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Chart drawing tools guide", "item": "https://cpetradepro.com/blog/chart-drawing-tools-guide.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a ray and an extended line?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A trend line stops at the two points you drew between. A ray starts at one point and continues forever in one direction. An extended line runs infinitely in both directions. Each answers a different question about where price met a level." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I still need to draw if the app draws automatically?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The app auto-draws order blocks, fair value gaps, liquidity and break-of-structure levels. Manual tools are for the lines that matter to you personally — the level you are watching, the zone you plan to trade from." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Chart drawing tools</span>
+    </nav>
+    <span class="eyebrow">Learn · Tools</span>
+    <h1>Chart drawing tools explained: trend line, ray, extended line, horizontal, zone and R:R</h1>
+    <p class="lead">Drawing tools are not decoration. Each one answers a specific question — where is the trend, where did price react, what do I risk and what do I aim for. Here is what every tool in the CPE Trade Pro chart is <strong>actually for</strong>.</p>
+    <div class="page-meta">
+      <span><b>11 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Tools</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>There is a version of charting where the screen fills up with lines until it looks like a weather map. That is not analysis; it is clutter. The tools below are useful because each one draws a <strong>single, checkable fact</strong> — "price keeps turning here", "the trend has held since this point" — that you can act on or reject.</p>
+      <p>The golden rule is restraint: a clean chart with two or three meaningful marks beats a busy one with twenty. Before you draw anything, ask what question the line is answering.</p>
+
+      <h2 id="why">Why draw at all</h2>
+      <p>Drawing forces you to be specific. "It looks bullish" becomes "price is holding above this trend line and the last swing high". A specific claim can be tested; a feeling cannot. The best drawings are also the ones you can explain to someone else in one sentence.</p>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Draw with a purpose</strong>
+          If you cannot say what a line is for, delete it. Lines you do not remember drawing are lines you will not respect when price reaches them.
+        </div>
+      </div>
+
+      <h2 id="trend">Trend line</h2>
+      <p>A <strong>trend line</strong> is a straight line joining two or more swing points, drawn between those points only. An uptrend line is drawn under rising lows; a downtrend line over falling highs. It works because it shows where buyers (or sellers) have repeatedly stepped in.</p>
+      <p>Three rules keep a trend line honest: it needs <strong>at least two touches</strong> to exist, a <strong>third touch</strong> to become meaningful, and it should be drawn against the wicks or the bodies — pick one and stay consistent. A line forced through a single point is just a guess with a straightedge.</p>
+
+      <h2 id="ray">Ray vs extended line</h2>
+      <p>These two look like a trend line but behave differently, and mixing them up is a common source of confusion:</p>
+      <ul>
+        <li><strong>Ray</strong> — starts at one point and continues indefinitely in <em>one</em> direction. Use it when you want a level that begins at a specific moment (a breakout point, a pivot) and matters into the future only.</li>
+        <li><strong>Extended line</strong> — continues indefinitely in <em>both</em> directions. Use it when you believe a level is real on both sides of your anchor point — for example a channel you expect price to respect forwards and backwards.</li>
+      </ul>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 320" role="img" aria-label="One candle chart showing three drawing tools: a trend line joining two lows, a ray starting at a pivot and continuing to the right edge, and an extended line running infinitely in both directions through a swing">
+          <rect class="a-panel" x="0" y="0" width="720" height="320" rx="14"/>
+          <text class="a-h" x="24" y="30">Trend line · ray · extended line</text>
+          <text class="a-s" x="696" y="30" text-anchor="end">BTCUSDT · 1H</text>
+
+          <g class="a-grid">
+            <line x1="24" y1="90" x2="696" y2="90"/>
+            <line x1="24" y1="150" x2="696" y2="150"/>
+            <line x1="24" y1="210" x2="696" y2="210"/>
+            <line x1="24" y1="270" x2="696" y2="270"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="48" y1="250" x2="48" y2="272"/><rect class="a-bull" x="42" y="254" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="80" y1="240" x2="80" y2="266"/><rect class="a-bear" x="74" y="244" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="112" y1="230" x2="112" y2="258"/><rect class="a-bull" x="106" y="234" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="144" y1="216" x2="144" y2="244"/><rect class="a-bull" x="138" y="220" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="176" y1="206" x2="176" y2="232"/><rect class="a-bear" x="170" y="210" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="208" y1="196" x2="208" y2="226"/><rect class="a-bull" x="202" y="200" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="240" y1="180" x2="240" y2="208"/><rect class="a-bull" x="234" y="184" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="272" y1="170" x2="272" y2="196"/><rect class="a-bear" x="266" y="174" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="304" y1="160" x2="304" y2="188"/><rect class="a-bull" x="298" y="164" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="336" y1="144" x2="336" y2="174"/><rect class="a-bull" x="330" y="148" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="368" y1="128" x2="368" y2="158"/><rect class="a-bull" x="362" y="132" width="12" height="18" rx="1.5"/>
+            <line class="a-wbear" x1="400" y1="120" x2="400" y2="146"/><rect class="a-bear" x="394" y="124" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="432" y1="112" x2="432" y2="140"/><rect class="a-bull" x="426" y="116" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="464" y1="100" x2="464" y2="128"/><rect class="a-bull" x="458" y="104" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="496" y1="92" x2="496" y2="118"/><rect class="a-bull" x="490" y="96" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="528" y1="96" x2="528" y2="120"/><rect class="a-bear" x="522" y="100" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="560" y1="86" x2="560" y2="112"/><rect class="a-bull" x="554" y="90" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="592" y1="78" x2="592" y2="104"/><rect class="a-bull" x="586" y="82" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="624" y1="72" x2="624" y2="96"/><rect class="a-bull" x="618" y="76" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="656" y1="64" x2="656" y2="88"/><rect class="a-bull" x="650" y="68" width="12" height="14" rx="1.5"/>
+          </g>
+
+          <line class="aa-line" x1="48" y1="274" x2="336" y2="176" pathLength="1" style="stroke:#22d3ee;stroke-width:2.5"/>
+          <circle class="aa-pop" cx="48" cy="274" r="4" style="fill:#22d3ee;animation-delay:.5s"/>
+          <circle class="aa-pop" cx="336" cy="176" r="4" style="fill:#22d3ee;animation-delay:.7s"/>
+          <text class="a-s" x="120" y="266" style="fill:#22d3ee">TREND LINE · two touches</text>
+
+          <line class="aa-line" x1="432" y1="128" x2="696" y2="58" pathLength="1" style="stroke:#00e5a8;stroke-width:2.5;animation-delay:.6s"/>
+          <text class="a-s" x="520" y="112" style="fill:#00e5a8">RAY · forward only</text>
+
+          <line class="aa-line" x1="24" y1="200" x2="696" y2="112" pathLength="1" style="stroke:#a855f7;stroke-width:2.5;stroke-dasharray:1;animation-delay:1s"/>
+          <text class="a-s" x="600" y="150" text-anchor="end" style="fill:#a855f7">EXTENDED · both ways</text>
+        </svg>
+        <figcaption><strong>Three lines, three jobs.</strong> The cyan trend line joins two lows and stops there. The green ray anchors at a pivot and runs to the right edge. The purple extended line passes through both directions. Read how price treated each — in a <a href="/blog/chart-types-explained.html">candlestick chart</a>, the wicks show you exactly where the reactions happened.</figcaption>
+      </figure>
+
+      <h2 id="horizontal">Horizontal line for support and resistance</h2>
+      <p>A <strong>horizontal line</strong> is the simplest and often the most useful mark on a chart. Unlike a trend line it does not slope, so it marks a single price level where the market has repeatedly turned — a support below price or a resistance above it.</p>
+      <p>Two habits make horizontals better. First, mark <strong>zones rather than razor-thin lines</strong>: support and resistance are ranges, not exact pennies, and a thin line invites false precision. Second, keep only the levels price is likely to care about now — the nearest support under you and the nearest resistance over you. A chart with twenty horizontals means none of them stand out.</p>
+
+      <h2 id="zones">Zones: supply, demand and order blocks</h2>
+      <p>A <strong>zone</strong> is a rectangle marking a price area where something important happened — a strong rejection (supply), a strong launch (demand), or an <strong>order block</strong>, the last opposing candle before a big move. Zones are the practical version of support and resistance because they have width and they show <em>intent</em>.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 320" role="img" aria-label="A chart with a drawn demand zone below price and a drawn supply zone above, plus an order block marked where the last down candle preceded a strong rally">
+          <rect class="a-panel" x="0" y="0" width="720" height="320" rx="14"/>
+          <text class="a-h" x="24" y="30">Drawn zones</text>
+          <text class="a-s" x="696" y="30" text-anchor="end">supply · demand · OB</text>
+
+          <g class="a-grid">
+            <line x1="24" y1="90" x2="696" y2="90"/>
+            <line x1="24" y1="150" x2="696" y2="150"/>
+            <line x1="24" y1="210" x2="696" y2="210"/>
+            <line x1="24" y1="270" x2="696" y2="270"/>
+          </g>
+
+          <rect class="a-fill-red" x="24" y="66" width="672" height="42" rx="4"/>
+          <text class="a-s" x="36" y="84" style="fill:#ef4444">SUPPLY ZONE · where sellers stepped in</text>
+
+          <rect class="a-fill-green" x="24" y="236" width="672" height="42" rx="4"/>
+          <text class="a-s" x="36" y="272" style="fill:#22c55e">DEMAND ZONE · where buyers stepped in</text>
+
+          <g>
+            <line class="a-wbull" x1="60" y1="210" x2="60" y2="236"/><rect class="a-bull" x="54" y="214" width="14" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="96" y1="196" x2="96" y2="224"/><rect class="a-bear" x="90" y="200" width="14" height="16" rx="1.5"/>
+            <rect class="a-zone-ob aa-pop" x="126" y="192" width="20" height="24" rx="3" style="animation-delay:.4s"/>
+            <line class="a-wbull" x1="150" y1="170" x2="150" y2="204"/><rect class="a-bull" x="144" y="174" width="14" height="24" rx="1.5"/>
+            <line class="a-wbull" x1="186" y1="156" x2="186" y2="188"/><rect class="a-bull" x="180" y="160" width="14" height="22" rx="1.5"/>
+            <line class="a-wbull" x1="222" y1="146" x2="222" y2="178"/><rect class="a-bull" x="216" y="150" width="14" height="22" rx="1.5"/>
+            <line class="a-wbear" x1="258" y1="140" x2="258" y2="168"/><rect class="a-bear" x="252" y="144" width="14" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="294" y1="134" x2="294" y2="160"/><rect class="a-bull" x="288" y="138" width="14" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="330" y1="126" x2="330" y2="152"/><rect class="a-bull" x="324" y="130" width="14" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="366" y1="120" x2="366" y2="146"/><rect class="a-bear" x="360" y="124" width="14" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="402" y1="112" x2="402" y2="140"/><rect class="a-bull" x="396" y="116" width="14" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="438" y1="104" x2="438" y2="132"/><rect class="a-bull" x="432" y="108" width="14" height="18" rx="1.5"/>
+            <line class="a-wbear" x1="474" y1="100" x2="474" y2="124"/><rect class="a-bear" x="468" y="104" width="14" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="510" y1="96" x2="510" y2="120"/><rect class="a-bull" x="504" y="100" width="14" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="546" y1="90" x2="546" y2="114"/><rect class="a-bull" x="540" y="94" width="14" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="582" y1="92" x2="582" y2="112"/><rect class="a-bear" x="576" y="96" width="14" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="618" y1="86" x2="618" y2="108"/><rect class="a-bull" x="612" y="90" width="14" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="654" y1="82" x2="654" y2="102"/><rect class="a-bull" x="648" y="86" width="14" height="12" rx="1.5"/>
+          </g>
+          <text class="a-s" x="136" y="184" style="fill:#60a5fa">OB</text>
+        </svg>
+        <figcaption><strong>Areas, not lines.</strong> The red supply zone is where sellers repeatedly rejected price; the green demand zone is where buyers launched from. The blue <b>OB</b> marks the last down candle before the rally. Zones like these are explained in full in <a href="/blog/how-to-read-order-blocks.html">how to read order blocks</a>.</figcaption>
+      </figure>
+
+      <h2 id="rr">The risk-reward (R:R) tool</h2>
+      <p>The <strong>risk-reward tool</strong> is the one drawing that pays for itself. You mark an entry, a stop and a target, and the tool shows the two distances as a ratio. If you risk 100 to make 300, that is a 3:1 — usually written 3R.</p>
+      <p>The point is not to demand a huge ratio. It is to make the trade's shape visible <em>before</em> you take it. A setup with a wide stop and a near target is a bad trade no matter how handsome the signal looks; the R:R box shows that in one glance, which is exactly when you still have time to walk away.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 320" role="img" aria-label="The risk-reward tool on a chart: an entry line with a red stop box below it for one unit of risk and green target boxes above it for two and three units of reward, labelled 1R, 2R and 3R">
+          <rect class="a-panel" x="0" y="0" width="720" height="320" rx="14"/>
+          <text class="a-h" x="24" y="30">Risk-reward tool</text>
+          <rect class="a-chip" x="536" y="14" width="160" height="24" rx="12"/>
+          <text class="a-m" x="616" y="30" text-anchor="middle">2R : 1R · entry plan</text>
+
+          <rect class="a-fill-red" x="120" y="188" width="480" height="70" rx="4"/>
+          <text class="a-s" x="132" y="228" style="fill:#ef4444">RISK · 1R</text>
+
+          <rect class="a-fill-amber" x="120" y="124" width="480" height="64" rx="4"/>
+          <text class="a-s" x="132" y="160" style="fill:#fbbf24">REWARD · 2R</text>
+
+          <rect class="a-fill-green" x="120" y="48" width="480" height="76" rx="4"/>
+          <text class="a-s" x="132" y="90" style="fill:#22c55e">REWARD · 3R</text>
+
+          <line class="a-entry aa-march" x1="24" y1="188" x2="696" y2="188"/>
+          <line class="a-sl" x1="24" y1="258" x2="696" y2="258"/>
+          <line class="a-tp1" x1="24" y1="124" x2="696" y2="124"/>
+          <line class="a-tp2" x1="24" y1="48" x2="696" y2="48"/>
+
+          <circle class="aa-pulse" cx="620" cy="188" r="5" style="fill:#22d3ee"/>
+          <text class="a-s" x="688" y="184" text-anchor="end" style="fill:#22d3ee">ENTRY</text>
+          <text class="a-s" x="688" y="278" text-anchor="end" style="fill:#ef4444">STOP</text>
+          <text class="a-s" x="688" y="120" text-anchor="end" style="fill:#fbbf24">TARGET 1</text>
+          <text class="a-s" x="688" y="44" text-anchor="end" style="fill:#00e5a8">TARGET 2</text>
+
+          <text class="a-m" x="24" y="300" style="fill:#9ef0d5">reward : risk = 2 : 1</text>
+        </svg>
+        <figcaption><strong>See the shape before you commit.</strong> Risk is the red box under the entry; reward is the stacked green boxes above. Here the first target returns twice the risk and the second returns three times. If the ratio is uncomfortable, the trade is not for you — find another.</figcaption>
+      </figure>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Draw the stop first</strong>
+          Always place the stop level before the target. It is easier to accept a ratio once you have decided what you are unwilling to lose, and it stops you from talking yourself into a bad shape.
+        </div>
+      </div>
+
+      <h2 id="clean">A clean chart in practice</h2>
+      <p>Here is a workflow that keeps a chart readable:</p>
+      <ol>
+        <li><strong>Mark the nearest support and resistance</strong> as zones, not lines.</li>
+        <li><strong>Draw one trend line</strong> on the timeframe you are actually trading.</li>
+        <li><strong>Add a ray</strong> only if a single anchor point matters to you.</li>
+        <li><strong>Box the zone</strong> you would trade from — demand, supply or an order block.</li>
+        <li><strong>Run the R:R tool</strong> on the plan to see if the shape is worth taking.</li>
+        <li><strong>Delete everything else.</strong> If a mark is older than your reason for watching, it is noise.</li>
+      </ol>
+
+      <h2 id="auto">How the app's automatic tools compare</h2>
+      <p>CPE Trade Pro does not make you draw the structural work by hand. The analysis auto-draws <strong>order blocks, fair value gaps, liquidity levels and break-of-structure / change-of-character lines</strong>, so the levels that most traders hunt for are already on the chart when a signal appears. That is where the manual tools above come in: they let you add the few lines that matter to <em>you</em> — a level you are watching, a zone you plan to trade from — on top of the app's own reading.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card blue">
+          <span class="ec-ico">📏</span>
+          <strong>Lines for trend</strong>
+          <span>Trend line, ray and extended line each answer a different question about direction.</span>
+        </div>
+        <div class="edu-card purple">
+          <span class="ec-ico">🟪</span>
+          <strong>Zones for reaction</strong>
+          <span>Supply, demand and order blocks show where price is likely to respond — with width.</span>
+        </div>
+        <div class="edu-card green">
+          <span class="ec-ico">⚖️</span>
+          <strong>R:R for the plan</strong>
+          <span>The risk-reward tool turns entry, stop and target into a ratio you can judge at a glance.</span>
+        </div>
+      </div>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>TREND LINE</i> Two touches</span>
+        <span class="edu-chip green"><i>RAY</i> Forward only</span>
+        <span class="edu-chip purple"><i>EXTENDED</i> Both ways</span>
+        <span class="edu-chip amber"><i>HORIZONTAL</i> One level</span>
+        <span class="edu-chip pink"><i>ZONE</i> An area</span>
+      </div>
+
+      <p>If you want to go deeper on the levels themselves, the <a href="/blog/fibonacci-trading-guide.html">Fibonacci trading guide</a> covers retracement and extension levels, and <a href="/app-screens.html">app screens</a> shows the chart and its tools in the interface.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. Drawing tools describe where price has reacted; they do not predict where it will go. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/chart-types-explained.html">Chart types explained</a></li>
+          <li><a href="/blog/how-to-read-order-blocks.html">How to read order blocks</a></li>
+          <li><a href="/blog/fibonacci-trading-guide.html">Fibonacci trading guide</a></li>
+          <li><a href="/app-screens.html">App screens</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Draw less, see more</h4>
+        <p>Auto-drawn order blocks, fair value gaps, liquidity and BOS / CHoCH levels — plus manual lines, zones and the R:R tool, all in one chart.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#why">Why draw at all</a>
+          <a href="#trend">Trend line</a>
+          <a href="#ray">Ray vs extended line</a>
+          <a href="#horizontal">Horizontal support and resistance</a>
+          <a href="#zones">Zones: supply, demand, OB</a>
+          <a href="#rr">The risk-reward tool</a>
+          <a href="#clean">A clean chart in practice</a>
+          <a href="#auto">How the auto tools compare</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/chart-types-explained.html">Chart types explained</a>
+          <a href="/blog/how-to-read-order-blocks.html">Reading order blocks</a>
+          <a href="/blog/fibonacci-trading-guide.html">Fibonacci guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Clean charts, clear plans</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, auto-drawn order blocks and structures, LIVE and DEMO modes, auto or manual trading, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="whats-float" aria-label="WhatsApp us" title="WhatsApp: +94774940944">💬</a>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

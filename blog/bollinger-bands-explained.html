@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Bollinger Bands Explained: Volatility, the Squeeze and Band Walk</title>
+<meta name="description" content="What Bollinger Bands are, the middle band and the two standard-deviation bands, the squeeze and expansion, walking the band, and how CPE Trade Pro uses bands for levels." />
+<meta name="keywords" content="bollinger bands, standard deviation, squeeze, walking the band, bollinger band width" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/bollinger-bands-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Bollinger Bands Explained: Volatility, the Squeeze and Band Walk" />
+<meta property="og:description" content="The middle band and the two standard-deviation bands, the squeeze and expansion, walking the band, and how CPE Trade Pro uses bands for levels." />
+<meta property="og:url" content="https://cpetradepro.com/blog/bollinger-bands-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bollinger Bands Explained: Volatility, the Squeeze and Band Walk" />
+<meta name="twitter:description" content="A volatility envelope: the middle band, the two outer bands, the squeeze and band walking." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bollinger Bands Explained: Volatility, the Squeeze and Band Walk",
+  "description": "What Bollinger Bands are, the middle band and the two standard-deviation bands, the squeeze and expansion, walking the band, and how CPE Trade Pro uses bands for levels.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/bollinger-bands-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Bollinger Bands Explained: Volatility, the Squeeze and Band Walk", "item": "https://cpetradepro.com/blog/bollinger-bands-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does touching the upper band mean sell?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The upper band is a volatility boundary, not a ceiling. In a strong uptrend price can ride along the upper band for many bars — that is called walking the band and it signals strength, not exhaustion." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Bollinger squeeze?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A squeeze is when the bands narrow because volatility has fallen. It is a coiled state; it tells you a bigger move may be coming, not which way it will go." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does CPE Trade Pro use Bollinger Bands?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Band edges feed the Levels part of the 0-10 quality score and can be used as the basis for entry, stop and target placement. The score is not a win rate or a probability of profit." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Bollinger Bands explained</span>
+    </nav>
+    <span class="eyebrow">Learn · Indicators</span>
+    <h1>Bollinger Bands Explained: Volatility, the Squeeze and Band Walk</h1>
+    <p class="lead">Bollinger Bands wrap price in a moving envelope that stretches and shrinks with volatility. Here is what the three lines <strong>are</strong>, what the squeeze and band walk really tell you, and how CPE Trade Pro reads band edges as levels.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Bollinger Bands are one of the few indicators that say something price alone cannot: how wide the market's normal range is right now. John Bollinger built them to be an envelope around price, not a signal generator, and the traders who get the most from them treat the bands as context rather than commands.</p>
+
+      <h2 id="what">What the bands show</h2>
+      <p>A Bollinger Band set is three lines around price. The middle line is a simple moving average. The two outer lines sit a fixed number of standard deviations above and below it. Because standard deviation measures how spread out recent prices are, the envelope <strong>widens when the market is volatile and narrows when it is calm</strong>.</p>
+      <p>That is the whole idea: the bands are a live picture of volatility. When they stretch, moves are large; when they pinch together, the market has gone quiet. They say nothing about direction on their own — an envelope can expand to either side.</p>
+
+      <h2 id="bands">The middle, upper and lower band (figure)</h2>
+      <p>The default construction is a <strong>20-period</strong> moving average with bands <strong>2 standard deviations</strong> away. Roughly speaking, price spends most of its time inside the envelope, which is what makes the outer lines useful as reference levels.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A price line inside a Bollinger Band envelope with an upper band, a middle moving average and a lower band that widens as volatility rises">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="22" y="26">Bollinger Bands · 20, 2 · BTCUSDT · 1H</text>
+          <rect class="a-chip" x="592" y="10" width="108" height="22" rx="11"/>
+          <text class="a-m" x="646" y="25" text-anchor="middle">BB 20,2</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="80" x2="700" y2="80"/>
+            <line x1="20" y1="130" x2="700" y2="130"/>
+            <line x1="20" y1="180" x2="700" y2="180"/>
+            <line x1="20" y1="230" x2="700" y2="230"/>
+            <line x1="20" y1="280" x2="700" y2="280"/>
+          </g>
+
+          <path class="a-fill-cyan" d="M20 240 C 160 232, 300 170, 700 96 L700 214 C 300 226, 160 268, 20 268 Z"/>
+          <path d="M20 240 C 160 232, 300 170, 700 96" style="fill:none;stroke:#22d3ee;stroke-width:1.6"/>
+          <path d="M20 268 C 160 268, 300 226, 700 214" style="fill:none;stroke:#22d3ee;stroke-width:1.6"/>
+          <path d="M20 254 C 160 250, 300 198, 700 155" style="fill:none;stroke:#fbbf24;stroke-width:1.6;stroke-dasharray:6 4"/>
+
+          <path class="a-price aa-line" d="M20 254 C 80 240, 120 262, 180 236 C 240 212, 280 250, 340 214 C 400 180, 440 206, 500 168 C 560 138, 620 150, 700 128" pathLength="1" style="animation-delay:.4s"/>
+
+          <text class="a-s" x="694" y="92" text-anchor="end" style="fill:#22d3ee">upper band · +2σ</text>
+          <text class="a-s" x="694" y="151" text-anchor="end" style="fill:#fbbf24">middle · 20 MA</text>
+          <text class="a-s" x="694" y="218" text-anchor="end" style="fill:#22d3ee">lower band · −2σ</text>
+        </svg>
+        <figcaption><strong>Three lines, one envelope.</strong> The dashed middle line is the 20-period average; the two solid lines are two standard deviations above and below. Notice the envelope starts narrow on the left and <b>widens</b> as price moves faster.</figcaption>
+      </figure>
+
+      <h2 id="squeeze">The squeeze and the breakout (figure)</h2>
+      <p>When volatility falls, the bands contract until they are unusually close together. Traders call this a <strong>squeeze</strong>. It means the market has coiled — the range has become so tight that a larger move is likely to follow. What a squeeze does not tell you is <em>direction</em>. It is a coiled spring, and the spring can release either way.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="Bollinger Bands narrowing into a squeeze and then expanding sharply as price breaks out upward">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="22" y="26">The squeeze → expansion</text>
+          <rect class="a-chip" x="596" y="10" width="104" height="22" rx="11"/>
+          <text class="a-m" x="648" y="25" text-anchor="middle">SQUEEZE</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="80" x2="700" y2="80"/>
+            <line x1="20" y1="130" x2="700" y2="130"/>
+            <line x1="20" y1="180" x2="700" y2="180"/>
+            <line x1="20" y1="230" x2="700" y2="230"/>
+            <line x1="20" y1="280" x2="700" y2="280"/>
+          </g>
+
+          <path class="a-fill-amber" d="M20 200 C 160 198, 320 192, 420 190 L420 206 C 320 204, 160 202, 20 206 Z"/>
+          <path class="a-fill-teal" d="M420 190 C 500 184, 580 150, 700 84 L700 236 C 580 214, 500 208, 420 206 Z"/>
+
+          <path class="a-price aa-line" d="M20 200 L120 204 L220 196 L320 202 L420 192 L480 176 L540 150 L600 122 L660 100 L700 90" pathLength="1" style="animation-delay:.4s"/>
+
+          <rect class="a-focus aa-pulse" x="330" y="176" width="120" height="44" rx="8" style="animation-delay:.2s"/>
+          <text class="a-s" x="390" y="170" text-anchor="middle" style="fill:#fbbf24">bands pinch · volatility low</text>
+
+          <line class="a-tp1 aa-line" x1="480" y1="176" x2="700" y2="176" pathLength="1" style="animation-delay:.9s"/>
+          <text class="a-s" x="694" y="172" text-anchor="end" style="fill:#00e5a8">breakout</text>
+          <text class="a-s" x="560" y="128" style="fill:#22d3ee">expansion · wider bands</text>
+        </svg>
+        <figcaption><strong>Coil, then release.</strong> On the left the bands pinch tight — a squeeze, the calm before a move. As price breaks out on the right the bands expand quickly. The squeeze warned that a move was coming; it did not say which direction.</figcaption>
+      </figure>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Squeeze = timing, not direction</strong>
+          A squeeze tells you <em>when</em> to pay attention, not <em>which way</em> to trade. Combine it with structure or a band break to get a direction, and never trade the squeeze alone.
+        </div>
+      </div>
+
+      <h2 id="walking">Walking the band</h2>
+      <p>The counter-intuitive part of Bollinger Bands: price tagging the upper band is not automatically a sell. In a strong trend, price can <strong>walk</strong> the upper band for many bars, closing near it again and again while the middle line catches up underneath. This is a sign of strength, not exhaustion.</p>
+      <p>The same happens on the way down — price can walk the lower band. A useful habit is to watch the <strong>middle band</strong> as the trend's soft support (or resistance). As long as price keeps closing on the outside of the middle line, the walk tends to continue; a decisive close back through the middle is the first sign the walk is over.</p>
+      <p>Whether the move behind the walk has real participation is a good question to ask, and it is covered in our <a href="/blog/volume-analysis-guide.html">volume analysis guide</a>.</p>
+
+      <h2 id="width">Band width and volatility (table)</h2>
+      <p>Band width is simply how far apart the outer lines are, and it moves in a rhythm. Reading that rhythm is often more useful than reacting to a single touch.</p>
+      <table>
+        <thead>
+          <tr><th>Band state</th><th>What it means</th><th>How to read it</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Narrow (squeeze)</strong></td><td>Volatility is low; the range has coiled</td><td>A larger move may be building — watch for the break, don't guess the side</td></tr>
+          <tr><td><strong>Widening (expansion)</strong></td><td>Volatility is rising; moves are getting bigger</td><td>A trend or break is underway; chasing a stretched band is risky</td></tr>
+          <tr><td><strong>Very wide</strong></td><td>Volatility is stretched, often late in a move</td><td>Reversals or sharp pullbacks become more likely — manage risk tightly</td></tr>
+          <tr><td><strong>Converging</strong></td><td>Volatility is falling again</td><td>The move is cooling; a new squeeze may be forming</td></tr>
+        </tbody>
+      </table>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>20</i> period</span>
+        <span class="edu-chip blue"><i>2</i> standard deviations</span>
+        <span class="edu-chip amber"><i>MA</i> middle band</span>
+        <span class="edu-chip purple"><i>SQZ</i> squeeze</span>
+        <span class="edu-chip green"><i>WALK</i> band ride</span>
+      </div>
+
+      <h2 id="settings">Settings (20, 2)</h2>
+      <p>The default settings are worth keeping until you have a clear reason to change them:</p>
+      <ul>
+        <li><strong>Length 20.</strong> A middle-of-the-road average that reacts without being twitchy. Shorten it and price escapes the envelope constantly; lengthen it and the bands lag far behind.</li>
+        <li><strong>Standard deviations 2.</strong> A multiplier. Use 2 for the standard view; wider multipliers (2.5, 3) keep price inside more, narrower ones push the bands in.</li>
+        <li><strong>Band width basis.</strong> Some platforms let you plot bandwidth itself — a common way to spot squeezes objectively.</li>
+      </ul>
+      <p>For a hands-on walk-through of reading and applying bands, see <a href="/blog/how-to-use-bollinger-bands.html">how to use Bollinger Bands</a>.</p>
+
+      <h2 id="mistakes">Common mistakes</h2>
+      <ul>
+        <li><strong>Treating the bands as overbought/oversold.</strong> They are volatility boundaries; touching one is not a reversal signal.</li>
+        <li><strong>Shorting every upper-band tag.</strong> In a trend, walking the band is strength — shorting into it is fighting the move.</li>
+        <li><strong>Trading a squeeze without direction.</strong> The squeeze tells you a move is near, not which way.</li>
+        <li><strong>Ignoring the width.</strong> Reading a single touch while ignoring whether the envelope is stretched is half the picture.</li>
+        <li><strong>Using bands alone.</strong> Bands describe volatility; structure and momentum describe direction. Use them together.</li>
+      </ul>
+
+      <h2 id="app">How CPE Trade Pro uses bands</h2>
+      <p>In the app, Bollinger band edges feed the <strong>Levels</strong> part of the 0-10 quality score — the same part that reads Fibonacci levels, support and resistance, and volatility. That part is worth up to <strong>2 points</strong>. Bands are useful here precisely because they are objective: the upper and lower lines are computed prices, not opinions, so the entry, stop and target can sometimes be anchored to them rather than to a round number.</p>
+      <p>The 0-10 score is built from five measurable parts — <strong>Clarity, Trend, Momentum, Volume and Levels</strong> — each capped at 2 points. Bands contribute to Levels only; moving averages and ichimoku-type trend studies feed Trend, while RSI and MACD feed Momentum. To be exact: <em>this score is not a win rate, not a probability of profit and not an audited performance record.</em> It reports how much of the checklist agreed, and band edges are one of the things it checks.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 330" role="img" aria-label="A band-based trade plan: entry at the lower Bollinger band, target one at the middle band, target two at the upper band, and a stop below the lower band">
+          <rect class="a-panel" x="0" y="0" width="720" height="330" rx="14"/>
+          <text class="a-h" x="22" y="26">Band-based plan · levels from the envelope</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="70" x2="700" y2="70"/>
+            <line x1="20" y1="110" x2="700" y2="110"/>
+            <line x1="20" y1="150" x2="700" y2="150"/>
+            <line x1="20" y1="190" x2="700" y2="190"/>
+            <line x1="20" y1="230" x2="700" y2="230"/>
+            <line x1="20" y1="270" x2="700" y2="270"/>
+          </g>
+
+          <path class="a-fill-cyan" d="M20 250 C 200 244, 420 196, 700 138 L700 232 C 420 226, 200 268, 20 272 Z"/>
+
+          <path class="a-price aa-line" d="M20 258 C 120 250, 200 262, 300 246 C 400 226, 500 210, 610 184 C 660 172, 690 166, 700 162" pathLength="1" style="animation-delay:.4s"/>
+
+          <line class="a-entry" x1="20" y1="266" x2="700" y2="266"/>
+          <line class="a-tp1" x1="20" y1="236" x2="700" y2="236"/>
+          <line class="a-tp2" x1="20" y1="140" x2="700" y2="140"/>
+          <line class="a-sl" x1="20" y1="300" x2="700" y2="300"/>
+
+          <text class="a-s" x="694" y="262" text-anchor="end" style="fill:#22d3ee">ENTRY · lower band</text>
+          <text class="a-s" x="694" y="232" text-anchor="end" style="fill:#00e5a8">TARGET 1 · middle band</text>
+          <text class="a-s" x="694" y="136" text-anchor="end" style="fill:#fbbf24">TARGET 2 · upper band</text>
+          <text class="a-s" x="694" y="296" text-anchor="end" style="fill:#ef4444">STOP · beyond −2σ</text>
+          <circle class="aa-pulse" cx="300" cy="262" r="5" style="fill:#22d3ee"/>
+        </svg>
+        <figcaption><strong>Levels from the envelope.</strong> Bands can anchor a plan objectively: the lower band as an entry zone, the middle band as target 1, the upper band as target 2, and the stop beyond the envelope. Only meaningful when the rest of the checklist agrees.</figcaption>
+      </figure>
+
+      <p>See how bands fit into the whole engine in <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">how CPE Trade Pro analyses a chart</a>.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card cyan">
+          <span class="ec-ico">🌊</span>
+          <strong>The envelope</strong>
+          <span>A 20-period average with bands 2 standard deviations out — volatility, drawn.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🌀</span>
+          <strong>The squeeze</strong>
+          <span>Bands pinch when volatility is low — a coiled market, direction still unknown.</span>
+        </div>
+        <div class="edu-card green">
+          <span class="ec-ico">🚶</span>
+          <strong>Walking the band</strong>
+          <span>Price riding a band is strength, not a reversal signal.</span>
+        </div>
+        <div class="edu-card blue">
+          <span class="ec-ico">🧮</span>
+          <strong>Objective levels</strong>
+          <span>Band edges feed the Levels part, capped at 2 of the 10 score points.</span>
+        </div>
+      </div>
+
+      <p>Want the app to read the envelope for you? <a href="/download.html">Download CPE Trade Pro free</a> and watch band edges flow into entry, stop and targets.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/how-to-use-bollinger-bands.html">How to use Bollinger Bands</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/blog/volume-analysis-guide.html">Volume analysis guide</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Levels, read for you</h4>
+        <p>Bollinger edges, Fibonacci and structure read together into a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What the bands show</a>
+          <a href="#bands">Middle, upper, lower</a>
+          <a href="#squeeze">The squeeze and breakout</a>
+          <a href="#walking">Walking the band</a>
+          <a href="#width">Band width and volatility</a>
+          <a href="#settings">Settings (20, 2)</a>
+          <a href="#mistakes">Common mistakes</a>
+          <a href="#app">How CPE Trade Pro uses them</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/how-to-use-bollinger-bands.html">How to use Bollinger Bands</a>
+          <a href="/blog/volume-analysis-guide.html">Volume analysis guide</a>
+          <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How the analysis works</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Let the envelope set your levels</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>RSI Explained: Reading Momentum Without Guessing</title>
+<meta name="description" content="What the Relative Strength Index is, how it is calculated, what overbought and oversold really mean, divergence, and how CPE Trade Pro folds RSI into its momentum score." />
+<meta name="keywords" content="rsi indicator, relative strength index, rsi divergence, overbought oversold, rsi 14" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/rsi-indicator-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="RSI Explained: Reading Momentum Without Guessing" />
+<meta property="og:description" content="What the Relative Strength Index measures, what overbought and oversold really mean, divergence, and how RSI feeds the momentum score in CPE Trade Pro." />
+<meta property="og:url" content="https://cpetradepro.com/blog/rsi-indicator-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="RSI Explained: Reading Momentum Without Guessing" />
+<meta name="twitter:description" content="The 0-100 momentum oscillator, the overbought myth and the divergence that actually matters." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RSI Explained: Reading Momentum Without Guessing",
+  "description": "What the Relative Strength Index is, how it is calculated, what overbought and oversold really mean, divergence, and how CPE Trade Pro folds RSI into its momentum score.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/rsi-indicator-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "RSI Explained: Reading Momentum Without Guessing", "item": "https://cpetradepro.com/blog/rsi-indicator-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does RSI above 70 mean I should sell?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not by itself. In a strong uptrend RSI can stay above 70 for a long time. Overbought describes momentum, not a reversal, and selling only because RSI is high is a common way to fight a trend." }
+    },
+    {
+      "@type": "Question",
+      "name": "What RSI period should I use?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The default 14 is a sensible starting point and what most traders reference. Shorter periods react faster and give more noise; longer periods are smoother but slower." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is RSI divergence?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Divergence is when price makes a new high or low but RSI does not confirm it. It suggests momentum is fading behind the move. It is a hint to slow down, not a signal to reverse on its own." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>RSI explained</span>
+    </nav>
+    <span class="eyebrow">Learn · Indicators</span>
+    <h1>RSI Explained: Reading Momentum Without Guessing</h1>
+    <p class="lead">The Relative Strength Index is on almost every chart and misread on almost every chart. Here is what it actually <strong>measures</strong>, why "overbought" is not a sell button, how divergence works, and where RSI sits inside the CPE Trade Pro momentum score.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Few indicators are quoted as confidently as RSI, and few are understood as loosely. Traders say "RSI is overbought, it has to come down" as though the indicator carried a rule. It does not. RSI is a momentum gauge — a speedometer, not a brake — and reading it well means understanding what it compares and what it cannot know.</p>
+
+      <h2 id="what">What RSI measures</h2>
+      <p>The Relative Strength Index, developed by J. Welles Wilder, compares the size of recent gains to recent losses and squeezes the result onto a 0 to 100 scale. In plain terms: <strong>how much of the recent move was up versus down</strong>. A reading high on the scale means up-moves have been bigger and more frequent; a reading low on the scale means the opposite.</p>
+      <p>The default period is <strong>14</strong> bars. That is not magic — it is a balance between reacting quickly and not jumping at every candle. The indicator is bounded: it can never go above 100 or below 0, and it tends to stay in a narrower band in practice.</p>
+      <p>Crucially, RSI is <em>relative</em>. It says nothing about the price level itself — only about the balance of recent strength. A coin at $10 and the same coin at $100 can both print RSI 55.</p>
+
+      <h2 id="scale">The 0-100 scale (figure)</h2>
+      <p>Most platforms draw RSI in its own panel below price, with horizontal guides at 70 and 30 (sometimes 80 and 20). Price runs up, the RSI line follows the momentum up, and vice versa.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 400" role="img" aria-label="A price chart on top and an RSI panel below it, with the RSI line rising into an overbought band above 70 and then falling toward 50">
+          <rect class="a-panel" x="0" y="0" width="720" height="400" rx="14"/>
+          <text class="a-h" x="22" y="26">RSI · 14 · BTCUSDT · 1H</text>
+          <rect class="a-chip" x="596" y="10" width="104" height="22" rx="11"/>
+          <text class="a-m" x="648" y="25" text-anchor="middle">RSI 14</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="60" x2="700" y2="60"/>
+            <line x1="20" y1="100" x2="700" y2="100"/>
+            <line x1="20" y1="140" x2="700" y2="140"/>
+            <line x1="20" y1="180" x2="700" y2="180"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="40" y1="216" x2="40" y2="236"/><rect class="a-bull" x="34" y="220" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="74" y1="200" x2="74" y2="222"/><rect class="a-bull" x="68" y="204" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="108" y1="192" x2="108" y2="210"/><rect class="a-bear" x="102" y="196" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="142" y1="172" x2="142" y2="196"/><rect class="a-bull" x="136" y="176" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="176" y1="150" x2="176" y2="174"/><rect class="a-bull" x="170" y="154" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="210" y1="128" x2="210" y2="152"/><rect class="a-bull" x="204" y="132" width="12" height="18" rx="1.5"/>
+            <line class="a-wbear" x1="244" y1="124" x2="244" y2="142"/><rect class="a-bear" x="238" y="128" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="278" y1="106" x2="278" y2="130"/><rect class="a-bull" x="272" y="110" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="312" y1="88" x2="312" y2="112"/><rect class="a-bull" x="306" y="92" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="346" y1="74" x2="346" y2="96"/><rect class="a-bull" x="340" y="78" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="380" y1="62" x2="380" y2="84"/><rect class="a-bull" x="374" y="66" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="414" y1="64" x2="414" y2="82"/><rect class="a-bear" x="408" y="68" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="448" y1="52" x2="448" y2="74"/><rect class="a-bull" x="442" y="56" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="482" y1="48" x2="482" y2="68"/><rect class="a-bull" x="476" y="52" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="516" y1="52" x2="516" y2="70"/><rect class="a-bear" x="510" y="56" width="12" height="8" rx="1.5"/>
+            <line class="a-wbear" x1="550" y1="66" x2="550" y2="88"/><rect class="a-bear" x="544" y="70" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="584" y1="84" x2="584" y2="106"/><rect class="a-bear" x="578" y="88" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="618" y1="100" x2="618" y2="120"/><rect class="a-bear" x="612" y="104" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="652" y1="112" x2="652" y2="132"/><rect class="a-bear" x="646" y="116" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="686" y1="118" x2="686" y2="136"/><rect class="a-bull" x="680" y="122" width="12" height="12" rx="1.5"/>
+          </g>
+
+          <rect class="a-soft" x="20" y="252" width="680" height="128" rx="10"/>
+          <line x1="20" y1="276" x2="700" y2="276" style="stroke:#ef4444;stroke-width:1.5;stroke-dasharray:6 5"/>
+          <text class="a-s" x="694" y="272" text-anchor="end" style="fill:#ef4444">70 · overbought</text>
+          <line x1="20" y1="316" x2="700" y2="316" style="stroke:#64748b;stroke-width:1;stroke-dasharray:4 6"/>
+          <text class="a-s" x="694" y="312" text-anchor="end" style="fill:#94a3b8">50 · midline</text>
+          <line x1="20" y1="356" x2="700" y2="356" style="stroke:#22c55e;stroke-width:1.5;stroke-dasharray:6 5"/>
+          <text class="a-s" x="694" y="352" text-anchor="end" style="fill:#22c55e">30 · oversold</text>
+
+          <path class="a-price aa-line" d="M40 348 L74 330 L108 316 L142 300 L176 288 L210 284 L244 280 L278 272 L312 262 L346 268 L380 264 L414 258 L448 250 L482 258 L516 268 L550 288 L584 302 L618 306 L652 298 L686 306" pathLength="1" style="animation-delay:.3s"/>
+          <circle class="aa-pulse" cx="448" cy="250" r="4" style="fill:#22d3ee"/>
+          <text class="a-s" x="452" y="244" style="fill:#22d3ee">RSI peak &gt; 70</text>
+        </svg>
+        <figcaption><strong>Price above, RSI below.</strong> The dashed red line is <b>70</b> and the green line is <b>30</b>. As price pushes to new highs, RSI rides above 70, then eases back toward the midline as the advance loses pace. The panel shows momentum, not the price.</figcaption>
+      </figure>
+
+      <h2 id="myth">Overbought and oversold — the myth</h2>
+      <p>Above 70 is labelled "overbought" and below 30 "oversold", and the labels trip people up. They sound like instructions. They are not. They mean <em>recent gains (or losses) have been unusually large and one-sided</em> — nothing about what happens next.</p>
+      <p>In a strong trend, RSI can stay above 70 for days. Selling simply because it crossed 70 is one of the most common ways to fight a market that is not done. The more useful reading is <strong>behaviour around the band</strong>: does RSI stall there and roll over, or keep pushing? A trend that keeps RSI pinned high is showing strength, not danger.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>"Overbought" is not "sell"</strong>
+          The label describes what has already happened, not a forecast. Treat 70 and 30 as reference lines to interpret, never as buttons to press.
+        </div>
+      </div>
+
+      <h2 id="divergence">Divergence: the useful part</h2>
+      <p>Divergence is where RSI earns its place on the chart. It happens when price and RSI disagree. In <strong>bearish divergence</strong>, price makes a higher high but RSI makes a lower high — the move is stretching while its momentum fades. In <strong>bullish divergence</strong>, price makes a lower low but RSI makes a higher low — the selling is running out of fuel.</p>
+      <p>Divergence is a warning to pay attention, not a reversal order. It frequently appears several times before anything happens, and in strong trends it can be ignored for a long while. Its best use is as a reason to tighten how you manage a position, not to jump the other way blind.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 420" role="img" aria-label="Two mini charts: on the left a bearish divergence where price makes higher highs but RSI makes lower highs, on the right a bullish divergence where price makes lower lows but RSI makes higher lows">
+          <rect class="a-panel" x="0" y="0" width="720" height="420" rx="14"/>
+
+          <text class="a-t" x="24" y="30" style="fill:#fb7185">BEARISH DIVERGENCE</text>
+          <rect class="a-soft" x="20" y="44" width="330" height="120" rx="10"/>
+          <path class="a-price aa-line" d="M40 140 L90 100 L140 118 L190 78 L240 96 L300 70" pathLength="1" style="animation-delay:.4s"/>
+          <line x1="90" y1="100" x2="190" y2="78" style="stroke:#fbbf24;stroke-width:1.5;stroke-dasharray:5 4"/>
+          <text class="a-s" x="96" y="94" style="fill:#fbbf24">price: higher high</text>
+
+          <rect class="a-soft" x="20" y="174" width="330" height="120" rx="10"/>
+          <line x1="20" y1="194" x2="350" y2="194" style="stroke:#ef4444;stroke-width:1.2;stroke-dasharray:5 4"/>
+          <path class="a-price aa-line" d="M40 226 L90 200 L140 216 L190 210 L240 232 L300 244" pathLength="1" style="animation-delay:.7s"/>
+          <line x1="90" y1="200" x2="240" y2="232" style="stroke:#fb7185;stroke-width:1.5;stroke-dasharray:5 4"/>
+          <text class="a-s" x="96" y="196" style="fill:#fb7185">RSI: lower high</text>
+
+          <text class="a-t" x="374" y="30" style="fill:#22c55e">BULLISH DIVERGENCE</text>
+          <rect class="a-soft" x="370" y="44" width="330" height="120" rx="10"/>
+          <path class="a-price aa-line" d="M390 70 L440 110 L490 92 L540 130 L590 112 L650 140" pathLength="1" style="animation-delay:.4s"/>
+          <line x1="440" y1="110" x2="540" y2="130" style="stroke:#fbbf24;stroke-width:1.5;stroke-dasharray:5 4"/>
+          <text class="a-s" x="440" y="124" style="fill:#fbbf24">price: lower low</text>
+
+          <rect class="a-soft" x="370" y="174" width="330" height="120" rx="10"/>
+          <line x1="370" y1="254" x2="700" y2="254" style="stroke:#22c55e;stroke-width:1.2;stroke-dasharray:5 4"/>
+          <path class="a-price aa-line" d="M390 232 L440 258 L490 242 L540 250 L590 228 L650 216" pathLength="1" style="animation-delay:.7s"/>
+          <line x1="440" y1="258" x2="590" y2="228" style="stroke:#22c55e;stroke-width:1.5;stroke-dasharray:5 4"/>
+          <text class="a-s" x="440" y="272" style="fill:#22c55e">RSI: higher low</text>
+
+          <text class="a-s" x="24" y="322" style="fill:#94a3b8">Both cases: price and RSI disagree — momentum is no longer confirming the move.</text>
+          <rect class="a-chip" x="24" y="336" width="672" height="0" rx="0" style="fill:none;stroke:none"/>
+        </svg>
+        <figcaption><strong>Divergence, both directions.</strong> Left: price marches to a higher high while RSI rolls to a lower high — momentum fading behind an advance. Right: price sinks to a lower low while RSI lifts to a higher low — selling losing steam. A hint, not a signal.</figcaption>
+      </figure>
+
+      <h2 id="table">RSI levels table</h2>
+      <p>The bands are widely quoted, but read them as descriptions rather than rules.</p>
+      <table>
+        <thead>
+          <tr><th>RSI range</th><th>Label</th><th>Honest reading</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Above 70</strong></td><td>Overbought</td><td>Gains have been large — in a strong trend it can stay here for a long time</td></tr>
+          <tr><td><strong>50-70</strong></td><td>Bullish momentum</td><td>Upside bias; a pullback to 50 often acts as support in an uptrend</td></tr>
+          <tr><td><strong>Around 50</strong></td><td>Balanced</td><td>Roughly equal strength both ways — a common decision line</td></tr>
+          <tr><td><strong>30-50</strong></td><td>Bearish momentum</td><td>Downside bias; a bounce to 50 often meets selling in a downtrend</td></tr>
+          <tr><td><strong>Below 30</strong></td><td>Oversold</td><td>Losses have been large — in a strong downtrend it can stay pinned low</td></tr>
+        </tbody>
+      </table>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>14</i> default period</span>
+        <span class="edu-chip blue"><i>70</i> upper guide</span>
+        <span class="edu-chip green"><i>30</i> lower guide</span>
+        <span class="edu-chip purple"><i>50</i> midline</span>
+        <span class="edu-chip pink"><i>DIV</i> divergence</span>
+      </div>
+
+      <h2 id="settings">Settings that matter</h2>
+      <p>Almost every RSI argument is really an argument about settings. The three that matter:</p>
+      <ul>
+        <li><strong>Length (14).</strong> Shorter = faster and noisier; longer = smoother and slower. 14 is the reference used by most traders, so it is the one to compare against.</li>
+        <li><strong>Source.</strong> Almost always the close. Change it only if you have a specific reason.</li>
+        <li><strong>Bands (70/30).</strong> Tighter bands trigger more often and mean less; wider bands trigger rarely. Stick with the defaults unless you are deliberately testing.</li>
+      </ul>
+      <p>If you want a pair of eyes on both momentum and trend together, see how RSI and MACD are read side by side in <a href="/blog/rsi-macd-confluence.html">RSI and MACD confluence</a>.</p>
+
+      <h2 id="mistakes">Common mistakes</h2>
+      <ul>
+        <li><strong>Selling every 70.</strong> Overbought in a trend is strength, not a sell order.</li>
+        <li><strong>Trading divergence blindly.</strong> Divergence can appear repeatedly before price reacts — wait for structure to agree.</li>
+        <li><strong>Using RSI as a trend tool.</strong> RSI tracks momentum, not direction; it lags on trend changes.</li>
+        <li><strong>Ignoring the timeframe.</strong> A 4-hour overbought reading outranks a 5-minute one; do not mix them.</li>
+        <li><strong>Changing the period to fit.</strong> If 14 is not working, a different number usually just reshapes the same story.</li>
+      </ul>
+
+      <h2 id="app">How CPE Trade Pro uses RSI</h2>
+      <p>Inside CPE Trade Pro, RSI is not a standalone alert. It is one ingredient of the <strong>Momentum</strong> part of the 0-10 quality score, alongside the MACD histogram, Stochastic crosses and divergence readings. That Momentum part is worth up to <strong>2 points</strong>. Trend is scored separately, from structure, higher-timeframe bias and trend-strength studies; Levels is scored from Bollinger edges, Fibonacci and support. Keeping Momentum to its own part stops a single oscillator from dominating the verdict.</p>
+      <p>Concretely: when RSI is confirming the direction — say holding above the midline in an uptrend rather than fighting it — that can push the Momentum part up. When RSI is doing the opposite, the app leans on HOLD and waits. It is worth repeating the limits plainly: <em>the 0-10 score is not a win rate, not a probability of profit and not an audited performance record.</em> It reports how many independent checks agreed.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 330" role="img" aria-label="The five-part 0-10 quality score with the Momentum bar highlighted, fed by RSI, MACD, Stochastic and divergence, showing the level analysis scored separately">
+          <rect class="a-panel" x="0" y="0" width="720" height="330" rx="14"/>
+          <text class="a-h" x="24" y="32">Signal quality · 0-10</text>
+          <text class="a-s" x="696" y="20" text-anchor="end" style="fill:#00e5a8">TOTAL 7.6 / 10</text>
+          <text class="a-s" x="696" y="36" text-anchor="end" style="fill:#9fb0c8">Grade A</text>
+
+          <text class="a-t" x="24" y="80">Clarity</text>
+          <rect class="a-track" x="200" y="64" width="440" height="16" rx="8"/>
+          <rect class="aa-bar" x="200" y="64" width="352" height="16" rx="8" style="fill:#00e5a8;animation-delay:.5s"/>
+          <text class="a-s" x="620" y="77" style="fill:#00e5a8">1.6</text>
+
+          <text class="a-t" x="24" y="120">Trend</text>
+          <rect class="a-track" x="200" y="104" width="440" height="16" rx="8"/>
+          <rect class="aa-bar" x="200" y="104" width="396" height="16" rx="8" style="fill:#22d3ee;animation-delay:.65s"/>
+          <text class="a-s" x="620" y="117" style="fill:#22d3ee">1.8</text>
+
+          <text class="a-t" x="24" y="160" style="fill:#60a5fa">Momentum</text>
+          <rect class="a-track" x="200" y="144" width="440" height="16" rx="8"/>
+          <rect class="aa-bar" x="200" y="144" width="330" height="16" rx="8" style="fill:#60a5fa;animation-delay:.8s"/>
+          <text class="a-s" x="598" y="157" style="fill:#60a5fa">1.5</text>
+          <line x1="196" y1="140" x2="196" y2="164" style="stroke:#60a5fa;stroke-width:2"/>
+          <path class="aa-slide" d="M660 152 L 690 152" style="stroke:#60a5fa;stroke-width:2;fill:none;animation-delay:1.1s"/>
+          <text class="a-s" x="694" y="139" text-anchor="end" style="fill:#60a5fa">RSI</text>
+          <text class="a-s" x="694" y="168" text-anchor="end" style="fill:#60a5fa">MACD · Stoch · DIV</text>
+
+          <text class="a-t" x="24" y="200">Volume</text>
+          <rect class="a-track" x="200" y="184" width="440" height="16" rx="8"/>
+          <rect class="aa-bar" x="200" y="184" width="242" height="16" rx="8" style="fill:#a855f7;animation-delay:.95s"/>
+          <text class="a-s" x="510" y="197" style="fill:#a855f7">1.1</text>
+
+          <text class="a-t" x="24" y="240">Levels</text>
+          <rect class="a-track" x="200" y="224" width="440" height="16" rx="8"/>
+          <rect class="aa-bar" x="200" y="224" width="352" height="16" rx="8" style="fill:#fbbf24;animation-delay:1.1s"/>
+          <text class="a-s" x="620" y="237" style="fill:#fbbf24">1.6</text>
+
+          <text class="a-s" x="24" y="282">RSI, MACD, Stochastic and divergence feed the Momentum part only — up to 2 of the 10 points.</text>
+          <text class="a-s" x="24" y="302">The total is a summary of agreement, not a win rate or a probability of profit.</text>
+        </svg>
+        <figcaption><strong>Where RSI lands.</strong> RSI sits in the <b>Momentum</b> row, shared with MACD, Stochastic and divergence. Momentum is capped at 2 points out of 10, so a hot RSI cannot carry a score on its own.</figcaption>
+      </figure>
+
+      <p>To see the whole chain from candles to a decision, read <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">how CPE Trade Pro analyses a chart</a>, and the companion piece on the <a href="/blog/macd-indicator-explained.html">MACD</a>.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card blue">
+          <span class="ec-ico">📈</span>
+          <strong>Momentum gauge</strong>
+          <span>RSI compares recent gains to recent losses on a bounded 0-100 scale.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🚧</span>
+          <strong>70 / 30 are guides</strong>
+          <span>Overbought and oversold describe what happened, not what comes next.</span>
+        </div>
+        <div class="edu-card pink">
+          <span class="ec-ico">🔀</span>
+          <strong>Divergence</strong>
+          <span>Price and RSI disagree — a warning to slow down, not a reversal order.</span>
+        </div>
+        <div class="edu-card cyan">
+          <span class="ec-ico">🧮</span>
+          <strong>One of five parts</strong>
+          <span>RSI feeds the Momentum part, capped at 2 of the 10 score points.</span>
+        </div>
+      </div>
+
+      <p>Want to see RSI read in context instead of in isolation? <a href="/download.html">Download CPE Trade Pro free</a> and watch momentum flow into a graded signal.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/rsi-macd-confluence.html">RSI and MACD confluence</a></li>
+          <li><a href="/blog/macd-indicator-explained.html">MACD explained: line, signal and histogram</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Read momentum in context</h4>
+        <p>RSI, MACD and Stochastic read together into a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What RSI measures</a>
+          <a href="#scale">The 0-100 scale</a>
+          <a href="#myth">Overbought and oversold</a>
+          <a href="#divergence">Divergence</a>
+          <a href="#table">RSI levels table</a>
+          <a href="#settings">Settings that matter</a>
+          <a href="#mistakes">Common mistakes</a>
+          <a href="#app">How CPE Trade Pro uses it</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/rsi-macd-confluence.html">RSI + MACD confluence</a>
+          <a href="/blog/macd-indicator-explained.html">MACD explained</a>
+          <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How the analysis works</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>See momentum scored, not just plotted</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

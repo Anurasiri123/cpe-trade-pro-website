@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Chart Types Explained: Candles, Heikin Ashi, Bars, Area and Line</title>
+<meta name="description" content="The chart types in CPE Trade Pro — candlestick, Heikin Ashi, bar (OHLC), area and line — what each is best for, and when to switch between them." />
+<meta name="keywords" content="candlestick chart, heikin ashi, bar chart, area chart, line chart, chart types" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/chart-types-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Chart Types Explained: Candles, Heikin Ashi, Bars, Area and Line" />
+<meta property="og:description" content="Candlestick, Heikin Ashi, bar, area and line charts — what each one is best for, and when to switch." />
+<meta property="og:url" content="https://cpetradepro.com/blog/chart-types-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Chart Types Explained" />
+<meta name="twitter:description" content="Candles, Heikin Ashi, bars, area and line — and when to switch between them." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chart Types Explained: Candles, Heikin Ashi, Bars, Area and Line",
+  "description": "The chart types in CPE Trade Pro — candlestick, Heikin Ashi, bar (OHLC), area and line — what each is best for, and when to switch between them.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/chart-types-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Chart types explained", "item": "https://cpetradepro.com/blog/chart-types-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which chart type does CPE Trade Pro analyse by default?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The analysis runs on standard candlestick data. Heikin Ashi, bar, area and line styles change how the chart is drawn for you, without changing what the engine reads." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Heikin Ashi better than candlesticks?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No single type is better — they show the same market differently. Heikin Ashi smooths noise and makes trends easier to follow, but it hides the true open and close, so exact prices still come from candles." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Chart types explained</span>
+    </nav>
+    <span class="eyebrow">Learn · Charts</span>
+    <h1>Chart types explained: candles, Heikin Ashi, bars, area and line</h1>
+    <p class="lead">The same market can be drawn five ways. Each chart type hides some detail and reveals something else — and knowing which one to reach for is a genuinely useful skill. Here is what each type in CPE Trade Pro is <strong>best for</strong>.</p>
+    <div class="page-meta">
+      <span><b>11 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Charts</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Every chart type is built from the same four numbers per period: the <strong>open</strong>, the <strong>high</strong>, the <strong>low</strong> and the <strong>close</strong> — usually shortened to OHLC. What changes between chart types is how much of that information is drawn, and how much is smoothed away.</p>
+      <p>Candles show everything. Heikin Ashi averages it. Bars show everything in a different shape. Area and line keep only the close, which makes long-term trends clean but hides the intraday fight. None of them is "correct". They are lenses, and a good trader switches deliberately rather than by habit.</p>
+
+      <h2 id="why">Why chart type matters</h2>
+      <p>Chart type changes what your eye notices first. A noisy candle chart makes you think about every wiggle; a smoothed Heikin Ashi chart makes the same price action look like a calm trend. Neither is a lie — but if you do not know which one you are looking at, you can be fooled into reading smoothness as certainty.</p>
+      <p>There is one rule worth stating plainly: the app's <strong>analysis always runs on standard candlestick data</strong>. The other four styles change how the chart is <em>drawn for you</em>, not what the engine reads. That keeps a signal consistent no matter which view is on screen.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>One habit, one benefit</strong>
+          Use candles for the plan — entries, stops and targets need real prices. Use a smoothed view to check whether the bigger trend still agrees with you. Switch to a clean line when you only care about direction.
+        </div>
+      </div>
+
+      <h2 id="candlestick">Candlestick charts</h2>
+      <p>The candlestick is the default for a reason: it carries the most information in the least space. The thick <strong>body</strong> spans open to close, and the thin <strong>wick</strong> (or shadow) marks the high and low. A green body means the period closed above its open; a red body means it closed below.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 320" role="img" aria-label="Candlestick and Heikin Ashi charts drawn side by side on the same price move: the candlestick chart alternates colours and bodies with the raw noise intact, while the Heikin Ashi chart is smoothed into a cleaner run of mainly green candles">
+          <rect class="a-panel" x="0" y="0" width="720" height="320" rx="14"/>
+          <text class="a-h" x="24" y="30">Candlestick vs Heikin Ashi</text>
+          <text class="a-s" x="696" y="30" text-anchor="end">same move · same timeframe</text>
+
+          <rect class="a-card-soft" x="24" y="46" width="330" height="256" rx="10"/>
+          <text class="a-t" x="42" y="68" style="fill:#60a5fa">Candlestick · raw OHLC</text>
+          <g class="a-grid">
+            <line x1="36" y1="110" x2="342" y2="110"/>
+            <line x1="36" y1="160" x2="342" y2="160"/>
+            <line x1="36" y1="210" x2="342" y2="210"/>
+            <line x1="36" y1="260" x2="342" y2="260"/>
+          </g>
+          <g>
+            <line class="a-wbull" x1="48" y1="256" x2="48" y2="280"/><rect class="a-bull" x="42" y="260" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="76" y1="244" x2="76" y2="272"/><rect class="a-bear" x="70" y="248" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="104" y1="236" x2="104" y2="268"/><rect class="a-bull" x="98" y="240" width="12" height="20" rx="1.5"/>
+            <line class="a-wbear" x1="132" y1="228" x2="132" y2="262"/><rect class="a-bear" x="126" y="232" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="160" y1="214" x2="160" y2="250"/><rect class="a-bull" x="154" y="218" width="12" height="22" rx="1.5"/>
+            <line class="a-wbear" x1="188" y1="204" x2="188" y2="240"/><rect class="a-bear" x="182" y="208" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="216" y1="186" x2="216" y2="226"/><rect class="a-bull" x="210" y="190" width="12" height="24" rx="1.5"/>
+            <line class="a-wbear" x1="244" y1="176" x2="244" y2="214"/><rect class="a-bear" x="238" y="180" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="272" y1="158" x2="272" y2="200"/><rect class="a-bull" x="266" y="162" width="12" height="26" rx="1.5"/>
+            <line class="a-wbull" x1="300" y1="140" x2="300" y2="180"/><rect class="a-bull" x="294" y="144" width="12" height="24" rx="1.5"/>
+            <line class="a-wbull" x1="328" y1="124" x2="328" y2="164"/><rect class="a-bull" x="322" y="128" width="12" height="24" rx="1.5"/>
+          </g>
+
+          <rect class="a-card-soft" x="366" y="46" width="330" height="256" rx="10"/>
+          <text class="a-t" x="384" y="68" style="fill:#22c55e">Heikin Ashi · smoothed</text>
+          <g class="a-grid">
+            <line x1="378" y1="110" x2="684" y2="110"/>
+            <line x1="378" y1="160" x2="684" y2="160"/>
+            <line x1="378" y1="210" x2="684" y2="210"/>
+            <line x1="378" y1="260" x2="684" y2="260"/>
+          </g>
+          <g>
+            <line class="a-wbull" x1="390" y1="252" x2="390" y2="274"/><rect class="a-bull" x="384" y="256" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="418" y1="244" x2="418" y2="264"/><rect class="a-bull" x="412" y="248" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="446" y1="232" x2="446" y2="252"/><rect class="a-bull" x="440" y="236" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="474" y1="220" x2="474" y2="240"/><rect class="a-bull" x="468" y="224" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="502" y1="206" x2="502" y2="226"/><rect class="a-bull" x="496" y="210" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="530" y1="192" x2="530" y2="212"/><rect class="a-bull" x="524" y="196" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="558" y1="178" x2="558" y2="198"/><rect class="a-bull" x="552" y="182" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="586" y1="162" x2="586" y2="184"/><rect class="a-bull" x="580" y="166" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="614" y1="146" x2="614" y2="168"/><rect class="a-bull" x="608" y="150" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="642" y1="130" x2="642" y2="152"/><rect class="a-bull" x="636" y="134" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="670" y1="116" x2="670" y2="138"/><rect class="a-bull" x="664" y="120" width="12" height="16" rx="1.5"/>
+          </g>
+        </svg>
+        <figcaption><strong>Same move, two views.</strong> The candlestick side alternates green and red and shows every pullback; the Heikin Ashi side averages the bars into a smoother run. Heikin Ashi is easier on the eye — but it hides the true open and close, so exact prices come from candles. Learn the patterns themselves in the <a href="/blog/candlestick-patterns-guide.html">candlestick patterns guide</a>.</figcaption>
+      </figure>
+
+      <h2 id="heikin">Heikin Ashi</h2>
+      <p>Heikin Ashi ("average bar") is a <strong>smoothed</strong> chart. Each bar is calculated partly from the previous one, which takes the edge off choppy price action. The result is longer runs of same-coloured candles and far fewer false flips.</p>
+      <p>Two things to know before you use it: the Heikin Ashi open and close are <em>not</em> the real market prices, and the high and low can be shifted. So it is excellent for reading <strong>trend and momentum at a glance</strong> — long runs of green suggest a healthy uptrend, small bodies and frequent colour changes suggest hesitation — but it is a poor place to read exact entry and stop prices. Use it to confirm direction, then place the plan on a candle chart.</p>
+
+      <h2 id="bar">Bar (OHLC) charts</h2>
+      <p>A bar chart shows the same OHLC data as a candle, drawn differently: one vertical line for the high-to-low range, a tick to the left for the <strong>open</strong> and a tick to the right for the <strong>close</strong>. Nothing is hidden, and nothing is smoothed.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="Anatomy of a bar (OHLC) chart: a vertical line marks the high and low, a left tick marks the open and a right tick marks the close, with each point labelled">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="30">Bar chart · open · high · low · close</text>
+          <rect class="a-chip" x="596" y="14" width="100" height="24" rx="12"/>
+          <text class="a-m" x="646" y="30" text-anchor="middle">1 period</text>
+
+          <g class="a-grid">
+            <line x1="24" y1="90" x2="696" y2="90"/>
+            <line x1="24" y1="150" x2="696" y2="150"/>
+            <line x1="24" y1="210" x2="696" y2="210"/>
+            <line x1="24" y1="270" x2="696" y2="270"/>
+          </g>
+
+          <line class="a-link aa-line" x1="300" y1="70" x2="300" y2="250" pathLength="1" style="stroke:#8fa0b8;stroke-width:3"/>
+          <line class="a-link aa-line" x1="276" y1="250" x2="300" y2="250" pathLength="1" style="stroke:#22c55e;stroke-width:3"/>
+          <line class="a-link aa-line" x1="300" y1="70" x2="324" y2="70" pathLength="1" style="stroke:#ef4444;stroke-width:3"/>
+
+          <circle class="aa-pop" cx="276" cy="250" r="4.5" style="fill:#22c55e;animation-delay:.6s"/>
+          <circle class="aa-pop" cx="300" cy="70" r="4.5" style="fill:#fbbf24;animation-delay:.8s"/>
+          <circle class="aa-pop" cx="300" cy="250" r="4.5" style="fill:#fb7185;animation-delay:1s"/>
+          <circle class="aa-pop" cx="324" cy="70" r="4.5" style="fill:#ef4444;animation-delay:1.2s"/>
+
+          <text class="a-t" x="250" y="236" text-anchor="end" style="fill:#22c55e">OPEN</text>
+          <text class="a-s" x="250" y="252" text-anchor="end">left tick</text>
+          <text class="a-t" x="352" y="246" style="fill:#fb7185">CLOSE</text>
+          <text class="a-s" x="352" y="262">right tick</text>
+          <text class="a-t" x="352" y="80" style="fill:#ef4444">HIGH</text>
+          <text class="a-s" x="352" y="96">top of the line</text>
+          <text class="a-t" x="352" y="180" style="fill:#fbbf24">LOW</text>
+          <text class="a-s" x="352" y="196">bottom of the line (this bar's low)</text>
+        </svg>
+        <figcaption><strong>The bar, labelled.</strong> One vertical line spans high to low; the left tick is the open and the right tick is the close. Beginners often find bars harder to read than candles, but they waste no space and look crisp for short timeframes.</figcaption>
+      </figure>
+
+      <h2 id="area">Area charts</h2>
+      <p>An area chart keeps only the <strong>close</strong> and shades everything underneath it, so the series reads as a filled shape rather than a line. The gradient gives the eye a sense of "weight" and makes long, dragging moves feel smoother and easier to follow.</p>
+      <p>Area charts are for the big question — is this thing broadly going up or down? — not for fine detail. There are no wicks, so the exact high and low are invisible, and there is nothing to read a candle pattern from. Use it when you zoom out.</p>
+
+      <h2 id="line">Line charts</h2>
+      <p>A line chart is the sparest option: a single stroke joining each <strong>close</strong>. It strips away every bit of noise and shows just the shape of the trend. When a chart feels too busy and you cannot tell whether you are in an uptrend or a sideways chop, a line chart answers that in a second.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="A line chart and an area chart drawn side by side on the same closing-price series: the line chart is a thin stroke, and the area chart is the same stroke with the space below it filled and shaded">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="30">Line vs area · close only</text>
+          <text class="a-s" x="696" y="30" text-anchor="end">same closes</text>
+
+          <rect class="a-card-soft" x="24" y="46" width="330" height="232" rx="10"/>
+          <text class="a-t" x="42" y="68" style="fill:#60a5fa">Line</text>
+          <g class="a-grid">
+            <line x1="36" y1="110" x2="342" y2="110"/>
+            <line x1="36" y1="160" x2="342" y2="160"/>
+            <line x1="36" y1="210" x2="342" y2="210"/>
+          </g>
+          <path class="a-price aa-line" pathLength="1" d="M44 236 L84 220 L124 228 L164 198 L204 176 L244 188 L284 156 L324 132" style="stroke:#60a5fa"/>
+
+          <rect class="a-card-soft" x="366" y="46" width="330" height="232" rx="10"/>
+          <text class="a-t" x="384" y="68" style="fill:#00e5a8">Area</text>
+          <g class="a-grid">
+            <line x1="378" y1="110" x2="684" y2="110"/>
+            <line x1="378" y1="160" x2="684" y2="160"/>
+            <line x1="378" y1="210" x2="684" y2="210"/>
+          </g>
+          <path class="a-fill-teal" d="M386 236 L426 220 L466 228 L506 198 L546 176 L586 188 L626 156 L666 132 L666 268 L386 268 Z"/>
+          <path class="a-price" d="M386 236 L426 220 L466 228 L506 198 L546 176 L586 188 L626 156 L666 132" style="stroke:#00e5a8"/>
+        </svg>
+        <figcaption><strong>Close only.</strong> Both panels plot the same closing prices. The line is minimal and exact; the area adds a shaded fill that makes the overall direction easier to feel at a glance. Neither shows the highs and lows — that is the trade-off.</figcaption>
+      </figure>
+
+      <h2 id="which">Which type for which job</h2>
+      <p>There is no ranking, only fit. This table is the short version of everything above:</p>
+      <table>
+        <thead>
+          <tr><th>Chart type</th><th>Shows</th><th>Best for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Candlestick</strong></td><td>Full OHLC, bodies and wicks</td><td>Patterns, entries, stops and anything that needs exact prices</td></tr>
+          <tr><td><strong>Heikin Ashi</strong></td><td>Smoothed average bars</td><td>Reading trend and momentum without noise</td></tr>
+          <tr><td><strong>Bar (OHLC)</strong></td><td>Full OHLC as ticks and a line</td><td>Detailed price reading on dense, low timeframes</td></tr>
+          <tr><td><strong>Area</strong></td><td>Close only, with a filled body</td><td>Zoomed-out trend, a calm sense of direction</td></tr>
+          <tr><td><strong>Line</strong></td><td>Close only</td><td>The fastest possible read on trend direction</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Mix, do not marry</strong>
+          Most experienced traders keep candles as their working view and borrow the others for specific questions. Switching type is a tool, not a personality.
+        </div>
+      </div>
+
+      <h2 id="switch">How to switch in the app</h2>
+      <p>CPE Trade Pro lets you change the chart style directly on the chart, so you can flip between candles, Heikin Ashi, bars, area and line without leaving the screen — and without the analysis changing underneath you.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card teal">
+          <span class="ec-ico">🕯️</span>
+          <strong>Candles first</strong>
+          <span>Default view. Everything the plan needs — entry, stop, targets — is read from here.</span>
+        </div>
+        <div class="edu-card green">
+          <span class="ec-ico">🌊</span>
+          <strong>Heikin Ashi to confirm</strong>
+          <span>Flip on to check the trend is still running cleanly before you commit.</span>
+        </div>
+        <div class="edu-card blue">
+          <span class="ec-ico">📉</span>
+          <strong>Line to reset your eye</strong>
+          <span>When the chart feels busy, strip it down and ask only "up, down or sideways?"</span>
+        </div>
+      </div>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>CANDLE</i> Full detail</span>
+        <span class="edu-chip green"><i>HEIKIN</i> Smoothed trend</span>
+        <span class="edu-chip blue"><i>BAR</i> OHLC ticks</span>
+        <span class="edu-chip purple"><i>AREA</i> Filled close</span>
+        <span class="edu-chip pink"><i>LINE</i> Close only</span>
+      </div>
+
+      <p>The engine itself is unchanged by your choice — it reads the same structures either way, which you can see explained in <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">how CPE Trade Pro analyses a chart</a>. When you are ready to draw on that chart, the <a href="/blog/chart-drawing-tools-guide.html">drawing tools guide</a> covers lines, zones and the risk-reward tool, and <a href="/app-screens.html">app screens</a> shows the interface up close.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. Trading involves risk, and no chart type — candles, Heikin Ashi, bars, area or line — can predict future price. Past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/candlestick-patterns-guide.html">Candlestick patterns guide</a></li>
+          <li><a href="/blog/chart-patterns-guide.html">Chart patterns guide</a></li>
+          <li><a href="/blog/chart-drawing-tools-guide.html">Chart drawing tools guide</a></li>
+          <li><a href="/app-screens.html">App screens</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>All five chart types, one app</h4>
+        <p>Switch between candles, Heikin Ashi, bars, area and line on the same screen — with BUY / SELL / HOLD signals and a 0-10 score on top.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#why">Why chart type matters</a>
+          <a href="#candlestick">Candlestick charts</a>
+          <a href="#heikin">Heikin Ashi</a>
+          <a href="#bar">Bar (OHLC) charts</a>
+          <a href="#area">Area charts</a>
+          <a href="#line">Line charts</a>
+          <a href="#which">Which type for which job</a>
+          <a href="#switch">How to switch in the app</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/candlestick-patterns-guide.html">Candlestick patterns</a>
+          <a href="/blog/chart-patterns-guide.html">Chart patterns</a>
+          <a href="/blog/chart-drawing-tools-guide.html">Drawing tools</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>See the same market five ways</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="whats-float" aria-label="WhatsApp us" title="WhatsApp: +94774940944">💬</a>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

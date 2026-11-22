@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Order Blocks: A Complete Strategy Guide</title>
+<meta name="description" content="What an order block is, how CPE Trade Pro draws order blocks automatically, how to trade the retest, where to place the stop, and how to combine order blocks with fair value gaps and structure." />
+<meta name="keywords" content="order block, order block strategy, smart money concepts, retest entry, ob fvg" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/order-block-strategy-guide.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Order Blocks: A Complete Strategy Guide" />
+<meta property="og:description" content="Bullish vs bearish order blocks, the retest entry, stop and target placement, and combining OB with FVG and BOS." />
+<meta property="og:url" content="https://cpetradepro.com/blog/order-block-strategy-guide.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Order Blocks: A Complete Strategy Guide" />
+<meta name="twitter:description" content="How order blocks are detected, drawn and traded — retest, stop, targets and confluence." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Order Blocks: A Complete Strategy Guide",
+  "description": "What an order block is, how CPE Trade Pro draws order blocks automatically, how to trade the retest, where to place the stop, and how to combine order blocks with fair value gaps and structure.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/order-block-strategy-guide.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Order blocks", "item": "https://cpetradepro.com/blog/order-block-strategy-guide.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro draw order blocks automatically?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. CPE Trade Pro detects and draws order blocks on the chart automatically, alongside fair value gaps, liquidity zones and breaks of structure (BOS) or changes of character (CHoCH)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is an order block a guaranteed reversal zone?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. An order block marks an area where a large order may have been placed, but it is not a promise price will reverse there. Zones get run through and fail regularly, which is why a defined stop matters." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between an order block and a fair value gap?",
+      "acceptedAnswer": { "@type": "Answer", "text": "An order block is the last opposite candle before an impulsive move — a probable origin of orders. A fair value gap is an imbalance where price moved so fast that a range was left partially unfilled. The two often overlap and can be used together." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Order blocks</span>
+    </nav>
+    <span class="eyebrow">Learn · Smart Money</span>
+    <h1>Order Blocks: A Complete Strategy Guide</h1>
+    <p class="lead">The last candle before the move — and why traders watch it so closely. Here is what an order block is, how <strong>CPE Trade Pro draws them automatically</strong>, and how to trade the retest.</p>
+    <div class="page-meta">
+      <span><b>11 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Order blocks are one of the most talked-about ideas in modern chart reading, and one of the most misunderstood. They are not magic rectangles that price must respect. They are a way of marking <em>where a move likely began</em> — the last candle in the opposite direction before a strong push — so you have a logical place to look for a reaction.</p>
+      <p>This guide covers what an order block is, bullish versus bearish zones, how CPE Trade Pro detects and draws them, how to trade the retest, where to place your stop and targets, how to combine order blocks with fair value gaps and structure, and an honest look at when they fail. Educational content only — nothing here is financial advice.</p>
+
+      <h2 id="what">What an order block is</h2>
+      <p>An <strong>order block</strong> is the last candle (or small cluster of candles) in the opposite direction before an impulsive move that breaks structure. The idea is simple: for price to break out with force, someone had to be buying or selling size. The candle that immediately preceded that push is treated as the likely origin of those orders — an area where demand or supply may still sit.</p>
+      <p>A <strong>bullish order block</strong> is the last down candle before a strong up move; it is watched as a potential demand zone. A <strong>bearish order block</strong> is the last up candle before a strong down move; it is watched as potential supply. In both cases what makes the zone worth marking is the <em>displacement</em> that followed it.</p>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Displacement is the point</strong>
+          A quiet candle with no follow-through is just a candle. An order block earns its name from the impulsive move it precedes — the volatility is the evidence.
+        </div>
+      </div>
+
+      <h2 id="bull-bear">Bullish vs bearish order blocks</h2>
+      <p>The two are mirror images, and keeping them straight is most of the work. The table below is the quick reference.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="Two panels: a bullish order block drawn as a blue demand zone below price, and a bearish order block drawn as a pink supply zone above price">
+          <rect class="a-panel" x="14" y="14" width="344" height="272" rx="14"/>
+          <rect class="a-panel" x="362" y="14" width="344" height="272" rx="14"/>
+
+          <text class="a-h" x="30" y="44">Bullish order block</text>
+          <rect class="a-chip" x="256" y="28" width="90" height="22" rx="11"/>
+          <text class="a-m" x="301" y="43" text-anchor="middle">DEMAND</text>
+          <g class="a-grid">
+            <line x1="24" y1="120" x2="348" y2="120"/>
+            <line x1="24" y1="180" x2="348" y2="180"/>
+            <line x1="24" y1="240" x2="348" y2="240"/>
+          </g>
+          <rect class="a-fill-blue aa-pop" x="60" y="214" width="120" height="26" rx="4"/>
+          <text class="a-s" x="120" y="231" text-anchor="middle" style="fill:#60a5fa">OB · demand</text>
+          <g>
+            <line class="a-wbear" x1="70" y1="210" x2="70" y2="234"/><rect class="a-bear" x="62" y="214" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="110" y1="196" x2="110" y2="222"/><rect class="a-bull" x="102" y="202" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="150" y1="170" x2="150" y2="192"/><rect class="a-bull" x="142" y="176" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="190" y1="146" x2="190" y2="170"/><rect class="a-bull" x="182" y="152" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="230" y1="128" x2="230" y2="152"/><rect class="a-bull" x="222" y="134" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="270" y1="150" x2="270" y2="172"/><rect class="a-bear" x="262" y="156" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="310" y1="196" x2="310" y2="222"/><rect class="a-bull" x="302" y="202" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="332" y1="150" x2="332" y2="182"/><rect class="a-bull" x="324" y="156" width="16" height="18" rx="2"/>
+          </g>
+
+          <text class="a-h" x="378" y="44">Bearish order block</text>
+          <rect class="a-chip" x="604" y="28" width="90" height="22" rx="11"/>
+          <text class="a-m" x="649" y="43" text-anchor="middle">SUPPLY</text>
+          <g class="a-grid">
+            <line x1="372" y1="90" x2="696" y2="90"/>
+            <line x1="372" y1="150" x2="696" y2="150"/>
+            <line x1="372" y1="210" x2="696" y2="210"/>
+          </g>
+          <rect class="a-fill-pink aa-pop" x="408" y="76" width="120" height="26" rx="4" style="animation-delay:.35s"/>
+          <text class="a-s" x="468" y="93" text-anchor="middle" style="fill:#fb7185">OB · supply</text>
+          <g>
+            <line class="a-wbull" x1="418" y1="102" x2="418" y2="126"/><rect class="a-bull" x="410" y="106" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="458" y1="120" x2="458" y2="146"/><rect class="a-bear" x="450" y="126" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="498" y1="146" x2="498" y2="172"/><rect class="a-bear" x="490" y="152" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="538" y1="172" x2="538" y2="196"/><rect class="a-bear" x="530" y="178" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="578" y1="158" x2="578" y2="182"/><rect class="a-bull" x="570" y="164" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="618" y1="126" x2="618" y2="150"/><rect class="a-bull" x="610" y="132" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="658" y1="176" x2="658" y2="204"/><rect class="a-bear" x="650" y="182" width="16" height="18" rx="2"/>
+          </g>
+        </svg>
+        <figcaption><strong>Two zones, two biases.</strong> Left: price leaves a <b>blue demand</b> zone and rallies, then returns to it. Right: price leaves a <b>pink supply</b> zone and falls. The zone is the last opposite candle before the displacement.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>&nbsp;</th><th>Bullish order block</th><th>Bearish order block</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Formed by</strong></td><td>Last down candle before a strong up move</td><td>Last up candle before a strong down move</td></tr>
+          <tr><td><strong>Treated as</strong></td><td>Demand — a place to look for longs</td><td>Supply — a place to look for shorts</td></tr>
+          <tr><td><strong>Invalidated by</strong></td><td>Price closing clearly below the zone</td><td>Price closing clearly above the zone</td></tr>
+          <tr><td><strong>Needs</strong></td><td>Displacement up that breaks structure</td><td>Displacement down that breaks structure</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="detect">How the app detects and draws them</h2>
+      <p>Marking order blocks by hand is slow and inconsistent — two traders rarely agree on exactly where a zone starts and ends. <strong>CPE Trade Pro detects and draws order blocks, fair value gaps (FVG), liquidity zones and BOS / CHoCH automatically on the chart.</strong> The engine looks for the combination that defines a genuine block: a displacement move, a break of the prior structure, and the opposite-colour candle at the origin of that move.</p>
+      <p>Because it runs the same logic on every pair and timeframe, the zones are drawn the same way every time — which is exactly what makes them useful as a repeatable reference. That order-block read feeds the <strong>Clarity</strong> and <strong>Levels</strong> parts of the signal's quality score, and if the app's entry sits on an order block it will often be labelled as a limit entry at that zone.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card blue">
+          <span class="ec-ico">🟦</span>
+          <strong>Order block</strong>
+          <span>The last opposite candle before displacement — a probable origin of orders.</span>
+        </div>
+        <div class="edu-card purple">
+          <span class="ec-ico">🟪</span>
+          <strong>Fair value gap</strong>
+          <span>An imbalance left when price moved so fast a range was only partly traded.</span>
+        </div>
+        <div class="edu-card green">
+          <span class="ec-ico">🟢</span>
+          <strong>BOS / CHoCH</strong>
+          <span>A break of structure continues the trend; a change of character suggests a shift.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🟡</span>
+          <strong>Liquidity zone</strong>
+          <span>Where stops tend to cluster — highs, lows and obvious swing points.</span>
+        </div>
+      </div>
+
+      <h2 id="retest">The retest entry</h2>
+      <p>The most common way to use an order block is not to chase the breakout but to wait for price to come back. If an up move left a bullish order block behind, the idea is to buy on the <em>retest</em> — when price returns to that zone — rather than at the top of the impulse. The retest gives you a defined area, a nearby invalidation point and a better distance to your target.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A candle chart showing a bullish order block, a pullback retest into it, and dashed lines for the entry, stop loss, target 1 and target 2">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Retest entry · OB</text>
+          <rect class="a-chip" x="586" y="12" width="116" height="24" rx="12"/>
+          <text class="a-m" x="644" y="28" text-anchor="middle">LIMIT AT ZONE</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="150" x2="700" y2="150"/>
+            <line x1="20" y1="210" x2="700" y2="210"/>
+            <line x1="20" y1="270" x2="700" y2="270"/>
+          </g>
+
+          <rect class="a-zone-ob aa-pop" x="130" y="248" width="80" height="24" rx="4"/>
+          <text class="a-s" x="170" y="264" text-anchor="middle" style="fill:#60a5fa">ORDER BLOCK</text>
+
+          <g>
+            <line class="a-wbear" x1="70" y1="250" x2="70" y2="274"/><rect class="a-bear" x="62" y="254" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="100" y1="256" x2="100" y2="280"/><rect class="a-bear" x="92" y="262" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="170" y1="246" x2="170" y2="272"/><rect class="a-bear" x="162" y="250" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="200" y1="220" x2="200" y2="250"/><rect class="a-bull" x="192" y="226" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="230" y1="196" x2="230" y2="224"/><rect class="a-bull" x="222" y="202" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="260" y1="172" x2="260" y2="200"/><rect class="a-bull" x="252" y="178" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="290" y1="152" x2="290" y2="180"/><rect class="a-bull" x="282" y="158" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="330" y1="164" x2="330" y2="190"/><rect class="a-bear" x="322" y="170" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="365" y1="196" x2="365" y2="226"/><rect class="a-bear" x="357" y="202" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="400" y1="228" x2="400" y2="256"/><rect class="a-bear" x="392" y="234" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="440" y1="240" x2="440" y2="266"/><rect class="a-bull" x="432" y="246" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="480" y1="200" x2="480" y2="230"/><rect class="a-bull" x="472" y="206" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="520" y1="164" x2="520" y2="192"/><rect class="a-bull" x="512" y="170" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="560" y1="130" x2="560" y2="158"/><rect class="a-bull" x="552" y="136" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="600" y1="104" x2="600" y2="130"/><rect class="a-bull" x="592" y="110" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="645" y1="90" x2="645" y2="118"/><rect class="a-bull" x="637" y="96" width="16" height="18" rx="2"/>
+          </g>
+
+          <line class="a-tp2" x1="20" y1="90" x2="700" y2="90"/>
+          <line class="a-tp1" x1="20" y1="150" x2="700" y2="150"/>
+          <line class="a-entry" x1="20" y1="248" x2="700" y2="248"/>
+          <line class="a-sl" x1="20" y1="290" x2="700" y2="290"/>
+
+          <circle class="aa-pulse" cx="440" cy="248" r="5" style="fill:#22d3ee"/>
+          <text class="a-s" x="688" y="86" text-anchor="end" style="fill:#fbbf24">TARGET 2</text>
+          <text class="a-s" x="688" y="146" text-anchor="end" style="fill:#00e5a8">TARGET 1</text>
+          <text class="a-s" x="688" y="244" text-anchor="end" style="fill:#22d3ee">ENTRY</text>
+          <text class="a-s" x="688" y="286" text-anchor="end" style="fill:#ef4444">STOP LOSS</text>
+          <text class="a-s" x="430" y="232" text-anchor="end" style="fill:#8fa0b8">retest →</text>
+        </svg>
+        <figcaption><strong>The retest.</strong> Price leaves the zone, runs, then returns. The <b>entry</b> sits at the zone, the <b>stop</b> sits just beyond its far edge, and <b>target 1</b> and <b>target 2</b> are placed at the next logical levels ahead.</figcaption>
+      </figure>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Wait for the return, not the breakout</strong>
+          Chasing the impulse means a wide stop and poor reward. Letting price come back to the zone usually gives a tighter invalidation and a more sensible risk-to-reward.
+        </div>
+      </div>
+
+      <h2 id="stop-target">Stop and target placement</h2>
+      <ul>
+        <li><strong>Stop loss</strong> — beyond the far edge of the zone, where the block is genuinely invalidated. If you are long from a bullish block, the stop goes below the low of the zone; if you are short from a bearish block, it goes above the high.</li>
+        <li><strong>Target 1</strong> — the first meaningful level in front of price: the prior swing high, an opposing order block, or a nearby liquidity zone.</li>
+        <li><strong>Target 2</strong> — the further objective, such as an untested higher-timeframe level or an extension.</li>
+        <li><strong>Minimum gap</strong> — CPE Trade Pro enforces a minimum distance between entry and stop so the stop is never unrealistically tight for the market's volatility.</li>
+      </ul>
+      <p>Before you enter, measure the distance from entry to stop and from entry to targets. If the reward does not justify the risk on your plan, the trade is simply not taken.</p>
+
+      <h2 id="combo">Order blocks + fair value gaps + BOS</h2>
+      <p>An order block on its own is a decent reference; an order block that lines up with two other pieces of evidence is far stronger. The classic confluence trio is a <strong>break of structure</strong> that confirms the trend, a <strong>fair value gap</strong> showing the imbalance left by the move, and the <strong>order block</strong> at the origin. When all three sit at roughly the same price, the zone earns more attention.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A composite chart showing an order block, a fair value gap above it and a break of structure label, all aligned in an uptrend">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Confluence · OB + FVG + BOS</text>
+          <rect class="a-chip" x="576" y="12" width="126" height="24" rx="12"/>
+          <text class="a-m" x="639" y="28" text-anchor="middle">THREE CONFIRMATIONS</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="80" x2="700" y2="80"/>
+            <line x1="20" y1="140" x2="700" y2="140"/>
+            <line x1="20" y1="200" x2="700" y2="200"/>
+            <line x1="20" y1="260" x2="700" y2="260"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="60" y1="240" x2="60" y2="264"/><rect class="a-bull" x="52" y="246" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="100" y1="236" x2="100" y2="258"/><rect class="a-bear" x="92" y="240" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="140" y1="242" x2="140" y2="266"/><rect class="a-bear" x="132" y="248" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="185" y1="204" x2="185" y2="242"/><rect class="a-bull" x="177" y="210" width="16" height="28" rx="2"/>
+            <line class="a-wbull" x1="225" y1="168" x2="225" y2="200"/><rect class="a-bull" x="217" y="174" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="265" y1="142" x2="265" y2="168"/><rect class="a-bull" x="257" y="148" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="305" y1="150" x2="305" y2="176"/><rect class="a-bear" x="297" y="156" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="345" y1="180" x2="345" y2="212"/><rect class="a-bear" x="337" y="186" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="385" y1="204" x2="385" y2="232"/><rect class="a-bull" x="377" y="210" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="425" y1="176" x2="425" y2="204"/><rect class="a-bull" x="417" y="182" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="465" y1="146" x2="465" y2="174"/><rect class="a-bull" x="457" y="152" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="505" y1="122" x2="505" y2="148"/><rect class="a-bull" x="497" y="128" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="545" y1="104" x2="545" y2="130"/><rect class="a-bull" x="537" y="110" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="585" y1="90" x2="585" y2="116"/><rect class="a-bull" x="577" y="96" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="630" y1="82" x2="630" y2="108"/><rect class="a-bull" x="622" y="88" width="16" height="16" rx="2"/>
+          </g>
+
+          <rect class="a-zone-ob aa-slide" x="120" y="240" width="86" height="26" rx="4"/>
+          <text class="a-s aa-slide" x="163" y="257" text-anchor="middle" style="fill:#60a5fa;animation-delay:.15s">ORDER BLOCK</text>
+
+          <rect class="a-zone-fvg aa-slide" x="170" y="176" width="120" height="30" rx="4" style="animation-delay:.3s"/>
+          <text class="a-s aa-slide" x="230" y="195" text-anchor="middle" style="fill:#c084fc;animation-delay:.45s">FAIR VALUE GAP</text>
+
+          <text class="a-t aa-pop" x="290" y="132" style="fill:#00e5a8;animation-delay:.6s">BOS ↑</text>
+          <path class="aa-line" d="M290 128 L 420 128" style="fill:none;stroke:#00e5a8;stroke-width:1.5;stroke-dasharray:6 5" pathLength="1"/>
+
+          <rect class="a-chip aa-pop" x="470" y="284" width="232" height="34" rx="10" style="animation-delay:.85s"/>
+          <text class="a-m aa-pop" x="586" y="306" text-anchor="middle" style="animation-delay:.9s">all three agree → stronger zone</text>
+        </svg>
+        <figcaption><strong>Confluence.</strong> The <b>order block</b> marks the origin, the <b>fair value gap</b> marks the imbalance, and <b>BOS</b> confirms the structure broke upward. When three independent reads point at the same area, the zone carries more weight.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Signal</th><th>What it adds</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Order block</strong></td><td>Where the move probably began — a place to expect a reaction</td></tr>
+          <tr><td><strong>Fair value gap</strong></td><td>An imbalance price may want to revisit before continuing</td></tr>
+          <tr><td><strong>BOS / CHoCH</strong></td><td>Confirms structure aligned with the intended direction</td></tr>
+        </tbody>
+      </table>
+
+      <div class="edu-chips">
+        <span class="edu-chip blue"><i>◆</i> OB</span>
+        <span class="edu-chip purple"><i>◆</i> FVG</span>
+        <span class="edu-chip green"><i>◆</i> BOS</span>
+        <span class="edu-chip pink"><i>◆</i> CHoCH</span>
+        <span class="edu-chip amber"><i>◆</i> Liquidity sweep</span>
+      </div>
+
+      <h2 id="fail">When order blocks fail</h2>
+      <p>Zones are probabilities, not promises, and they fail in ways you can learn to recognise.</p>
+      <ul>
+        <li><strong>Already mitigated.</strong> If price has tapped the zone once and reacted, the orders may be spent. A second or third tap is often weaker.</li>
+        <li><strong>No displacement.</strong> A "block" with no impulsive move behind it was never really an order block.</li>
+        <li><strong>Against higher-timeframe bias.</strong> A bullish block in a strongly bearish higher-timeframe chart is swimming upstream.</li>
+        <li><strong>Through-trade.</strong> Sometimes price runs straight through the zone without pausing, especially into news.</li>
+        <li><strong>Liquidity sweep first.</strong> Price may spike beyond the zone to trigger stops before reversing — which is why the stop should sit beyond the far edge, not inside it.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>Never trade a zone without a stop</strong>
+          An order block is a location, not an excuse to hold. The invalidation point is what turns a zone into a managed trade — use it and do not widen it after entry.
+        </div>
+      </div>
+
+      <h2 id="checklist">A step-by-step checklist</h2>
+      <ol>
+        <li><strong>Check the higher-timeframe bias first.</strong> Prefer zones that agree with it.</li>
+        <li><strong>Confirm displacement and structure.</strong> There should be a real break, not a slow drift.</li>
+        <li><strong>Mark the zone</strong> — or let CPE Trade Pro draw the order block, FVG and BOS for you.</li>
+        <li><strong>List the confluence.</strong> Does the zone overlap a fair value gap or liquidity level?</li>
+        <li><strong>Wait for the retest.</strong> Do not chase the impulse; let price return to the zone.</li>
+        <li><strong>Place the stop beyond the zone's far edge</strong> and check the app's minimum-gap level.</li>
+        <li><strong>Set targets at the next logical levels</strong> — target 1 nearer, target 2 further.</li>
+        <li><strong>Size the position to the risk</strong> and skip the trade if reward does not justify it.</li>
+      </ol>
+      <p>CPE Trade Pro brings most of this onto one screen: it detects and draws order blocks, fair value gaps, liquidity zones and BOS / CHoCH automatically, then shows direction, entry, stop, two targets and the 0-10 quality score. <a href="/download.html">Download it free</a> and study the zones in DEMO mode first.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/how-to-read-order-blocks.html">How to read order blocks</a></li>
+          <li><a href="/blog/fair-value-gap-explained.html">Fair value gaps explained</a></li>
+          <li><a href="/blog/bos-vs-choch.html">BOS vs CHoCH</a></li>
+          <li><a href="/blog/what-is-smart-money-concepts.html">What is Smart Money Concepts?</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>Order blocks, fair value gaps and BOS drawn automatically — plus BUY / SELL / HOLD with a 0-10 quality score.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What an order block is</a>
+          <a href="#bull-bear">Bullish vs bearish</a>
+          <a href="#detect">How the app draws them</a>
+          <a href="#retest">The retest entry</a>
+          <a href="#stop-target">Stop and targets</a>
+          <a href="#combo">OB + FVG + BOS</a>
+          <a href="#fail">When they fail</a>
+          <a href="#checklist">Step-by-step checklist</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/how-to-read-order-blocks.html">How to read order blocks</a>
+          <a href="/blog/fair-value-gap-explained.html">Fair value gaps</a>
+          <a href="/blog/bos-vs-choch.html">BOS vs CHoCH</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Let the app mark your zones</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, automatic order blocks, fair value gaps, liquidity zones and BOS / CHoCH, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes and a built-in academy all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

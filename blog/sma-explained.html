@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>SMA Explained: The 50 Simple Moving Average</title>
+<meta name="description" content="What a simple moving average is, why the 50 is used, the trend-filter idea, price above and below, crossovers, and how CPE Trade Pro uses SMA 50." />
+<meta name="keywords" content="sma, simple moving average, sma 50, moving average trend filter" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/sma-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="SMA Explained: The 50 Simple Moving Average" />
+<meta property="og:description" content="What a simple moving average is, why the 50 is used, the trend-filter idea and the 50 / 200 crossovers." />
+<meta property="og:url" content="https://cpetradepro.com/blog/sma-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SMA Explained" />
+<meta name="twitter:description" content="The 50 simple moving average, the trend filter, and the 50 / 200 crossovers." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SMA Explained: The 50 Simple Moving Average",
+  "description": "What a simple moving average is, why the 50 is used, the trend-filter idea, price above and below, crossovers, and how CPE Trade Pro uses SMA 50.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/sma-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "SMA explained", "item": "https://cpetradepro.com/blog/sma-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is the 50-period SMA so popular?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The 50-period average smooths out short-term noise while still moving with the trend. On daily and higher timeframes it is treated as a simple line in the sand: price above it is generally bullish, price below it generally bearish." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does price above the SMA 50 mean price will rise?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Price being above the average shows recent prices have been stronger than the average of the last 50 bars. It is a description of the current trend, not a forecast." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the SMA 50 feed the CPE Trade Pro score?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The SMA 50 is a trend study that feeds the Trend part of the 0-10 quality score, one of five parts worth up to 2 points each, and it helps define dynamic levels. The score is not a win rate, not a probability of profit and not an audited record." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>SMA</span>
+    </nav>
+    <span class="eyebrow">Learn · Indicators</span>
+    <h1>SMA explained: the 50 simple moving average</h1>
+    <p class="lead">The simple moving average is the plainest line on any chart — an honest average of the last <em>n</em> closes. The <strong>50 period</strong> version is one of the most followed, and used well it is a simple trend filter rather than a signal.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Indicators</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>If the exponential moving average is the fast, twitchy cousin, the simple moving average is the steady one. It gives every bar in its window equal weight, so it drifts calmly behind price instead of snapping at it. That calmness is exactly why the <strong>50-period SMA</strong> has become a default trend line for so many traders.</p>
+      <p>This guide covers what the SMA is, how it is calculated, why the 50 stands out, the difference between price above and below the line, and how it feeds into CPE Trade Pro's analysis.</p>
+
+      <h2 id="sma">1. What an SMA is</h2>
+      <p>A simple moving average takes the last <em>n</em> closing prices, adds them up, and divides by <em>n</em>. Every bar counts the same. As each new candle closes, the oldest one drops out of the window and the newest joins, so the average slides forward one step at a time — hence "moving".</p>
+      <p>Because it smooths price, the SMA filters out the jitter of individual candles and shows the direction of the recent average. It lags by design: a longer average is smoother but slower to turn, a shorter one is quicker but noisier. That single trade-off is the whole art of choosing a length.</p>
+
+      <h2 id="calc">2. How it is calculated</h2>
+      <p>An SMA 50 at any bar is simply the average of the last 50 closes. Picture a 50-bar window sliding along the chart one candle at a time: each new close changes the total, and the average is rewritten.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A candle chart with a blue 50-period simple moving average line tracking the average price, and a small panel showing a sliding window of closes being averaged">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="22" y="26">SMA 50 · price vs its average</text>
+          <rect class="a-chip" x="556" y="10" width="144" height="22" rx="11"/>
+          <text class="a-m" x="628" y="25" text-anchor="middle">window = 50</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="70" x2="700" y2="70"/>
+            <line x1="20" y1="110" x2="700" y2="110"/>
+            <line x1="20" y1="150" x2="700" y2="150"/>
+            <line x1="20" y1="190" x2="700" y2="190"/>
+            <line x1="20" y1="230" x2="700" y2="230"/>
+          </g>
+
+          <g>
+            <line class="a-wbear" x1="40" y1="196" x2="40" y2="216"/><rect class="a-bear" x="34" y="200" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="70" y1="204" x2="70" y2="222"/><rect class="a-bear" x="64" y="208" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="100" y1="190" x2="100" y2="212"/><rect class="a-bull" x="94" y="196" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="130" y1="184" x2="130" y2="202"/><rect class="a-bear" x="124" y="188" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="160" y1="168" x2="160" y2="194"/><rect class="a-bull" x="154" y="174" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="190" y1="150" x2="190" y2="176"/><rect class="a-bull" x="184" y="156" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="220" y1="134" x2="220" y2="160"/><rect class="a-bull" x="214" y="140" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="250" y1="138" x2="250" y2="156"/><rect class="a-bear" x="244" y="142" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="280" y1="122" x2="280" y2="148"/><rect class="a-bull" x="274" y="128" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="310" y1="106" x2="310" y2="130"/><rect class="a-bull" x="304" y="112" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="340" y1="92" x2="340" y2="116"/><rect class="a-bull" x="334" y="98" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="370" y1="84" x2="370" y2="106"/><rect class="a-bull" x="364" y="90" width="12" height="12" rx="1.5"/>
+          </g>
+
+          <path class="a-price aa-line" pathLength="1" style="stroke:#60a5fa" d="M40,210 L70,208 L100,204 L130,200 L160,192 L190,180 L220,166 L250,156 L280,146 L310,136 L340,126 L370,118"/>
+
+          <rect class="a-fill-blue" x="150" y="200" width="110" height="26" rx="6"/>
+          <text class="a-s a-blue" x="205" y="216" text-anchor="middle">last 50 closes averaged</text>
+          <text class="a-s a-blue" x="408" y="118">SMA 50</text>
+        </svg>
+        <figcaption><strong>The average of 50 closes.</strong> The blue line is the mean of the previous 50 closing prices at every candle. It trails price, smooths the bumps, and turns slowly — which is exactly what makes it a stable trend reference.</figcaption>
+      </figure>
+
+      <h2 id="filter">3. SMA 50 as a trend filter</h2>
+      <p>The most common way the SMA 50 is used is not as a signal but as a <strong>filter</strong>. Before taking any trade, many traders simply ask: is price above the 50 or below it? Above, they look for longs. Below, they look for shorts — or, on a long-only market, they stand aside.</p>
+      <p>This is a crude switch, and that is its value. It prevents the classic mistake of buying into a downtrend or shorting a rally, because it forces you to line your idea up with the average's direction first.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="Two zones on a chart: price above the blue SMA 50 marked as a longs-only green zone, and price below the SMA 50 marked as a shorts-or-avoid red zone">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="22" y="26">The trend filter idea</text>
+
+          <rect class="a-fill-green" x="20" y="60" width="680" height="90" rx="8"/>
+          <text class="a-s a-green" x="30" y="78">Price ABOVE the SMA 50 → look for longs</text>
+          <rect class="a-fill-red" x="20" y="230" width="680" height="90" rx="8"/>
+          <text class="a-s a-red" x="30" y="248">Price BELOW the SMA 50 → look for shorts / stand aside</text>
+
+          <g>
+            <line class="a-wbull" x1="60" y1="128" x2="60" y2="150"/><rect class="a-bull" x="54" y="134" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="100" y1="126" x2="100" y2="146"/><rect class="a-bear" x="94" y="130" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="140" y1="112" x2="140" y2="136"/><rect class="a-bull" x="134" y="118" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="180" y1="98" x2="180" y2="122"/><rect class="a-bull" x="174" y="104" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="220" y1="88" x2="220" y2="110"/><rect class="a-bull" x="214" y="94" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="260" y1="100" x2="260" y2="122"/><rect class="a-bull" x="254" y="106" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="300" y1="126" x2="300" y2="150"/><rect class="a-bull" x="294" y="132" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="340" y1="152" x2="340" y2="176"/><rect class="a-bull" x="334" y="158" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="380" y1="176" x2="380" y2="200"/><rect class="a-bear" x="374" y="180" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="420" y1="196" x2="420" y2="220"/><rect class="a-bear" x="414" y="200" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="460" y1="206" x2="460" y2="230"/><rect class="a-bear" x="454" y="210" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="500" y1="222" x2="500" y2="246"/><rect class="a-bear" x="494" y="226" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="540" y1="268" x2="540" y2="292"/><rect class="a-bear" x="534" y="272" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="580" y1="280" x2="580" y2="304"/><rect class="a-bear" x="574" y="284" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="620" y1="288" x2="620" y2="312"/><rect class="a-bear" x="614" y="292" width="12" height="16" rx="1.5"/>
+          </g>
+
+          <path class="a-price aa-line" pathLength="1" style="stroke:#60a5fa" d="M60,144 L100,138 L140,124 L180,110 L220,100 L260,112 L300,138 L340,164 L380,188 L420,208 L460,218 L500,234 L540,280 L580,292 L620,300"/>
+          <text class="a-s a-blue" x="646" y="164">SMA 50</text>
+        </svg>
+        <figcaption><strong>Above or below, that is the filter.</strong> While price holds above the blue line, the bias is to look for longs; once it settles below, the bias flips. It is not a trigger — it is a permission switch that keeps you on the right side of the average.</figcaption>
+      </figure>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>A filter, not a trigger</strong>
+          "Above the 50" does not mean buy. It means the trend permission is green — you still need a reason to enter, a level and a stop.
+        </div>
+      </div>
+
+      <h2 id="above">4. Price above vs below</h2>
+      <p>The relationship between price and the SMA 50 is a quick read on the recent trend.</p>
+      <table>
+        <thead>
+          <tr><th>What you see</th><th>Plain reading</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Price above a rising SMA 50</td><td>Recent prices stronger than the average and the average is climbing — a healthy uptrend</td></tr>
+          <tr><td>Price above a falling SMA 50</td><td>A bounce inside a downtrend; the average has not turned yet</td></tr>
+          <tr><td>Price below a falling SMA 50</td><td>Recent prices weaker than the average and the average is dropping — a downtrend</td></tr>
+          <tr><td>Price crossing the SMA 50 back and forth</td><td>No clear trend; the filter gives mixed readings</td></tr>
+        </tbody>
+      </table>
+      <p>The slope matters as much as the side. Price above a rising average is a much stronger signal than price above a flat one.</p>
+
+      <div class="edu-chips">
+        <span class="edu-chip green"><i>↑</i>price above, average rising — healthy uptrend</span>
+        <span class="edu-chip amber"><i>↗</i>price above, average falling — a bounce</span>
+        <span class="edu-chip red"><i>↓</i>price below, average falling — downtrend</span>
+        <span class="edu-chip blue"><i>±</i>price crossing back and forth — no clear trend</span>
+      </div>
+
+      <h2 id="vs-ema">5. SMA vs EMA</h2>
+      <p>The simple average weights every bar equally; the exponential average weights recent bars more. The practical difference is <strong>speed versus smoothness</strong>.</p>
+      <ul>
+        <li><strong>SMA is smoother</strong> — it ignores short bursts and turns later, which suits slow, structural trend reading.</li>
+        <li><strong>EMA is faster</strong> — it turns sooner, which suits shorter timeframes and quicker decisions, at the cost of more false turns.</li>
+      </ul>
+      <p>Neither is "correct". Many traders keep one of each: a slow SMA for the big-picture filter and a faster EMA for timing. If you want the detail, it is covered in <a href="/blog/ema-explained.html">EMA explained</a>.</p>
+
+      <h2 id="cross">6. The 50 / 200 crossovers</h2>
+      <p>Two longer averages are watched more than any others: the <strong>50</strong> and the <strong>200</strong>. When the faster 50 crosses above the slower 200, it is nicknamed a <em>golden cross</em>; when it crosses below, a <em>death cross</em>. They are simply long-term summaries of trend change.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A chart where the faster amber SMA 50 crosses above the slower purple SMA 200, marking a golden cross with a shaded zone">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="22" y="26">SMA 50 / SMA 200 cross</text>
+          <rect class="a-chip" x="556" y="10" width="144" height="22" rx="11"/>
+          <text class="a-m" x="628" y="25" text-anchor="middle">golden cross ↑</text>
+
+          <rect class="a-fill-amber" x="250" y="60" width="450" height="250" rx="10" opacity=".4"/>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="130" x2="700" y2="130"/>
+            <line x1="20" y1="170" x2="700" y2="170"/>
+            <line x1="20" y1="210" x2="700" y2="210"/>
+            <line x1="20" y1="250" x2="700" y2="250"/>
+          </g>
+
+          <g>
+            <line class="a-wbear" x1="40" y1="200" x2="40" y2="220"/><rect class="a-bear" x="34" y="204" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="70" y1="212" x2="70" y2="230"/><rect class="a-bear" x="64" y="216" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="100" y1="216" x2="100" y2="234"/><rect class="a-bear" x="94" y="220" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="130" y1="210" x2="130" y2="230"/><rect class="a-bull" x="124" y="216" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="160" y1="206" x2="160" y2="224"/><rect class="a-bear" x="154" y="210" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="190" y1="192" x2="190" y2="216"/><rect class="a-bull" x="184" y="198" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="220" y1="178" x2="220" y2="202"/><rect class="a-bull" x="214" y="184" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="250" y1="162" x2="250" y2="186"/><rect class="a-bull" x="244" y="168" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="280" y1="146" x2="280" y2="170"/><rect class="a-bull" x="274" y="152" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="310" y1="130" x2="310" y2="154"/><rect class="a-bull" x="304" y="136" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="340" y1="116" x2="340" y2="140"/><rect class="a-bull" x="334" y="122" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="370" y1="102" x2="370" y2="126"/><rect class="a-bull" x="364" y="108" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="400" y1="90" x2="400" y2="114"/><rect class="a-bull" x="394" y="96" width="12" height="14" rx="1.5"/>
+          </g>
+
+          <path class="a-price aa-line" pathLength="1" style="stroke:#fbbf24" d="M40,218 L70,224 L100,226 L130,218 L160,214 L190,200 L220,188 L250,172 L280,158 L310,142 L340,128 L370,116 L400,104"/>
+          <path class="a-price aa-line" pathLength="1" style="stroke:#a855f7;animation-delay:.3s" d="M40,206 L70,208 L100,210 L130,212 L160,214 L190,214 L220,212 L250,206 L280,198 L310,188 L340,176 L370,164 L400,152"/>
+
+          <circle class="aa-pop" cx="176" cy="209" r="5" style="fill:#fbbf24;animation-delay:1.5s"/>
+          <text class="a-s a-amber aa-reveal" x="176" y="198" text-anchor="middle" style="animation-delay:1.7s">golden cross</text>
+
+          <text class="a-s a-amber" x="408" y="104">SMA 50 (fast)</text>
+          <text class="a-s a-purple" x="408" y="152">SMA 200 (slow)</text>
+        </svg>
+        <figcaption><strong>The golden cross.</strong> The amber 50-period average crossing above the purple 200-period average marks a long-term shift toward bulls. Like every cross, it is a summary — better read alongside structure, strength and volume than on its own.</figcaption>
+      </figure>
+
+      <h2 id="mistakes">7. Common mistakes</h2>
+      <ul>
+        <li><strong>Using the SMA as a trigger.</strong> "Above the 50" is permission, not an entry. You still need a setup and a stop.</li>
+        <li><strong>Ignoring the slope.</strong> A flat average gives mixed signals; the direction of the line is half the story.</li>
+        <li><strong>Expecting the average to hold as support.</strong> Price can pass through any moving average.</li>
+        <li><strong>Reacting to a golden or death cross too late.</strong> Long averages turn slowly; by the time they cross, much of the move may be done.</li>
+        <li><strong>Stacking too many averages.</strong> More lines do not mean more clarity — often just more clutter.</li>
+      </ul>
+
+      <div class="edu-cards">
+        <div class="edu-card blue"><span class="ec-ico">➗</span><strong>Equal weight</strong><span>Every bar in the window counts the same.</span></div>
+        <div class="edu-card green"><span class="ec-ico">🚦</span><strong>Trend filter</strong><span>Above the 50, longs; below it, shorts or wait.</span></div>
+        <div class="edu-card amber"><span class="ec-ico">✨</span><strong>Golden cross</strong><span>50 above 200 — a long-term bullish shift.</span></div>
+        <div class="edu-card purple"><span class="ec-ico">🛤️</span><strong>Dynamic level</strong><span>A moving reference for entries and trailing stops.</span></div>
+      </div>
+
+      <h2 id="cpe">8. How CPE Trade Pro uses SMA 50</h2>
+      <p>In CPE Trade Pro, the SMA 50 is a <strong>trend study</strong>. It feeds the <strong>Trend</strong> part of the 0-10 quality score — one of five parts, each worth up to 2 points — alongside market structure, ADX and the higher-timeframe bias. Its job is modest and clear: it helps answer whether price is trading above or below its recent average, and whether that average is rising or falling.</p>
+      <p>The SMA 50 also helps define <strong>dynamic levels</strong>. Because it moves with price, it can mark a sensible zone for an entry or a trailing reference, and it joins the level side of the analysis next to bands, Fibonacci and structure.</p>
+      <p>When price sits on the correct side of a sloping SMA 50 that agrees with the setup, the Trend part tends to score higher; when price is fighting a rising or falling average, it scores lower. And to be precise, the 0-10 score is <strong>not a win rate</strong>, <strong>not a probability of profit</strong> and <strong>not an audited record</strong> — it is a summary of how many independent checks agreed.</p>
+      <p>Compare the faster cousin in <a href="/blog/ema-explained.html">EMA explained</a>, add trend strength with <a href="/blog/adx-dmi-explained.html">ADX and DMI</a>, and see the whole chain in <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">how CPE Trade Pro analyses a chart</a>.</p>
+      <p>Want the 50 on your charts? <a href="/download.html">Download CPE Trade Pro free</a> and read the trend with SMA, EMA and the rest of the app's toolkit.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/ema-explained.html">EMA explained: the 9 and 21 moving averages</a></li>
+          <li><a href="/blog/adx-dmi-explained.html">ADX and DMI explained</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the SMA 50 in the app</h4>
+        <p>The SMA 50 helps define trend and dynamic levels, feeding the 0-10 quality score — with DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#sma">1. What an SMA is</a>
+          <a href="#calc">2. How it is calculated</a>
+          <a href="#filter">3. SMA 50 as a trend filter</a>
+          <a href="#above">4. Price above vs below</a>
+          <a href="#vs-ema">5. SMA vs EMA</a>
+          <a href="#cross">6. The 50 / 200 crossovers</a>
+          <a href="#mistakes">7. Common mistakes</a>
+          <a href="#cpe">8. How CPE Trade Pro uses SMA 50</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/ema-explained.html">EMA explained</a>
+          <a href="/blog/adx-dmi-explained.html">ADX and DMI explained</a>
+          <a href="/signal-guide.html">Signal guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read the trend, then trade it</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="whats-float" aria-label="WhatsApp us" title="WhatsApp: +94774940944">💬</a>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Elliott Wave Explained: Impulse, Correction and Counts</title>
+<meta name="description" content="A light introduction to Elliott Wave - the 1-2-3-4-5 impulse and the A-B-C correction, the rules that must hold, and how CPE Trade Pro shows a light wave count." />
+<meta name="keywords" content="elliott wave, impulse wave, abc correction, wave count, 5-3 pattern" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/elliott-wave-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Elliott Wave Explained: Impulse, Correction and Counts" />
+<meta property="og:description" content="The 1-2-3-4-5 impulse, the A-B-C correction, the three rules that must hold, and why counts are hard." />
+<meta property="og:url" content="https://cpetradepro.com/blog/elliott-wave-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Elliott Wave Explained: Impulse, Correction and Counts" />
+<meta name="twitter:description" content="A light introduction to Elliott Wave structure — the 5-3 pattern and the rules that must hold." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Elliott Wave Explained: Impulse, Correction and Counts",
+  "description": "A light introduction to Elliott Wave - the 1-2-3-4-5 impulse and the A-B-C correction, the rules that must hold, and how CPE Trade Pro shows a light wave count.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/elliott-wave-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Elliott Wave explained", "item": "https://cpetradepro.com/blog/elliott-wave-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Elliott Wave a reliable prediction tool?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Elliott Wave is a framework for describing market structure, and several valid counts can often fit the same chart. It can help organise your thinking, but it is not a guaranteed forecast or a probability of profit." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the most important Elliott Wave rule?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The three core rules are that wave 2 never retraces more than 100% of wave 1, wave 3 is never the shortest of waves 1, 3 and 5, and wave 4 does not overlap wave 1's price territory in a standard impulse." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro trade Elliott Wave counts for me?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CPE Trade Pro is analysis software, not an automated Elliott Wave system. It can show a light wave count and structure as context that feeds parts of its 0-10 quality score, but the count is one input, not a trade instruction." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Elliott Wave explained</span>
+    </nav>
+    <span class="eyebrow">Learn · Structure</span>
+    <h1>Elliott Wave Explained: Impulse, Correction and Counts</h1>
+    <p class="lead">Markets do not move in straight lines — they move in waves. Here is the <strong>5-3 pattern</strong>, the three rules that must hold, and how CPE Trade Pro shows a light wave count.</p>
+    <div class="page-meta">
+      <span><b>10 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Elliott Wave is one of the oldest ways of looking at market structure. Instead of treating price as random noise, it argues that crowd behaviour repeats in recognisable patterns — a push in the trend, then a pull-back, again and again, at every scale. Learn the shape and you gain a language for describing where price might be in a bigger move.</p>
+      <p>This guide is a light, honest introduction: what the pattern is, the rules that must hold, how to spot an impulse and a correction, why counting is genuinely hard, and how CPE Trade Pro shows a light count as context. Educational content only — nothing here is financial advice.</p>
+
+      <h2 id="what">What Elliott Wave is</h2>
+      <p>The framework was developed by <strong>Ralph Nelson Elliott</strong> in the 1930s. He observed that markets advance in a five-wave sequence in the direction of the larger trend, followed by a three-wave sequence against it, and that this structure repeats on every timeframe — what is one big wave on a daily chart is a full five-wave move on an hourly chart.</p>
+      <p>That <em>fractal</em> quality is the heart of it. Elliott Wave is not a crystal ball; it is a way of organising a chart so you can judge whether a move looks finished or still incomplete. Used well, it is a map. Used badly, it becomes a way of forcing any chart into a preferred story.</p>
+
+      <h2 id="structure">The 5-3 structure</h2>
+      <p>Every complete cycle has two halves. The <strong>motive</strong> phase is five waves labelled 1, 2, 3, 4, 5 and travels with the trend. The <strong>corrective</strong> phase is three waves labelled A, B, C and travels against it. Put together they form the "5-3" pattern.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 360" role="img" aria-label="A schematic drawing of the Elliott Wave 5-3 pattern: five waves numbered 1 to 5 rising, followed by a three wave A B C correction falling">
+          <rect class="a-panel" x="0" y="0" width="720" height="360" rx="14"/>
+          <text class="a-h" x="24" y="30">Elliott Wave · the 5-3 pattern</text>
+          <rect class="a-chip" x="592" y="12" width="110" height="24" rx="12"/>
+          <text class="a-m" x="647" y="28" text-anchor="middle">MOTIVE + CORRECT</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="70" x2="700" y2="70"/>
+            <line x1="20" y1="140" x2="700" y2="140"/>
+            <line x1="20" y1="210" x2="700" y2="210"/>
+            <line x1="20" y1="280" x2="700" y2="280"/>
+          </g>
+
+          <rect class="a-fill-teal aa-pop" x="30" y="80" width="470" height="230" rx="8"/>
+          <rect class="a-fill-red aa-pop" x="510" y="80" width="182" height="230" rx="8" style="animation-delay:.35s"/>
+          <text class="a-s" x="46" y="100" style="fill:#00e5a8">IMPULSE · with the trend</text>
+          <text class="a-s" x="524" y="100" style="fill:#ef4444">CORRECTION · against it</text>
+
+          <path class="aa-line" d="M40 300 L 140 230 L 200 268 L 350 120 L 420 178 L 500 92 L 560 152 L 610 118 L 680 232" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round" pathLength="1"/>
+
+          <g class="aa-reveal" style="animation-delay:.6s">
+            <circle class="a-numbub" cx="152" cy="212" r="13"/><text class="a-m" x="152" y="216" text-anchor="middle">1</text>
+            <circle class="a-numbub" cx="212" cy="250" r="13"/><text class="a-m" x="212" y="254" text-anchor="middle">2</text>
+            <circle class="a-numbub" cx="362" cy="108" r="13"/><text class="a-m" x="362" y="112" text-anchor="middle">3</text>
+            <circle class="a-numbub" cx="432" cy="176" r="13"/><text class="a-m" x="432" y="180" text-anchor="middle">4</text>
+            <circle class="a-numbub" cx="512" cy="80" r="13"/><text class="a-m" x="512" y="84" text-anchor="middle">5</text>
+            <circle class="a-numbub" cx="572" cy="164" r="13"/><text class="a-m" x="572" y="168" text-anchor="middle">A</text>
+            <circle class="a-numbub" cx="622" cy="106" r="13"/><text class="a-m" x="622" y="110" text-anchor="middle">B</text>
+            <circle class="a-numbub" cx="678" cy="220" r="13"/><text class="a-m" x="678" y="224" text-anchor="middle">C</text>
+          </g>
+
+          <text class="a-s" x="360" y="330" text-anchor="middle">five waves up · three waves down · then it repeats</text>
+        </svg>
+        <figcaption><strong>The 5-3 pattern.</strong> Five waves (1-5, teal zone) move with the trend; three waves (A-B-C, red zone) move against it. The whole structure nests inside a larger wave on the timeframe above.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Wave</th><th>Type</th><th>Typical character</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1</strong></td><td>Impulse</td><td>Often weak and unnoticed; a first push off a base</td></tr>
+          <tr><td><strong>2</strong></td><td>Correction</td><td>Retraces much of wave 1; the crowd thinks the move is over</td></tr>
+          <tr><td><strong>3</strong></td><td>Impulse</td><td>Usually the longest and strongest; widest participation</td></tr>
+          <tr><td><strong>4</strong></td><td>Correction</td><td>Sideways, often shallower than wave 2</td></tr>
+          <tr><td><strong>5</strong></td><td>Impulse</td><td>Final push; is often the least dynamic of the three impulses</td></tr>
+          <tr><td><strong>A, B, C</strong></td><td>Correction</td><td>A three-leg pull-back; B often fools people into thinking the trend resumed</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="rules">The three unbreakable rules</h2>
+      <p>Amateurs count waves freely; the rules are what keep a count honest. Three observations must hold for a valid impulse — and they are the same three you check before trusting anyone's count, including your own.</p>
+      <ol>
+        <li><strong>Wave 2 never retraces more than 100% of wave 1.</strong> If it does, the move is not an impulse and the count is wrong.</li>
+        <li><strong>Wave 3 is never the shortest of waves 1, 3 and 5.</strong> It can be shorter than expected, but it cannot be the runt of the three.</li>
+        <li><strong>Wave 4 never overlaps wave 1's price territory</strong> in a standard impulse. An overlap means you are probably looking at a corrective or diagonal structure instead.</li>
+      </ol>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>If a rule breaks, the count dies</strong>
+          Rules are the difference between analysis and wishful thinking. When price violates one, the honest move is to abandon that count and re-label — not to bend the rule to fit.
+        </div>
+      </div>
+
+      <h2 id="impulse">Identifying an impulse</h2>
+      <p>An impulse is the trending half of the pattern: five waves in the direction of the larger move. The practical tell is <em>energy</em> — wave 3 usually shows the widest expansion and the highest volume, while waves 2 and 4 are pauses. Momentum indicators typically peak during wave 3 and then diverge as wave 5 forms.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="An uptrending candle chart forming a five wave impulse, with each wave labelled 1 to 5 and wave 3 shown as the longest and strongest">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Impulse · five waves</text>
+          <rect class="a-chip" x="590" y="12" width="112" height="24" rx="12"/>
+          <text class="a-m" x="646" y="28" text-anchor="middle">WAVE 3 EXTENDS</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="80" x2="700" y2="80"/>
+            <line x1="20" y1="130" x2="700" y2="130"/>
+            <line x1="20" y1="180" x2="700" y2="180"/>
+            <line x1="20" y1="230" x2="700" y2="230"/>
+            <line x1="20" y1="280" x2="700" y2="280"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="60" y1="244" x2="60" y2="268"/><rect class="a-bull" x="52" y="250" width="16" height="12" rx="2"/>
+            <line class="a-wbull" x1="90" y1="236" x2="90" y2="260"/><rect class="a-bull" x="82" y="242" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="120" y1="224" x2="120" y2="250"/><rect class="a-bull" x="112" y="230" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="150" y1="216" x2="150" y2="240"/><rect class="a-bull" x="142" y="222" width="16" height="12" rx="2"/>
+            <line class="a-wbear" x1="180" y1="222" x2="180" y2="248"/><rect class="a-bear" x="172" y="228" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="210" y1="232" x2="210" y2="258"/><rect class="a-bear" x="202" y="238" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="240" y1="226" x2="240" y2="252"/><rect class="a-bull" x="232" y="232" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="280" y1="208" x2="280" y2="234"/><rect class="a-bull" x="272" y="214" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="320" y1="188" x2="320" y2="214"/><rect class="a-bull" x="312" y="194" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="360" y1="168" x2="360" y2="196"/><rect class="a-bull" x="352" y="174" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="400" y1="150" x2="400" y2="178"/><rect class="a-bull" x="392" y="156" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="430" y1="160" x2="430" y2="186"/><rect class="a-bear" x="422" y="166" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="460" y1="170" x2="460" y2="198"/><rect class="a-bear" x="452" y="176" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="490" y1="164" x2="490" y2="190"/><rect class="a-bull" x="482" y="170" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="530" y1="150" x2="530" y2="176"/><rect class="a-bull" x="522" y="156" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="570" y1="138" x2="570" y2="166"/><rect class="a-bull" x="562" y="144" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="610" y1="126" x2="610" y2="154"/><rect class="a-bull" x="602" y="132" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="645" y1="120" x2="645" y2="146"/><rect class="a-bull" x="637" y="126" width="16" height="14" rx="2"/>
+          </g>
+
+          <g class="aa-reveal" style="animation-delay:.5s">
+            <circle class="a-numbub" cx="158" cy="212" r="12"/><text class="a-m" x="158" y="216" text-anchor="middle">1</text>
+            <circle class="a-numbub" cx="218" cy="256" r="12"/><text class="a-m" x="218" y="260" text-anchor="middle">2</text>
+            <circle class="a-numbub" cx="406" cy="142" r="12"/><text class="a-m" x="406" y="146" text-anchor="middle">3</text>
+            <circle class="a-numbub" cx="468" cy="196" r="12"/><text class="a-m" x="468" y="200" text-anchor="middle">4</text>
+            <circle class="a-numbub" cx="652" cy="112" r="12"/><text class="a-m" x="652" y="116" text-anchor="middle">5</text>
+          </g>
+
+          <text class="a-s" x="300" y="300" style="fill:#fbbf24">note the expansion in wave 3</text>
+        </svg>
+        <figcaption><strong>An impulse in the wild.</strong> Five waves with the trend. Wave 3 (amber label) is the longest and shows the biggest candles; waves 2 and 4 are the pull-backs in between. This is the shape the rules exist to protect.</figcaption>
+      </figure>
+
+      <h2 id="corrections">Corrections A-B-C</h2>
+      <p>After five waves, the market corrects. The simplest correction is a <strong>zigzag</strong>: a sharp A down, a smaller B bounce, then a C that usually travels about as far as A. More complex corrections take the form of flats and triangles, where price chops sideways for longer than anyone expects.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A candle chart showing a three wave A B C correction falling from a high, with the A and C legs down and a smaller B bounce between them">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Correction · A-B-C</text>
+          <rect class="a-chip" x="586" y="12" width="116" height="24" rx="12"/>
+          <text class="a-m" x="644" y="28" text-anchor="middle">ZIGZAG TYPE</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="80" x2="700" y2="80"/>
+            <line x1="20" y1="140" x2="700" y2="140"/>
+            <line x1="20" y1="200" x2="700" y2="200"/>
+            <line x1="20" y1="260" x2="700" y2="260"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="60" y1="120" x2="60" y2="146"/><rect class="a-bull" x="52" y="126" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="100" y1="140" x2="100" y2="168"/><rect class="a-bear" x="92" y="146" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="140" y1="162" x2="140" y2="190"/><rect class="a-bear" x="132" y="168" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="180" y1="184" x2="180" y2="212"/><rect class="a-bear" x="172" y="190" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="220" y1="202" x2="220" y2="230"/><rect class="a-bear" x="212" y="208" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="260" y1="200" x2="260" y2="226"/><rect class="a-bull" x="252" y="206" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="300" y1="186" x2="300" y2="212"/><rect class="a-bull" x="292" y="192" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="340" y1="174" x2="340" y2="200"/><rect class="a-bull" x="332" y="180" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="380" y1="186" x2="380" y2="212"/><rect class="a-bear" x="372" y="192" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="420" y1="202" x2="420" y2="230"/><rect class="a-bear" x="412" y="208" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="460" y1="220" x2="460" y2="248"/><rect class="a-bear" x="452" y="226" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="500" y1="238" x2="500" y2="266"/><rect class="a-bear" x="492" y="244" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="540" y1="254" x2="540" y2="282"/><rect class="a-bear" x="532" y="260" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="580" y1="268" x2="580" y2="296"/><rect class="a-bear" x="572" y="274" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="620" y1="278" x2="620" y2="304"/><rect class="a-bear" x="612" y="284" width="16" height="14" rx="2"/>
+          </g>
+
+          <path class="aa-line" d="M60 130 L 220 218 L 340 168 L 620 288" style="fill:none;stroke:#fb7185;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round" pathLength="1"/>
+
+          <g class="aa-reveal" style="animation-delay:.55s">
+            <circle class="a-numbub" cx="232" cy="240" r="12"/><text class="a-m" x="232" y="244" text-anchor="middle">A</text>
+            <circle class="a-numbub" cx="352" cy="154" r="12"/><text class="a-m" x="352" y="158" text-anchor="middle">B</text>
+            <circle class="a-numbub" cx="628" cy="288" r="12"/><text class="a-m" x="628" y="292" text-anchor="middle">C</text>
+          </g>
+
+          <text class="a-s" x="470" y="290" style="fill:#fb7185">B often looks like the trend resuming</text>
+        </svg>
+        <figcaption><strong>A zigzag correction.</strong> A and C are the two down-legs; B is the deceptive bounce between them. Corrections are what make wave counting hard — they are messy, and they take more shapes than impulses do.</figcaption>
+      </figure>
+
+      <div class="edu-cards">
+        <div class="edu-card cyan">
+          <span class="ec-ico">🔁</span>
+          <strong>Zigzag</strong>
+          <span>Sharp and quick — a deep A, a shallow B, a C that roughly matches A.</span>
+        </div>
+        <div class="edu-card purple">
+          <span class="ec-ico">⬛</span>
+          <strong>Flat</strong>
+          <span>Sideways and overlapping, with B retracing most of A. Slower and more frustrating.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">📐</span>
+          <strong>Triangle</strong>
+          <span>Five converging legs of chop — usually a pause before the trend resumes.</span>
+        </div>
+      </div>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>◆</i> Impulse</span>
+        <span class="edu-chip green"><i>◆</i> Motive</span>
+        <span class="edu-chip pink"><i>◆</i> Corrective</span>
+        <span class="edu-chip purple"><i>◆</i> Diagonal</span>
+        <span class="edu-chip amber"><i>◆</i> Nested waves</span>
+      </div>
+
+      <h2 id="hard">Why counts are hard</h2>
+      <p>Here is the honest part that most Elliott Wave material skips. Two experienced analysts can look at the same chart and produce two different counts that both respect the three rules. Until price resolves, neither is "wrong".</p>
+      <ul>
+        <li><strong>Subjectivity at every pivot.</strong> Which high is "the" wave 5? On a noisy chart, the answer is not obvious.</li>
+        <li><strong>Alternate counts.</strong> Good practitioners always keep a second, invalidation-style count ready in case the first breaks.</li>
+        <li><strong>Hindsight bias.</strong> Counts always look clean in a textbook and rarely so in real time, where the right-hand side of the chart does not exist yet.</li>
+        <li><strong>Timeframes disagree.</strong> A completed impulse on the 15-minute chart is a small correction on the daily. Both readings can be true at once.</li>
+      </ul>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Use the count as context, not a trigger</strong>
+          The most useful thing a count gives you is an <em>invalidation level</em> — the price that would prove it wrong. That is a risk tool, not a prophecy.
+        </div>
+      </div>
+
+      <h2 id="app">How the app shows a light count</h2>
+      <p>CPE Trade Pro does not pretend to solve the subjectivity problem. What it does is display a <strong>light wave count</strong> and structure labelling on the chart as context, so you are not starting from a blank canvas. That structural read folds into the <strong>Clarity</strong> and <strong>Trend</strong> components of the signal's quality score — the parts that ask whether there is a clean, recognisable pattern agreeing with the direction.</p>
+      <p>Be clear about what that score is. The 0-10 score is built from five measurable parts — <strong>Clarity, Trend, Momentum, Volume and Levels</strong>, each worth up to 2 points. It is <em>not</em> a win rate, not a probability of profit and not an audited record. A wave count is one lens inside it, never a standalone instruction.</p>
+      <p>If you want to see structure, patterns and a light count laid over a live chart, <a href="/download.html">download CPE Trade Pro</a> and study it in DEMO mode — no exchange account required.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/fibonacci-trading-guide.html">Fibonacci trading: retracements and extensions</a></li>
+          <li><a href="/blog/chart-patterns-guide.html">Chart patterns: the shapes that repeat</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/academy.html">The built-in academy</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What Elliott Wave is</a>
+          <a href="#structure">The 5-3 structure</a>
+          <a href="#rules">The three rules</a>
+          <a href="#impulse">Identifying an impulse</a>
+          <a href="#corrections">Corrections A-B-C</a>
+          <a href="#hard">Why counts are hard</a>
+          <a href="#app">How the app shows a count</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/fibonacci-trading-guide.html">Fibonacci trading</a>
+          <a href="/blog/chart-patterns-guide.html">Chart patterns</a>
+          <a href="/signal-guide.html">Signal guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read structure faster with the app</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

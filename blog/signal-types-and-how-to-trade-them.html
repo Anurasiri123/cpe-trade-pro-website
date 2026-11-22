@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Signal Types in CPE Trade Pro — and How to Trade Them</title>
+<meta name="description" content="The signal types the app produces — BUY, SELL and HOLD, spot vs futures versions, grades and the 0-10 quality score — and a plain routine for acting on each one without emotion." />
+<meta name="keywords" content="signal types, buy sell hold signal, how to trade a signal, signal grade, 0-10 score, cpe trade pro signal" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/signal-types-and-how-to-trade-them.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Signal Types in CPE Trade Pro — and How to Trade Them" />
+<meta property="og:description" content="BUY, SELL and HOLD, spot and futures versions, grades and the 0-10 score — and a calm routine for acting on each." />
+<meta property="og:url" content="https://cpetradepro.com/blog/signal-types-and-how-to-trade-them.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Signal Types and How to Trade Them" />
+<meta name="twitter:description" content="Every signal type the app makes, and a simple routine for trading each one." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Signal Types in CPE Trade Pro and How to Trade Them",
+  "description": "The signal types the app produces — BUY, SELL and HOLD, spot vs futures versions, grades and the 0-10 quality score — and a plain routine for acting on each one without emotion.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/signal-types-and-how-to-trade-them.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Signal types and how to trade them", "item": "https://cpetradepro.com/blog/signal-types-and-how-to-trade-them.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the 0-10 quality score a win rate?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The 0-10 score is built from five measurable parts — Clarity, Trend, Momentum, Volume and Levels — each worth up to 2 points. It is not a win rate, not a probability of profit and not an audited track record." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I trade a HOLD signal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. HOLD means no qualified setup was found on that pair and timeframe right now, so there is nothing to trade. Waiting is a deliberate answer, not a missing one." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a spot and a futures signal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A spot signal is long-only, so a SELL reads as avoid or exit. A futures signal can be long or short, so both BUY and SELL produce a full entry, stop and target plan." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Signal types</span>
+    </nav>
+    <span class="eyebrow">Learn · Signals</span>
+    <h1>Signal types in CPE Trade Pro — and how to trade them</h1>
+    <p class="lead">The app speaks in a small, fixed vocabulary: <strong>BUY</strong>, <strong>SELL</strong> and <strong>HOLD</strong>, each in a spot and a futures version, each carrying a grade and a 0-10 quality score. Here is what every one of them means — and a calm routine for acting on it.</p>
+    <div class="page-meta">
+      <span><b>12 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Signals</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>A "signal type" is not a special kind of magic. It is simply the shape the analysis takes when it is finished. Different markets and different accounts can only do certain things — a spot wallet can buy but cannot short; a perpetual futures account can do both — so the app has to be clear about which kind of signal you are looking at.</p>
+      <p>This page covers all of them, in order: the three directions, the spot and futures versions, the grades and the 0-10 score, the four prices that make a signal tradeable, and then a plain routine for each. If you want the engine itself explained, start with <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">how CPE Trade Pro analyses a chart</a>.</p>
+
+      <h2 id="directions">The three directions</h2>
+      <p>Every pair, on every timeframe, ends in exactly one of three states. There is no "maybe", because a maybe is what makes people hesitate and then chase. The direction tells you which side of the market the setup favours — not how much to risk, and not that the trade will work.</p>
+      <table>
+        <thead>
+          <tr><th>Direction</th><th>Meaning</th><th>Where it applies</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>BUY</strong></td><td>A qualified bullish setup</td><td>Spot and Futures</td></tr>
+          <tr><td><strong>SELL</strong></td><td>A qualified bearish setup</td><td>Futures and Forex, where shorting is possible. On Spot it reads as "avoid or exit longs"</td></tr>
+          <tr><td><strong>HOLD</strong></td><td>No qualified setup right now</td><td>Everywhere. It means wait — do not force a trade</td></tr>
+        </tbody>
+      </table>
+      <p>HOLD is not an error and it is not the app "having no idea". It appears when the conditions genuinely do not line up: structure is unclear, momentum contradicts the trend, price is stuck mid-range, or there is no sensible place to put a stop. Those are exactly the conditions where most losses are made, so the app says nothing instead of saying something wrong.</p>
+
+      <h2 id="bsh">BUY, SELL and HOLD</h2>
+      <p>On screen the three directions look like three cards, each with its own colour, its own meaning and its own score. Seeing them side by side is the quickest way to understand that they are different answers to the same question — "is there a qualified setup here?" — rather than three shades of the same trade.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="The CPE Trade Pro direction panel for BTCUSDT on the 4-hour chart: a green BUY card with a quality score of 8.5 out of 10, a red SELL card with a score of 7.2, and an amber HOLD card with no score that reads wait">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="30">CPE Trade Pro · direction</text>
+          <text class="a-s" x="696" y="30" text-anchor="end">BTCUSDT · 4H</text>
+
+          <rect class="a-card aa-slide" x="24" y="50" width="212" height="226" rx="12" style="animation-delay:.1s"/>
+          <rect class="a-fill-green" x="40" y="66" width="92" height="26" rx="13"/>
+          <text class="a-t" x="86" y="84" text-anchor="middle" style="fill:#22c55e">BUY</text>
+          <text class="a-s" x="40" y="118">Qualified bullish setup</text>
+          <text class="a-s" x="40" y="136">Spot · Futures</text>
+          <rect class="a-chip aa-pop" x="40" y="158" width="118" height="28" rx="14" style="animation-delay:.5s"/>
+          <text class="a-m aa-pop" x="99" y="176" text-anchor="middle" style="animation-delay:.55s">8.5/10 · A+</text>
+          <line class="a-tp1" x1="40" y1="212" x2="220" y2="212"/>
+          <text class="a-s" x="40" y="234" style="fill:#00e5a8">entry below · targets above</text>
+
+          <rect class="a-card aa-slide" x="254" y="50" width="212" height="226" rx="12" style="animation-delay:.25s"/>
+          <rect class="a-fill-red" x="270" y="66" width="92" height="26" rx="13"/>
+          <text class="a-t" x="316" y="84" text-anchor="middle" style="fill:#ef4444">SELL</text>
+          <text class="a-s" x="270" y="118">Qualified bearish setup</text>
+          <text class="a-s" x="270" y="136">Futures · Forex</text>
+          <rect class="a-chip aa-pop" x="270" y="158" width="118" height="28" rx="14" style="animation-delay:.65s"/>
+          <text class="a-m aa-pop" x="329" y="176" text-anchor="middle" style="animation-delay:.7s">7.2/10 · A</text>
+          <line class="a-sl" x1="270" y1="212" x2="450" y2="212"/>
+          <text class="a-s" x="270" y="234" style="fill:#ef4444">entry above · targets below</text>
+
+          <rect class="a-card aa-slide" x="484" y="50" width="212" height="226" rx="12" style="animation-delay:.4s"/>
+          <rect class="a-fill-amber" x="500" y="66" width="92" height="26" rx="13"/>
+          <text class="a-t" x="546" y="84" text-anchor="middle" style="fill:#fbbf24">HOLD</text>
+          <text class="a-s" x="500" y="118">No qualified setup</text>
+          <text class="a-s" x="500" y="136">Everywhere · wait</text>
+          <rect class="a-chip aa-pop" x="500" y="158" width="118" height="28" rx="14" style="animation-delay:.8s"/>
+          <text class="a-m aa-pop" x="559" y="176" text-anchor="middle" style="animation-delay:.85s">no score</text>
+          <line class="a-entry aa-march" x1="500" y1="212" x2="680" y2="212"/>
+          <text class="a-s" x="500" y="234" style="fill:#22d3ee">do nothing · protect capital</text>
+        </svg>
+        <figcaption><strong>Three answers, one question.</strong> BUY and SELL come with a score because a setup qualified; HOLD shows no score because nothing qualified. A principle worth copying: the app is allowed to say "wait", and so are you.</figcaption>
+      </figure>
+
+      <h2 id="spot-futures">Spot vs futures versions of a signal</h2>
+      <p>The same analysis runs across both market types, but the <em>action</em> differs because the instrument differs. On <strong>spot</strong> you can only buy and hold, so a BUY is a long idea and a SELL is a warning to avoid or exit — not an instruction to short. On <strong>futures</strong> (USDT perpetuals) both directions are usable, so a BUY and a SELL each produce a full plan with entry, stop and two targets.</p>
+      <p>Forex and metals behave like futures in this respect: pairs such as XAUUSD can be sold as easily as bought, so SELL signals are fully tradeable there too.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card blue">
+          <span class="ec-ico">🪙</span>
+          <strong>Spot signal</strong>
+          <span>Long-only. BUY builds a position; SELL means "avoid or exit longs". No shorting, no leverage forced on you.</span>
+        </div>
+        <div class="edu-card green">
+          <span class="ec-ico">⚡</span>
+          <strong>Futures signal</strong>
+          <span>Both directions are tradeable on perpetuals. BUY and SELL each carry entry, stop, target 1 and target 2.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">💱</span>
+          <strong>Forex &amp; metals</strong>
+          <span>Two-sided by nature. The same engine reads XAUUSD and FX pairs through OANDA, FXCM and the MT4/MT5 bridges.</span>
+        </div>
+      </div>
+
+      <p>You can read more about the two modes in <a href="/blog/spot-futures-and-trading-modes.html">spot, futures and trading modes</a>.</p>
+
+      <h2 id="grades">Grades and the 0-10 score</h2>
+      <p>Once a direction qualifies, the app does not stop. It grades the setup with a <strong>0-10 quality score</strong> built from <strong>five measurable parts, each worth up to 2 points</strong>: Clarity, Trend, Momentum, Volume and Levels. A high score means several independent checks agreed — not one indicator shouting loudly. The raw number is then bucketed into a letter grade, which is simply easier to scan across a watchlist.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="A grade ladder from A plus down to D, showing the score band each grade covers and how much of the checklist agreed">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="32">Grade ladder · 0-10</text>
+          <text class="a-s" x="696" y="32" text-anchor="end">how much of the checklist agreed</text>
+
+          <text class="a-t" x="24" y="80" style="fill:#00e5a8">A+</text>
+          <text class="a-s" x="60" y="80">8.0 – 10</text>
+          <rect class="a-track" x="170" y="66" width="470" height="18" rx="9"/>
+          <rect class="aa-bar a-bar-teal" x="170" y="66" width="470" height="18" rx="9" style="animation-delay:.2s"/>
+
+          <text class="a-t" x="24" y="122" style="fill:#22d3ee">A</text>
+          <text class="a-s" x="60" y="122">6.5 – 7.99</text>
+          <rect class="a-track" x="170" y="108" width="470" height="18" rx="9"/>
+          <rect class="aa-bar a-bar-cyan" x="170" y="108" width="392" height="18" rx="9" style="animation-delay:.4s"/>
+
+          <text class="a-t" x="24" y="164" style="fill:#60a5fa">B</text>
+          <text class="a-s" x="60" y="164">5.0 – 6.49</text>
+          <rect class="a-track" x="170" y="150" width="470" height="18" rx="9"/>
+          <rect class="aa-bar a-bar-blue" x="170" y="150" width="296" height="18" rx="9" style="animation-delay:.6s"/>
+
+          <text class="a-t" x="24" y="206" style="fill:#fbbf24">C</text>
+          <text class="a-s" x="60" y="206">3.5 – 4.99</text>
+          <rect class="a-track" x="170" y="192" width="470" height="18" rx="9"/>
+          <rect class="aa-bar a-bar-amber" x="170" y="192" width="205" height="18" rx="9" style="animation-delay:.8s"/>
+
+          <text class="a-t" x="24" y="248" style="fill:#ef4444">D</text>
+          <text class="a-s" x="60" y="248">below 3.5</text>
+          <rect class="a-track" x="170" y="234" width="470" height="18" rx="9"/>
+          <rect class="aa-bar a-bar-red" x="170" y="234" width="118" height="18" rx="9" style="animation-delay:1s"/>
+          <text class="a-s" x="696" y="284" text-anchor="end">longer bar = more checks agreed, not a promise of profit</text>
+        </svg>
+        <figcaption><strong>The ladder, top to bottom.</strong> A higher grade means more of the five checks agreed. It does <em>not</em> mean the trade cannot lose — a D is usually best skipped, but an A+ is still only a well-reasoned setup.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Score</th><th>Grade</th><th>Plain English</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>8.0 - 10</td><td><strong>A+</strong></td><td>Almost every check agreed</td></tr>
+          <tr><td>6.5 - 7.99</td><td><strong>A</strong></td><td>Most checks agreed</td></tr>
+          <tr><td>5.0 - 6.49</td><td><strong>B</strong></td><td>A workable setup with some gaps</td></tr>
+          <tr><td>3.5 - 4.99</td><td><strong>C</strong></td><td>Thin evidence — be selective</td></tr>
+          <tr><td>Below 3.5</td><td><strong>D</strong></td><td>Little agreement. Usually best skipped</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>What the score is not</strong>
+          The 0-10 score is not a win rate, not a probability of profit and not an audited performance record. It is a transparent summary of how many independent checks agreed, so you can compare setups and be more selective.
+        </div>
+      </div>
+
+      <h2 id="four-prices">A signal is four prices, not a badge</h2>
+      <p>A direction on its own is not tradeable. What makes a CPE Trade Pro signal usable is that it always arrives as a complete plan: an <strong>entry</strong>, a <strong>stop loss</strong> and <strong>two targets</strong>. Those four prices are the signal. The direction and score tell you why it is interesting; the prices tell you what to actually do.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="A signal card for BTCUSDT on the 4-hour chart showing entry 64,300, stop loss 63,100, target 1 at 66,800 and target 2 at 69,400, with a quality score chip of 8.5 out of 10 grade A plus">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="32">Signal card · BTCUSDT 4H</text>
+          <rect class="a-chip aa-pop" x="512" y="16" width="184" height="30" rx="15" style="animation-delay:.2s"/>
+          <text class="a-m aa-pop" x="604" y="36" text-anchor="middle" style="animation-delay:.25s">8.5/10 · GRADE A+</text>
+
+          <g class="aa-reveal" style="animation-delay:.5s">
+            <circle cx="40" cy="86" r="7" style="fill:#22d3ee"/>
+            <text class="a-t" x="62" y="82">ENTRY</text>
+            <text class="a-s" x="62" y="97">market · at price</text>
+            <text class="a-m" x="696" y="90" text-anchor="end" style="fill:#22d3ee">64,300</text>
+            <line class="a-entry" x1="24" y1="112" x2="696" y2="112"/>
+          </g>
+
+          <g class="aa-reveal" style="animation-delay:.75s">
+            <circle cx="40" cy="142" r="7" style="fill:#ef4444"/>
+            <text class="a-t" x="62" y="138">STOP LOSS</text>
+            <text class="a-s" x="62" y="153">proves the idea wrong</text>
+            <text class="a-m" x="696" y="146" text-anchor="end" style="fill:#ef4444">63,100</text>
+            <line class="a-sl" x1="24" y1="168" x2="696" y2="168"/>
+          </g>
+
+          <g class="aa-reveal" style="animation-delay:1s">
+            <circle cx="40" cy="198" r="7" style="fill:#00e5a8"/>
+            <text class="a-t" x="62" y="194">TARGET 1</text>
+            <text class="a-s" x="62" y="209">nearer level · partial</text>
+            <text class="a-m" x="696" y="202" text-anchor="end" style="fill:#00e5a8">66,800</text>
+            <line class="a-tp1" x1="24" y1="224" x2="696" y2="224"/>
+          </g>
+
+          <g class="aa-reveal" style="animation-delay:1.25s">
+            <circle cx="40" cy="254" r="7" style="fill:#fbbf24"/>
+            <text class="a-t" x="62" y="250">TARGET 2</text>
+            <text class="a-s" x="62" y="265">further objective</text>
+            <text class="a-m" x="696" y="258" text-anchor="end" style="fill:#fbbf24">69,400</text>
+            <line class="a-tp2" x1="24" y1="280" x2="696" y2="280"/>
+          </g>
+        </svg>
+        <figcaption><strong>The four prices are the signal.</strong> Entry, stop and two targets for BTCUSDT 4H. The score chip sits on top; the plan sits underneath. If you only remember one line from this page, make it this one — a direction without these four prices is not a plan.</figcaption>
+      </figure>
+
+      <h2 id="how-buy">How to trade a BUY</h2>
+      <p>A BUY is a qualified bullish setup. Acting on it is mostly about patience and arithmetic, not conviction:</p>
+      <ol>
+        <li><strong>Check the plan, not the colour.</strong> Look at the distance from entry to stop. If that distance is wider than your risk per trade allows, the trade is too big — skip it or reduce size, never widen the stop.</li>
+        <li><strong>Decide your entry style.</strong> The app labels it <code>MARKET ENTRY</code> when the trade is taken at price, or <code>LIMIT ENTRY</code> when it waits at a zone. A limit entry is calmer and gives a better price, but it may not fill.</li>
+        <li><strong>Set the stop before you enter</strong>, at the level the app drew. That is your defined risk.</li>
+        <li><strong>Plan the exits.</strong> Target 1 is the nearer level where partial profit is often taken; target 2 is the further objective for the rest.</li>
+        <li><strong>Leave it alone.</strong> Moving the stop wider after entering is the single most common way a small loss becomes a large one.</li>
+      </ol>
+
+      <h2 id="how-sell">How to trade a SELL</h2>
+      <p>A SELL is a qualified bearish setup, and it only becomes a trade where shorting is possible — futures or Forex. On spot, treat it as guidance to avoid or exit longs rather than an instruction to short.</p>
+      <ul>
+        <li><strong>Confirm the market type first.</strong> A SELL on a spot-only pair is information, not a position.</li>
+        <li><strong>Same rules as a BUY, mirrored.</strong> Entry above price, stop above the invalidation level, targets below.</li>
+        <li><strong>Be more selective in uptrends.</strong> A counter-trend short is a harder trade than a short that agrees with structure.</li>
+        <li><strong>Respect the score.</strong> A SELL with a low score and weak Trend is usually best left alone.</li>
+      </ul>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Direction is the start, not the decision</strong>
+          The app gives you a plan you can read. Your job is to check whether the risk in that plan fits your account — that is what turns a signal into a trade you can live with.
+        </div>
+      </div>
+
+      <h2 id="hold">What to do with HOLD</h2>
+      <p>HOLD is the most useful type and the hardest to obey. It is the app telling you that no setup qualified: structure is unclear, momentum disagrees with trend, price is stuck, or there is no sensible place for a stop. In those conditions, doing nothing is the correct action.</p>
+      <p>Most beginner losses come from treating HOLD as an invitation to browse for a different indicator that will say "buy". It will. There is always a chart somewhere that agrees with what you already want to do. The discipline is to accept HOLD as a real answer and move on.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>HOLD is a decision, not a delay</strong>
+          Waiting is not wasted time. It is the position that keeps your capital intact for the setup that actually qualifies.
+        </div>
+      </div>
+
+      <h2 id="auto">Manual vs auto</h2>
+      <p>Around all of this sit two execution modes. In <strong>manual</strong> mode you read the signal and place the trade yourself. In <strong>auto</strong> mode the app can act on qualifying signals according to the rules you set. Neither is more "correct" — they suit different temperaments and different amounts of screen time.</p>
+
+      <div class="edu-chips">
+        <span class="edu-chip green"><i>MANUAL</i> You place every order</span>
+        <span class="edu-chip blue"><i>AUTO</i> The app follows your rules</span>
+        <span class="edu-chip cyan"><i>DEMO</i> No exchange account needed</span>
+        <span class="edu-chip amber"><i>LIVE</i> Your own API keys</span>
+      </div>
+
+      <p>Whatever the mode, <strong>DEMO</strong> exists so you can learn the app's language — how a BUY reads, what a low score looks like, how a HOLD feels — without risking money. Run signals in DEMO, then connect your own API keys for <strong>LIVE</strong> when you are ready. See <a href="/blog/demo-trading-before-live.html">why you should demo trade before going live</a>.</p>
+
+      <h2 id="checklist">A 60-second pre-trade checklist</h2>
+      <p>Before any order, run this in your head. If a line fails, the trade fails — there is always another setup.</p>
+      <ol>
+        <li><strong>Direction clear?</strong> BUY or SELL, not a forced HOLD.</li>
+        <li><strong>Market type matches?</strong> A SELL needs futures or Forex, not spot.</li>
+        <li><strong>Score sensible?</strong> You can read the five parts, not just the total.</li>
+        <li><strong>Stop defined?</strong> And within your risk per trade.</li>
+        <li><strong>Position size set?</strong> From risk, not from feeling.</li>
+        <li><strong>Targets noted?</strong> Where you take partial profit and where the rest exits.</li>
+        <li><strong>Plan written?</strong> So you review what you did, not what you remember.</li>
+      </ol>
+      <p>Ready to see every signal type on live charts? <a href="/download.html">Download CPE Trade Pro free</a> and watch a BUY, a SELL and a HOLD build from candles into a full plan — then compare them with the <a href="/signal-guide.html">signal guide</a>.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/blog/what-is-a-trading-signal.html">What is a trading signal?</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+          <li><a href="/blog/spot-futures-and-trading-modes.html">Spot, futures and trading modes</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Every signal type in one app</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise each one first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#directions">The three directions</a>
+          <a href="#bsh">BUY, SELL and HOLD</a>
+          <a href="#spot-futures">Spot vs futures</a>
+          <a href="#grades">Grades and the 0-10 score</a>
+          <a href="#four-prices">Four prices, not a badge</a>
+          <a href="#how-buy">How to trade a BUY</a>
+          <a href="#how-sell">How to trade a SELL</a>
+          <a href="#hold">What to do with HOLD</a>
+          <a href="#auto">Manual vs auto</a>
+          <a href="#checklist">60-second checklist</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How the analysis works</a>
+          <a href="/blog/what-is-a-trading-signal.html">What is a trading signal?</a>
+          <a href="/signal-guide.html">Signal guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read a signal, then trade it calmly</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="whats-float" aria-label="WhatsApp us" title="WhatsApp: +94774940944">💬</a>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

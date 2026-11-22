@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Fibonacci Explained: Levels, Retracement, Extension and Targets</title>
+<meta name="description" content="What Fibonacci retracement and extension actually are, how to draw them, the 38.2 / 50 / 61.8 levels that matter, how to set targets, and how CPE Trade Pro uses Fibonacci levels." />
+<meta name="keywords" content="fibonacci retracement, fibonacci extension, 61.8 golden ratio, fibonacci targets, fib levels" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/fibonacci-trading-guide.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Fibonacci Explained: Levels, Retracement, Extension and Targets" />
+<meta property="og:description" content="What Fibonacci retracement and extension actually are, how to draw them, the levels that matter, and how CPE Trade Pro folds Fibonacci into its level analysis." />
+<meta property="og:url" content="https://cpetradepro.com/blog/fibonacci-trading-guide.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fibonacci Explained: Levels, Retracement, Extension and Targets" />
+<meta name="twitter:description" content="Retracement, the golden pocket and extensions — what the levels are and how they are used to place targets." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fibonacci Explained: Levels, Retracement, Extension and Targets",
+  "description": "What Fibonacci retracement and extension actually are, how to draw them, the 38.2 / 50 / 61.8 levels that matter, how to set targets, and how CPE Trade Pro uses Fibonacci levels.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/fibonacci-trading-guide.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Fibonacci Explained: Levels, Retracement, Extension and Targets", "item": "https://cpetradepro.com/blog/fibonacci-trading-guide.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does price always reverse at a Fibonacci level?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Fibonacci levels mark areas where traders tend to watch for a pullback to end, but price can pass straight through them. They are a framework for location, not a forecast, and they work best when something else agrees with them." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I draw Fibonacci from the wick or the body?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most traders anchor to the candle wicks because they show the real swing extremes. The important thing is consistency — pick one method and apply it the same way every time." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does CPE Trade Pro use Fibonacci?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Fibonacci levels feed the Levels part of the 0-10 quality score and can be used as the basis for entry and target placement. The score measures how much of the analysis checklist agrees; it is not a win rate or a probability of profit." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Fibonacci explained</span>
+    </nav>
+    <span class="eyebrow">Learn · Fibonacci</span>
+    <h1>Fibonacci Explained: Levels, Retracement, Extension and Targets</h1>
+    <p class="lead">Fibonacci levels are one of the most requested chart tools and one of the most misunderstood. Here is what retracement and extension actually <strong>measure</strong>, how to draw them honestly, and where CPE Trade Pro reads them as part of its level analysis.</p>
+    <div class="page-meta">
+      <span><b>10 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Type "Fibonacci" into any chart and you get a fan of horizontal lines that look precise, almost scientific. That precision is exactly why the tool is misused. The levels are not laws of the market — they are a structured way to mark <strong>where a pullback might pause</strong>, and they only earn their keep when something else on the chart agrees with them.</p>
+      <p>This article covers what the levels are, how to draw them, the golden pocket, how extensions set targets, and how the CPE Trade Pro analysis reads Fibonacci as part of its score.</p>
+
+      <h2 id="what">What Fibonacci is (and is not)</h2>
+      <p>The ratios come from a number sequence in which each figure is the sum of the two before it: 1, 1, 2, 3, 5, 8, 13, 21, 34... Divide one number by the next and you approach <strong>0.618</strong>. Divide by the number two places ahead and you approach 0.382. Those two numbers, plus their simple relatives, produce the retracement levels traders use every day: <strong>23.6, 38.2, 50, 61.8 and 78.6 percent</strong>.</p>
+      <p>What Fibonacci is: a way to divide the distance of a move into proportional zones so you can talk about <em>where</em> price is, not just which direction it is heading. What it is not: a prediction, a signal on its own, or a guarantee that price will reverse. The 50 percent level is not even a Fibonacci number — it is simply the midpoint, included because markets often pause halfway.</p>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Fib is about location, not direction</strong>
+          A Fibonacci level tells you a price is interesting. It does not tell you the trend will resume. That judgment comes from structure, momentum and context — which is why CPE Trade Pro scores Fibonacci as one input, never the whole answer.
+        </div>
+      </div>
+
+      <h2 id="retracement">The retracement levels (figure)</h2>
+      <p>A retracement measures how far a pullback has travelled against the previous move. A 61.8 percent retracement means price has given back roughly 61.8 percent of the last swing. The figure below shows a swing from low to high, with the standard levels drawn across it.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 360" role="img" aria-label="A rising candle swing from a low to a high with Fibonacci retracement levels 23.6, 38.2, 50, 61.8 and 78.6 percent drawn across it, and price pulling back into the 61.8 percent zone">
+          <rect class="a-panel" x="0" y="0" width="720" height="360" rx="14"/>
+          <text class="a-h" x="22" y="26">Fibonacci retracement · BTCUSDT · 4H</text>
+          <rect class="a-chip" x="572" y="10" width="128" height="22" rx="11"/>
+          <text class="a-m" x="636" y="25" text-anchor="middle">RETRACEMENT</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="130" x2="700" y2="130"/>
+            <line x1="20" y1="170" x2="700" y2="170"/>
+            <line x1="20" y1="210" x2="700" y2="210"/>
+            <line x1="20" y1="250" x2="700" y2="250"/>
+            <line x1="20" y1="290" x2="700" y2="290"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="40" y1="244" x2="40" y2="264"/><rect class="a-bull" x="34" y="248" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="70" y1="228" x2="70" y2="250"/><rect class="a-bull" x="64" y="232" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="100" y1="214" x2="100" y2="236"/><rect class="a-bull" x="94" y="218" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="130" y1="204" x2="130" y2="222"/><rect class="a-bear" x="124" y="208" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="160" y1="188" x2="160" y2="212"/><rect class="a-bull" x="154" y="192" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="190" y1="170" x2="190" y2="194"/><rect class="a-bull" x="184" y="174" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="220" y1="152" x2="220" y2="178"/><rect class="a-bull" x="214" y="156" width="12" height="18" rx="1.5"/>
+            <line class="a-wbear" x1="250" y1="144" x2="250" y2="162"/><rect class="a-bear" x="244" y="148" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="280" y1="126" x2="280" y2="152"/><rect class="a-bull" x="274" y="130" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="310" y1="108" x2="310" y2="134"/><rect class="a-bull" x="304" y="112" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="340" y1="96" x2="340" y2="118"/><rect class="a-bull" x="334" y="100" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="370" y1="84" x2="370" y2="108"/><rect class="a-bull" x="364" y="88" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="400" y1="72" x2="400" y2="96"/><rect class="a-bull" x="394" y="76" width="12" height="18" rx="1.5"/>
+          </g>
+
+          <circle class="aa-pop" cx="400" cy="76" r="4" style="fill:#fbbf24;animation-delay:1.6s"/>
+
+          <g>
+            <line class="a-wbear" x1="430" y1="84" x2="430" y2="104"/><rect class="a-bear" x="424" y="88" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="460" y1="102" x2="460" y2="126"/><rect class="a-bear" x="454" y="106" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="490" y1="126" x2="490" y2="150"/><rect class="a-bear" x="484" y="130" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="520" y1="146" x2="520" y2="172"/><rect class="a-bear" x="514" y="150" width="12" height="18" rx="1.5"/>
+            <line class="a-wbear" x1="550" y1="168" x2="550" y2="192"/><rect class="a-bear" x="544" y="172" width="12" height="18" rx="1.5"/>
+            <line class="a-wbear" x1="580" y1="182" x2="580" y2="202"/><rect class="a-bear" x="574" y="186" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="610" y1="176" x2="610" y2="196"/><rect class="a-bull" x="604" y="180" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="640" y1="184" x2="640" y2="204"/><rect class="a-bull" x="634" y="188" width="12" height="12" rx="1.5"/>
+            <line class="a-wbear" x1="670" y1="188" x2="670" y2="206"/><rect class="a-bear" x="664" y="192" width="12" height="10" rx="1.5"/>
+          </g>
+
+          <g class="aa-scan" style="--aa-x:648px">
+            <rect x="20" y="46" width="26" height="300" fill="rgba(34,211,238,.10)"/>
+            <line x1="46" y1="46" x2="46" y2="346" style="stroke:#22d3ee;stroke-width:2"/>
+          </g>
+
+          <line x1="20" y1="76" x2="700" y2="76" style="stroke:#94a3b8;stroke-width:1.5;stroke-dasharray:6 5"/>
+          <line x1="20" y1="120" x2="700" y2="120" style="stroke:#60a5fa;stroke-width:1.5;stroke-dasharray:6 5"/>
+          <line x1="20" y1="147" x2="700" y2="147" style="stroke:#60a5fa;stroke-width:1.5;stroke-dasharray:6 5"/>
+          <line x1="20" y1="169" x2="700" y2="169" style="stroke:#fbbf24;stroke-width:1.5;stroke-dasharray:6 5"/>
+          <line class="a-tp1" x1="20" y1="191" x2="700" y2="191"/>
+          <line x1="20" y1="222" x2="700" y2="222" style="stroke:#a855f7;stroke-width:1.5;stroke-dasharray:6 5"/>
+          <line class="a-sl" x1="20" y1="262" x2="700" y2="262"/>
+
+          <text class="a-s" x="694" y="72" text-anchor="end" style="fill:#94a3b8">0% · swing high</text>
+          <text class="a-s" x="694" y="116" text-anchor="end" style="fill:#60a5fa">23.6%</text>
+          <text class="a-s" x="694" y="143" text-anchor="end" style="fill:#60a5fa">38.2%</text>
+          <text class="a-s" x="694" y="165" text-anchor="end" style="fill:#fbbf24">50.0%</text>
+          <text class="a-s" x="694" y="187" text-anchor="end" style="fill:#00e5a8">61.8% · golden</text>
+          <text class="a-s" x="694" y="218" text-anchor="end" style="fill:#a855f7">78.6%</text>
+          <text class="a-s" x="694" y="258" text-anchor="end" style="fill:#ef4444">100% · swing low</text>
+        </svg>
+        <figcaption><strong>Retracement on a swing.</strong> Draw from the swing low to the swing high and the levels divide that distance. Here price runs up, then gives back most of the move and pauses near the <b>61.8%</b> level — the golden ratio that sits at the heart of the tool.</figcaption>
+      </figure>
+
+      <h2 id="draw">How to draw a retracement</h2>
+      <p>Fibonacci is only as good as the swing you attach it to, and the swing is a choice. A simple, repeatable method:</p>
+      <ol>
+        <li><strong>Find a clean impulse.</strong> Look for a move that clearly left a low and reached a high (or the reverse) without chopping sideways in the middle.</li>
+        <li><strong>Anchor wick to wick.</strong> Connect the lowest wick to the highest wick of that swing. Use the same convention every time so your zones are comparable.</li>
+        <li><strong>Check the higher timeframe first.</strong> A fib on the daily swing outranks a fib on the 15-minute. If they overlap, the region is stronger.</li>
+        <li><strong>Leave it alone.</strong> Redraw only when a genuinely new swing forms. Moving the tool to fit price is how the levels stop meaning anything.</li>
+      </ol>
+      <p>The mechanics of anchors, snapping and clearing are covered in our <a href="/blog/chart-drawing-tools-guide.html">chart drawing tools guide</a>.</p>
+
+      <h2 id="golden">The golden pocket 61.8–65%</h2>
+      <p>The single most watched zone is the cluster between <strong>61.8 and 65 percent</strong> — often called the golden pocket. It is deep enough to look like a real pullback, shallow enough that the trend can still be intact, and it is where the 0.618 ratio overlaps with the 0.65 reading many traders add.</p>
+      <p>Two honest caveats. First, price trades <em>through</em> the pocket all the time — a level is a zone, not a wall. Second, the pocket is only interesting when it lines up with something else: a moving average, a prior support shelf, a volume shelf, or an order block. On its own it is a band on a chart.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="A zoomed view of price retracing into the golden pocket between the 61.8 and 65 percent levels, shown as a highlighted band where a pullback finds support">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="22" y="26">Golden pocket · 61.8 – 65.0%</text>
+          <rect class="a-chip" x="596" y="10" width="104" height="22" rx="11"/>
+          <text class="a-m" x="648" y="25" text-anchor="middle">ZOOM</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="70" x2="700" y2="70"/>
+            <line x1="20" y1="120" x2="700" y2="120"/>
+            <line x1="20" y1="170" x2="700" y2="170"/>
+            <line x1="20" y1="220" x2="700" y2="220"/>
+            <line x1="20" y1="270" x2="700" y2="270"/>
+          </g>
+
+          <rect class="a-fill-teal aa-reveal" x="20" y="150" width="680" height="44" rx="6" style="animation-delay:.4s"/>
+          <text class="a-s aa-reveal" x="694" y="146" text-anchor="end" style="fill:#00e5a8;animation-delay:.5s">61.8%</text>
+          <text class="a-s aa-reveal" x="694" y="210" text-anchor="end" style="fill:#00e5a8;animation-delay:.6s">65.0%</text>
+          <text class="a-t aa-reveal" x="360" y="180" text-anchor="middle" style="fill:#0a1120;animation-delay:.7s">GOLDEN POCKET</text>
+
+          <g>
+            <line class="a-wbear" x1="60" y1="60" x2="60" y2="84"/><rect class="a-bear" x="54" y="64" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="100" y1="72" x2="100" y2="98"/><rect class="a-bear" x="94" y="76" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="140" y1="94" x2="140" y2="120"/><rect class="a-bear" x="134" y="98" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="180" y1="118" x2="180" y2="144"/><rect class="a-bear" x="174" y="122" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="220" y1="138" x2="220" y2="162"/><rect class="a-bear" x="214" y="142" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="260" y1="164" x2="260" y2="188"/><rect class="a-bull" x="254" y="168" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="300" y1="156" x2="300" y2="182"/><rect class="a-bull" x="294" y="160" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="340" y1="140" x2="340" y2="168"/><rect class="a-bull" x="334" y="144" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="380" y1="122" x2="380" y2="150"/><rect class="a-bull" x="374" y="126" width="12" height="20" rx="1.5"/>
+            <line class="a-wbear" x1="420" y1="118" x2="420" y2="138"/><rect class="a-bear" x="414" y="122" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="460" y1="104" x2="460" y2="132"/><rect class="a-bull" x="454" y="108" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="500" y1="88" x2="500" y2="116"/><rect class="a-bull" x="494" y="92" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="540" y1="74" x2="540" y2="100"/><rect class="a-bull" x="534" y="78" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="580" y1="60" x2="580" y2="86"/><rect class="a-bull" x="574" y="64" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="620" y1="48" x2="620" y2="74"/><rect class="a-bull" x="614" y="52" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="660" y1="40" x2="660" y2="64"/><rect class="a-bull" x="654" y="44" width="12" height="16" rx="1.5"/>
+          </g>
+
+          <circle class="aa-pulse" cx="260" cy="186" r="5" style="fill:#00e5a8"/>
+        </svg>
+        <figcaption><strong>The golden pocket.</strong> Price pulls back into the <b>61.8–65%</b> band, finds bids and turns back up. The zone works as a decision area — somewhere to watch for a reaction — not as a promise that the reaction happens.</figcaption>
+      </figure>
+
+      <p>Different levels tend to matter in different contexts:</p>
+      <div class="edu-chips">
+        <span class="edu-chip blue"><i>23.6%</i> shallow, strong trend</span>
+        <span class="edu-chip green"><i>38.2%</i> common pullback</span>
+        <span class="edu-chip amber"><i>50%</i> midpoint</span>
+        <span class="edu-chip cyan"><i>61.8%</i> golden pocket</span>
+        <span class="edu-chip purple"><i>78.6%</i> deep, last defence</span>
+      </div>
+
+      <h2 id="extension">Extensions and setting targets</h2>
+      <p>If retracements measure a pullback, <strong>extensions</strong> project beyond the original swing to estimate where a move might travel next. The common extension ratios are <strong>1.272</strong> and <strong>1.618</strong>, with 2.0 as a further objective. Traders use them to place take-profit levels instead of guessing at round numbers.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A swing from low to high with a pullback, and Fibonacci extension levels at 1.272 and 1.618 projected above the high, labelled target one and target two">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="22" y="26">Fibonacci extension · targets</text>
+          <rect class="a-chip" x="576" y="10" width="124" height="22" rx="11"/>
+          <text class="a-m" x="638" y="25" text-anchor="middle">EXTENSION</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="60" x2="700" y2="60"/>
+            <line x1="20" y1="100" x2="700" y2="100"/>
+            <line x1="20" y1="140" x2="700" y2="140"/>
+            <line x1="20" y1="180" x2="700" y2="180"/>
+            <line x1="20" y1="220" x2="700" y2="220"/>
+            <line x1="20" y1="260" x2="700" y2="260"/>
+          </g>
+
+          <line class="a-tp2" x1="20" y1="70" x2="700" y2="70"/>
+          <line class="a-tp1" x1="20" y1="128" x2="700" y2="128"/>
+          <line x1="20" y1="196" x2="700" y2="196" style="stroke:#94a3b8;stroke-width:1.5;stroke-dasharray:6 5"/>
+          <line class="a-entry" x1="20" y1="230" x2="700" y2="230"/>
+          <line class="a-sl" x1="20" y1="284" x2="700" y2="284"/>
+
+          <g>
+            <line class="a-wbull" x1="50" y1="240" x2="50" y2="270"/><rect class="a-bull" x="44" y="246" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="90" y1="212" x2="90" y2="244"/><rect class="a-bull" x="84" y="218" width="12" height="22" rx="1.5"/>
+            <line class="a-wbear" x1="130" y1="200" x2="130" y2="222"/><rect class="a-bear" x="124" y="206" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="170" y1="176" x2="170" y2="206"/><rect class="a-bull" x="164" y="182" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="210" y1="150" x2="210" y2="182"/><rect class="a-bull" x="204" y="156" width="12" height="22" rx="1.5"/>
+            <line class="a-wbull" x1="250" y1="128" x2="250" y2="158"/><rect class="a-bull" x="244" y="134" width="12" height="20" rx="1.5"/>
+            <line class="a-wbear" x1="290" y1="132" x2="290" y2="152"/><rect class="a-bear" x="284" y="138" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="330" y1="150" x2="330" y2="176"/><rect class="a-bear" x="324" y="156" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="370" y1="174" x2="370" y2="198"/><rect class="a-bear" x="364" y="180" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="410" y1="196" x2="410" y2="222"/><rect class="a-bull" x="404" y="200" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="450" y1="172" x2="450" y2="200"/><rect class="a-bull" x="444" y="178" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="490" y1="144" x2="490" y2="174"/><rect class="a-bull" x="484" y="150" width="12" height="22" rx="1.5"/>
+            <line class="a-wbull" x1="530" y1="120" x2="530" y2="150"/><rect class="a-bull" x="524" y="126" width="12" height="22" rx="1.5"/>
+            <line class="a-wbull" x1="570" y1="96" x2="570" y2="128"/><rect class="a-bull" x="564" y="102" width="12" height="24" rx="1.5"/>
+            <line class="a-wbull" x1="610" y1="82" x2="610" y2="110"/><rect class="a-bull" x="604" y="88" width="12" height="20" rx="1.5"/>
+            <line class="a-wbull" x1="650" y1="70" x2="650" y2="96"/><rect class="a-bull" x="644" y="76" width="12" height="18" rx="1.5"/>
+          </g>
+
+          <line class="aa-line" x1="410" y1="222" x2="660" y2="222" pathLength="1" style="stroke:#22d3ee;stroke-width:2;fill:none"/>
+          <text class="a-s" x="694" y="66" text-anchor="end" style="fill:#fbbf24">1.618 · TARGET 2</text>
+          <text class="a-s" x="694" y="124" text-anchor="end" style="fill:#00e5a8">1.272 · TARGET 1</text>
+          <text class="a-s" x="694" y="192" text-anchor="end" style="fill:#94a3b8">0.0% · prior high</text>
+          <text class="a-s" x="694" y="226" text-anchor="end" style="fill:#22d3ee">entry at pullback</text>
+          <text class="a-s" x="694" y="280" text-anchor="end" style="fill:#ef4444">invalidation</text>
+        </svg>
+        <figcaption><strong>Extensions set targets.</strong> After a pullback, the 1.272 and 1.618 extensions above the prior high give two objective places to aim, instead of picking a round number. The <b>entry</b> sits at the pullback zone; the <b>invalidation</b> sits below it.</figcaption>
+      </figure>
+
+      <h2 id="table">Fibonacci level table</h2>
+      <p>None of these numbers guarantees a reaction, but they do describe what a level usually represents. Treat the right column as a starting point for a question, not an answer.</p>
+      <table>
+        <thead>
+          <tr><th>Level</th><th>Name</th><th>What it usually suggests</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>23.6%</strong></td><td>Shallow</td><td>Very strong trend that barely pulls back — often a continuation entry</td></tr>
+          <tr><td><strong>38.2%</strong></td><td>First real pullback</td><td>A common healthy retracement in a trending market</td></tr>
+          <tr><td><strong>50%</strong></td><td>Midpoint</td><td>Halfway — a frequent decision point, not a Fibonacci number</td></tr>
+          <tr><td><strong>61.8%</strong></td><td>Golden ratio</td><td>The deepest level that still fits a strong trend, part of the golden pocket</td></tr>
+          <tr><td><strong>78.6%</strong></td><td>Deep retracement</td><td>Almost a full reset — the trend is under real pressure here</td></tr>
+          <tr><td><strong>1.272 / 1.618</strong></td><td>Extensions</td><td>Projections used to place take-profit targets beyond the swing</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>A level is a zone, not a wall</strong>
+          Price can slice straight through 61.8% without a pause. Never risk more simply because price reached an "important" ratio — Fibonacci tells you the price is interesting, not that it will turn.
+        </div>
+      </div>
+
+      <h2 id="mistakes">Common mistakes</h2>
+      <ul>
+        <li><strong>Drawing on every wiggle.</strong> If the swing is not a clear impulse, the levels are noise.</li>
+        <li><strong>Ignoring the higher timeframe.</strong> A 15-minute fib inside a daily downtrend is fighting the tide.</li>
+        <li><strong>Using Fibonacci alone.</strong> A level without structure, momentum or volume behind it is just a line.</li>
+        <li><strong>Redrawing to fit price.</strong> Moving the anchors after price moves is curve-fitting your own chart.</li>
+        <li><strong>Treating 61.8% as a guarantee.</strong> It is watched a lot, which is precisely why it sometimes gets swept before the real move.</li>
+      </ul>
+      <p>Fibonacci pairs naturally with wave structure — see <a href="/blog/elliott-wave-explained.html">Elliott Wave explained</a> — and with the wider picture in <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">how CPE Trade Pro analyses a chart</a>.</p>
+
+      <h2 id="app">How CPE Trade Pro uses Fibonacci</h2>
+      <p>In the app, Fibonacci is one input among several, not a standalone signal. When a pullback is measured, <strong>Fibonacci levels feed the Levels part of the 0-10 quality score</strong> — the same part that reads Bollinger band edges, support and resistance and volatility. That part is worth up to <strong>2 points</strong>. Moving averages and ichimoku-type trend studies, by comparison, feed the Trend part.</p>
+      <p>The score itself is built from five measurable parts — <strong>Clarity, Trend, Momentum, Volume and Levels</strong> — each capped at 2 points, for a maximum of 10. Fibonacci contributes to Levels only. It is worth being exact about what that means: <em>the 0-10 score is not a win rate, not a probability of profit and not an audited performance record.</em> It simply reports how much of the checklist agreed.</p>
+      <p>Practically, a well-aligned golden pocket that also sits on a moving average and a prior support shelf is more likely to lift the Levels part of the score than a level floating alone in open space. That is the honest role of Fibonacci here: it makes a location a little more or less interesting, and the score reflects that.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card blue">
+          <span class="ec-ico">📐</span>
+          <strong>Retracement</strong>
+          <span>Marks where a pullback may pause inside the last swing — 38.2, 50, 61.8 percent.</span>
+        </div>
+        <div class="edu-card green">
+          <span class="ec-ico">🎯</span>
+          <strong>Extension</strong>
+          <span>Projects beyond the swing at 1.272 and 1.618 to place take-profit targets.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🟡</span>
+          <strong>Golden pocket</strong>
+          <span>The 61.8–65% band — the most watched pullback zone in trending markets.</span>
+        </div>
+        <div class="edu-card purple">
+          <span class="ec-ico">🔗</span>
+          <strong>Confluence</strong>
+          <span>Fib matters most when a moving average or support shelf agrees with it.</span>
+        </div>
+      </div>
+
+      <p>Ready to see levels scored instead of guessed? <a href="/download.html">Download CPE Trade Pro free</a> and watch the app read Fibonacci, band edges and structure into a single graded plan.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/chart-drawing-tools-guide.html">Chart drawing tools: a practical guide</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/blog/elliott-wave-explained.html">Elliott Wave explained</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Score levels, don't guess them</h4>
+        <p>Fibonacci, Bollinger edges and structure read together into a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What Fibonacci is</a>
+          <a href="#retracement">The retracement levels</a>
+          <a href="#draw">How to draw a retracement</a>
+          <a href="#golden">The golden pocket</a>
+          <a href="#extension">Extensions and targets</a>
+          <a href="#table">Fibonacci level table</a>
+          <a href="#mistakes">Common mistakes</a>
+          <a href="#app">How CPE Trade Pro uses it</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/elliott-wave-explained.html">Elliott Wave explained</a>
+          <a href="/blog/chart-drawing-tools-guide.html">Chart drawing tools</a>
+          <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How the analysis works</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Turn levels into a scored plan</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

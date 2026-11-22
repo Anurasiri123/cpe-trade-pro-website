@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>VWAP Explained: The Volume-Weighted Average Price</title>
+<meta name="description" content="What VWAP is, why intraday traders treat it as a fair-value line, anchored VWAP, and how CPE Trade Pro uses a VWAP series in its analysis." />
+<meta name="keywords" content="vwap, volume weighted average price, anchored vwap, intraday fair value, institutional level" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/vwap-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="VWAP Explained: The Volume-Weighted Average Price" />
+<meta property="og:description" content="What VWAP is, why it acts as an intraday fair-value line, anchored VWAP, and how the app reads it." />
+<meta property="og:url" content="https://cpetradepro.com/blog/vwap-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VWAP Explained: The Volume-Weighted Average Price" />
+<meta name="twitter:description" content="The intraday fair-value line — how VWAP is built and how to use it for entries and targets." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VWAP Explained: The Volume-Weighted Average Price",
+  "description": "What VWAP is, why intraday traders treat it as a fair-value line, anchored VWAP, and how CPE Trade Pro uses a VWAP series in its analysis.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/vwap-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "VWAP explained", "item": "https://cpetradepro.com/blog/vwap-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is VWAP the same as a moving average?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. A moving average treats every candle equally, while VWAP weights each price by how much volume traded there. It is cumulative from the session open, so it updates all day rather than rolling in a fixed window." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does price being above VWAP mean I should buy?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Above or below VWAP only describes where price sits relative to the day's volume-weighted average. It is one input among many and is not a signal or a probability of profit." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use VWAP on crypto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Because crypto trades around the clock, sessions are usually defined by the exchange's daily reset (often UTC). Anchored VWAP is often more useful for crypto than a fixed session line." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>VWAP explained</span>
+    </nav>
+    <span class="eyebrow">Learn · Indicators</span>
+    <h1>VWAP Explained: The Volume-Weighted Average Price</h1>
+    <p class="lead">One line that tells you the average price everyone paid today, weighted by how much they traded. Here is how <strong>VWAP</strong> is built, why traders treat it as fair value, and how CPE Trade Pro reads it.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Most indicators are built from price alone. VWAP is different: it is built from price <em>and</em> volume together, which is why intraday traders watch it more closely than almost any other line on the chart. It answers a simple question — <strong>what is the average price paid for this instrument today, weighted by how much traded at each level?</strong></p>
+      <p>This guide covers what VWAP is, how it is calculated, how to read price above and below it, anchored VWAP, and how CPE Trade Pro folds a VWAP series into its analysis. Educational content only — nothing here is financial advice.</p>
+
+      <h2 id="what-is-vwap">What VWAP is</h2>
+      <p>VWAP stands for <strong>Volume-Weighted Average Price</strong>. It is a single line that starts fresh at the beginning of a session and is recalculated on every new candle. Rather than averaging every candle equally, it gives more weight to the candles where the most volume traded.</p>
+      <p>That distinction matters. A price that only traded on thin volume barely moves the line, while a price where heavy volume changed hands pulls it strongly. The result is a line that reflects where the <em>real</em> business was done, not just where price happened to tick.</p>
+      <p>Because it resets each session, VWAP is an <strong>intraday</strong> tool by nature. It tells you about today, not about the last three months. That is the source of both its usefulness and its limits.</p>
+
+      <h2 id="calculation">How it is calculated</h2>
+      <p>The formula is not complicated. For each candle, take a representative price — usually the typical price, <code>(high + low + close) / 3</code> — multiply it by that candle's volume, and accumulate. Then divide the running total by the running total volume:</p>
+      <p><code>VWAP = Σ(typical price × volume) ÷ Σ(volume)</code></p>
+      <table>
+        <thead>
+          <tr><th>Candle</th><th>Typical price</th><th>Volume</th><th>Running VWAP</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>100.0</td><td>10</td><td>100.00</td></tr>
+          <tr><td>2</td><td>102.0</td><td>30</td><td>101.50</td></tr>
+          <tr><td>3</td><td>101.0</td><td>10</td><td>101.50</td></tr>
+          <tr><td>4</td><td>104.0</td><td>50</td><td>102.75</td></tr>
+        </tbody>
+      </table>
+      <p>Notice how candle 2, with three times the volume of candle 1, moves the average far more than an equal-sized price move on light volume would. The line keeps updating from the first candle to the last, so it is always anchored to the session's history.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="An intraday candle chart with a cyan VWAP line rising smoothly through the session and a small chip labelled session VWAP">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">VWAP · BTCUSDT · 15m</text>
+          <rect class="a-chip" x="576" y="12" width="126" height="24" rx="12"/>
+          <text class="a-m" x="639" y="28" text-anchor="middle">SESSION VWAP</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="70" x2="700" y2="70"/>
+            <line x1="20" y1="118" x2="700" y2="118"/>
+            <line x1="20" y1="166" x2="700" y2="166"/>
+            <line x1="20" y1="214" x2="700" y2="214"/>
+            <line x1="20" y1="262" x2="700" y2="262"/>
+            <line x1="20" y1="310" x2="700" y2="310"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="60" y1="250" x2="60" y2="272"/><rect class="a-bull" x="52" y="254" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="100" y1="246" x2="100" y2="268"/><rect class="a-bear" x="92" y="250" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="140" y1="240" x2="140" y2="266"/><rect class="a-bull" x="132" y="244" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="180" y1="228" x2="180" y2="256"/><rect class="a-bull" x="172" y="234" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="220" y1="224" x2="220" y2="246"/><rect class="a-bear" x="212" y="228" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="260" y1="214" x2="260" y2="244"/><rect class="a-bull" x="252" y="220" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="300" y1="200" x2="300" y2="228"/><rect class="a-bull" x="292" y="206" width="16" height="20" rx="2"/>
+            <line class="a-wbear" x1="340" y1="196" x2="340" y2="220"/><rect class="a-bear" x="332" y="200" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="380" y1="186" x2="380" y2="216"/><rect class="a-bull" x="372" y="194" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="420" y1="172" x2="420" y2="200"/><rect class="a-bull" x="412" y="178" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="460" y1="158" x2="460" y2="188"/><rect class="a-bull" x="452" y="164" width="16" height="20" rx="2"/>
+            <line class="a-wbear" x1="500" y1="154" x2="500" y2="180"/><rect class="a-bear" x="492" y="160" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="540" y1="168" x2="540" y2="196"/><rect class="a-bear" x="532" y="174" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="580" y1="182" x2="580" y2="212"/><rect class="a-bull" x="572" y="190" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="620" y1="168" x2="620" y2="196"/><rect class="a-bull" x="612" y="174" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="660" y1="150" x2="660" y2="182"/><rect class="a-bull" x="652" y="156" width="16" height="20" rx="2"/>
+          </g>
+
+          <g class="aa-scan" style="--aa-x:588px">
+            <rect x="30" y="52" width="26" height="266" fill="rgba(34,211,238,.10)"/>
+            <line x1="56" y1="52" x2="56" y2="318" style="stroke:#22d3ee;stroke-width:2"/>
+          </g>
+
+          <path class="aa-line" d="M40 268 C 160 250, 260 236, 360 220 C 460 204, 560 192, 700 184" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linecap:round" pathLength="1"/>
+          <text class="a-s" x="610" y="176" text-anchor="end" style="fill:#22d3ee">VWAP</text>
+
+          <text class="a-s" x="688" y="320" text-anchor="end">above VWAP most of the session</text>
+        </svg>
+        <figcaption><strong>The session anchor.</strong> VWAP (cyan) recalculates on every candle and lags price, so it rises smoothly. The chart reads <b>above</b> VWAP for most of the session here — buyers have been paying more than the day's average.</figcaption>
+      </figure>
+
+      <h2 id="fair-value">VWAP as the day's fair value</h2>
+      <p>Traders call VWAP a <em>fair-value</em> line because it is the break-even for everyone who traded today. If you bought below VWAP on average, you are in profit against the day's crowd; if you bought above it, you are behind the average. Institutions use it as a benchmark too — a desk instructed to buy "at or better than VWAP" is judged against exactly this line.</p>
+      <p>That benchmark status is why price so often reacts around VWAP. When the market is trying to find a fair price, VWAP is the obvious reference. It is not magic and it is not a guarantee — it is a well-watched level where orders tend to cluster.</p>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Fair value is a description, not a forecast</strong>
+          VWAP tells you where the average trade happened. It does not tell you where price will go next. Treat it as context, never as a prediction.
+        </div>
+      </div>
+
+      <h2 id="above-below">Price above vs below VWAP</h2>
+      <p>The simplest read of VWAP is directional bias. Price above the line suggests buyers are in control of the session and that dips toward VWAP may attract support. Price below the line suggests sellers are in control and that rallies into VWAP may meet supply.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="Two panels side by side: on the left price trades above a rising VWAP line shown in green, on the right price trades below a falling VWAP line shown in red">
+          <rect class="a-panel" x="14" y="14" width="344" height="272" rx="14"/>
+          <rect class="a-panel" x="362" y="14" width="344" height="272" rx="14"/>
+
+          <rect class="a-fill-green aa-pop" x="24" y="40" width="324" height="96" rx="6"/>
+          <text class="a-s" x="40" y="36" style="fill:#22c55e">ABOVE · buyers in control</text>
+          <text class="a-h" x="40" y="66">Bullish session</text>
+          <g class="a-grid">
+            <line x1="24" y1="180" x2="348" y2="180"/>
+            <line x1="24" y1="230" x2="348" y2="230"/>
+            <line x1="24" y1="280" x2="348" y2="280"/>
+          </g>
+          <path class="aa-line" d="M40 250 C 120 236, 200 214, 340 188" style="fill:none;stroke:#22c55e;stroke-width:3;stroke-linecap:round" pathLength="1"/>
+          <g class="aa-reveal" style="animation-delay:.5s">
+            <line class="a-wbull" x1="70" y1="196" x2="70" y2="222"/><rect class="a-bull" x="62" y="200" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="120" y1="176" x2="120" y2="204"/><rect class="a-bull" x="112" y="182" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="170" y1="156" x2="170" y2="184"/><rect class="a-bull" x="162" y="162" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="220" y1="140" x2="220" y2="170"/><rect class="a-bull" x="212" y="146" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="270" y1="128" x2="270" y2="158"/><rect class="a-bull" x="262" y="134" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="320" y1="112" x2="320" y2="146"/><rect class="a-bull" x="312" y="118" width="16" height="18" rx="2"/>
+          </g>
+          <text class="a-s" x="330" y="196" text-anchor="end" style="fill:#22c55e">VWAP ↑</text>
+
+          <rect class="a-fill-red aa-pop" x="372" y="128" width="324" height="120" rx="6" style="animation-delay:.4s"/>
+          <text class="a-s" x="388" y="36" style="fill:#ef4444">BELOW · sellers in control</text>
+          <text class="a-h" x="388" y="66">Bearish session</text>
+          <g class="a-grid">
+            <line x1="372" y1="90" x2="696" y2="90"/>
+            <line x1="372" y1="140" x2="696" y2="140"/>
+            <line x1="372" y1="190" x2="696" y2="190"/>
+          </g>
+          <path class="aa-line" d="M388 96 C 470 110, 560 128, 692 150" style="fill:none;stroke:#ef4444;stroke-width:3;stroke-linecap:round" pathLength="1"/>
+          <g class="aa-reveal" style="animation-delay:.7s">
+            <line class="a-wbear" x1="418" y1="140" x2="418" y2="166"/><rect class="a-bear" x="410" y="144" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="468" y1="156" x2="468" y2="186"/><rect class="a-bear" x="460" y="162" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="518" y1="176" x2="518" y2="206"/><rect class="a-bear" x="510" y="182" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="568" y1="192" x2="568" y2="224"/><rect class="a-bear" x="560" y="198" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="618" y1="212" x2="618" y2="244"/><rect class="a-bear" x="610" y="218" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="668" y1="228" x2="668" y2="260"/><rect class="a-bear" x="660" y="234" width="16" height="18" rx="2"/>
+          </g>
+          <text class="a-s" x="678" y="164" text-anchor="end" style="fill:#ef4444">VWAP ↓</text>
+        </svg>
+        <figcaption><strong>Bias, not a signal.</strong> Above VWAP (left, green) describes a session where buyers control price; below VWAP (right, red) the opposite. A single line tells you the bias — it never tells you to enter.</figcaption>
+      </figure>
+
+      <div class="edu-cards">
+        <div class="edu-card green">
+          <span class="ec-ico">🟢</span>
+          <strong>Price &gt; VWAP</strong>
+          <span>Buyers have paid above the day's average. Dips toward VWAP are often watched as possible support.</span>
+        </div>
+        <div class="edu-card red">
+          <span class="ec-ico">🔴</span>
+          <strong>Price &lt; VWAP</strong>
+          <span>Sellers control the session. Rallies into VWAP may face supply and be watched as resistance.</span>
+        </div>
+        <div class="edu-card cyan">
+          <span class="ec-ico">➡️</span>
+          <strong>Price ≈ VWAP</strong>
+          <span>Price hugging the line suggests balance — often a day of chop and low conviction.</span>
+        </div>
+      </div>
+
+      <div class="edu-chips">
+        <span class="edu-chip green"><i>◆</i> Trend day</span>
+        <span class="edu-chip cyan"><i>◆</i> Balance day</span>
+        <span class="edu-chip amber"><i>◆</i> Reversion to VWAP</span>
+        <span class="edu-chip purple"><i>◆</i> VWAP bands</span>
+      </div>
+
+      <h2 id="anchored">Anchored VWAP</h2>
+      <p>A normal VWAP resets at the start of each session, which is handy intraday but blunt over weeks. <strong>Anchored VWAP</strong> solves that: you choose the starting point — an earnings gap, a swing high or low, a breakout, a news event — and the line accumulates from there.</p>
+      <p>The idea is to measure the average price paid <em>since something important happened</em>. If price stays above an anchored VWAP launched from a major swing low, the average buyer since that low is in profit — usually a sign of strength. Anchor from a swing high and staying below it can suggest persistent supply.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A candle chart with a swing low marked as an anchor point, from which an anchored VWAP line rises to the right">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Anchored VWAP</text>
+          <rect class="a-chip" x="560" y="12" width="142" height="24" rx="12"/>
+          <text class="a-m" x="631" y="28" text-anchor="middle">ANCHOR: SWING LOW</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="80" x2="700" y2="80"/>
+            <line x1="20" y1="130" x2="700" y2="130"/>
+            <line x1="20" y1="180" x2="700" y2="180"/>
+            <line x1="20" y1="230" x2="700" y2="230"/>
+            <line x1="20" y1="280" x2="700" y2="280"/>
+          </g>
+
+          <g>
+            <line class="a-wbear" x1="60" y1="180" x2="60" y2="206"/><rect class="a-bear" x="52" y="184" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="100" y1="200" x2="100" y2="228"/><rect class="a-bear" x="92" y="206" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="140" y1="216" x2="140" y2="250"/><rect class="a-bear" x="132" y="222" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="180" y1="222" x2="180" y2="256"/><rect class="a-bull" x="172" y="230" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="220" y1="204" x2="220" y2="236"/><rect class="a-bull" x="212" y="210" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="260" y1="188" x2="260" y2="216"/><rect class="a-bull" x="252" y="194" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="300" y1="182" x2="300" y2="208"/><rect class="a-bear" x="292" y="186" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="340" y1="170" x2="340" y2="200"/><rect class="a-bull" x="332" y="176" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="380" y1="152" x2="380" y2="182"/><rect class="a-bull" x="372" y="158" width="16" height="20" rx="2"/>
+            <line class="a-wbull" x1="420" y1="136" x2="420" y2="166"/><rect class="a-bull" x="412" y="142" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="460" y1="132" x2="460" y2="156"/><rect class="a-bear" x="452" y="136" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="500" y1="120" x2="500" y2="150"/><rect class="a-bull" x="492" y="126" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="540" y1="104" x2="540" y2="134"/><rect class="a-bull" x="532" y="110" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="580" y1="92" x2="580" y2="122"/><rect class="a-bull" x="572" y="98" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="620" y1="84" x2="620" y2="112"/><rect class="a-bull" x="612" y="90" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="660" y1="72" x2="660" y2="102"/><rect class="a-bull" x="652" y="78" width="16" height="18" rx="2"/>
+          </g>
+
+          <path class="aa-line" d="M180 244 C 300 226, 440 196, 620 150 C 650 142, 680 134, 700 130" style="fill:none;stroke:#00e5a8;stroke-width:3.5;stroke-linecap:round" pathLength="1"/>
+          <circle class="aa-pulse" cx="180" cy="248" r="7" style="fill:#fbbf24"/>
+          <text class="a-s" x="188" y="268" style="fill:#fbbf24">anchor · swing low</text>
+          <text class="a-s" x="612" y="140" text-anchor="end" style="fill:#00e5a8">anchored VWAP</text>
+        </svg>
+        <figcaption><strong>Anchored VWAP.</strong> VWAP is re-started from a chosen event — here a swing low. The line then measures the average price paid since that point, so a rising line under price can suggest buyers since the anchor are ahead.</figcaption>
+      </figure>
+
+      <h2 id="entries">VWAP for entries and targets</h2>
+      <p>In trending sessions, the most common use of VWAP is as a pullback reference. If price is above VWAP and the bias is bullish, traders often wait for a dip <em>back toward</em> the line before joining the trend, rather than chasing the highs. In a downtrend below VWAP, the mirror image: a rally into VWAP is watched as a possible place to sell.</p>
+      <ul>
+        <li><strong>Entry on the retest</strong> — price returns to VWAP and holds, offering a defined spot to act with a nearby invalidation point.</li>
+        <li><strong>Target using VWAP</strong> — when in a counter-trend trade, VWAP can be a logical take-profit level, since it is where price often stalls.</li>
+        <li><strong>VWAP bands</strong> — standard deviations around VWAP behave like envelopes, showing statistically extended moves and potential reversion zones.</li>
+      </ul>
+      <p>None of these is guaranteed. VWAP is a reference that many participants share, which is exactly why it can work — and exactly why it can also be sliced through in a strong trend.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Trade with the bias, not against the line</strong>
+          Buying dips to VWAP in an up-trending session is a very different proposition from buying dips to VWAP in a downtrend. Use VWAP together with structure — structure first, VWAP as the fine-tuning level.
+        </div>
+      </div>
+
+      <h2 id="mistakes">Common mistakes</h2>
+      <ul>
+        <li><strong>Treating a VWAP touch as an automatic buy.</strong> Price crosses VWAP dozens of times in choppy sessions. Location and trend matter.</li>
+        <li><strong>Ignoring the timeframe.</strong> A session VWAP on a 1-minute chart is noisy; anchored VWAP on a 4-hour chart is a structural reference. They are not interchangeable.</li>
+        <li><strong>Using it on illiquid markets.</strong> With thin volume, small trades distort the line. VWAP works best where volume is deep and representative.</li>
+        <li><strong>Forgetting the reset.</strong> A session VWAP means nothing tomorrow. If you want a multi-day reference, you need an anchored one.</li>
+        <li><strong>Stacking five VWAP lines.</strong> Three anchors is already a lot of clutter. Pick the one event that matters.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>VWAP is a tool, not a system</strong>
+          On its own, "above VWAP" is a weak filter. It becomes useful when it agrees with structure, momentum and a sensible risk plan — never when it is used alone.
+        </div>
+      </div>
+
+      <h2 id="app">How CPE Trade Pro uses VWAP</h2>
+      <p>CPE Trade Pro runs a VWAP series as part of its chart analysis, and that reading feeds into the <strong>Levels</strong> component of the signal's 0-10 quality score — the part of the checklist that asks whether price is at a sensible place, in a calm enough market, to act. A setup that lines up with VWAP support or resistance earns stronger agreement than one that ignores the fair-value line entirely.</p>
+      <p>Remember what the score is and is not. The 0-10 score is built from five measurable parts — <strong>Clarity, Trend, Momentum, Volume and Levels</strong>, each worth up to 2 points. It is <em>not</em> a win rate, not a probability of profit and not an audited record. VWAP is one input inside one of those five parts.</p>
+      <p>To see the analysis in front of you — direction, entry, stop, two targets and the five-part score — <a href="/download.html">download CPE Trade Pro</a> and read a VWAP-aware chart for yourself. You can practise in DEMO mode with no exchange account.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/volume-analysis-guide.html">Volume analysis: reading participation behind a move</a></li>
+          <li><a href="/blog/ichimoku-explained.html">Ichimoku explained</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what-is-vwap">What VWAP is</a>
+          <a href="#calculation">How it is calculated</a>
+          <a href="#fair-value">The day's fair value</a>
+          <a href="#above-below">Above vs below</a>
+          <a href="#anchored">Anchored VWAP</a>
+          <a href="#entries">Entries and targets</a>
+          <a href="#mistakes">Common mistakes</a>
+          <a href="#app">How the app uses it</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/volume-analysis-guide.html">Volume analysis</a>
+          <a href="/blog/ichimoku-explained.html">Ichimoku explained</a>
+          <a href="/signal-guide.html">Signal guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Let the app read VWAP for you</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

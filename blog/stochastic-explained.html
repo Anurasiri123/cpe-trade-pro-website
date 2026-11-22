@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Stochastic Oscillator Explained: %K, %D and Crosses</title>
+<meta name="description" content="How the stochastic oscillator works, the %K and %D lines, the 80/20 zones, crosses, and how CPE Trade Pro uses it in the momentum part of the signal score." />
+<meta name="keywords" content="stochastic oscillator, percent K and D, stochastic cross, overbought oversold, momentum indicator" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/stochastic-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Stochastic Oscillator Explained: %K, %D and Crosses" />
+<meta property="og:description" content="The %K and %D lines, the 80/20 zones, crosses and how CPE Trade Pro uses the stochastic in its momentum score." />
+<meta property="og:url" content="https://cpetradepro.com/blog/stochastic-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Stochastic Oscillator Explained: %K, %D and Crosses" />
+<meta name="twitter:description" content="Where price sits in its recent range, %K and %D, and crosses in the zones that matter." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stochastic Oscillator Explained: %K, %D and Crosses",
+  "description": "How the stochastic oscillator works, the %K and %D lines, the 80/20 zones, crosses, and how CPE Trade Pro uses it in the momentum part of the signal score.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/stochastic-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Stochastic Oscillator Explained: %K, %D and Crosses", "item": "https://cpetradepro.com/blog/stochastic-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does a stochastic cross above 80 mean sell?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not on its own. In a strong uptrend the stochastic can stay pinned above 80 for a long time. Zonal crosses matter most when they line up with structure, support or resistance." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between fast and slow stochastic?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The fast stochastic plots %K and a lightly smoothed %D. The slow stochastic smooths %K once more, giving fewer but cleaner crosses at the cost of a little lag." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does CPE Trade Pro use the stochastic?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Stochastic crosses and divergence feed the Momentum part of the 0-10 quality score, shared with RSI and MACD. That part is capped at 2 of the 10 points, and the score is not a win rate or a probability of profit." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Stochastic explained</span>
+    </nav>
+    <span class="eyebrow">Learn · Indicators</span>
+    <h1>Stochastic Oscillator Explained: %K, %D and Crosses</h1>
+    <p class="lead">The stochastic answers a simple question — where is price sitting inside its recent range? Here is how the <strong>%K</strong> and <strong>%D</strong> lines work, what the 80/20 zones really mean, and where the stochastic sits in the CPE Trade Pro momentum score.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>The stochastic oscillator is one of the oldest momentum tools on the chart, and one of the most literal. It does not try to be clever: it measures where the current close sits between the highest high and the lowest low of a chosen window, and shows that as a percentage. That simplicity is why it is worth understanding properly.</p>
+
+      <h2 id="what">What the stochastic measures</h2>
+      <p>The calculation is straightforward. Over the last <strong>N</strong> periods, take the highest high and the lowest low. The <strong>%K</strong> line is how far the close is up that range, expressed from 0 to 100:</p>
+      <p><code>%K = (close − lowest low) ÷ (highest high − lowest low) × 100</code></p>
+      <p>A reading near 100 means the close is at the top of the recent range; a reading near 0 means it is at the bottom. A second line, <strong>%D</strong>, is a short moving average of %K, which smooths the signal and creates the crosses traders watch. This makes the stochastic a <em>range</em> indicator — it is most useful when a market is moving within a range, and can stay pinned at an extreme when a strong trend runs.</p>
+
+      <h2 id="kd">%K and %D (figure)</h2>
+      <p>%K is the faster line, drawn as the raw reading. %D is the slower line, a 3-period average of %K by default. When %K and %D cross, one is overtaking the other — the faster line changing the short-term balance.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 400" role="img" aria-label="A price chart above a stochastic panel showing the faster %K line and slower %D line, with 80 and 20 reference lines and a 50 midline">
+          <rect class="a-panel" x="0" y="0" width="720" height="400" rx="14"/>
+          <text class="a-h" x="22" y="26">Stochastic · 14, 3, 3 · BTCUSDT · 1H</text>
+          <rect class="a-chip" x="572" y="10" width="128" height="22" rx="11"/>
+          <text class="a-m" x="636" y="25" text-anchor="middle">STOCH 14,3</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="60" x2="700" y2="60"/>
+            <line x1="20" y1="100" x2="700" y2="100"/>
+            <line x1="20" y1="140" x2="700" y2="140"/>
+            <line x1="20" y1="180" x2="700" y2="180"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="40" y1="210" x2="40" y2="230"/><rect class="a-bull" x="34" y="214" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="74" y1="196" x2="74" y2="218"/><rect class="a-bull" x="68" y="200" width="12" height="14" rx="1.5"/>
+            <line class="a-wbear" x1="108" y1="188" x2="108" y2="206"/><rect class="a-bear" x="102" y="192" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="142" y1="168" x2="142" y2="192"/><rect class="a-bull" x="136" y="172" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="176" y1="146" x2="176" y2="170"/><rect class="a-bull" x="170" y="150" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="210" y1="124" x2="210" y2="148"/><rect class="a-bull" x="204" y="128" width="12" height="18" rx="1.5"/>
+            <line class="a-wbear" x1="244" y1="120" x2="244" y2="138"/><rect class="a-bear" x="238" y="124" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="278" y1="102" x2="278" y2="126"/><rect class="a-bull" x="272" y="106" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="312" y1="86" x2="312" y2="110"/><rect class="a-bull" x="306" y="90" width="12" height="18" rx="1.5"/>
+            <line class="a-wbull" x1="346" y1="74" x2="346" y2="96"/><rect class="a-bull" x="340" y="78" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="380" y1="76" x2="380" y2="94"/><rect class="a-bear" x="374" y="80" width="12" height="8" rx="1.5"/>
+            <line class="a-wbear" x1="414" y1="92" x2="414" y2="114"/><rect class="a-bear" x="408" y="96" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="448" y1="112" x2="448" y2="134"/><rect class="a-bear" x="442" y="116" width="12" height="16" rx="1.5"/>
+            <line class="a-wbear" x1="482" y1="132" x2="482" y2="152"/><rect class="a-bear" x="476" y="136" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="516" y1="150" x2="516" y2="172"/><rect class="a-bull" x="510" y="154" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="550" y1="138" x2="550" y2="162"/><rect class="a-bull" x="544" y="142" width="12" height="18" rx="1.5"/>
+            <line class="a-wbear" x1="584" y1="134" x2="584" y2="152"/><rect class="a-bear" x="578" y="138" width="12" height="8" rx="1.5"/>
+            <line class="a-wbear" x1="618" y1="148" x2="618" y2="170"/><rect class="a-bear" x="612" y="152" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="652" y1="150" x2="652" y2="172"/><rect class="a-bull" x="646" y="154" width="12" height="16" rx="1.5"/>
+            <line class="a-wbull" x1="686" y1="138" x2="686" y2="158"/><rect class="a-bull" x="680" y="142" width="12" height="14" rx="1.5"/>
+          </g>
+
+          <rect class="a-soft" x="20" y="248" width="680" height="132" rx="10"/>
+          <rect class="a-fill-red" x="20" y="248" width="680" height="31" rx="0"/>
+          <rect class="a-fill-green" x="20" y="349" width="680" height="31" rx="0"/>
+          <text class="a-s" x="694" y="266" text-anchor="end" style="fill:#ef4444">80 · upper zone</text>
+          <text class="a-s" x="694" y="316" text-anchor="end" style="fill:#94a3b8">50</text>
+          <text class="a-s" x="694" y="372" text-anchor="end" style="fill:#22c55e">20 · lower zone</text>
+
+          <path class="a-price aa-line" d="M40 358 L74 332 L108 320 L142 300 L176 278 L210 268 L244 280 L278 272 L312 264 L346 268 L380 276 L414 296 L448 316 L482 322 L516 314 L550 300 L584 306 L618 318 L652 312 L686 300" pathLength="1" style="animation-delay:.3s"/>
+          <path d="M40 362 L74 340 L108 326 L142 308 L176 286 L210 274 L244 284 L278 276 L312 270 L346 274 L380 282 L414 302 L448 320 L482 326 L516 318 L550 306 L584 312 L618 324 L652 316 L686 306" style="fill:none;stroke:#fb7185;stroke-width:2;fill:none"/>
+
+          <text class="a-s" x="34" y="288" style="fill:#22d3ee">%K</text>
+          <text class="a-s" x="34" y="302" style="fill:#fb7185">%D</text>
+          <circle class="aa-pop" cx="210" cy="268" r="4" style="fill:#22d3ee;animation-delay:1.4s"/>
+          <text class="a-s" x="216" y="262" style="fill:#22d3ee">cross in the zone</text>
+        </svg>
+        <figcaption><strong>Two lines, one range.</strong> The cyan <b>%K</b> line is the raw reading and the pink <b>%D</b> is its smoothed average. The red band is above <b>80</b>, the green band below <b>20</b>, and the middle line is <b>50</b>.</figcaption>
+      </figure>
+
+      <h2 id="zones">The 80 / 20 zones</h2>
+      <p>Readings above <strong>80</strong> are called overbought and below <strong>20</strong> oversold, and the same warning that applies to RSI applies here: these are descriptions, not instructions. Above 80 simply means the close has been near the top of its recent range — which is exactly what a strong uptrend looks like. Below 20 is what a strong downtrend looks like.</p>
+      <p>The zones become genuinely useful when they coincide with a level: a dip into the lower zone right at support, or a push into the upper zone into resistance. The zone tells you the short-term range is stretched; the level tells you whether that matters.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>Extremes persist in trends</strong>
+          In a strong trend the stochastic can sit above 80 or below 20 for a long stretch. Fading every extreme is a common way to lose money — wait for the zone to align with structure.
+        </div>
+      </div>
+
+      <h2 id="crosses">Crosses in the right region (figure)</h2>
+      <p>A cross is %K passing through %D. A <strong>bullish cross</strong> is %K crossing up through %D; a <strong>bearish cross</strong> is the reverse. Crosses happen constantly, and most are meaningless because they occur mid-range where nothing is stretched.</p>
+      <p>The ones worth attention are <em>zonal</em>: a bullish cross while both lines are in or rising out of the lower zone, or a bearish cross while both are in or falling from the upper zone. That is where the range reading and a turn have the best chance of meaning something.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 320" role="img" aria-label="A stochastic panel showing a bullish cross rising out of the lower zone and a bearish cross falling from the upper zone, each marked">
+          <rect class="a-panel" x="0" y="0" width="720" height="320" rx="14"/>
+          <text class="a-h" x="22" y="26">Crosses in the right region</text>
+          <rect class="a-chip" x="576" y="10" width="124" height="22" rx="11"/>
+          <text class="a-m" x="638" y="25" text-anchor="middle">ZONAL CROSS</text>
+
+          <rect class="a-soft" x="20" y="54" width="680" height="236" rx="10"/>
+          <rect class="a-fill-red" x="20" y="54" width="680" height="55" rx="0"/>
+          <rect class="a-fill-green" x="20" y="235" width="680" height="55" rx="0"/>
+          <text class="a-s" x="694" y="76" text-anchor="end" style="fill:#ef4444">80</text>
+          <text class="a-s" x="694" y="175" text-anchor="end" style="fill:#94a3b8">50</text>
+          <text class="a-s" x="694" y="278" text-anchor="end" style="fill:#22c55e">20</text>
+          <line x1="20" y1="172" x2="700" y2="172" style="stroke:#64748b;stroke-width:1;stroke-dasharray:4 6"/>
+
+          <path class="a-price aa-line" d="M40 268 L90 240 L140 214 L190 178 L240 150 L290 132 L340 156 L390 188 L440 214 L490 190 L540 156 L590 134 L640 164 L690 196" pathLength="1" style="animation-delay:.4s"/>
+          <path d="M40 272 L90 248 L140 224 L190 190 L240 162 L290 142 L340 166 L390 196 L440 220 L490 198 L540 166 L590 144 L640 172 L690 204" style="fill:none;stroke:#fb7185;stroke-width:2"/>
+
+          <circle class="aa-pulse" cx="150" cy="214" r="5" style="fill:#22c55e"/>
+          <text class="a-s" x="150" y="232" text-anchor="middle" style="fill:#22c55e">bullish cross</text>
+          <circle class="aa-pulse" cx="560" cy="156" r="5" style="fill:#ef4444"/>
+          <text class="a-s" x="560" y="146" text-anchor="middle" style="fill:#ef4444">bearish cross</text>
+
+          <text class="a-s" x="34" y="96" style="fill:#22d3ee">%K</text>
+          <text class="a-s" x="34" y="110" style="fill:#fb7185">%D</text>
+        </svg>
+        <figcaption><strong>Location beats frequency.</strong> Crosses fire all the time, but the ones that matter are the zonal ones: %K turning up through %D out of the lower zone, or down through %D from the upper zone.</figcaption>
+      </figure>
+
+      <h2 id="vs">Stochastic vs RSI</h2>
+      <p>Both are bounded momentum oscillators on a 0-100 scale, and both have overbought/oversold zones, so they are often confused. The difference is what they measure. RSI compares the <em>size of gains to losses</em>; the stochastic compares the <em>close to the recent range</em>. The stochastic is faster and more prone to extremes, which makes it good for timing inside a range and noisy in a trend.</p>
+      <table>
+        <thead>
+          <tr><th></th><th>Stochastic</th><th>RSI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Measures</strong></td><td>Close within the recent high-low range</td><td>Ratio of recent gains to losses</td></tr>
+          <tr><td><strong>Speed</strong></td><td>Faster, more extremes</td><td>Smoother, fewer extremes</td></tr>
+          <tr><td><strong>Lines</strong></td><td>Two: %K and %D, with crosses</td><td>One line</td></tr>
+          <tr><td><strong>Zones</strong></td><td>80 / 20</td><td>70 / 30</td></tr>
+          <tr><td><strong>Best at</strong></td><td>Timing turns inside a range</td><td>Gauging the balance of a move</td></tr>
+        </tbody>
+      </table>
+      <p>They pair well together, and each has its own article — see <a href="/blog/rsi-indicator-explained.html">RSI explained</a> and <a href="/blog/macd-indicator-explained.html">MACD explained</a>.</p>
+
+      <h2 id="settings">Settings (14, 3, 3)</h2>
+      <p>The classic trio of numbers controls the stochastic:</p>
+      <ul>
+        <li><strong>14 (length).</strong> How many periods define the high-low range. Shorter = twitchier; longer = calmer.</li>
+        <li><strong>3 (%K smoothing).</strong> How much the raw %K is averaged. This is what turns a <em>fast</em> stochastic into a <em>slow</em> one — and the slow version is the one most traders actually use.</li>
+        <li><strong>3 (%D).</strong> The smoothing applied to %K to produce the %D signal line.</li>
+      </ul>
+      <p>Fast vs slow is the main choice. The fast stochastic reacts first but is noisy; the slow stochastic smooths %K once more and produces fewer, cleaner crosses at the cost of a little lag. When in doubt, start with the slow version.</p>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>%K</i> fast line</span>
+        <span class="edu-chip pink"><i>%D</i> signal line</span>
+        <span class="edu-chip blue"><i>14</i> length</span>
+        <span class="edu-chip green"><i>20</i> lower zone</span>
+        <span class="edu-chip amber"><i>80</i> upper zone</span>
+      </div>
+
+      <h2 id="mistakes">Common mistakes</h2>
+      <ul>
+        <li><strong>Trading every cross.</strong> Mid-range crosses are noise — location is what matters.</li>
+        <li><strong>Fading extremes in a trend.</strong> The stochastic can stay pinned; that is strength, not a reversal.</li>
+        <li><strong>Ignoring the range context.</strong> The indicator is a range tool and behaves poorly in a one-way market.</li>
+        <li><strong>Using it for direction.</strong> It measures position in a range, not the trend.</li>
+        <li><strong>Stacking too many averages.</strong> Over-smoothing removes the speed that is the stochastic's whole point.</li>
+      </ul>
+
+      <h2 id="app">How CPE Trade Pro uses the stochastic</h2>
+      <p>In the app, stochastic crosses and divergence are read as part of the <strong>Momentum</strong> part of the 0-10 quality score, alongside RSI and the MACD histogram. That part is worth up to <strong>2 points</strong>. Using several momentum measures rather than one stops a single oscillator from deciding the verdict, and it is why a zonal cross that agrees with RSI and MACD carries more weight than a cross on its own.</p>
+      <p>The full score is built from five measurable parts — <strong>Clarity, Trend, Momentum, Volume and Levels</strong> — each capped at 2 points, summing to a maximum of 10. To be exact about the limits: <em>this score is not a win rate, not a probability of profit and not an audited performance record.</em> It summarises how many independent checks agreed, and the stochastic is one of the momentum checks.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="The five-part quality score with the Momentum bar highlighted, showing RSI, MACD and the stochastic feeding that part">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="32">Signal quality · 0-10</text>
+          <text class="a-s" x="696" y="20" text-anchor="end" style="fill:#00e5a8">TOTAL 7.9 / 10</text>
+          <text class="a-s" x="696" y="36" text-anchor="end" style="fill:#9fb0c8">Grade A</text>
+
+          <text class="a-t" x="24" y="80">Clarity</text>
+          <rect class="a-track" x="220" y="64" width="420" height="16" rx="8"/>
+          <rect class="aa-bar" x="220" y="64" width="336" height="16" rx="8" style="fill:#00e5a8;animation-delay:.5s"/>
+          <text class="a-s" x="600" y="77" style="fill:#00e5a8">1.6</text>
+
+          <text class="a-t" x="24" y="120">Trend</text>
+          <rect class="a-track" x="220" y="104" width="420" height="16" rx="8"/>
+          <rect class="aa-bar" x="220" y="104" width="357" height="16" rx="8" style="fill:#22d3ee;animation-delay:.65s"/>
+          <text class="a-s" x="600" y="117" style="fill:#22d3ee">1.7</text>
+
+          <text class="a-t" x="24" y="160" style="fill:#a855f7">Momentum</text>
+          <rect class="a-track" x="220" y="144" width="420" height="16" rx="8"/>
+          <rect class="aa-bar" x="220" y="144" width="378" height="16" rx="8" style="fill:#a855f7;animation-delay:.8s"/>
+          <text class="a-s" x="600" y="157" style="fill:#a855f7">1.8</text>
+          <line x1="216" y1="140" x2="216" y2="164" style="stroke:#a855f7;stroke-width:2"/>
+          <text class="a-s" x="694" y="139" text-anchor="end" style="fill:#a855f7">RSI · MACD · Stoch · DIV</text>
+
+          <text class="a-t" x="24" y="200">Volume</text>
+          <rect class="a-track" x="220" y="184" width="420" height="16" rx="8"/>
+          <rect class="aa-bar" x="220" y="184" width="252" height="16" rx="8" style="fill:#fbbf24;animation-delay:.95s"/>
+          <text class="a-s" x="516" y="197" style="fill:#fbbf24">1.2</text>
+
+          <text class="a-t" x="24" y="240">Levels</text>
+          <rect class="a-track" x="220" y="224" width="420" height="16" rx="8"/>
+          <rect class="aa-bar" x="220" y="224" width="336" height="16" rx="8" style="fill:#60a5fa;animation-delay:1.1s"/>
+          <text class="a-s" x="600" y="237" style="fill:#60a5fa">1.6</text>
+
+          <text class="a-s" x="24" y="278">Momentum is capped at 2 points — %K/%D crosses are one of the checks inside it, not the whole answer.</text>
+        </svg>
+        <figcaption><strong>Stochastic inside the score.</strong> The stochastic shares the <b>Momentum</b> row with RSI and MACD. Even a perfectly zonal cross only moves that one part, capped at 2 of the 10 points.</figcaption>
+      </figure>
+
+      <p>See how the parts fit together in <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">how CPE Trade Pro analyses a chart</a>.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card purple">
+          <span class="ec-ico">📍</span>
+          <strong>Position in range</strong>
+          <span>The stochastic shows where the close sits between the recent high and low.</span>
+        </div>
+        <div class="edu-card cyan">
+          <span class="ec-ico">✂️</span>
+          <strong>%K and %D</strong>
+          <span>The fast line and its smoothed signal line — crosses are just one overtaking the other.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🎯</span>
+          <strong>Zonal crosses</strong>
+          <span>A cross inside the 80/20 zone matters far more than one mid-range.</span>
+        </div>
+        <div class="edu-card blue">
+          <span class="ec-ico">🧮</span>
+          <strong>One of five parts</strong>
+          <span>Stochastic feeds the Momentum part, capped at 2 of the 10 score points.</span>
+        </div>
+      </div>
+
+      <p>Want momentum read as a whole, not one line at a time? <a href="/download.html">Download CPE Trade Pro free</a> and watch the oscillators combine into a graded signal.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/rsi-indicator-explained.html">RSI explained: reading momentum without guessing</a></li>
+          <li><a href="/blog/macd-indicator-explained.html">MACD explained: line, signal and histogram</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Crosses, in context</h4>
+        <p>The stochastic joins RSI and MACD in the momentum reading behind a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What it measures</a>
+          <a href="#kd">%K and %D</a>
+          <a href="#zones">The 80 / 20 zones</a>
+          <a href="#crosses">Crosses in the right region</a>
+          <a href="#vs">Stochastic vs RSI</a>
+          <a href="#settings">Settings (14, 3, 3)</a>
+          <a href="#mistakes">Common mistakes</a>
+          <a href="#app">How CPE Trade Pro uses it</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/rsi-indicator-explained.html">RSI explained</a>
+          <a href="/blog/macd-indicator-explained.html">MACD explained</a>
+          <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How the analysis works</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read momentum, not just one line</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

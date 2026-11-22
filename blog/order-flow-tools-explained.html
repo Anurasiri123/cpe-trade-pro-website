@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Order Flow Tools Explained: Reading the Real Market</title>
+<meta name="description" content="The order flow toolkit - footprint, delta, cumulative delta, volume profile and absorption - what each shows, and how price and volume together tell the story behind a candle." />
+<meta name="keywords" content="order flow, delta, cumulative delta, volume profile, absorption, tape reading" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/order-flow-tools-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Order Flow Tools Explained: Reading the Real Market" />
+<meta property="og:description" content="Footprint, delta, cumulative delta, volume profile and absorption — the order flow toolkit, explained." />
+<meta property="og:url" content="https://cpetradepro.com/blog/order-flow-tools-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Order Flow Tools Explained" />
+<meta name="twitter:description" content="What footprint, delta, volume profile and absorption each show — and how to use them together." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Order Flow Tools Explained: Reading the Real Market",
+  "description": "The order flow toolkit - footprint, delta, cumulative delta, volume profile and absorption - what each shows, and how price and volume together tell the story behind a candle.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/order-flow-tools-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Order flow tools", "item": "https://cpetradepro.com/blog/order-flow-tools-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is order flow better than indicators?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Neither is better in isolation. Order flow shows the transactions behind price, while indicators summarise price and volume. Many traders use order flow for context and indicators for momentum, rather than choosing one." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the point of control (POC)?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The point of control is the price with the highest traded volume in a volume profile. It is the level where the market spent the most time and often acts as a magnet for price." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro include order flow tools?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CPE Trade Pro focuses on volume analysis, order blocks, fair value gaps and market structure rather than a full footprint or volume profile engine. Order flow tools are covered here as education for advanced traders." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Order flow tools</span>
+    </nav>
+    <span class="eyebrow">Learn · Order Flow</span>
+    <h1>Order Flow Tools Explained: Reading the Real Market</h1>
+    <p class="lead">Price tells you what happened. Order flow tries to tell you <strong>how and why</strong>. Here is the toolkit — footprint, delta, cumulative delta, volume profile and absorption.</p>
+    <div class="page-meta">
+      <span><b>11 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Every candle is a summary. It hides the argument that produced it — the buyers pushing, the sellers pushing back, and the volume that changed hands at each price along the way. <strong>Order flow</strong> is the discipline of reading that argument directly instead of inferring it from the shape of a candle.</p>
+      <p>This guide walks through the main order-flow tools, what each one actually shows, how they fit together, and where they sit honestly alongside CPE Trade Pro's volume and order-block analysis. Educational content only — nothing here is financial advice.</p>
+
+      <h2 id="what">What order flow is</h2>
+      <p>Order flow is the study of <em>transactions</em>: who was aggressive, at what price, and with how much size. Rather than asking "what did price do?", it asks "what were participants doing to make price do that?" A market order to buy that lifts the offer is aggressive buying; a market order to sell that hits the bid is aggressive selling. Order flow tools tally that aggression and show where it happened.</p>
+      <p>It is a deeper, more demanding layer of analysis than a moving average. It needs clean, granular data, and it rewards traders who are willing to slow down and read the tape of the market rather than react to a plotted line.</p>
+
+      <div class="callout info">
+        <span class="co-ico">ℹ️</span>
+        <div>
+          <strong>Depth, not certainty</strong>
+          Order flow gives you more detail about the present. It does not make the future any more certain. Treat every tool here as a sharper lens, not a crystal ball.
+        </div>
+      </div>
+
+      <h2 id="footprint-delta">Footprint, delta and cumulative delta</h2>
+      <p>The foundation of order flow is the <strong>footprint</strong> — a candle that shows volume at each price, split into bid and ask. From there, two derived measures do most of the work:</p>
+      <ul>
+        <li><strong>Delta</strong> — ask volume minus bid volume for a bar or price row. Positive delta means aggressive buying led; negative means aggressive selling led.</li>
+        <li><strong>Cumulative delta</strong> — the running total of delta through a session. It is a scoreboard of who has been winning the aggression battle over time.</li>
+      </ul>
+      <p>The most useful pattern is a <em>divergence</em>. If price makes a new high but cumulative delta does not, buyers may be running out of steam even as price still climbs — the effort no longer matches the result.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 320" role="img" aria-label="A two part panel: the top shows per-bar delta as green and red bars around a baseline, the bottom shows the cumulative delta line rising">
+          <rect class="a-panel" x="0" y="0" width="720" height="320" rx="14"/>
+          <text class="a-h" x="24" y="30">Delta + cumulative delta</text>
+          <rect class="a-chip" x="546" y="12" width="156" height="24" rx="12"/>
+          <text class="a-m" x="624" y="28" text-anchor="middle">AGGRESSION SCOREBOARD</text>
+
+          <rect class="a-soft" x="20" y="48" width="680" height="120" rx="8"/>
+          <text class="a-s" x="34" y="66">Per-bar delta</text>
+          <line class="a-grid" x1="34" y1="140" x2="686" y2="140"/>
+          <g class="aa-bar" style="animation-delay:.15s"><rect class="a-bar-green" x="60" y="110" width="20" height="30" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.25s"><rect class="a-bar-green" x="110" y="120" width="20" height="20" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.35s"><rect class="a-bar-red" x="160" y="140" width="20" height="22" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.45s"><rect class="a-bar-green" x="210" y="104" width="20" height="36" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.55s"><rect class="a-bar-green" x="260" y="96" width="20" height="44" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.65s"><rect class="a-bar-red" x="310" y="140" width="20" height="28" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.75s"><rect class="a-bar-green" x="360" y="112" width="20" height="28" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.85s"><rect class="a-bar-green" x="410" y="100" width="20" height="40" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.95s"><rect class="a-bar-red" x="460" y="140" width="20" height="18" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1.05s"><rect class="a-bar-green" x="510" y="108" width="20" height="32" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1.15s"><rect class="a-bar-green" x="560" y="98" width="20" height="42" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1.25s"><rect class="a-bar-red" x="610" y="140" width="20" height="24" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1.35s"><rect class="a-bar-green" x="660" y="106" width="20" height="34" rx="3"/></g>
+
+          <rect class="a-soft" x="20" y="180" width="680" height="120" rx="8"/>
+          <text class="a-s" x="34" y="198">Cumulative delta</text>
+          <g class="a-grid">
+            <line x1="34" y1="230" x2="686" y2="230"/>
+            <line x1="34" y1="262" x2="686" y2="262"/>
+          </g>
+          <path class="aa-line" d="M60 282 L 160 268 L 260 242 L 360 250 L 460 226 L 560 210 L 680 194" style="fill:none;stroke:#22d3ee;stroke-width:3;stroke-linecap:round;stroke-linejoin:round" pathLength="1"/>
+          <text class="a-s" x="672" y="188" text-anchor="end" style="fill:#22d3ee">buyers in control</text>
+        </svg>
+        <figcaption><strong>Two views of the same battle.</strong> The delta bars (top) flip positive and negative bar by bar. Cumulative delta (bottom, cyan) smooths that into a trend — here it drifts steadily higher, signalling buyers have been the more aggressive side overall.</figcaption>
+      </figure>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>◆</i> Footprint</span>
+        <span class="edu-chip green"><i>◆</i> Delta</span>
+        <span class="edu-chip blue"><i>◆</i> Cumulative delta</span>
+        <span class="edu-chip pink"><i>◆</i> Divergence</span>
+      </div>
+
+      <h2 id="volume-profile">Volume profile: POC, value area, HVN and LVN</h2>
+      <p>A footprint looks at volume <em>inside</em> one bar. A <strong>volume profile</strong> looks at volume by <em>price</em> across a whole session or range, drawn as horizontal bars against the price axis. It answers a different question: at which prices did the market do most of its business?</p>
+      <ul>
+        <li><strong>POC (point of control)</strong> — the single price with the highest traded volume. It is where the market spent the most time, and often acts like a magnet.</li>
+        <li><strong>Value area</strong> — the range that contains roughly 70% of the volume, with a <em>value area high</em> and <em>value area low</em>. Price inside the value area is "accepted"; outside it is exploring.</li>
+        <li><strong>HVN (high volume node)</strong> — a bulky price level where trade was heavy. Price tends to slow and chop at high volume nodes.</li>
+        <li><strong>LVN (low volume node)</strong> — a thin, fast level where little traded. Price tends to slice through low volume nodes quickly.</li>
+      </ul>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A volume profile with horizontal bars at each price, the longest bar marked POC, a shaded value area, and labels for high volume node and low volume node">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Volume profile · session</text>
+          <rect class="a-chip" x="566" y="12" width="136" height="24" rx="12"/>
+          <text class="a-m" x="634" y="28" text-anchor="middle">POC + VALUE AREA</text>
+
+          <rect class="a-fill-amber aa-pop" x="52" y="108" width="336" height="150" rx="6"/>
+          <text class="a-s" x="60" y="102" style="fill:#fbbf24">VALUE AREA · ~70%</text>
+
+          <g class="a-grid">
+            <line x1="40" y1="84" x2="700" y2="84"/>
+            <line x1="40" y1="108" x2="700" y2="108"/>
+            <line x1="40" y1="132" x2="700" y2="132"/>
+            <line x1="40" y1="156" x2="700" y2="156"/>
+            <line x1="40" y1="180" x2="700" y2="180"/>
+            <line x1="40" y1="204" x2="700" y2="204"/>
+            <line x1="40" y1="228" x2="700" y2="228"/>
+            <line x1="40" y1="252" x2="700" y2="252"/>
+          </g>
+
+          <g class="aa-bar" style="animation-delay:.2s"><rect class="a-bar-cyan" x="52" y="74" width="70" height="16" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.3s"><rect class="a-bar-cyan" x="52" y="98" width="110" height="16" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.4s"><rect class="a-bar-cyan" x="52" y="122" width="160" height="16" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.5s"><rect class="a-bar-cyan" x="52" y="146" width="215" height="16" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.6s"><rect class="a-bar-amber" x="52" y="170" width="330" height="16" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.7s"><rect class="a-bar-cyan" x="52" y="194" width="250" height="16" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.8s"><rect class="a-bar-cyan" x="52" y="218" width="175" height="16" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:.9s"><rect class="a-bar-cyan" x="52" y="242" width="95" height="16" rx="3"/></g>
+          <g class="aa-bar" style="animation-delay:1s"><rect class="a-bar-cyan" x="52" y="266" width="60" height="16" rx="3"/></g>
+
+          <text class="a-s" x="390" y="183" style="fill:#fbbf24">◀ POC · highest volume</text>
+          <text class="a-s" x="390" y="130" style="fill:#8fa0b8">HVN · price slows</text>
+          <text class="a-s" x="130" y="290" style="fill:#8fa0b8">LVN · price slips through</text>
+          <text class="a-s" x="700" y="298" text-anchor="end">bars = volume at price</text>
+        </svg>
+        <figcaption><strong>Volume by price.</strong> Each bar is the volume traded at that price level. The longest bar is the <b>POC</b> (amber), the shaded band is the <b>value area</b>, and bulky versus thin levels are the <b>HVN</b> and <b>LVN</b>.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Term</th><th>What it means</th><th>How price tends to behave</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>POC</strong></td><td>Highest-volume price</td><td>Acts as a magnet; often revisited</td></tr>
+          <tr><td><strong>Value area</strong></td><td>~70% of the volume</td><td>Accepted range — price balances inside</td></tr>
+          <tr><td><strong>HVN</strong></td><td>Heavy-volume level</td><td>Slows down, chops, is defended</td></tr>
+          <tr><td><strong>LVN</strong></td><td>Thin-volume level</td><td>Moves through quickly — little resistance</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="absorption">Absorption and exhaustion</h2>
+      <p>These two words describe the ends of a move, and they are where order flow earns its keep.</p>
+      <p><strong>Absorption</strong> is heavy volume with little price progress. Buyers (or sellers) throw size at a level, and passive limit orders soak it all up without the price moving. That is usually a sign that a large participant is defending a price — and a warning to anyone expecting the move to continue through it. <strong>Exhaustion</strong> is the flip side: the push keeps going but the delta behind it fades, so each new high (or low) is made on less aggression than the last.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 300" role="img" aria-label="A chart where price falls into a horizontal level with two very large volume bars but almost no further downward movement, labelled absorption">
+          <rect class="a-panel" x="0" y="0" width="720" height="300" rx="14"/>
+          <text class="a-h" x="24" y="30">Absorption at a level</text>
+          <rect class="a-chip" x="576" y="12" width="126" height="24" rx="12"/>
+          <text class="a-m" x="639" y="28" text-anchor="middle">BIG VOL · NO MOVE</text>
+
+          <g class="a-grid">
+            <line x1="30" y1="80" x2="700" y2="80"/>
+            <line x1="30" y1="130" x2="700" y2="130"/>
+            <line x1="30" y1="180" x2="700" y2="180"/>
+          </g>
+
+          <line class="a-entry" x1="30" y1="214" x2="700" y2="214"/>
+          <text class="a-s" x="694" y="209" text-anchor="end" style="fill:#22d3ee">SUPPORT · defended</text>
+
+          <g>
+            <line class="a-wbear" x1="70" y1="96" x2="70" y2="122"/><rect class="a-bear" x="62" y="100" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="110" y1="118" x2="110" y2="146"/><rect class="a-bear" x="102" y="124" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="150" y1="144" x2="150" y2="172"/><rect class="a-bear" x="142" y="150" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="190" y1="170" x2="190" y2="196"/><rect class="a-bear" x="182" y="176" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="230" y1="188" x2="230" y2="212"/><rect class="a-bear" x="222" y="192" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="270" y1="196" x2="270" y2="222"/><rect class="a-bear" x="262" y="202" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="310" y1="198" x2="310" y2="224"/><rect class="a-bear" x="302" y="204" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="350" y1="196" x2="350" y2="222"/><rect class="a-bear" x="342" y="202" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="390" y1="190" x2="390" y2="218"/><rect class="a-bull" x="382" y="196" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="440" y1="168" x2="440" y2="196"/><rect class="a-bull" x="432" y="174" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="490" y1="146" x2="490" y2="174"/><rect class="a-bull" x="482" y="152" width="16" height="18" rx="2"/>
+            <line class="a-wbull" x1="540" y1="126" x2="540" y2="152"/><rect class="a-bull" x="532" y="132" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="590" y1="110" x2="590" y2="136"/><rect class="a-bull" x="582" y="116" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="640" y1="98" x2="640" y2="124"/><rect class="a-bull" x="632" y="104" width="16" height="16" rx="2"/>
+          </g>
+
+          <rect class="a-track" x="298" y="248" width="22" height="40" rx="3"/>
+          <rect class="aa-bar" x="298" y="248" width="22" height="40" rx="3" style="fill:#ef4444;animation-delay:.4s"/>
+          <rect class="a-track" x="338" y="240" width="22" height="48" rx="3"/>
+          <rect class="aa-bar" x="338" y="240" width="22" height="48" rx="3" style="fill:#ef4444;animation-delay:.55s"/>
+          <rect class="a-track" x="378" y="252" width="22" height="36" rx="3"/>
+          <rect class="aa-bar" x="378" y="252" width="22" height="36" rx="3" style="fill:#ef4444;animation-delay:.7s"/>
+
+          <circle class="aa-pulse" cx="340" cy="210" r="6" style="fill:#fbbf24"/>
+          <text class="a-s" x="410" y="278" style="fill:#8fa0b8">huge volume · price stalls</text>
+          <text class="a-t aa-pop" x="360" y="200" style="fill:#fbbf24;animation-delay:.9s">ABSORPTION</text>
+        </svg>
+        <figcaption><strong>Absorption.</strong> Price falls into a level on very large volume — yet stops falling. The size is being soaked up by passive orders. The seller ran out of road, and price turns back up.</figcaption>
+      </figure>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Where volume profile and order blocks meet</strong>
+          A POC or HVN often sits right on top of an order block, and an LVN often sits inside a fair value gap. Different tools, same map — which is why they combine well.
+        </div>
+      </div>
+
+      <h2 id="vs-indicators">Order flow vs indicators</h2>
+      <p>Indicators are derived from price and volume after the fact — an RSI is a formula run over closes. Order flow looks at the raw transactions underneath. Neither replaces the other, and pretending one is "the answer" is how traders get into trouble.</p>
+      <table>
+        <thead>
+          <tr><th>&nbsp;</th><th>Indicators</th><th>Order flow</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Reads</strong></td><td>Summarised price/volume</td><td>Raw transactions, bid and ask</td></tr>
+          <tr><td><strong>Strength</strong></td><td>Fast, objective, good for momentum and trend</td><td>Granular; shows where size and absorption sit</td></tr>
+          <tr><td><strong>Weakness</strong></td><td>Lagging; can be over-optimised</td><td>Data-hungry; slower to read; easy to over-interpret</td></tr>
+          <tr><td><strong>Best used</strong></td><td>To frame the trend and momentum</td><td>To judge whether a level is being defended</td></tr>
+        </tbody>
+      </table>
+      <p>The pragmatic approach is layered: use structure and indicators to know <em>where</em> you care, then use order flow to judge <em>how</em> price is behaving at that exact place.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card blue">
+          <span class="ec-ico">🧭</span>
+          <strong>Footprint</strong>
+          <span>Volume at each price inside a bar, split by bid and ask.</span>
+        </div>
+        <div class="edu-card green">
+          <span class="ec-ico">⚖️</span>
+          <strong>Delta</strong>
+          <span>Net aggressive pressure — ask minus bid — per bar or cumulatively.</span>
+        </div>
+        <div class="edu-card purple">
+          <span class="ec-ico">📊</span>
+          <strong>Volume profile</strong>
+          <span>Volume by price: POC, value area, HVN and LVN.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🧲</span>
+          <strong>Absorption</strong>
+          <span>Heavy volume that fails to move price — a level being defended.</span>
+        </div>
+      </div>
+
+      <h2 id="app">How to use it with CPE Trade Pro</h2>
+      <p>Keep the honesty line clear: a full footprint, delta or volume-profile workflow is <strong>advanced, professional order-flow territory</strong>, and this page explains it as education. CPE Trade Pro is analysis software that approaches the same questions with a more automatic toolkit — and it does not pretend to be a footprint engine.</p>
+      <p>What the app <em>does</em> do lines up neatly with what order flow is telling you to look for. It reads <strong>volume</strong> as one of the five parts of its 0-10 quality score, and it detects and draws <strong>order blocks, fair value gaps, liquidity zones and BOS / CHoCH</strong> automatically. Those zones and gaps are precisely where a volume profile would show a POC or an LVN, and where a footprint would show stacked imbalances. In other words, the app gives you the same <em>map</em> — the places that matter — without asking you to read the ladder by hand.</p>
+      <p>A practical way to combine them: use order flow to understand <em>why</em> a level matters, and let CPE Trade Pro mark the level and grade the setup for you. Just keep the score in perspective — the 0-10 quality score is built from five measurable parts (Clarity, Trend, Momentum, Volume and Levels), each worth up to 2 points. It is <em>not</em> a win rate, not a probability of profit and not an audited record.</p>
+      <p>Want the level-and-structure side of order flow without hand-reading bid/ask numbers? <a href="/download.html">Download CPE Trade Pro</a> and explore it free in DEMO mode.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/footprint-charts-explained.html">Footprint charts explained</a></li>
+          <li><a href="/blog/volume-analysis-guide.html">Volume analysis guide</a></li>
+          <li><a href="/blog/order-block-strategy-guide.html">Order blocks: a complete strategy guide</a></li>
+          <li><a href="/academy.html">The built-in academy</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>Automatic order blocks, fair value gaps and a volume read — plus BUY / SELL / HOLD with a 0-10 quality score.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What order flow is</a>
+          <a href="#footprint-delta">Footprint and delta</a>
+          <a href="#volume-profile">Volume profile</a>
+          <a href="#absorption">Absorption &amp; exhaustion</a>
+          <a href="#vs-indicators">Order flow vs indicators</a>
+          <a href="#app">With CPE Trade Pro</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/footprint-charts-explained.html">Footprint charts</a>
+          <a href="/blog/volume-analysis-guide.html">Volume analysis</a>
+          <a href="/blog/order-block-strategy-guide.html">Order blocks guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>See the levels the pros watch</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, automatic order blocks, fair value gaps, liquidity zones and BOS / CHoCH, a volume component inside the 0-10 quality score, LIVE and DEMO modes and a built-in academy all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

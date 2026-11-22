@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ADX and DMI Explained: How Strong Is the Trend?</title>
+<meta name="description" content="The ADX and the +DI / -DI directional lines - how to read trend strength versus direction, the 25 threshold, and how CPE Trade Pro uses ADX in the trend part of the score." />
+<meta name="keywords" content="adx indicator, dmi, plus di minus di, trend strength, adx 25" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/adx-dmi-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ADX and DMI Explained: How Strong Is the Trend?" />
+<meta property="og:description" content="Trend strength versus direction, the 25 threshold, and how the ADX and the +DI / -DI lines fit together on a real chart." />
+<meta property="og:url" content="https://cpetradepro.com/blog/adx-dmi-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ADX and DMI Explained" />
+<meta name="twitter:description" content="How to read trend strength versus direction with ADX and the +DI / -DI lines." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ADX and DMI Explained: How Strong Is the Trend?",
+  "description": "The ADX and the +DI / -DI directional lines - how to read trend strength versus direction, the 25 threshold, and how CPE Trade Pro uses ADX in the trend part of the score.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/adx-dmi-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "ADX and DMI explained", "item": "https://cpetradepro.com/blog/adx-dmi-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does a +DI / -DI cross mean I should trade?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. A cross only says which side is currently stronger between the two lines. It is far more useful when the ADX is also rising, because that shows a real trend is developing rather than a range chopping back and forth." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is an ADX above 25 a buy or sell signal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Neither. ADX measures trend strength, not direction. Above 25 the market is trending; the +DI and -DI lines are what point the way. Strength and direction are two separate questions." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does ADX add to the CPE Trade Pro score?",
+      "acceptedAnswer": { "@type": "Answer", "text": "ADX is one of the trend studies that feed the Trend part of the 0-10 quality score, alongside market structure and the higher timeframe. The score is not a win rate, not a probability of profit and not an audited record - it simply shows how many independent checks agreed." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>ADX and DMI</span>
+    </nav>
+    <span class="eyebrow">Learn · Indicators</span>
+    <h1>ADX and DMI explained: how strong is the trend?</h1>
+    <p class="lead">The ADX and the <strong>+DI / −DI</strong> lines answer two different questions — <em>how strong is the trend</em> and <em>which side is winning</em>. Read them together and you stop confusing a busy chart with a tradeable one.</p>
+    <div class="page-meta">
+      <span><b>8 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Indicators</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Ask two traders what ADX means and you may get two answers: "trend strength" and "a buy signal". Only the first one is right. The Average Directional Index, and the Directional Movement Indicators that sit underneath it, describe <strong>how strong a trend is and which side is pushing</strong>. On their own they do not tell you when to buy or sell.</p>
+      <p>This guide covers what each line means, the well-known 25 threshold, the four market states the indicator can fall into, and how the whole thing feeds into CPE Trade Pro's analysis.</p>
+
+      <h2 id="strength">1. Trend strength vs direction</h2>
+      <p>Most tools answer one of two questions: <em>which way</em> or <em>how much</em>. Moving averages and the directional lines lean toward direction. Oscillators like RSI lean toward momentum. ADX answers a third question that traders often skip — <strong>is there a trend at all, and how strong is it?</strong></p>
+      <p>Strength and direction are different things, and mixing them up is the single most common way ADX is misused. A strong rally and a strong sell-off both push ADX higher, because it measures the size of the directional push, not its sign. That is why ADX is called a <em>non-directional</em> index.</p>
+      <p>So you read the two together. ADX tells you whether a trend is worth trading at all; the +DI and −DI lines tell you which direction it points. One without the other is half a picture.</p>
+
+      <h2 id="adx">2. The ADX line and the 25 rule</h2>
+      <p>ADX is a single line, usually running between 0 and 100. It is built from how consistently price moves in one direction relative to its recent range, then smoothed. The number itself matters less than its <strong>level and its slope</strong> — how high it is and whether it is rising or falling.</p>
+      <p>Some widely used reference points:</p>
+      <ul>
+        <li><strong>Below 20</strong> — little or no trend; the market is drifting or ranging.</li>
+        <li><strong>20 to 25</strong> — a trend may be starting; watch for the slope to turn up.</li>
+        <li><strong>Above 25</strong> — the market is generally considered to be trending.</li>
+        <li><strong>Above 40</strong> — a strong trend. <strong>Above 50</strong> — very strong, and often late in its run.</li>
+      </ul>
+      <p>A rising ADX means the trend is strengthening. A falling ADX means it is weakening, even if price keeps drifting the same way for a while. That distinction — rising versus falling — usually matters more than the exact reading.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card purple"><span class="ec-ico">😴</span><strong>Below 20</strong><span>Weak or no trend — trend tools give false starts here.</span></div>
+        <div class="edu-card amber"><span class="ec-ico">🌱</span><strong>20 to 25</strong><span>A trend may be starting; watch the slope turn up.</span></div>
+        <div class="edu-card green"><span class="ec-ico">📈</span><strong>Above 25</strong><span>The market is generally considered to be trending.</span></div>
+        <div class="edu-card blue"><span class="ec-ico">🚀</span><strong>Above 40</strong><span>A strong trend — and often late in its run.</span></div>
+      </div>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A candle chart with an ADX panel below, where the ADX line rises through a dashed 25 level, showing trend strength increasing">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="22" y="26">ADX · trend strength</text>
+          <rect class="a-chip" x="556" y="10" width="144" height="22" rx="11"/>
+          <text class="a-m" x="628" y="25" text-anchor="middle">ADX 31 · STRONG</text>
+
+          <text class="a-s" x="22" y="52">Price</text>
+          <g class="a-grid">
+            <line x1="20" y1="70" x2="700" y2="70"/>
+            <line x1="20" y1="100" x2="700" y2="100"/>
+            <line x1="20" y1="130" x2="700" y2="130"/>
+            <line x1="20" y1="160" x2="700" y2="160"/>
+            <line x1="20" y1="190" x2="700" y2="190"/>
+          </g>
+
+          <g>
+            <line class="a-wbull" x1="40" y1="178" x2="40" y2="196"/><rect class="a-bull" x="34" y="184" width="12" height="8" rx="1.5"/>
+            <line class="a-wbull" x1="70" y1="170" x2="70" y2="188"/><rect class="a-bull" x="64" y="176" width="12" height="8" rx="1.5"/>
+            <line class="a-wbear" x1="100" y1="174" x2="100" y2="190"/><rect class="a-bear" x="94" y="180" width="12" height="6" rx="1.5"/>
+            <line class="a-wbull" x1="130" y1="162" x2="130" y2="184"/><rect class="a-bull" x="124" y="168" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="160" y1="152" x2="160" y2="172"/><rect class="a-bull" x="154" y="158" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="190" y1="156" x2="190" y2="174"/><rect class="a-bear" x="184" y="162" width="12" height="6" rx="1.5"/>
+            <line class="a-wbull" x1="220" y1="142" x2="220" y2="166"/><rect class="a-bull" x="214" y="148" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="250" y1="132" x2="250" y2="152"/><rect class="a-bull" x="244" y="138" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="280" y1="136" x2="280" y2="154"/><rect class="a-bear" x="274" y="142" width="12" height="6" rx="1.5"/>
+            <line class="a-wbull" x1="310" y1="120" x2="310" y2="146"/><rect class="a-bull" x="304" y="126" width="12" height="14" rx="1.5"/>
+            <line class="a-wbull" x1="340" y1="108" x2="340" y2="132"/><rect class="a-bull" x="334" y="114" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="370" y1="98" x2="370" y2="120"/><rect class="a-bull" x="364" y="104" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="400" y1="88" x2="400" y2="112"/><rect class="a-bull" x="394" y="94" width="12" height="12" rx="1.5"/>
+          </g>
+
+          <g class="aa-scan" style="--aa-x:360px">
+            <rect x="24" y="46" width="26" height="150" fill="rgba(34,211,238,.10)"/>
+            <line x1="50" y1="46" x2="50" y2="196" style="stroke:#22d3ee;stroke-width:2"/>
+          </g>
+
+          <text class="a-t a-teal" x="624" y="88">uptrend</text>
+
+          <line class="a-grid" x1="20" y1="212" x2="700" y2="212"/>
+          <text class="a-s" x="22" y="232">ADX (14)</text>
+          <line class="a-tp2" x1="20" y1="252" x2="700" y2="252"/>
+          <text class="a-s a-amber" x="700" y="248" text-anchor="end">25</text>
+          <line class="a-grid" x1="20" y1="288" x2="700" y2="288"/>
+
+          <path class="a-price aa-line" pathLength="1" style="stroke:#22d3ee" d="M40,304 L70,303 L100,306 L130,299 L160,296 L190,300 L220,290 L250,284 L280,288 L310,276 L340,264 L370,254 L400,246"/>
+          <circle class="aa-pop" cx="400" cy="246" r="4.5" style="fill:#22d3ee;animation-delay:1.4s"/>
+          <text class="a-s a-cyan aa-reveal" x="408" y="242" style="animation-delay:1.6s">crosses 25</text>
+        </svg>
+        <figcaption><strong>The 25 rule in one picture.</strong> Price works higher while the ADX line (cyan) turns up and crosses the dashed <b>25</b> level. Above 25 the move is generally treated as a trend rather than noise — but the line points up or down, never left or right.</figcaption>
+      </figure>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>The 25 rule</strong>
+          A common way to filter is simple: only trust trend-following ideas when ADX is above 25 and rising. Below 20, most trend tools hand you false starts, because there is no trend to follow.
+        </div>
+      </div>
+
+      <h2 id="dmi">3. +DI and −DI</h2>
+      <p>Underneath the ADX sit two lines: the <strong>Positive Directional Indicator (+DI)</strong> and the <strong>Negative Directional Indicator (−DI)</strong>. They measure how much of the recent directional movement was upward (+DI) versus downward (−DI).</p>
+      <p>When +DI is above −DI, upward movement dominates. When −DI is above +DI, downward movement dominates. A <strong>cross</strong> between the two is a shift in who is stronger — from sellers to buyers, or the reverse.</p>
+      <p>The important detail: a cross on its own is weak. In a ranging market the two lines cross constantly and give nothing but noise. A cross becomes far more meaningful when the <strong>ADX is rising at the same time</strong>, because that confirms a genuine trend is forming rather than a back-and-forth drift.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="An ADX panel where the green plus DI line crosses above the red minus DI line, with the ADX rising afterwards, marking a change of trend direction">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="22" y="26">Directional movement · +DI / −DI</text>
+          <rect class="a-chip" x="560" y="10" width="140" height="22" rx="11"/>
+          <text class="a-m" x="630" y="25" text-anchor="middle">+DI above −DI</text>
+
+          <text class="a-s" x="22" y="52">Price</text>
+          <g class="a-grid">
+            <line x1="20" y1="70" x2="700" y2="70"/>
+            <line x1="20" y1="100" x2="700" y2="100"/>
+            <line x1="20" y1="130" x2="700" y2="130"/>
+            <line x1="20" y1="160" x2="700" y2="160"/>
+          </g>
+          <g>
+            <line class="a-wbear" x1="40" y1="118" x2="40" y2="138"/><rect class="a-bear" x="34" y="124" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="70" y1="126" x2="70" y2="146"/><rect class="a-bear" x="64" y="132" width="12" height="10" rx="1.5"/>
+            <line class="a-wbear" x1="100" y1="136" x2="100" y2="156"/><rect class="a-bear" x="94" y="142" width="12" height="10" rx="1.5"/>
+            <line class="a-wbull" x1="130" y1="150" x2="130" y2="170"/><rect class="a-bull" x="124" y="156" width="12" height="8" rx="1.5"/>
+            <line class="a-wbear" x1="160" y1="150" x2="160" y2="166"/><rect class="a-bear" x="154" y="154" width="12" height="6" rx="1.5"/>
+            <line class="a-wbull" x1="190" y1="140" x2="190" y2="164"/><rect class="a-bull" x="184" y="146" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="220" y1="128" x2="220" y2="150"/><rect class="a-bull" x="214" y="134" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="250" y1="114" x2="250" y2="136"/><rect class="a-bull" x="244" y="120" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="280" y1="102" x2="280" y2="126"/><rect class="a-bull" x="274" y="108" width="12" height="12" rx="1.5"/>
+            <line class="a-wbull" x1="310" y1="92" x2="310" y2="114"/><rect class="a-bull" x="304" y="98" width="12" height="12" rx="1.5"/>
+          </g>
+
+          <line class="a-grid" x1="20" y1="196" x2="700" y2="196"/>
+          <text class="a-s" x="22" y="216">DI lines</text>
+          <g class="a-grid">
+            <line x1="20" y1="240" x2="700" y2="240"/>
+            <line x1="20" y1="270" x2="700" y2="270"/>
+            <line x1="20" y1="300" x2="700" y2="300"/>
+          </g>
+
+          <path class="a-price aa-line" pathLength="1" style="stroke:#22c55e" d="M40,292 L80,288 L120,282 L160,272 L200,262 L240,250 L280,236 L320,224 L360,214 L400,206 L440,198"/>
+          <path class="a-price aa-line" pathLength="1" style="stroke:#ef4444;animation-delay:.3s" d="M40,214 L80,220 L120,228 L160,236 L200,246 L240,256 L280,266 L320,276 L360,286 L400,292 L440,296"/>
+
+          <circle class="aa-pop" cx="200" cy="254" r="5" style="fill:#fbbf24;animation-delay:1.5s"/>
+          <text class="a-s a-amber aa-reveal" x="200" y="240" text-anchor="middle" style="animation-delay:1.7s">cross</text>
+
+          <text class="a-s a-green" x="560" y="212">+DI</text>
+          <text class="a-s a-red" x="560" y="300">−DI</text>
+        </svg>
+        <figcaption><strong>Who is winning.</strong> The green <b>+DI</b> line crossing above the red <b>−DI</b> marks a shift toward buyers. The cross is the trigger to pay attention; the rising ADX is what says the shift is real rather than noise.</figcaption>
+      </figure>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>A cross alone is not a signal</strong>
+          In a choppy market the two lines cross again and again. Wait for the ADX to rise through 25 to confirm the cross actually means something. Direction without strength is a coin flip.
+        </div>
+      </div>
+
+      <h2 id="states">4. The four market states</h2>
+      <p>Putting the two readings together gives you four broad states, each with its own sensible approach.</p>
+
+      <table>
+        <thead>
+          <tr><th>ADX</th><th>DI lines</th><th>State</th><th>How to treat it</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Rising, above 25</td><td>+DI above −DI</td><td><strong>Trending up</strong></td><td>Favour trend-following long ideas on pullbacks</td></tr>
+          <tr><td>Rising, above 25</td><td>−DI above +DI</td><td><strong>Trending down</strong></td><td>Favour trend-following short ideas, or stand aside on spot</td></tr>
+          <tr><td>Low or falling</td><td>Lines tangled, crossing often</td><td><strong>Range</strong></td><td>Mean-reversion at the edges, or wait</td></tr>
+          <tr><td>Below 20, flat</td><td>No clear leader</td><td><strong>Weak / no trend</strong></td><td>Trend tools mislead here — usually best to wait</td></tr>
+        </tbody>
+      </table>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 380" role="img" aria-label="Four coloured cards showing the four market states: trending up, trending down, range, and weak or no trend">
+          <rect class="a-panel" x="0" y="0" width="720" height="380" rx="14"/>
+          <text class="a-h" x="24" y="32">The four market states</text>
+
+          <rect class="a-fill-green aa-pop" x="24" y="58" width="318" height="142" rx="12"/>
+          <text class="a-t a-green" x="44" y="90">📈  Trending up</text>
+          <text class="a-s" x="44" y="114">+DI above −DI</text>
+          <text class="a-s" x="44" y="132">ADX rising, above 25</text>
+          <text class="a-s a-green" x="44" y="168">Favour trend-following longs</text>
+
+          <rect class="a-fill-pink aa-pop" x="378" y="58" width="318" height="142" rx="12" style="animation-delay:.15s"/>
+          <text class="a-t a-red" x="398" y="90">📉  Trending down</text>
+          <text class="a-s" x="398" y="114">−DI above +DI</text>
+          <text class="a-s" x="398" y="132">ADX rising, above 25</text>
+          <text class="a-s a-red" x="398" y="168">Favour shorts, or stand aside</text>
+
+          <rect class="a-fill-amber aa-pop" x="24" y="214" width="318" height="142" rx="12" style="animation-delay:.3s"/>
+          <text class="a-t a-amber" x="44" y="246">↔️  Range</text>
+          <text class="a-s" x="44" y="270">ADX low or falling</text>
+          <text class="a-s" x="44" y="288">DI lines tangled</text>
+          <text class="a-s a-amber" x="44" y="324">Mean-reversion, or wait</text>
+
+          <rect class="a-fill-purple aa-pop" x="378" y="214" width="318" height="142" rx="12" style="animation-delay:.45s"/>
+          <text class="a-t a-purple" x="398" y="246">😴  Weak / no trend</text>
+          <text class="a-s" x="398" y="270">ADX below 20, flat</text>
+          <text class="a-s" x="398" y="288">no clear leader</text>
+          <text class="a-s a-purple" x="398" y="324">Trend tools mislead — wait</text>
+        </svg>
+        <figcaption><strong>Four states, four postures.</strong> The same pair can sit in any of these depending on the timeframe. When the ADX is low and the lines are tangled, the honest answer is often to wait rather than force a trend trade.</figcaption>
+      </figure>
+
+      <h2 id="settings">5. Settings</h2>
+      <p>The default length of 14 periods works well for most charts. Shortening it makes ADX react faster but noisier; lengthening it smooths the line and delays it. A few practical choices:</p>
+      <div class="edu-chips">
+        <span class="edu-chip amber"><i>14</i>default length</span>
+        <span class="edu-chip green"><i>25</i>trending threshold</span>
+        <span class="edu-chip blue"><i>20</i>weak / ranging</span>
+        <span class="edu-chip purple"><i>H1+</i>higher timeframes read cleaner</span>
+      </div>
+      <p>It is also worth noting that ADX is often a lagging reading. By the time it is comfortably above 40, a move may be mature. Many traders use it as a <strong>permission filter</strong> rather than a trigger: it says whether the conditions suit a trend trade, not the exact moment to enter.</p>
+
+      <h2 id="mistakes">6. Common mistakes</h2>
+      <ul>
+        <li><strong>Treating ADX as directional.</strong> A high ADX says a trend exists, not which way it points. The DI lines settle that.</li>
+        <li><strong>Trading every DI cross.</strong> In a range the lines cross non-stop. Require the ADX to confirm.</li>
+        <li><strong>Chasing the extreme.</strong> ADX above 50 can mean a move is strong — and stretched. Strength is not a promise it continues.</li>
+        <li><strong>Ignoring the slope.</strong> A falling ADX inside an uptrend warns the trend is losing energy, even while price edges higher.</li>
+        <li><strong>Using ADX alone.</strong> It says nothing about where to enter, where to exit, or where the idea is wrong.</li>
+      </ul>
+
+      <h2 id="cpe">7. How CPE Trade Pro uses ADX</h2>
+      <p>In CPE Trade Pro, ADX is one of the trend studies. It does not produce a signal on its own — it feeds the <strong>Trend</strong> part of the 0-10 quality score, which is one of five parts, each worth up to 2 points. The Trend part also weighs market structure and the higher-timeframe bias, so ADX is one voice among several rather than a sole decision-maker.</p>
+      <p>When ADX is rising and points the same way as structure and the higher timeframe, the Trend part tends to score higher, and that agreement nudges the overall signal quality up. When ADX is low or fighting the setup, the Trend part scores lower — a plain, visible sign that the trend evidence is thin.</p>
+      <p>It is worth being precise here. The 0-10 score is <strong>not a win rate</strong>, <strong>not a probability of profit</strong> and <strong>not an audited record</strong>. It is a summary of how many independent checks agreed. ADX's contribution is measured and modest: it helps the app describe whether a trend is present, not to promise an outcome.</p>
+      <p>You can see this on live charts in the <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">full walkthrough of how the analysis works</a>, pair it with <a href="/blog/volume-analysis-guide.html">volume</a> for participation, and add <a href="/blog/sma-explained.html">moving averages</a> for the trend's average price.</p>
+      <p>Want to read the trend the same way the app does? <a href="/download.html">Download CPE Trade Pro free</a> and study the chart with every indicator in one place.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/blog/volume-analysis-guide.html">Volume explained: reading participation</a></li>
+          <li><a href="/blog/sma-explained.html">SMA explained: the 50 simple moving average</a></li>
+          <li><a href="/signal-guide.html">The signal guide</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Read trend strength in the app</h4>
+        <p>ADX, moving averages and trend studies feed the 0-10 quality score — with DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#strength">1. Strength vs direction</a>
+          <a href="#adx">2. The ADX line and the 25 rule</a>
+          <a href="#dmi">3. +DI and −DI</a>
+          <a href="#states">4. The four market states</a>
+          <a href="#settings">5. Settings</a>
+          <a href="#mistakes">6. Common mistakes</a>
+          <a href="#cpe">7. How CPE Trade Pro uses ADX</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/volume-analysis-guide.html">Volume analysis guide</a>
+          <a href="/blog/sma-explained.html">SMA 50 explained</a>
+          <a href="/signal-guide.html">Signal guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read trend strength, then trade it</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="whats-float" aria-label="WhatsApp us" title="WhatsApp: +94774940944">💬</a>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>
