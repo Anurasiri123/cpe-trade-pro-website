@@ -450,6 +450,41 @@ function initTestimonials(){
 }
 
 /* ------------------------------------------------------------
+   Conversion tracking — pushes events to the GTM / GA4 dataLayer.
+   Events: whatsapp_click · email_click · download_click · download_open
+   ------------------------------------------------------------ */
+function track(event, params){
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(Object.assign({ event }, params || {}));
+}
+
+function initTracking(){
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("a, button");
+    if(!el) return;
+    const href = el.getAttribute("href") || "";
+    const text = (el.textContent || "").trim().slice(0, 80);
+
+    if(el.classList.contains("whats-float") || el.classList.contains("btn-whats") || /wa\.me|whatsapp/i.test(href)){
+      track("whatsapp_click", { link_text: text, link_url: href || "https://wa.me/94774940944" });
+      return;
+    }
+    if(/^mailto:/i.test(href)){
+      track("email_click", { link_text: text, link_url: href });
+      return;
+    }
+    if(el.hasAttribute("data-dl") || el.classList.contains("dl-modal-card")){
+      const platform = el.getAttribute("data-dl") || String(el.id || "").replace(/^mdl/, "").toLowerCase() || "unknown";
+      track("download_click", { platform, link_url: href });
+      return;
+    }
+    if(el.classList.contains("dl-trigger")){
+      track("download_open", { link_text: text });
+    }
+  }, true);
+}
+
+/* ------------------------------------------------------------
    Boot
    ------------------------------------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -464,6 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCounters();
   initTestimonials();
   initPaperCalculator();
+  initTracking();
   setYear();
   initReveal();
 });
