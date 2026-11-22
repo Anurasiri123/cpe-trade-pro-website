@@ -241,7 +241,7 @@ function initModal(){
    Animated counters in hero stats
    ------------------------------------------------------------ */
 function initCounters(){
-  const nums = document.querySelectorAll(".stat-num");
+  const nums = document.querySelectorAll(".stat-num[data-count]");
   const io = new IntersectionObserver(entries => {
     entries.forEach(en => {
       if(!en.isIntersecting) return;
