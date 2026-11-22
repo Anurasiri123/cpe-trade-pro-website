@@ -293,12 +293,15 @@ ul{list-style:none}
 /* ===================== ACADEMY ===================== */
 .academy-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .academy{position:relative;overflow:hidden}
+a.card.academy{color:inherit;text-decoration:none;display:block}
+a.card.academy:hover{color:inherit}
 .a-num{
   position:absolute;top:.6rem;right:1rem;font-family:'Sora',sans-serif;
   font-size:2.6rem;font-weight:900;color:rgba(0,229,168,.12);line-height:1;
 }
 .academy h3{font-size:1.15rem;margin:1.2rem 0 .5rem;position:relative}
 .academy p{color:var(--muted);font-size:.92rem;position:relative}
+.academy .post-more{font-size:.82rem;color:var(--accent);font-weight:600;margin-top:.8rem;display:inline-block;position:relative}
 
 /* ===================== DOWNLOAD ===================== */
 .dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem}
@@ -385,6 +388,8 @@ ul{list-style:none}
 .cta-inner h2{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800}
 .cta-inner p{opacity:.85;margin:.6rem 0 1.6rem;font-size:1.05rem}
 .cta-band .btn-primary{background:#06231c;color:var(--accent)}
+.cta-band .btn-ghost{background:rgba(6,35,28,.14);color:#06231c;border-color:rgba(6,35,28,.4)}
+.cta-band .btn-ghost:hover{border-color:#06231c;color:#06231c;transform:translateY(-2px)}
 .cta-band .btn-whats{background:#06231c;color:#25d366}
 
 /* ===================== FOOTER ===================== */

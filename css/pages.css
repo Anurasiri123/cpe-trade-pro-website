@@ -84,6 +84,23 @@
 .prose pre code{background:none;padding:0;color:#cfe2f5}
 
 .prose img{border-radius:14px;border:1px solid var(--line);margin:1.4rem 0}
+.pattern-figure{
+  margin:1.35rem 0;padding:.75rem;border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(150deg,#101a2c,#0b1220);overflow:hidden;
+}
+.pattern-figure svg{display:block;width:100%;height:auto;border-radius:10px}
+.pattern-figure figcaption{padding:.65rem .3rem .1rem;color:var(--muted);font-size:.78rem;line-height:1.55}
+.pattern-figure figcaption strong{color:var(--accent)}
+.pattern-figure .chart-label{font:600 12px Inter,Arial,sans-serif;fill:#cbd5e1}
+.pattern-figure .chart-small{font:500 10px Inter,Arial,sans-serif;fill:#94a3b8}
+.pattern-figure .chart-grid{stroke:#263449;stroke-width:1}
+.pattern-figure .chart-price{fill:none;stroke:#35d6b0;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.pattern-figure .chart-price-alt{fill:none;stroke:#60a5fa;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.pattern-figure .chart-level{stroke:#fbbf24;stroke-width:2;stroke-dasharray:7 6}
+.pattern-figure .chart-break{stroke:#fb7185;stroke-width:2;stroke-dasharray:5 5}
+.pattern-figure .candle-bull{fill:#22c55e;stroke:#22c55e}
+.pattern-figure .candle-bear{fill:#ef4444;stroke:#ef4444}
+.pattern-figure .candle-wick{stroke-width:3;stroke-linecap:round}
 .prose hr{border:none;border-top:1px solid var(--line);margin:2rem 0}
 
 .prose table{
@@ -180,6 +197,20 @@
 
 /* ---------- Small print ---------- */
 .fineprint{font-size:.76rem;color:var(--muted);line-height:1.6;margin-top:1.6rem}
+
+/* ---------- Homepage language highlight ---------- */
+.lang-strip{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.6rem 0 0}
+.lang-chip{
+  display:inline-flex;align-items:baseline;gap:.45rem;
+  border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;
+  background:linear-gradient(150deg,var(--panel),rgba(12,19,35,.94));
+  font-size:.9rem;color:var(--text);
+}
+.lang-chip b{
+  font:700 .68rem/1 'Sora',sans-serif;letter-spacing:.08em;
+  color:var(--accent);
+}
+.lang-cta{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:.7rem}
 
 /* ---------- Legal / trust links row in the footer ---------- */
 .footer-legal{
