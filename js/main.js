@@ -3,13 +3,13 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   Public download bundle. Android and iOS are v6.1.1 (Binance IP Guard fix);
-   Windows and macOS remain v6.1.0 until their next rebuild.
+   Public download bundle. All platforms are v6.1.1 (Binance error
+   messages + ALL-signals mode + IP Guard).
    ------------------------------------------------------------ */
 const DOWNLOADS = {
-  windows:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.0/CPE-Trade-Pro-Setup-6.1.0.exe",
-  macX64:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.0/CPE-Trade-Pro-6.1.0-x64.dmg",
-  macArm:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.0/CPE-Trade-Pro-6.1.0-arm64.dmg",
+  windows:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-Setup-6.1.1.exe",
+  macX64:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-6.1.1-x64.dmg",
+  macArm:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-6.1.1-arm64.dmg",
   android:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-6.1.1.apk",
   ios:      "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-6.1.1-unsigned.ipa"
 };
