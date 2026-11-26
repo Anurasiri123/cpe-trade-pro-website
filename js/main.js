@@ -488,42 +488,35 @@ function initTracking(){
 
 /* ------------------------------------------------------------
    Custom Google Translate switcher.
-   Injected into every page's navbar by JS, so the whole site
-   (root pages + blog) gets the language button automatically.
+   Injected just below the sticky header on every page (root
+   pages + blog) so the language dropdown is easy to find.
+   No includedLanguages list — every language Google offers.
    ------------------------------------------------------------ */
 function googleTranslateElementInit(){
   if(!(window.google && google.translate && google.translate.TranslateElement)) return;
   new google.translate.TranslateElement({
     pageLanguage: "en",
-    includedLanguages: "en,si,ta",
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
     autoDisplay: false
   }, "google_translate_element");
 }
 
 function initTranslate(){
-  const nav = document.querySelector(".nav-inner");
-  if(!nav || document.getElementById("google_translate_element")) return;
+  if(document.getElementById("google_translate_element")) return;
+  const header = document.getElementById("nav");
+  if(!header) return;
 
-  // Build the switcher
-  const wrap = document.createElement("div");
-  wrap.className = "custom-translate-wrapper";
-  wrap.innerHTML =
-    '<span class="translate-icon" aria-hidden="true">🌐</span>' +
-    '<div id="google_translate_element"></div>';
-
-  // Group it with the existing navbar actions (WhatsApp button + menu toggle)
-  const cta = nav.querySelector(".nav-cta");
-  const toggle = nav.querySelector(".nav-toggle");
-  let actions = nav.querySelector(".nav-actions");
-  if(!actions){
-    actions = document.createElement("div");
-    actions.className = "nav-actions";
-    if(cta) nav.insertBefore(actions, cta); else nav.appendChild(actions);
-    if(cta) actions.appendChild(cta);
-    if(toggle) actions.appendChild(toggle);
-  }
-  actions.insertBefore(wrap, actions.firstChild);
+  const bar = document.createElement("div");
+  bar.className = "lang-bar";
+  bar.innerHTML =
+    '<div class="container">' +
+      '<div class="custom-translate-wrapper">' +
+        '<span class="translate-icon" aria-hidden="true">🌐</span>' +
+        '<span class="lang-label">Language</span>' +
+        '<div id="google_translate_element"></div>' +
+      '</div>' +
+    '</div>';
+  header.insertAdjacentElement("afterend", bar);
 
   // Load the Google Translate engine once
   if(!document.getElementById("google-translate-script")){
