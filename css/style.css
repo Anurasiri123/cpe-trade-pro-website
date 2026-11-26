@@ -766,7 +766,53 @@ body{top:0px !important}
 .lang-bar{border-bottom:1px solid var(--line);background:rgba(10,15,29,.55)}
 .lang-bar .container{display:flex;justify-content:center;align-items:center;gap:16px;min-height:44px}
 .lang-label{font-size:.82rem;font-weight:600;color:var(--muted);margin-right:8px;letter-spacing:.02em;white-space:nowrap}
-.lang-bar .custom-translate-wrapper{margin-left:0;flex:0 0 auto;position:relative;z-index:1;padding:3px 10px}
+.lang-trigger .lang-label{margin-right:0}
+.lang-bar .custom-translate-wrapper{margin-left:0;flex:0 0 auto;position:relative;z-index:60;padding:3px 12px}
+
+/* Google's own widget stays in the DOM but invisible — it drives the
+   translation behind the scenes while our own dropdown is the UI. */
+.custom-translate-wrapper .gt-hidden{
+  position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;
+  pointer-events:none;left:0;top:50%;
+}
+.lang-trigger{
+  display:inline-flex;align-items:center;gap:7px;background:none;border:none;
+  color:#f8fafc;font:600 .86rem/1 'Inter',system-ui,sans-serif;cursor:pointer;padding:0;
+}
+.lang-caret{font-size:.7rem;color:#94a3b8;transition:transform .2s}
+.lang-trigger.open .lang-caret{transform:rotate(180deg)}
+
+/* ---- big language dropdown ---- */
+.lang-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+  width:min(780px,92vw);max-height:min(72vh,560px);
+  background:#0f1a2e;border:1px solid #2a3a55;border-radius:14px;
+  box-shadow:0 26px 64px rgba(0,0,0,.62);z-index:9000;
+  display:flex;flex-direction:column;overflow:hidden;text-align:left;
+}
+.lang-menu[hidden]{display:none}
+.lang-search-wrap{padding:12px 12px 10px;border-bottom:1px solid rgba(255,255,255,.07);flex:0 0 auto}
+.lang-search{
+  width:100%;padding:11px 13px;border-radius:10px;background:#0a1220;
+  border:1px solid #24344d;color:#e6edf7;font:400 .92rem 'Inter',system-ui,sans-serif;outline:none;
+}
+.lang-search::placeholder{color:#64748b}
+.lang-search:focus{border-color:#38bdf8}
+.lang-list{
+  flex:1 1 auto;overflow-y:auto;padding:10px;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;
+}
+.lang-item{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:11px 13px;border-radius:9px;background:transparent;border:none;
+  color:#cfdcee;font:500 .94rem 'Inter',system-ui,sans-serif;text-align:left;cursor:pointer;
+  transition:background .15s,color .15s;
+}
+.lang-item:hover{background:#1b2b45;color:#fff}
+.lang-item.active{background:rgba(0,229,168,.16);color:#00e5a8}
+.lang-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lang-code{font-size:.66rem;letter-spacing:.06em;color:#64748b;flex:0 0 auto}
+.lang-item.active .lang-code{color:#00e5a8}
 
 .coin-strip{
   flex:1 1 0;min-width:0;height:24px;overflow:hidden;position:relative;
@@ -802,6 +848,9 @@ body{top:0px !important}
   .lang-label{display:none}
   .goog-te-gadget-simple{font-size:12px !important}
   .coin{width:20px;height:20px;font-size:11px;margin-right:12px}
+  .lang-menu{width:94vw;max-height:68vh}
+  .lang-list{grid-template-columns:repeat(2,minmax(0,1fr));padding:8px}
+  .lang-item{padding:11px 10px;font-size:.9rem}
 }
 @media(prefers-reduced-motion:reduce){
   .coin-track,.coin{animation:none}

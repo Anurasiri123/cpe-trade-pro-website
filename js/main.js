@@ -489,9 +489,45 @@ function initTracking(){
 /* ------------------------------------------------------------
    Custom Google Translate switcher.
    Injected just below the sticky header on every page (root
-   pages + blog) so the language dropdown is easy to find.
-   No includedLanguages list — every language Google offers.
+   pages + blog) so the language switcher is easy to find.
+   Google's own language list lives inside an iframe, so it can
+   NOT be styled/enlarged with CSS — the visible list here is our
+   own large dropdown, and picking a language drives Google's
+   hidden engine directly.
    ------------------------------------------------------------ */
+
+/* Every language Google Translate offers (code + English name). */
+const GT_LANGS = [
+  ["af","Afrikaans"],["sq","Albanian"],["am","Amharic"],["ar","Arabic"],["hy","Armenian"],
+  ["as","Assamese"],["ay","Aymara"],["az","Azerbaijani"],["bm","Bambara"],["eu","Basque"],
+  ["be","Belarusian"],["bn","Bengali"],["bho","Bhojpuri"],["bs","Bosnian"],["bg","Bulgarian"],
+  ["ca","Catalan"],["ceb","Cebuano"],["ny","Chichewa"],["zh-CN","Chinese (Simplified)"],
+  ["zh-TW","Chinese (Traditional)"],["co","Corsican"],["hr","Croatian"],["cs","Czech"],
+  ["da","Danish"],["dv","Dhivehi"],["doi","Dogri"],["nl","Dutch"],["en","English"],
+  ["eo","Esperanto"],["et","Estonian"],["ee","Ewe"],["tl","Filipino"],["fi","Finnish"],
+  ["fr","French"],["fy","Frisian"],["gl","Galician"],["ka","Georgian"],["de","German"],
+  ["el","Greek"],["gn","Guarani"],["gu","Gujarati"],["ht","Haitian Creole"],["ha","Hausa"],
+  ["haw","Hawaiian"],["he","Hebrew"],["hi","Hindi"],["hmn","Hmong"],["hu","Hungarian"],
+  ["is","Icelandic"],["ig","Igbo"],["ilo","Ilocano"],["id","Indonesian"],["ga","Irish"],
+  ["it","Italian"],["ja","Japanese"],["jw","Javanese"],["kn","Kannada"],["kk","Kazakh"],
+  ["km","Khmer"],["rw","Kinyarwanda"],["gom","Konkani"],["ko","Korean"],["kri","Krio"],
+  ["ku","Kurdish (Kurmanji)"],["ckb","Kurdish (Sorani)"],["ky","Kyrgyz"],["lo","Lao"],
+  ["la","Latin"],["lv","Latvian"],["ln","Lingala"],["lt","Lithuanian"],["lg","Luganda"],
+  ["lb","Luxembourgish"],["mk","Macedonian"],["mai","Maithili"],["mg","Malagasy"],["ms","Malay"],
+  ["ml","Malayalam"],["mt","Maltese"],["mi","Maori"],["mr","Marathi"],
+  ["mni-Mtei","Meiteilon (Manipuri)"],["lus","Mizo"],["mn","Mongolian"],["my","Myanmar (Burmese)"],
+  ["ne","Nepali"],["no","Norwegian"],["or","Odia (Oriya)"],["om","Oromo"],["ps","Pashto"],
+  ["fa","Persian"],["pl","Polish"],["pt","Portuguese"],["pa","Punjabi"],["qu","Quechua"],
+  ["ro","Romanian"],["ru","Russian"],["sm","Samoan"],["sa","Sanskrit"],["gd","Scots Gaelic"],
+  ["nso","Sepedi"],["sr","Serbian"],["st","Sesotho"],["sn","Shona"],["sd","Sindhi"],
+  ["si","Sinhala"],["sk","Slovak"],["sl","Slovenian"],["so","Somali"],["es","Spanish"],
+  ["su","Sundanese"],["sw","Swahili"],["sv","Swedish"],["tg","Tajik"],["ta","Tamil"],
+  ["tt","Tatar"],["te","Telugu"],["th","Thai"],["ti","Tigrinya"],["ts","Tsonga"],
+  ["tr","Turkish"],["tk","Turkmen"],["ak","Twi"],["uk","Ukrainian"],["ur","Urdu"],
+  ["ug","Uyghur"],["uz","Uzbek"],["vi","Vietnamese"],["cy","Welsh"],["xh","Xhosa"],
+  ["yi","Yiddish"],["yo","Yoruba"],["zu","Zulu"]
+];
+
 function googleTranslateElementInit(){
   if(!(window.google && google.translate && google.translate.TranslateElement)) return;
   new google.translate.TranslateElement({
@@ -501,8 +537,101 @@ function googleTranslateElementInit(){
   }, "google_translate_element");
 }
 
+/* Language Google is currently applying (from the googtrans cookie). */
+function currentLangCode(){
+  const m = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
+  return m ? decodeURIComponent(m[1]) : "";
+}
+
+/* Persist the choice so it survives navigation between pages. */
+function writeGoogTrans(code){
+  const host = location.hostname;
+  const suffixes = ["", "; domain=" + host, "; domain=." + host];
+  suffixes.forEach(function(s){
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + s;
+  });
+  if(code && code !== "en"){
+    suffixes.forEach(function(s){
+      document.cookie = "googtrans=/en/" + code + "; path=/" + s;
+    });
+  }
+}
+
+function gtLangName(code){
+  for(let i = 0; i < GT_LANGS.length; i++){ if(GT_LANGS[i][0] === code) return GT_LANGS[i][1]; }
+  return code;
+}
+
+/* Reflect the active language on the trigger + highlight the row. */
+function updateLangTrigger(code){
+  const label = document.querySelector("#langTrigger .lang-label");
+  if(label) label.textContent = (code && code !== "en") ? gtLangName(code) : "Read in your language";
+  document.querySelectorAll(".lang-item").forEach(function(b){
+    b.classList.toggle("active", b.getAttribute("data-code") === code);
+  });
+}
+
+/* Switch language: drive Google's hidden <select> when it is ready,
+   otherwise fall back to the googtrans cookie + a reload. */
+function applyLang(code){
+  writeGoogTrans(code);
+  const combo = document.querySelector(".goog-te-combo");
+  if(combo){
+    combo.value = (code && code !== "en") ? code : "";
+    combo.dispatchEvent(new Event("change"));
+    updateLangTrigger(code);
+    return;
+  }
+  location.reload();
+}
+
+function bindLangSwitcher(){
+  const trigger = document.getElementById("langTrigger");
+  const menu    = document.getElementById("langMenu");
+  const search  = document.getElementById("langSearch");
+  const list    = document.getElementById("langList");
+  if(!trigger || !menu || !list) return;
+
+  function filterList(q){
+    const term = q.trim().toLowerCase();
+    list.querySelectorAll(".lang-item").forEach(function(btn){
+      btn.style.display = (!term || btn.textContent.toLowerCase().indexOf(term) !== -1) ? "" : "none";
+    });
+  }
+
+  function setOpen(state){
+    menu.hidden = !state;
+    trigger.setAttribute("aria-expanded", state ? "true" : "false");
+    trigger.classList.toggle("open", state);
+    if(state){
+      if(search){ search.value = ""; filterList(""); }
+      setTimeout(function(){ if(search) search.focus(); }, 30);
+    }
+  }
+
+  trigger.addEventListener("click", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    setOpen(menu.hidden);
+  });
+  if(search) search.addEventListener("input", function(){ filterList(search.value); });
+  list.addEventListener("click", function(e){
+    const btn = e.target.closest(".lang-item");
+    if(!btn) return;
+    applyLang(btn.getAttribute("data-code"));
+    setOpen(false);
+  });
+  document.addEventListener("click", function(e){
+    if(menu.hidden) return;
+    if(!menu.contains(e.target) && !trigger.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && !menu.hidden) setOpen(false);
+  });
+}
+
 function initTranslate(){
-  if(document.getElementById("google_translate_element")) return;
+  if(document.getElementById("langTrigger")) return;
   const header = document.getElementById("nav");
   if(!header) return;
 
@@ -515,19 +644,38 @@ function initTranslate(){
   // Duplicated once so the marquee loops seamlessly
   const strip = '<div class="coin-track">' + coinHtml + coinHtml + '</div>';
 
+  const langItems = GT_LANGS.map(function(l){
+    return '<button type="button" class="lang-item" role="option" data-code="' + l[0] + '">' +
+             '<span class="lang-name">' + l[1] + '</span>' +
+             '<span class="lang-code">' + l[0] + '</span>' +
+           '</button>';
+  }).join("");
+
   const bar = document.createElement("div");
   bar.className = "lang-bar";
   bar.innerHTML =
     '<div class="container">' +
       '<div class="coin-strip" aria-hidden="true">' + strip + '</div>' +
       '<div class="custom-translate-wrapper">' +
-        '<span class="translate-icon" aria-hidden="true">🌐</span>' +
-        '<span class="lang-label">Read in your language</span>' +
-        '<div id="google_translate_element"></div>' +
+        '<button class="lang-trigger" id="langTrigger" type="button" aria-haspopup="true" aria-expanded="false">' +
+          '<span class="translate-icon" aria-hidden="true">🌐</span>' +
+          '<span class="lang-label">Read in your language</span>' +
+          '<span class="lang-caret" aria-hidden="true">▾</span>' +
+        '</button>' +
+        '<div class="lang-menu" id="langMenu" role="listbox" aria-label="Choose a language" hidden>' +
+          '<div class="lang-search-wrap">' +
+            '<input type="search" id="langSearch" class="lang-search" placeholder="Search language…" aria-label="Search language" autocomplete="off" />' +
+          '</div>' +
+          '<div class="lang-list" id="langList">' + langItems + '</div>' +
+        '</div>' +
+        '<div id="google_translate_element" class="gt-hidden" aria-hidden="true"></div>' +
       '</div>' +
       '<div class="coin-strip reverse" aria-hidden="true">' + strip + '</div>' +
     '</div>';
   header.insertAdjacentElement("afterend", bar);
+
+  bindLangSwitcher();
+  updateLangTrigger(currentLangCode());
 
   // Load the Google Translate engine only after the page has finished
   // loading, so it never competes with the first paint.
