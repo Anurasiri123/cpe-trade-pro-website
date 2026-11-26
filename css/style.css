@@ -764,20 +764,20 @@ body{top:0px !important}
 
 /* Language bar: centered switcher with rolling crypto/forex coins on both sides */
 .lang-bar{border-bottom:1px solid var(--line);background:rgba(10,15,29,.55)}
-.lang-bar .container{display:flex;justify-content:center;align-items:center;gap:18px;min-height:62px}
-.lang-label{font-size:.82rem;font-weight:600;color:var(--muted);margin-right:8px;letter-spacing:.02em}
-.lang-bar .custom-translate-wrapper{margin-left:0;flex:0 0 auto;position:relative;z-index:1}
+.lang-bar .container{display:flex;justify-content:center;align-items:center;gap:16px;min-height:44px}
+.lang-label{font-size:.82rem;font-weight:600;color:var(--muted);margin-right:8px;letter-spacing:.02em;white-space:nowrap}
+.lang-bar .custom-translate-wrapper{margin-left:0;flex:0 0 auto;position:relative;z-index:1;padding:3px 10px}
 
 .coin-strip{
-  flex:1 1 0;min-width:0;height:30px;overflow:hidden;position:relative;
+  flex:1 1 0;min-width:0;height:24px;overflow:hidden;position:relative;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);
 }
 .coin-track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;animation:coinScroll 14s linear infinite;will-change:transform}
 .coin-strip.reverse .coin-track{animation-direction:reverse}
 .coin{
-  width:28px;height:28px;border-radius:50%;flex:0 0 auto;margin-right:16px;
-  display:grid;place-items:center;font:800 13px/1 'Sora',sans-serif;
+  width:24px;height:24px;border-radius:50%;flex:0 0 auto;margin-right:14px;
+  display:grid;place-items:center;font:800 12px/1 'Sora',sans-serif;
   box-shadow:0 2px 8px rgba(0,0,0,.35),inset 0 -2px 4px rgba(0,0,0,.2);
   animation:coinRoll 3s linear infinite;backface-visibility:hidden;
 }
@@ -797,11 +797,11 @@ body{top:0px !important}
 @keyframes coinRoll{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
 
 @media(max-width:720px){
-  .lang-bar .container{min-height:54px;gap:10px}
+  .lang-bar .container{min-height:40px;gap:10px}
   .custom-translate-wrapper{padding:3px 8px}
   .lang-label{display:none}
   .goog-te-gadget-simple{font-size:12px !important}
-  .coin{width:22px;height:22px;font-size:11px;margin-right:12px}
+  .coin{width:20px;height:20px;font-size:11px;margin-right:12px}
 }
 @media(prefers-reduced-motion:reduce){
   .coin-track,.coin{animation:none}

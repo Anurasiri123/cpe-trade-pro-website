@@ -522,7 +522,7 @@ function initTranslate(){
       '<div class="coin-strip" aria-hidden="true">' + strip + '</div>' +
       '<div class="custom-translate-wrapper">' +
         '<span class="translate-icon" aria-hidden="true">🌐</span>' +
-        '<span class="lang-label">Language</span>' +
+        '<span class="lang-label">Read in your language</span>' +
         '<div id="google_translate_element"></div>' +
       '</div>' +
       '<div class="coin-strip reverse" aria-hidden="true">' + strip + '</div>' +
