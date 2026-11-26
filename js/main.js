@@ -1,17 +1,18 @@
-﻿﻿/* ============================================================
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿/* ============================================================
    CPE Trade Pro — Landing site scripts
    ============================================================ */
 
 /* ------------------------------------------------------------
-   Public download bundle. All platforms are v6.1.1 (Binance error
-   messages + ALL-signals mode + IP Guard).
+   Public download bundle. All platforms are v6.3.0 (low-RAM
+   optimisation for Android — Samsung J2 freeze fix + lazy-loaded
+   learning/guide packs + reduced scan candle count on mobile).
    ------------------------------------------------------------ */
 const DOWNLOADS = {
-  windows:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-Setup-6.1.1.exe",
-  macX64:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-6.1.1-x64.dmg",
-  macArm:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-6.1.1-arm64.dmg",
-  android:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-6.1.1.apk",
-  ios:      "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.1.1/CPE-Trade-Pro-6.1.1-unsigned.ipa"
+  windows:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-Setup-6.3.0.exe",
+  macX64:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-x64.dmg",
+  macArm:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-arm64.dmg",
+  android:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0.apk",
+  ios:      "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-unsigned.ipa"
 };
 
 /* ------------------------------------------------------------
@@ -327,13 +328,13 @@ const INSTALL_GUIDES = {
     intro: "Run the installer, then allow the security warning that Windows shows for unsigned apps.",
     warn: "You may see “Windows protected your PC” (SmartScreen). Click More info → Run anyway — the installer is simply not code-signed.",
     steps: [
-      "Download and run <strong>CPE-Trade-Pro-Setup-6.1.0.exe</strong>.",
+      "Download and run <strong>CPE-Trade-Pro-Setup-6.3.0.exe</strong>.",
       "On the SmartScreen popup click <strong>More info</strong> → <strong>Run anyway</strong>.",
       "Approve the <strong>User Account Control</strong> prompt (<strong>Yes</strong>).",
       "If antivirus blocks it, choose <strong>Allow / Keep</strong> and run the installer again.",
       "Finish the setup and open CPE Trade Pro from the desktop shortcut."
     ],
-    file: "CPE-Trade-Pro-Setup-6.1.0.exe"
+    file: "CPE-Trade-Pro-Setup-6.3.0.exe"
   },
   macX64: {
     title: "Install on macOS (Intel)",
@@ -345,7 +346,7 @@ const INSTALL_GUIDES = {
       "<strong>Right-click (Control-click)</strong> the app → <strong>Open</strong> → <strong>Open</strong> again.",
       "Or use <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>."
     ],
-    file: "CPE-Trade-Pro-6.1.0-x64.dmg"
+    file: "CPE-Trade-Pro-6.3.0-x64.dmg"
   },
   macArm: {
     title: "Install on macOS (Apple Silicon)",
@@ -357,7 +358,7 @@ const INSTALL_GUIDES = {
       "<strong>Right-click (Control-click)</strong> the app → <strong>Open</strong> → <strong>Open</strong> again.",
       "Or use <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>."
     ],
-    file: "CPE-Trade-Pro-6.1.0-arm64.dmg"
+    file: "CPE-Trade-Pro-6.3.0-arm64.dmg"
   },
   android: {
     title: "Install on Android",
@@ -369,7 +370,7 @@ const INSTALL_GUIDES = {
       "If <strong>Play Protect</strong> says the app is unsafe, tap <strong>More details → Install anyway</strong>.",
       "Tap <strong>Install</strong>, then <strong>Open</strong>."
     ],
-    file: "CPE-Trade-Pro-6.1.1.apk"
+    file: "CPE-Trade-Pro-6.3.0.apk"
   },
   ios: {
     title: "Install on iPhone / iOS",
@@ -382,7 +383,7 @@ const INSTALL_GUIDES = {
       "On the iPhone open <strong>Settings → General → VPN &amp; Device Management</strong> and trust the developer profile.",
       "Re-sign every <strong>7 days</strong> with a free Apple ID."
     ],
-    file: "CPE-Trade-Pro-6.1.1-unsigned.ipa"
+    file: "CPE-Trade-Pro-6.3.0-unsigned.ipa"
   }
 };
 

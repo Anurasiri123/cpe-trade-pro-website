@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -107,7 +107,7 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
     <article class="prose">
 
       <h2 id="current">Current release checksums</h2>
-      <p>All platforms are <strong>v6.1.1</strong> (Binance error messages + ALL-signals mode + IP Guard). The download links on this site point at the same files on our <a href="https://github.com/Anurasiri123/cpe-trade-pro-website/releases" target="_blank" rel="noopener">GitHub releases page</a>.</p>
+      <p>All platforms are <strong>v6.3.0</strong> (low-RAM optimisation for Android — Samsung J2 freeze fix + lazy-loaded learning packs). The download links on this site point at the same files on our <a href="https://github.com/Anurasiri123/cpe-trade-pro-website/releases" target="_blank" rel="noopener">GitHub releases page</a>.</p>
 
       <div class="callout info">
         <span class="co-ico">🔢</span>
@@ -119,38 +119,38 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
 
       <h3>Windows installer</h3>
       <ul>
-        <li><strong>File:</strong> CPE-Trade-Pro-Setup-6.1.1.exe</li>
-        <li><strong>Size:</strong> 84,438,765 bytes (80.52 MB)</li>
+        <li><strong>File:</strong> CPE-Trade-Pro-Setup-6.3.0.exe</li>
+        <li><strong>Size:</strong> 84,449,883 bytes (80.53 MB)</li>
       </ul>
-      <pre><code>54F70251D58801795F1FD7F09490545A7D31873996FC247F61C75944D5D160E5</code></pre>
+      <pre><code>F3A44792E9446B10BA7A9A52D35B8B50D47904269A5E5B8CBE04947FC7713989</code></pre>
 
       <h3>macOS — Intel (x64)</h3>
       <ul>
-        <li><strong>File:</strong> CPE-Trade-Pro-6.1.1-x64.dmg</li>
-        <li><strong>Size:</strong> 110,988,757 bytes (105.85 MB)</li>
+        <li><strong>File:</strong> CPE-Trade-Pro-6.3.0-x64.dmg</li>
+        <li><strong>Size:</strong> ~106 MB (published after CI build)</li>
       </ul>
-      <pre><code>580d8503b73c712f47f263226ad33195ebaa5a67b49fbd12559ac55e118d5566</code></pre>
+      <pre><code>(checksum published after macOS CI build completes)</code></pre>
 
       <h3>macOS — Apple Silicon (arm64)</h3>
       <ul>
-        <li><strong>File:</strong> CPE-Trade-Pro-6.1.1-arm64.dmg</li>
-        <li><strong>Size:</strong> 104,160,754 bytes (99.34 MB)</li>
+        <li><strong>File:</strong> CPE-Trade-Pro-6.3.0-arm64.dmg</li>
+        <li><strong>Size:</strong> ~99 MB (published after CI build)</li>
       </ul>
-      <pre><code>7cea8a5d53c27561c1770c7113d3ab8a0a202b4bfe16bc4b2aa160ac520babfa</code></pre>
+      <pre><code>(checksum published after macOS CI build completes)</code></pre>
 
       <h3>Android (APK)</h3>
       <ul>
-        <li><strong>File:</strong> CPE-Trade-Pro-6.1.1.apk</li>
-        <li><strong>Size:</strong> 1,169,040 bytes (1.11 MB)</li>
+        <li><strong>File:</strong> CPE-Trade-Pro-6.3.0.apk</li>
+        <li><strong>Size:</strong> 1,185,424 bytes (1.13 MB)</li>
       </ul>
-      <pre><code>ECDB36CD766687342560EE3BD38F8910DB4A2E0329D9EC57A86FCF9026570917</code></pre>
+      <pre><code>A5A597E067F45F5FF501B401F97622533B0F42B08E5B117A39236F1271F0BF29</code></pre>
 
       <h3>iOS (unsigned IPA)</h3>
       <ul>
-        <li><strong>File:</strong> CPE-Trade-Pro-6.1.1-unsigned.ipa</li>
-        <li><strong>Size:</strong> 1,247,473 bytes (1.19 MB)</li>
+        <li><strong>File:</strong> CPE-Trade-Pro-6.3.0-unsigned.ipa</li>
+        <li><strong>Size:</strong> ~1.2 MB (published after CI build)</li>
       </ul>
-      <pre><code>2CD6293C1AB76525AF5A3BCB1A3D2EFE0BB7B9A2CE33D605572C437BC4B55C50</code></pre>
+      <pre><code>(checksum published after iOS CI build completes)</code></pre>
 
       <div class="callout warn">
         <span class="co-ico">⚠️</span>
@@ -162,12 +162,12 @@ height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Ma
 
       <h2 id="windows">How to check on Windows</h2>
       <p>Open PowerShell (press <strong>Win</strong>, type <em>PowerShell</em>, press Enter), then run this with the path to your downloaded file:</p>
-      <pre><code>Get-FileHash "C:\Users\YourName\Downloads\CPE-Trade-Pro-Setup-6.1.1.exe" -Algorithm SHA256</code></pre>
+      <pre><code>Get-FileHash "C:\Users\YourName\Downloads\CPE-Trade-Pro-Setup-6.3.0.exe" -Algorithm SHA256</code></pre>
       <p>PowerShell prints a <strong>Hash</strong> value. Compare it, letter by letter, with the checksum above. Differences in upper or lower case do not matter.</p>
 
       <h2 id="mac">How to check on macOS or Linux</h2>
       <p>Open <strong>Terminal</strong> and run <code>shasum -a 256</code> (macOS) or <code>sha256sum</code> (Linux) with the path to your file:</p>
-      <pre><code>shasum -a 256 ~/Downloads/CPE-Trade-Pro-6.1.1-arm64.dmg</code></pre>
+      <pre><code>shasum -a 256 ~/Downloads/CPE-Trade-Pro-6.3.0-arm64.dmg</code></pre>
       <p>The long string on the left is the file's fingerprint. It should equal the published value for that file.</p>
 
       <h2 id="mismatch">If the checksum does not match</h2>
