@@ -762,13 +762,47 @@ body{top:0px !important}
 .goog-te-gadget-simple .goog-te-menu-value span{color:#f8fafc !important;border-left:none !important}
 .goog-te-gadget-simple .goog-te-menu-value span:last-child{font-size:10px !important;color:#94a3b8 !important}
 
-/* Language bar shown just below the sticky header (not inside it) */
+/* Language bar: centered switcher with rolling crypto/forex coins on both sides */
 .lang-bar{border-bottom:1px solid var(--line);background:rgba(10,15,29,.55)}
-.lang-bar .container{display:flex;justify-content:flex-end;align-items:center;min-height:46px}
+.lang-bar .container{display:flex;justify-content:center;align-items:center;gap:18px;min-height:62px}
 .lang-label{font-size:.82rem;font-weight:600;color:var(--muted);margin-right:8px;letter-spacing:.02em}
-.lang-bar .custom-translate-wrapper{margin-left:0}
+.lang-bar .custom-translate-wrapper{margin-left:0;flex:0 0 auto;position:relative;z-index:1}
+
+.coin-strip{
+  flex:1 1 0;min-width:0;height:30px;overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);
+}
+.coin-track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;animation:coinScroll 14s linear infinite;will-change:transform}
+.coin-strip.reverse .coin-track{animation-direction:reverse}
+.coin{
+  width:28px;height:28px;border-radius:50%;flex:0 0 auto;margin-right:16px;
+  display:grid;place-items:center;font:800 13px/1 'Sora',sans-serif;
+  box-shadow:0 2px 8px rgba(0,0,0,.35),inset 0 -2px 4px rgba(0,0,0,.2);
+  animation:coinRoll 3s linear infinite;backface-visibility:hidden;
+}
+.coin:nth-child(2n){animation-delay:-.6s}
+.coin:nth-child(3n){animation-delay:-1.2s}
+.coin:nth-child(5n){animation-delay:-1.8s}
+.coin.btc{background:linear-gradient(145deg,#f7931a,#b76b09);color:#2a1400}
+.coin.eth{background:linear-gradient(145deg,#8a92f5,#5b64d6);color:#0b0f2a}
+.coin.sol{background:linear-gradient(145deg,#9945ff,#14f195);color:#0b1020}
+.coin.bnb{background:linear-gradient(145deg,#f3ba2f,#c99310);color:#241a00}
+.coin.usd{background:linear-gradient(145deg,#00e5a8,#00a37a);color:#052b21}
+.coin.eur{background:linear-gradient(145deg,#3b82f6,#1d4ed8);color:#eaf1ff}
+.coin.gbp{background:linear-gradient(145deg,#ef4444,#b91c1c);color:#fff}
+.coin.jpy{background:linear-gradient(145deg,#f472b6,#be185d);color:#fff}
+
+@keyframes coinScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes coinRoll{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+
 @media(max-width:720px){
+  .lang-bar .container{min-height:54px;gap:10px}
   .custom-translate-wrapper{padding:3px 8px}
   .lang-label{display:none}
   .goog-te-gadget-simple{font-size:12px !important}
+  .coin{width:22px;height:22px;font-size:11px;margin-right:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .coin-track,.coin{animation:none}
 }

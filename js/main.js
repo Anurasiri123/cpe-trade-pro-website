@@ -187,11 +187,11 @@ function initReveal(){
         io.unobserve(en.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08 });
   els.forEach(el => {
     el.style.opacity = 0;
-    el.style.transform = "translateY(24px)";
-    el.style.transition = "opacity .6s ease, transform .6s ease";
+    el.style.transform = "translateY(14px)";
+    el.style.transition = "opacity .35s ease, transform .35s ease";
     io.observe(el);
   });
 }
@@ -506,26 +506,41 @@ function initTranslate(){
   const header = document.getElementById("nav");
   if(!header) return;
 
+  // Rolling crypto + forex coins used on both sides of the switcher
+  const coins = [
+    ["btc","₿"],["eth","Ξ"],["sol","◎"],["bnb","⬡"],
+    ["usd","$"],["eur","€"],["gbp","£"],["jpy","¥"]
+  ];
+  const coinHtml = coins.map(c => '<span class="coin ' + c[0] + '">' + c[1] + '</span>').join("");
+  // Duplicated once so the marquee loops seamlessly
+  const strip = '<div class="coin-track">' + coinHtml + coinHtml + '</div>';
+
   const bar = document.createElement("div");
   bar.className = "lang-bar";
   bar.innerHTML =
     '<div class="container">' +
+      '<div class="coin-strip" aria-hidden="true">' + strip + '</div>' +
       '<div class="custom-translate-wrapper">' +
         '<span class="translate-icon" aria-hidden="true">🌐</span>' +
         '<span class="lang-label">Language</span>' +
         '<div id="google_translate_element"></div>' +
       '</div>' +
+      '<div class="coin-strip reverse" aria-hidden="true">' + strip + '</div>' +
     '</div>';
   header.insertAdjacentElement("afterend", bar);
 
-  // Load the Google Translate engine once
-  if(!document.getElementById("google-translate-script")){
+  // Load the Google Translate engine only after the page has finished
+  // loading, so it never competes with the first paint.
+  const loadEngine = () => {
+    if(document.getElementById("google-translate-script")) return;
     const s = document.createElement("script");
     s.id = "google-translate-script";
     s.async = true;
     s.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     document.head.appendChild(s);
-  }
+  };
+  if(document.readyState === "complete") loadEngine();
+  else window.addEventListener("load", loadEngine, { once: true });
 }
 
 /* ------------------------------------------------------------
