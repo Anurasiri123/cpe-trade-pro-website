@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Volume Profile Explained: POC, Value Area and Key Levels</title>
+<meta name="description" content="What a volume profile shows - the point of control (POC), the value area (VAH/VAL), high- and low-volume nodes, naked and composite profiles, and how to use them with VWAP." />
+<meta name="keywords" content="volume profile, point of control, POC, value area, VAH, VAL, high volume node, low volume node, naked POC, composite profile" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/volume-profile-explained.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Volume Profile Explained: POC, Value Area and Key Levels" />
+<meta property="og:description" content="Volume profile explained: the POC, the value area (VAH/VAL), HVN and LVN, naked profiles and how to use them with VWAP." />
+<meta property="og:url" content="https://cpetradepro.com/blog/volume-profile-explained.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Volume Profile Explained: POC, Value Area and Key Levels" />
+<meta name="twitter:description" content="The POC, value area, HVN/LVN and naked profiles — the volume-by-price view, explained plainly." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Volume Profile Explained: POC, Value Area and Key Levels",
+  "description": "What a volume profile shows - the point of control (POC), the value area (VAH/VAL), high- and low-volume nodes, naked and composite profiles, and how to use them with VWAP.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/volume-profile-explained.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Volume profile", "item": "https://cpetradepro.com/blog/volume-profile-explained.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the point of control (POC) in a volume profile?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The POC is the single price where the most volume traded in the profile's window. It marks the price the market agreed on most, and it often acts as a magnet that price returns to test." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between the value area and the POC?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The POC is a single price, the busiest one. The value area is a band - the price range containing roughly 70% of the traded volume - with a high edge (VAH) and a low edge (VAL). The POC sits inside the value area by definition." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro include a volume profile?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CPE Trade Pro includes volume analysis and level detection rather than a full volume-profile engine. Volume profile is covered here as education, and its key levels can be read alongside the levels and volume components in the app's analysis." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Volume profile</span>
+    </nav>
+    <span class="eyebrow">Learn · Order flow</span>
+    <h1>Volume Profile Explained: POC, Value Area and Key Levels</h1>
+    <p class="lead">Most volume tells you <em>when</em> trades happened. A volume profile tells you <strong>where</strong>. Here is the POC, the value area (VAH/VAL), HVN and LVN, and how to use them.</p>
+    <div class="page-meta">
+      <span><b>11 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Ask most traders what volume is and they point to the bars along the bottom of the chart — volume by <em>time</em>, one bar per period. A <strong>volume profile</strong> asks a quieter, more revealing question: where did that volume actually trade, price by price? The answer is a horizontal histogram stuck to the side of the chart, and it changes how you see support and resistance.</p>
+      <p>This guide covers the volume profile and ordinary volume, the <strong>point of control (POC)</strong>, the <strong>value area (VAH/VAL)</strong>, high- and low-volume nodes, naked and composite profiles, and how to use all of it alongside VWAP. Educational content only — nothing here is financial advice.</p>
+
+      <figure class="app-figure" style="padding:0"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=dark%20cinematic%20professional%20trading%20analytics%20screen%20showing%20a%20horizontal%20volume%20profile%20histogram%20beside%20a%20candlestick%20chart%2C%20glowing%20cyan%20and%20amber%20bars%2C%20dark%20room%2C%20shallow%20depth%20of%20field%2C%20photorealistic%2C%20no%20text&image_size=landscape_16_9" alt="A dark trading screen showing a horizontal volume profile histogram alongside a candlestick chart with cyan and amber bars" loading="lazy" style="border-radius:12px" /></figure>
+
+      <h2 id="vs">Volume profile vs ordinary volume</h2>
+      <p>Ordinary volume answers "how much traded in this 15-minute bar?" A volume profile answers "how much traded at <em>this price</em>, across the whole window?" Same data, different axis. Time-based volume tells you if activity is picking up; price-based volume tells you where the market agreed and where it disagreed.</p>
+      <p>That shift sounds small but it is not. Prices where lots of volume changed hands are prices traders care about, and they tend to act as magnets or barriers later. Thin prices, where the market rushed through, tend to be travelled quickly again. You are no longer guessing where support "should" be — you are reading where the market actually did its business.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Profiles are drawn from real fills</strong>
+          A volume profile is built from actual traded volume at each price, not from orders waiting. That makes it a record of agreement rather than intention — which is what makes its levels worth watching.
+        </div>
+      </div>
+
+      <h2 id="poc">POC (point of control)</h2>
+      <p>The <strong>point of control (POC)</strong> is the single price with the most volume in the profile. It is the price the market, collectively, chose most often — the fairest price in the window. Because so much business happened there, the POC often acts as a magnet: price drifts back to it, and it can be a natural reference for balance and rotation.</p>
+      <p>The POC is not magic, and it is not a trade signal on its own. Its value is contextual: a POC in the middle of a range usually means price is balanced; a POC far below current price may mark a level that fewer participants ever traded above, which can make that area sensitive.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A horizontal volume profile showing volume bars at each price, with the longest amber bar marking the point of control">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Volume profile · the POC</text>
+          <rect class="a-chip" x="566" y="12" width="136" height="24" rx="12"/>
+          <text class="a-m" x="634" y="28" text-anchor="middle">VOLUME BY PRICE</text>
+
+          <g class="a-grid">
+            <line x1="90" y1="52" x2="90" y2="306"/>
+            <line x1="240" y1="52" x2="240" y2="306"/>
+            <line x1="390" y1="52" x2="390" y2="306"/>
+            <line x1="540" y1="52" x2="540" y2="306"/>
+          </g>
+          <text class="a-s" x="30" y="58">PRICE</text>
+
+          <text class="a-s" x="82" y="74" text-anchor="end">67,400</text>
+          <rect class="a-fill-teal aa-pop" x="90" y="62" width="80" height="16" rx="3"/>
+          <text class="a-s" x="82" y="102" text-anchor="end">67,350</text>
+          <rect class="a-fill-teal aa-pop" x="90" y="90" width="140" height="16" rx="3" style="animation-delay:.1s"/>
+          <text class="a-s" x="82" y="130" text-anchor="end">67,300</text>
+          <rect class="a-fill-teal aa-pop" x="90" y="118" width="250" height="16" rx="3" style="animation-delay:.2s"/>
+          <text class="a-s" x="82" y="158" text-anchor="end" style="fill:#fbbf24">67,250</text>
+          <rect fill="#fbbf24" fill-opacity="0.95" x="90" y="146" width="430" height="16" rx="3"/>
+          <text class="a-s" x="82" y="186" text-anchor="end">67,200</text>
+          <rect class="a-fill-teal aa-pop" x="90" y="174" width="300" height="16" rx="3" style="animation-delay:.4s"/>
+          <text class="a-s" x="82" y="214" text-anchor="end">67,150</text>
+          <rect class="a-fill-teal aa-pop" x="90" y="202" width="170" height="16" rx="3" style="animation-delay:.5s"/>
+          <text class="a-s" x="82" y="242" text-anchor="end">67,100</text>
+          <rect class="a-fill-teal aa-pop" x="90" y="230" width="90" height="16" rx="3" style="animation-delay:.6s"/>
+          <text class="a-s" x="82" y="270" text-anchor="end">67,050</text>
+          <rect class="a-fill-teal aa-pop" x="90" y="258" width="50" height="16" rx="3" style="animation-delay:.7s"/>
+          <text class="a-s" x="82" y="298" text-anchor="end">67,000</text>
+          <rect class="a-fill-teal aa-pop" x="90" y="286" width="70" height="16" rx="3" style="animation-delay:.8s"/>
+
+          <text class="a-s" x="530" y="158" style="fill:#fbbf24">POC · most traded price</text>
+        </svg>
+        <figcaption><strong>The POC.</strong> Bars show traded volume at each price; the amber bar is the point of control — the busiest price in the window. Notice how the bars either side fall away: the market agreed strongly at 67,250 and much less elsewhere.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Term</th><th>What it is</th><th>How traders read it</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>POC</strong></td><td>Single busiest price</td><td>A magnet and a balance point</td></tr>
+          <tr><td><strong>Value area</strong></td><td>Range holding ~70% of volume</td><td>Where the market found "fair" price</td></tr>
+          <tr><td><strong>VAH / VAL</strong></td><td>Top and bottom of that range</td><td>Edges where price often reacts</td></tr>
+          <tr><td><strong>HVN</strong></td><td>High-volume node</td><td>Heavy agreement — attracts and slows price</td></tr>
+          <tr><td><strong>LVN</strong></td><td>Low-volume node</td><td>Thin agreement — price travels through fast</td></tr>
+          <tr><td><strong>Naked POC</strong></td><td>A POC price not revisited yet</td><td>An untested level price may return to</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="value-area">Value area (VAH/VAL)</h2>
+      <p>The <strong>value area</strong> is the price range that contains roughly <strong>70%</strong> of the traded volume in the profile. Its upper edge is the <strong>VAH</strong> (value area high) and its lower edge is the <strong>VAL</strong> (value area low). Together they describe the band the market treated as fair value for that period; the POC sits inside it by definition.</p>
+      <p>In practice the edges do the work. Price accepted above the VAH or below the VAL is often read as the start of a new trend or a breakout, while price rotating back inside the band suggests balance. Because so many traders watch the same two lines, the VAH and VAL frequently behave like horizontal support and resistance.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A volume profile with a shaded value area band bracketed by the value area high and value area low lines, and the point of control in the middle">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Value area · VAH &amp; VAL</text>
+          <rect class="a-chip" x="556" y="12" width="146" height="24" rx="12"/>
+          <text class="a-m" x="629" y="28" text-anchor="middle">~70% OF VOLUME</text>
+
+          <g class="a-grid">
+            <line x1="70" y1="60" x2="70" y2="306"/>
+            <line x1="220" y1="60" x2="220" y2="306"/>
+            <line x1="370" y1="60" x2="370" y2="306"/>
+            <line x1="520" y1="60" x2="520" y2="306"/>
+          </g>
+          <text class="a-s" x="30" y="58">PRICE</text>
+
+          <rect class="a-soft" x="70" y="128" width="560" height="114" rx="6"/>
+
+          <text class="a-s" x="62" y="80" text-anchor="end">67,400</text>
+          <rect class="a-fill-teal aa-pop" x="70" y="68" width="70" height="16" rx="3"/>
+          <text class="a-s" x="62" y="110" text-anchor="end">67,350</text>
+          <rect class="a-fill-teal aa-pop" x="70" y="98" width="120" height="16" rx="3" style="animation-delay:.1s"/>
+          <text class="a-s" x="62" y="140" text-anchor="end">67,300</text>
+          <rect class="a-fill-teal aa-pop" x="70" y="128" width="220" height="16" rx="3" style="animation-delay:.2s"/>
+          <text class="a-s" x="62" y="170" text-anchor="end">67,250</text>
+          <rect class="a-fill-teal aa-pop" x="70" y="158" width="380" height="16" rx="3" style="animation-delay:.3s"/>
+          <text class="a-s" x="62" y="200" text-anchor="end">67,200</text>
+          <rect class="a-fill-teal aa-pop" x="70" y="188" width="320" height="16" rx="3" style="animation-delay:.4s"/>
+          <text class="a-s" x="62" y="230" text-anchor="end">67,150</text>
+          <rect class="a-fill-teal aa-pop" x="70" y="218" width="200" height="16" rx="3" style="animation-delay:.5s"/>
+          <text class="a-s" x="62" y="260" text-anchor="end">67,100</text>
+          <rect class="a-fill-teal aa-pop" x="70" y="248" width="110" height="16" rx="3" style="animation-delay:.6s"/>
+          <text class="a-s" x="62" y="290" text-anchor="end">67,050</text>
+          <rect class="a-fill-teal aa-pop" x="70" y="278" width="60" height="16" rx="3" style="animation-delay:.7s"/>
+
+          <line x1="70" y1="128" x2="640" y2="128" stroke="#22d3ee" stroke-width="2" stroke-dasharray="7 5"/>
+          <line x1="70" y1="242" x2="640" y2="242" stroke="#22d3ee" stroke-width="2" stroke-dasharray="7 5"/>
+          <line x1="70" y1="185" x2="640" y2="185" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 4"/>
+          <text class="a-s" x="646" y="124" style="fill:#22d3ee">VAH</text>
+          <text class="a-s" x="646" y="246" style="fill:#22d3ee">VAL</text>
+          <text class="a-s" x="646" y="189" style="fill:#fbbf24">POC</text>
+        </svg>
+        <figcaption><strong>The value area.</strong> The shaded band holds about 70% of the volume. VAH caps it, VAL floors it, and the POC sits between them. Price accepting outside the band often signals a new direction; price returning inside suggests balance.</figcaption>
+      </figure>
+
+      <h2 id="nodes">High- and low-volume nodes (HVN/LVN)</h2>
+      <p>Within a profile, volume bunches into <strong>high-volume nodes (HVNs)</strong> and thins into <strong>low-volume nodes (LVNs)</strong>. An HVN is a price shelf where heavy trade built up; it tends to attract price and slow it down, acting like a magnet or a soft barrier. An LVN is a price the market skipped through; because few orders were ever filled there, price often moves through again quickly.</p>
+      <p>This is where volume profile earns its keep. Traders use HVNs as areas to expect congestion or reaction, and LVNs as likely "fast lanes" where a breakout can run. A move that breaks out of an HVN and reaches an LVN above it may accelerate simply because there is little volume to slow it.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A price chart with a shaded high volume node band where price stalls and a shaded low volume node band where price moves quickly, plus a dashed naked point of control line">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">HVN, LVN and a naked POC</text>
+          <rect class="a-chip" x="556" y="12" width="146" height="24" rx="12"/>
+          <text class="a-m" x="629" y="28" text-anchor="middle">NODES + UNTESTED POC</text>
+
+          <g class="a-grid">
+            <line x1="40" y1="80" x2="680" y2="80"/>
+            <line x1="40" y1="200" x2="680" y2="200"/>
+            <line x1="40" y1="270" x2="680" y2="270"/>
+          </g>
+
+          <rect class="a-soft" x="40" y="192" width="640" height="52" rx="8"/>
+          <text class="a-s" x="50" y="210" style="fill:#22d3ee">HVN · heavy volume, price stalls</text>
+
+          <rect class="a-soft" x="40" y="92" width="640" height="34" rx="8"/>
+          <text class="a-s" x="50" y="110" style="fill:#8fa0b8">LVN · thin volume, price travels fast</text>
+
+          <line x1="40" y1="152" x2="680" y2="152" stroke="#fbbf24" stroke-width="2" stroke-dasharray="7 5"/>
+          <text class="a-s" x="672" y="146" text-anchor="end" style="fill:#fbbf24">naked POC · still untested</text>
+
+          <path class="aa-line" d="M50 96 L 140 152 L 230 120 L 320 210 L 410 200 L 500 130 L 590 158 L 680 118" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round" pathLength="1"/>
+
+          <text class="a-s" x="40" y="300">price lingered in the HVN</text>
+          <text class="a-s" x="680" y="300" text-anchor="end">then rushed through the LVN</text>
+        </svg>
+        <figcaption><strong>Nodes at work.</strong> Price churned inside the HVN band (lower shaded area), then sliced quickly through the LVN band (upper shaded area) where little volume had traded. The dashed line is a naked POC — a level price has not yet come back to test.</figcaption>
+      </figure>
+
+      <h2 id="naked">Naked POC and composite profiles</h2>
+      <p>A <strong>naked POC</strong> (sometimes called an untested or virgin POC) is a point of control from a previous session or swing that price has not since returned to. Traders watch these because the market never "resolved" that price — the heavy agreement happened once and was never revisited. Many treat a naked POC as a potential magnet that price may drift back toward.</p>
+      <p><strong>Composite profiles</strong> do the same job over a longer window, stacking many sessions into one profile so you can see where volume accumulated over weeks rather than a day. A composite HVN shows a genuinely significant level; a composite LVN shows a wide zone the market has repeatedly skipped. The longer the window, the more meaningful the level — and the slower it tends to move.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card cyan">
+          <span class="ec-ico">🧲</span>
+          <strong>POC</strong>
+          <span>The busiest price. A magnet that price often rotates back to.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">📊</span>
+          <strong>Value area</strong>
+          <span>The ~70% band. VAH and VAL act like soft support and resistance.</span>
+        </div>
+        <div class="edu-card purple">
+          <span class="ec-ico">⚡</span>
+          <strong>LVN</strong>
+          <span>A thin price. Little volume to slow price, so moves can run fast.</span>
+        </div>
+      </div>
+
+      <h2 id="use">Using it with VWAP and support/resistance</h2>
+      <p>Volume profile works best as part of a small set of complementary references, not in isolation. Pair it with <a href="/blog/vwap-explained.html">VWAP</a>: VWAP gives you the day's average traded price, while the POC and value area give you the day's most-agreed <em>price range</em>. When VWAP sits near the POC, the market is balanced; when price trades well above both, it is stretched.</p>
+      <p>Layer classical support and resistance on top. Where a horizontal level from old highs or lows lines up with a VAH, a VAL or a naked POC, you have <strong>confluence</strong> — several independent reasons for price to react in one place. A profile level on its own is one opinion; a profile level stacked with a chart level and VWAP is a stronger case. Our <a href="/blog/volume-analysis-guide.html">volume analysis guide</a> covers the time-based side, and our walkthrough of <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">how CPE Trade Pro analyses a chart</a> shows how volume, levels and structure are weighed together in the app.</p>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>◆</i> POC</span>
+        <span class="edu-chip amber"><i>◆</i> Value area</span>
+        <span class="edu-chip purple"><i>◆</i> VAH / VAL</span>
+        <span class="edu-chip green"><i>◆</i> HVN</span>
+        <span class="edu-chip blue"><i>◆</i> LVN</span>
+        <span class="edu-chip pink"><i>◆</i> Naked POC</span>
+      </div>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>Levels are areas, not exact lines</strong>
+          A volume profile is built from a chosen window and a chosen tick size, so its levels shift a little every time you change either. Treat the POC, VAH and VAL as zones of interest, and always combine them with price action rather than trading them blindly.
+        </div>
+      </div>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/volume-analysis-guide.html">Volume analysis: reading the fuel behind price</a></li>
+          <li><a href="/blog/vwap-explained.html">VWAP explained: the average price that matters</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+          <li><a href="/blog/order-flow-tools-explained.html">Order flow tools: reading the real market</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#vs">Volume profile vs volume</a>
+          <a href="#poc">POC (point of control)</a>
+          <a href="#value-area">Value area (VAH/VAL)</a>
+          <a href="#nodes">HVN and LVN nodes</a>
+          <a href="#naked">Naked POC and composites</a>
+          <a href="#use">Using it with VWAP</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/volume-analysis-guide.html">Volume analysis guide</a>
+          <a href="/blog/vwap-explained.html">VWAP explained</a>
+          <a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How the app analyses a chart</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read structure faster with the app</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

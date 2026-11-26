@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Order Book, DOM and Market Depth Explained</title>
+<meta name="description" content="What the order book, the DOM ladder, market depth, liquidity walls and heatmaps really show - plus iceberg orders, spoofing and how CPE Trade Pro reads resting liquidity." />
+<meta name="keywords" content="order book, DOM ladder, depth of market, market depth, liquidity wall, heatmap, iceberg order, spoofing" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/order-book-and-market-depth.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Order Book, DOM and Market Depth Explained" />
+<meta property="og:description" content="The order book explained: bids, asks, the spread, the DOM ladder, depth, liquidity walls and how to read resting liquidity honestly." />
+<meta property="og:url" content="https://cpetradepro.com/blog/order-book-and-market-depth.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Order Book, DOM and Market Depth Explained" />
+<meta name="twitter:description" content="Bids, asks, the spread, the DOM ladder, liquidity walls and heatmaps — the order book, explained without the hype." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Order Book, DOM and Market Depth Explained",
+  "description": "What the order book, the DOM ladder, market depth, liquidity walls and heatmaps really show - plus iceberg orders, spoofing and how CPE Trade Pro reads resting liquidity.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/order-book-and-market-depth.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Order book and market depth", "item": "https://cpetradepro.com/blog/order-book-and-market-depth.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between the order book and the DOM ladder?",
+      "acceptedAnswer": { "@type": "Answer", "text": "They show the same information in different shapes. The order book is the raw list of resting bids and asks; the depth-of-market (DOM) ladder lays that list out vertically, with price down the middle and resting size beside it, so you can watch how the queue changes in real time." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are liquidity walls reliable support and resistance?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. A wall is resting size at a price, and resting size can be pulled or filled at any moment. Some walls hold because real participants defend them, while others disappear before price arrives. Treat a wall as context to confirm with price action, not as a guaranteed barrier." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro show the order book?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CPE Trade Pro includes an Order Book view and a Walls read that summarise where large resting clusters sit relative to price. It uses these as context alongside structure, volume and momentum - it does not treat a wall as a trade instruction, and the 0-10 quality score is not a win rate." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Order book and market depth</span>
+    </nav>
+    <span class="eyebrow">Learn · Order flow</span>
+    <h1>Order Book, DOM and Market Depth Explained</h1>
+    <p class="lead">Price does not move on its own — it moves because orders meet. Here is what the <strong>order book</strong>, the <strong>DOM ladder</strong>, market depth, liquidity walls and heatmaps actually show, and where each one ends.</p>
+    <div class="page-meta">
+      <span><b>11 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>A candlestick shows you the aftermath of a trade. It tells you what price did over a period, but not the queue of orders that made it do so. The <strong>order book</strong> is that queue: the resting buy and sell orders waiting to be matched, laid out price by price. Reading it is one of the closest things to watching the negotiation itself.</p>
+      <p>This guide walks through the order book, the depth-of-market ladder, market depth and liquidity walls, heatmaps, and the important distinction between legitimate <em>iceberg</em> orders and illegal <em>spoofing</em>. It also covers, honestly, what CPE Trade Pro's Order Book and Walls view does and does not do. Educational content only — nothing here is financial advice.</p>
+
+      <figure class="app-figure" style="padding:0"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=dark%20cinematic%20professional%20crypto%20trading%20workspace%2C%20close-up%20of%20a%20monitor%20displaying%20an%20order%20book%20depth%20ladder%20with%20green%20bid%20and%20red%20ask%20rows%2C%20moody%20blue%20lighting%2C%20shallow%20depth%20of%20field%2C%20photorealistic%2C%20no%20text&image_size=landscape_16_9" alt="Close-up of a trading monitor showing an order book depth ladder with green bid rows and red ask rows in a dark room" loading="lazy" style="border-radius:12px" /></figure>
+
+      <h2 id="order-book">What the order book is</h2>
+      <p>An order book is two lists. The <strong>bids</strong> are limit orders to buy, each at a specific price; the <strong>asks</strong> (or offers) are limit orders to sell. The highest bid and the lowest ask sit closest to the middle. The difference between them is the <strong>spread</strong>.</p>
+      <p>The spread matters more than beginners expect. On a liquid pair at a major exchange it is often a single tick, so the cost of crossing it is tiny. In a thin market it can widen to several ticks, and every trade starts slightly behind. A narrow spread and thick size at the top of the book are the first honest signs of real liquidity — a theme that runs through our separate guide to <a href="/blog/what-is-liquidity-in-trading.html">liquidity in trading</a>.</p>
+      <p>Crucially, an order book is a snapshot of <em>intent</em>, not commitment. Nothing stops a resting order being cancelled. That single fact is why every tool below needs confirming with actual trades.</p>
+
+      <h2 id="dom">The DOM ladder (depth of market)</h2>
+      <p>Depth of market — the <strong>DOM ladder</strong> — takes the order book and turns it vertical: price down the middle, resting size beside it. The top rows show the asks, the bottom rows show the bids, and the middle row is the spread. Traders watch the ladder to see how much size is queued at each price and how quickly that queue appears and disappears.</p>
+      <p>The ladder is a measuring device, not a prophecy. A large resting bid looks supportive until it is pulled; the only thing that truly confirms a level is a trade printing there, or the conspicuous absence of one. Read the ladder as live measurement of intent, never as a promise.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="An order book ladder showing red ask rows stacked above a highlighted spread row and green bid rows below, with bar length representing resting size at each price">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">The DOM ladder · BTCUSDT</text>
+          <rect class="a-chip" x="576" y="12" width="126" height="24" rx="12"/>
+          <text class="a-m" x="639" y="28" text-anchor="middle">ASKS ▲ · BIDS ▼</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="68" x2="700" y2="68"/>
+            <line x1="20" y1="102" x2="700" y2="102"/>
+            <line x1="20" y1="136" x2="700" y2="136"/>
+            <line x1="20" y1="200" x2="700" y2="200"/>
+            <line x1="20" y1="240" x2="700" y2="240"/>
+            <line x1="20" y1="274" x2="700" y2="274"/>
+          </g>
+
+          <text class="a-s" x="30" y="58">PRICE</text>
+          <text class="a-s" x="200" y="58">RESTING SIZE</text>
+
+          <text class="a-s" x="30" y="86" style="fill:#ef4444">67,255</text>
+          <rect class="a-fill-red aa-pop" x="200" y="72" width="110" height="18" rx="4"/>
+          <text class="a-s" x="30" y="120" style="fill:#ef4444">67,250</text>
+          <rect class="a-fill-red aa-pop" x="200" y="106" width="300" height="18" rx="4" style="animation-delay:.15s"/>
+          <text class="a-s" x="30" y="154" style="fill:#ef4444">67,245</text>
+          <rect class="a-fill-red aa-pop" x="200" y="140" width="70" height="18" rx="4" style="animation-delay:.3s"/>
+
+          <rect class="a-soft" x="20" y="172" width="680" height="24" rx="6"/>
+          <text class="a-s" x="30" y="188" style="fill:#fbbf24">spread</text>
+          <text class="a-s" x="690" y="188" text-anchor="end" style="fill:#fbbf24">best ask 67,244  ·  best bid 67,243</text>
+
+          <text class="a-s" x="30" y="222" style="fill:#22c55e">67,243</text>
+          <rect class="a-fill-teal aa-pop" x="200" y="208" width="70" height="18" rx="4" style="animation-delay:.45s"/>
+          <text class="a-s" x="30" y="256" style="fill:#22c55e">67,238</text>
+          <rect class="a-fill-teal aa-pop" x="200" y="242" width="240" height="18" rx="4" style="animation-delay:.6s"/>
+          <text class="a-s" x="30" y="290" style="fill:#22c55e">67,233</text>
+          <rect class="a-fill-teal aa-pop" x="200" y="276" width="120" height="18" rx="4" style="animation-delay:.75s"/>
+
+          <text class="a-s" x="360" y="326" text-anchor="middle">a longer bar means more resting orders at that price</text>
+        </svg>
+        <figcaption><strong>The ladder.</strong> Asks (red) sit above the spread row; bids (green) sit below. The bar length is the resting size. Here most size is queued at the 67,250 ask and the 67,238 bid — the market's two heaviest shelves.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Term</th><th>What it shows</th><th>Read it as</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Bid</strong></td><td>Resting limit buys</td><td>Demand waiting below the market</td></tr>
+          <tr><td><strong>Ask</strong></td><td>Resting limit sells</td><td>Supply waiting above the market</td></tr>
+          <tr><td><strong>Spread</strong></td><td>Best ask minus best bid</td><td>The immediate cost of trading; narrow = liquid</td></tr>
+          <tr><td><strong>Depth</strong></td><td>Total size at and away from the top</td><td>How much the market can absorb before price moves</td></tr>
+          <tr><td><strong>Wall</strong></td><td>One price with outsized size</td><td>A shelf to watch — not a barrier to trust</td></tr>
+          <tr><td><strong>Iceberg</strong></td><td>A level that keeps refilling</td><td>Hidden size reloading as it is filled</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="depth">Market depth and liquidity walls</h2>
+      <p>Market depth is the total resting size at, and away from, the best price — a measure of how much the market can absorb before price has to move. When a single price holds a disproportionate amount of that size, it forms a <strong>wall</strong>. A genuine wall can slow price because trades must eat through it to pass; a decorative one means nothing.</p>
+      <p>Depth is best read as a shape, not a number. A book that stays thick across several prices on both sides can take size without moving; a book that thins out sharply a few ticks away will slip fast on any real order. Watch how the shape changes as price approaches a level, not just the size sitting there now.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>A wall is not a promise</strong>
+          Resting size can vanish the instant before price arrives — especially on venues where cancelling is cheap. Never treat a wall as guaranteed support or resistance. Wait for price and trade flow to confirm it before you act.
+        </div>
+      </div>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A market depth curve showing cumulative resting size across price, with a steep vertical step on the ask side marking a liquidity wall">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Market depth · a wall on the ask</text>
+          <rect class="a-chip" x="560" y="12" width="142" height="24" rx="12"/>
+          <text class="a-m" x="631" y="28" text-anchor="middle">CUMULATIVE SIZE</text>
+
+          <g class="a-grid">
+            <line x1="60" y1="80" x2="690" y2="80"/>
+            <line x1="60" y1="150" x2="690" y2="150"/>
+            <line x1="60" y1="220" x2="690" y2="220"/>
+            <line x1="60" y1="290" x2="690" y2="290"/>
+          </g>
+
+          <line x1="375" y1="70" x2="375" y2="290" stroke="#8fa0b8" stroke-width="1.5" stroke-dasharray="5 5"/>
+          <text class="a-s" x="375" y="66" text-anchor="middle" style="fill:#8fa0b8">mid</text>
+
+          <path class="aa-line" d="M60 96 L 330 150 L 352 172 L 375 174" style="fill:none;stroke:#22c55e;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round" pathLength="1"/>
+          <path class="aa-line" d="M375 174 L 405 172 L 435 170 L 448 88 L 472 88 L 520 118 L 600 140 L 690 158" style="fill:none;stroke:#ef4444;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;animation-delay:.35s" pathLength="1"/>
+
+          <circle class="a-numbub" cx="448" cy="88" r="12"/>
+          <text class="a-s" x="470" y="80" style="fill:#ef4444">wall · outsized resting size</text>
+          <text class="a-s" x="70" y="316">lower price</text>
+          <text class="a-s" x="690" y="316" text-anchor="end">higher price</text>
+          <text class="a-s" x="70" y="112" style="fill:#22c55e">bid depth</text>
+        </svg>
+        <figcaption><strong>Depth as a curve.</strong> The green line is cumulative bid size, the red line cumulative ask size. The vertical step near the middle is a wall — a single price holding far more size than its neighbours. Whether it holds depends on real participants, not the drawing.</figcaption>
+      </figure>
+
+      <h2 id="heatmap">Heatmaps</h2>
+      <p>A heatmap plots resting liquidity across both price and time. Each column is a moment, each row is a price, and the shade of each cell shows how much size was queued there. Bright bands that persist across many columns are levels the market keeps defending; bright cells that flash and fade are usually fleeting orders.</p>
+      <p>Heatmaps are visually powerful and slightly dangerous. They only show resting orders, so they flatter limit orders and hide the aggressive taker flow that actually moves price. Use them to locate where interest sits, then confirm with the traded volume — the approach covered in our <a href="/blog/order-flow-tools-explained.html">order flow tools guide</a> and <a href="/blog/footprint-charts-explained.html">footprint charts guide</a>.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A liquidity heatmap grid of price rows and time columns, with brighter cells showing more resting size and one amber cell marking a persistent wall">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Liquidity heatmap</text>
+          <rect class="a-chip" x="556" y="12" width="146" height="24" rx="12"/>
+          <text class="a-m" x="629" y="28" text-anchor="middle">BRIGHTER = MORE SIZE</text>
+
+          <g>
+            <rect x="60" y="70" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.20"/>
+            <rect x="124" y="70" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.26"/>
+            <rect x="188" y="70" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.30"/>
+            <rect x="252" y="70" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.40"/>
+            <rect x="316" y="70" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.46"/>
+            <rect x="380" y="70" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.50"/>
+            <rect x="444" y="70" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.30"/>
+            <rect x="508" y="70" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.20"/>
+
+            <rect x="60" y="110" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.35"/>
+            <rect x="124" y="110" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.52"/>
+            <rect x="188" y="110" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.66"/>
+            <rect x="252" y="110" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.85"/>
+            <rect x="316" y="110" width="60" height="34" rx="3" fill="#fbbf24" fill-opacity="0.95"/>
+            <rect x="380" y="110" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.80"/>
+            <rect x="444" y="110" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.60"/>
+            <rect x="508" y="110" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.44"/>
+
+            <rect x="60" y="150" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.24"/>
+            <rect x="124" y="150" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.34"/>
+            <rect x="188" y="150" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.44"/>
+            <rect x="252" y="150" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.54"/>
+            <rect x="316" y="150" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.58"/>
+            <rect x="380" y="150" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.48"/>
+            <rect x="444" y="150" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.38"/>
+            <rect x="508" y="150" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.28"/>
+
+            <rect x="60" y="190" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.20"/>
+            <rect x="124" y="190" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.30"/>
+            <rect x="188" y="190" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.36"/>
+            <rect x="252" y="190" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.44"/>
+            <rect x="316" y="190" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.40"/>
+            <rect x="380" y="190" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.34"/>
+            <rect x="444" y="190" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.26"/>
+            <rect x="508" y="190" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.20"/>
+
+            <rect x="60" y="230" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.14"/>
+            <rect x="124" y="230" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.18"/>
+            <rect x="188" y="230" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.22"/>
+            <rect x="252" y="230" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.28"/>
+            <rect x="316" y="230" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.24"/>
+            <rect x="380" y="230" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.20"/>
+            <rect x="444" y="230" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.18"/>
+            <rect x="508" y="230" width="60" height="34" rx="3" fill="#22d3ee" fill-opacity="0.14"/>
+          </g>
+
+          <text class="a-s" x="596" y="92">67,300</text>
+          <text class="a-s" x="596" y="132" style="fill:#fbbf24">67,250</text>
+          <text class="a-s" x="596" y="172">67,200</text>
+          <text class="a-s" x="596" y="212">67,150</text>
+          <text class="a-s" x="596" y="252">67,100</text>
+          <text class="a-s" x="60" y="292">← earlier</text>
+          <text class="a-s" x="508" y="292" text-anchor="end">later →</text>
+        </svg>
+        <figcaption><strong>Liquidity over time.</strong> The bright band at 67,250 (amber) persists across every column — a level the market kept stocking. Faint cells at the bottom are prices that were simply ignored. Heatmaps show intention; they never show execution.</figcaption>
+      </figure>
+
+      <div class="edu-cards">
+        <div class="edu-card cyan">
+          <span class="ec-ico">📋</span>
+          <strong>The ladder</strong>
+          <span>Live queue at each price. Fast-moving and easy to over-read.</span>
+        </div>
+        <div class="edu-card purple">
+          <span class="ec-ico">📉</span>
+          <strong>The depth curve</strong>
+          <span>Total size away from the top. Shows the book's overall shape.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🔥</span>
+          <strong>The heatmap</strong>
+          <span>Liquidity over price and time. Locates interest, not execution.</span>
+        </div>
+      </div>
+
+      <h2 id="iceberg">Iceberg orders and spoofing</h2>
+      <p>Two order-book behaviours are worth naming because they explain a lot of confusing depth. An <strong>iceberg order</strong> shows only a small tip of its true size; as the visible slice fills, another appears, so the level keeps refilling. It is a legitimate way for a large participant to hide their footprint and avoid spooking the market.</p>
+      <p><strong>Spoofing</strong> is different, and it is not legitimate. It means placing large orders you never intend to fill, purely to create a false impression of supply or demand, then cancelling them once others react. Spoofing is illegal in regulated markets and, crucially, unreliable to trade against — because the thing you are reading is a lie by design.</p>
+      <ul>
+        <li><strong>Iceberg:</strong> real size, partially hidden; the level genuinely holds and refills as it trades.</li>
+        <li><strong>Spoof:</strong> fake size, all visible, then pulled; it never fills and rarely stays put.</li>
+        <li><strong>The tell:</strong> watch what happens when price reaches the level. Real size trades or refills; fake size disappears.</li>
+      </ul>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>◆</i> Bid</span>
+        <span class="edu-chip pink"><i>◆</i> Ask</span>
+        <span class="edu-chip amber"><i>◆</i> Spread</span>
+        <span class="edu-chip purple"><i>◆</i> Depth</span>
+        <span class="edu-chip red"><i>◆</i> Wall</span>
+        <span class="edu-chip green"><i>◆</i> Iceberg</span>
+      </div>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Let trades confirm the book</strong>
+          The order book shows intent; the tape shows action. A wall that price reaches and absorbs tells a very different story from a wall that price reaches and trades straight through. Trust the trades over the queue.
+        </div>
+      </div>
+
+      <h2 id="app">How CPE Trade Pro's order-book view works</h2>
+      <p>CPE Trade Pro includes an <strong>Order Book</strong> view and a <strong>Walls</strong> read as part of its market-reading toolkit. Rather than asking you to stare at a raw ladder, it summarises where large resting clusters sit relative to current price, so those levels can be weighed alongside structure, volume, momentum and levels on the chart.</p>
+      <p>Be precise about the limits. Resting orders are not trades, and a wall is context, not a signal. The app folds order-book information into the <strong>Levels</strong> part of its signal quality — one measurable input among five. The 0-10 score is built from <strong>Clarity, Trend, Momentum, Volume and Levels</strong>, each worth up to 2 points; it is <em>not</em> a win rate, not a probability of profit and not an audited record.</p>
+      <p>If you want to see how order-book levels sit next to volume, order blocks and structure on a live chart, <a href="/download.html">download CPE Trade Pro</a> and study it in DEMO mode — no exchange account required.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/footprint-charts-explained.html">Footprint charts: reading buying and selling pressure</a></li>
+          <li><a href="/blog/order-flow-tools-explained.html">Order flow tools: reading the real market</a></li>
+          <li><a href="/blog/what-is-liquidity-in-trading.html">What liquidity in trading really means</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#order-book">What the order book is</a>
+          <a href="#dom">The DOM ladder</a>
+          <a href="#depth">Market depth and walls</a>
+          <a href="#heatmap">Heatmaps</a>
+          <a href="#iceberg">Icebergs and spoofing</a>
+          <a href="#app">The app's order-book view</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/footprint-charts-explained.html">Footprint charts</a>
+          <a href="/blog/order-flow-tools-explained.html">Order flow tools</a>
+          <a href="/blog/volume-analysis-guide.html">Volume analysis guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read structure faster with the app</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

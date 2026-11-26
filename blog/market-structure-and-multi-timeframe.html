@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Market Structure and Multi-Timeframe Analysis Explained</title>
+<meta name="description" content="Learn market structure the smart-money way — higher highs and higher lows, internal vs external structure, fractal highs and lows, and how multi-timeframe analysis builds a bias with lower-timeframe entries." />
+<meta name="keywords" content="market structure, multi timeframe analysis, higher highs higher lows, internal external structure, fractal highs and lows" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/market-structure-and-multi-timeframe.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Market Structure and Multi-Timeframe Analysis Explained" />
+<meta property="og:description" content="Higher highs and higher lows, internal vs external structure, fractals and how to combine a higher-timeframe bias with a lower-timeframe entry." />
+<meta property="og:url" content="https://cpetradepro.com/blog/market-structure-and-multi-timeframe.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Market Structure and Multi-Timeframe Analysis Explained" />
+<meta name="twitter:description" content="How to read trend through structure, and how to align a higher-timeframe bias with a lower-timeframe entry." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Market Structure and Multi-Timeframe Analysis Explained",
+  "description": "Learn market structure the smart-money way — higher highs and higher lows, internal vs external structure, fractal highs and lows, and how multi-timeframe analysis builds a bias with lower-timeframe entries.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/market-structure-and-multi-timeframe.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Market structure and multi-timeframe analysis", "item": "https://cpetradepro.com/blog/market-structure-and-multi-timeframe.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is market structure in trading?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Market structure is the shape price makes as it swings: higher highs and higher lows in an uptrend, lower highs and lower lows in a downtrend, and overlapping ranges when there is no trend. It is the raw way of describing direction before any indicator is added." }
+    },
+    {
+      "@type": "Question",
+      "name": "How many timeframes should I use for multi-timeframe analysis?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Two or three is usually enough. A common setup is a higher timeframe for the bias, a middle timeframe to confirm the structure, and a lower timeframe to time the entry. Adding more timeframes often creates more conflict rather than more clarity." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro use higher-timeframe confirmation?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CPE Trade Pro is analysis software, not a broker. It folds a higher-timeframe trend read into the Trend component of its 0-10 quality score, so a signal that agrees with the larger structure can score higher. That is one input, not a guarantee." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Market structure and multi-timeframe analysis</span>
+    </nav>
+    <span class="eyebrow">Learn · Smart money</span>
+    <h1>Market Structure and Multi-Timeframe Analysis Explained</h1>
+    <p class="lead">Before indicators, before patterns, there is structure. Here is how to read the trend through swings, how internal and external structure differ, and how to combine a <strong>higher-timeframe bias</strong> with a lower-timeframe entry.</p>
+    <div class="page-meta">
+      <span><b>10 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Market structure is the most fundamental read in technical analysis: what shape is price making right now? Before you add a moving average or an oscillator, the chart is already telling you whether buyers or sellers are in control, simply through the sequence of its highs and lows. Learn to read that sequence and every other tool becomes easier to place.</p>
+      <p>This guide covers the basics of structure, the difference between internal and external swings, the fractal nature of highs and lows, and the practical skill of multi-timeframe analysis — reading a bias on a higher timeframe and timing an entry on a lower one. Educational content only, nothing here is financial advice.</p>
+
+      <figure class="app-figure" style="padding:0"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=dark%20cinematic%20professional%20trader%20studying%20multiple%20monitor%20screens%20with%20uptrending%20candlestick%20charts%20and%20swing%20high%20low%20markings%2C%20deep%20blue%20and%20teal%20lighting%2C%20sharp%20focus%2C%20no%20text&image_size=landscape_16_9" alt="A dark, cinematic scene of a trader studying multiple monitors showing uptrending candlestick charts with swing highs and lows" loading="lazy" style="border-radius:12px" /></figure>
+
+      <h2 id="trend">Higher highs and higher lows</h2>
+      <p>An uptrend is not "price going up" in a vague sense — it has a precise definition. In an uptrend, price makes a series of <strong>higher highs and higher lows</strong>: each rally tops the last, and each pull-back bottoms above the previous pull-back. A downtrend is the mirror image, with lower highs and lower lows. When neither pattern holds, price is ranging.</p>
+      <p>The key word is <em>series</em>. One higher high proves nothing; three in a row, with rising lows between them, is structure. This matters because the trend only changes when the series breaks — when an up-trending chart fails to make a higher high and instead takes out the last higher low. That event, a break of structure, is the first honest sign that control may be shifting.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Structure first, everything else second</strong>
+          If you cannot state the current structure in one sentence — up, down or range — no indicator will fix that. Read the swings before you touch the toolset.
+        </div>
+      </div>
+
+      <h2 id="internal">Internal vs external structure</h2>
+      <p>Here is where structure gets more useful. On any chart you are really looking at two layers. <strong>External structure</strong> is the big picture: the major swing highs and lows that define the trend you can see from across the room. <strong>Internal structure</strong> is the smaller swing sequence that lives <em>inside</em> each of those major legs.</p>
+      <p>The relationship is simple and powerful. Price can make a series of higher highs externally while its internal structure is breaking down — the last leg up is quietly making lower highs inside itself. That internal weakness often shows up before the external trend turns. Reading both layers keeps you from being blindsided by a reversal that was already visible one level down.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A schematic showing external market structure as large higher highs and higher lows, with smaller internal structure swings drawn inside each leg">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Internal vs external structure</text>
+          <rect class="a-chip" x="586" y="12" width="116" height="24" rx="12"/>
+          <text class="a-m" x="644" y="28" text-anchor="middle">TWO LAYERS</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="150" x2="700" y2="150"/>
+            <line x1="20" y1="210" x2="700" y2="210"/>
+            <line x1="20" y1="270" x2="700" y2="270"/>
+          </g>
+
+          <path class="aa-line" d="M50 280 L 180 200 L 250 244 L 400 150 L 470 200 L 620 96 L 680 150" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round" pathLength="1"/>
+
+          <path class="aa-line" d="M180 200 L 210 226 L 232 208 L 250 244 L 300 236 L 330 250 L 350 220 L 400 150" style="fill:none;stroke:#a78bfa;stroke-width:2;stroke-dasharray:5 4;stroke-linejoin:round;opacity:.9" pathLength="1"/>
+
+          <g class="aa-reveal" style="animation-delay:.5s">
+            <circle class="a-numbub" cx="180" cy="200" r="11"/><text class="a-m" x="180" y="204" text-anchor="middle">H</text>
+            <circle class="a-numbub" cx="250" cy="244" r="11"/><text class="a-m" x="250" y="248" text-anchor="middle">L</text>
+            <circle class="a-numbub" cx="400" cy="150" r="11"/><text class="a-m" x="400" y="154" text-anchor="middle">H</text>
+            <circle class="a-numbub" cx="470" cy="200" r="11"/><text class="a-m" x="470" y="204" text-anchor="middle">L</text>
+            <circle class="a-numbub" cx="620" cy="96" r="11"/><text class="a-m" x="620" y="100" text-anchor="middle">H</text>
+          </g>
+
+          <text class="a-s" x="40" y="316" style="fill:#22d3ee">solid = external swing structure</text>
+          <text class="a-s" x="400" y="316" style="fill:#a78bfa">dashed = internal structure inside a leg</text>
+        </svg>
+        <figcaption><strong>Two layers of structure.</strong> The solid cyan line is external structure — higher highs and higher lows. The dashed purple line shows the smaller internal structure living inside one leg of that larger move.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Structure</th><th>What it shows</th><th>Typical use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>External</strong></td><td>Major swings; the visible trend</td><td>Define overall bias and direct</td></tr>
+          <tr><td><strong>Internal</strong></td><td>Sub-swings inside each major leg</td><td>Spot early weakening or entries</td></tr>
+          <tr><td><strong>Break of structure</strong></td><td>A swing extreme gives way</td><td>First sign the trend may be changing</td></tr>
+          <tr><td><strong>Change of character</strong></td><td>The opposite sequence begins</td><td>Confirmation a reversal is underway</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="fractal">Fractal highs and lows</h2>
+      <p>Markets are <strong>fractal</strong>: the same structure appears at every scale. Zoom into any leg on the daily chart and it is a full uptrend or downtrend on the hourly chart; zoom into that and it happens again. A swing high that looks like a major top on the 5-minute chart is a tiny blip on the weekly. Nothing about the pattern changes — only the timeframe you are standing on.</p>
+      <p>This is why two traders can both be right while disagreeing. The daily trader sees a healthy uptrend; the 15-minute trader sees a clean downtrend inside the current pull-back. Both are describing real structure. The skill is knowing which scale you are trading and staying consistent with it, rather than flipping frames to justify a position you already want.</p>
+
+      <div class="edu-cards">
+        <div class="edu-card cyan">
+          <span class="ec-ico">📈</span>
+          <strong>Uptrend</strong>
+          <span>Higher highs and higher lows, in series. Buyers in control.</span>
+        </div>
+        <div class="edu-card red">
+          <span class="ec-ico">📉</span>
+          <strong>Downtrend</strong>
+          <span>Lower highs and lower lows, in series. Sellers in control.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">↔️</span>
+          <strong>Range</strong>
+          <span>Neither sequence holds; price chops between two levels.</span>
+        </div>
+      </div>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>◆</i> External swing</span>
+        <span class="edu-chip purple"><i>◆</i> Internal swing</span>
+        <span class="edu-chip green"><i>◆</i> Break of structure</span>
+        <span class="edu-chip pink"><i>◆</i> Change of character</span>
+        <span class="edu-chip amber"><i>◆</i> Fractal</span>
+      </div>
+
+      <h2 id="mtf">Multi-timeframe analysis</h2>
+      <p>Multi-timeframe analysis is the practice of reading more than one chart of the same market, each with a clear job. The most common and practical setup uses three timeframes:</p>
+      <ul>
+        <li><strong>Higher timeframe (bias).</strong> This answers "which direction do I prefer?" If the daily is making higher highs and higher lows, you look for longs first.</li>
+        <li><strong>Middle timeframe (confirmation).</strong> This checks that the structure on the chart you are watching agrees with the bias, and shows you the key levels and zones.</li>
+        <li><strong>Lower timeframe (entry).</strong> This is where you wait for a smaller structure break or a reaction at a level to time the actual entry with a tight invalidation.</li>
+      </ul>
+      <p>The discipline is that the lower timeframe never overrules the higher one. If your bias is up and you drop down to see a small downtrend, that is a pull-back to buy into — not a reason to flip short. Ignoring the hierarchy is how traders end up constantly fighting the bigger move.</p>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>Frame-hopping is not analysis</strong>
+          Switching timeframes until you find one that agrees with the trade you want is confirmation bias wearing a technical mask. Fix your frames in advance and respect the hierarchy.
+        </div>
+      </div>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A schematic showing three stacked timeframes: a higher timeframe uptrend bias, a middle timeframe with lower-timeframe entry points marked">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Multi-timeframe · bias, then entry</text>
+          <rect class="a-chip" x="586" y="12" width="116" height="24" rx="12"/>
+          <text class="a-m" x="644" y="28" text-anchor="middle">HTF → LTF</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="150" x2="700" y2="150"/>
+            <line x1="20" y1="210" x2="700" y2="210"/>
+            <line x1="20" y1="270" x2="700" y2="270"/>
+          </g>
+
+          <rect class="a-soft" x="40" y="72" width="300" height="80" rx="8"/>
+          <text class="a-s" x="52" y="94">HIGHER TF · uptrend bias</text>
+          <path class="aa-line" d="M60 130 L 130 96 L 200 118 L 280 80 L 330 100" style="fill:none;stroke:#00e5a8;stroke-width:3;stroke-linejoin:round;stroke-linecap:round" pathLength="1"/>
+
+          <rect class="a-soft" x="380" y="72" width="300" height="80" rx="8"/>
+          <text class="a-s" x="392" y="94">ENTRY TF · pull-back into zone</text>
+          <path class="aa-line" d="M400 138 L 450 108 L 490 124 L 520 100 L 560 116 L 620 84 L 660 104" style="fill:none;stroke:#a78bfa;stroke-width:3;stroke-linejoin:round;stroke-linecap:round" pathLength="1"/>
+
+          <rect class="a-fill-teal aa-pop" x="40" y="230" width="640" height="16" rx="4" style="animation-delay:.3s"/>
+          <text class="a-s" x="52" y="224" style="fill:#00e5a8">higher-timeframe support zone · where pull-backs are bought</text>
+
+          <g class="aa-reveal" style="animation-delay:.6s">
+            <circle class="a-numbub" cx="490" cy="126" r="12"/><text class="a-m" x="490" y="130" text-anchor="middle">1</text>
+            <circle class="a-numbub" cx="600" cy="120" r="12"/><text class="a-m" x="600" y="124" text-anchor="middle">2</text>
+          </g>
+          <path class="aa-line" d="M490 126 L 500 220" style="fill:none;stroke:#22d3ee;stroke-width:2;stroke-dasharray:4 4" pathLength="1"/>
+          <path class="aa-line" d="M600 120 L 605 228" style="fill:none;stroke:#22d3ee;stroke-width:2;stroke-dasharray:4 4" pathLength="1"/>
+
+          <text class="a-s" x="360" y="300" text-anchor="middle">bias from the top, timing from the bottom · the larger frame wins when they disagree</text>
+        </svg>
+        <figcaption><strong>Higher-timeframe bias, lower-timeframe trigger.</strong> The larger chart sets the direction; the smaller chart times the entry into a pull-back at a higher-timeframe zone. When the two disagree, the higher timeframe has the final say.</figcaption>
+      </figure>
+
+      <h2 id="app">How the app uses HTF confirmation</h2>
+      <p>CPE Trade Pro is analysis software, not a broker — it never holds your funds. Part of what it does is fold a higher-timeframe trend read into its signals, so a setup that agrees with the larger structure is treated differently from one that fights it. That agreement feeds the <strong>Trend</strong> component of the quality score.</p>
+      <p>Keep the score in perspective. It is built from five measurable parts — <strong>Clarity, Trend, Momentum, Volume and Levels</strong>, each worth up to 2 points, for a total of 0-10. The Trend part reflects structural agreement; the other four cover different questions. The score is <em>not</em> a win rate, not a probability of profit and not an audited record. It is one structured read of the chart, not a promise.</p>
+      <p>If you want to see structure labelling and a quality score laid over a live chart, <a href="/download.html">download CPE Trade Pro</a> and study it in DEMO mode — no exchange account required.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/bos-vs-choch.html">BOS vs CHoCH: breaks and changes of character</a></li>
+          <li><a href="/blog/what-is-smart-money-concepts.html">What is smart money concepts?</a></li>
+          <li><a href="/blog/how-to-read-order-blocks.html">How to read order blocks</a></li>
+          <li><a href="/academy.html">The built-in academy</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#trend">Higher highs and higher lows</a>
+          <a href="#internal">Internal vs external structure</a>
+          <a href="#fractal">Fractal highs and lows</a>
+          <a href="#mtf">Multi-timeframe analysis</a>
+          <a href="#app">How the app uses HTF confirmation</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/bos-vs-choch.html">BOS vs CHoCH</a>
+          <a href="/blog/what-is-smart-money-concepts.html">Smart money concepts</a>
+          <a href="/signal-guide.html">Signal guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read structure faster with the app</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Inducement (IDM) Explained: Why Price Traps You Before It Moves</title>
+<meta name="description" content="A plain-English guide to inducement (IDM) in trading — what it is, how liquidity sweeps and stop hunts work, why equal highs and lows are bait, how to avoid being trapped, and how to combine IDM with order blocks and FVGs." />
+<meta name="keywords" content="inducement, idm trading, liquidity sweep, stop hunt, equal highs and lows, smart money trap" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/inducement-and-liquidity-sweeps.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Inducement (IDM) Explained: Why Price Traps You Before It Moves" />
+<meta property="og:description" content="What inducement is, how liquidity sweeps and stop hunts bait retail traders, and how to combine IDM with order blocks and fair value gaps." />
+<meta property="og:url" content="https://cpetradepro.com/blog/inducement-and-liquidity-sweeps.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Inducement (IDM) Explained: Why Price Traps You Before It Moves" />
+<meta name="twitter:description" content="Why price traps you before the real move — inducement, liquidity sweeps and stop hunts explained." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Inducement (IDM) Explained: Why Price Traps You Before It Moves",
+  "description": "A plain-English guide to inducement (IDM) in trading — what it is, how liquidity sweeps and stop hunts work, why equal highs and lows are bait, and how to combine IDM with order blocks and fair value gaps.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/inducement-and-liquidity-sweeps.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Inducement and liquidity sweeps", "item": "https://cpetradepro.com/blog/inducement-and-liquidity-sweeps.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is inducement in trading?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Inducement (IDM for short) is a small, obvious swing high or low placed before the real area of interest. It tempts early buyers or sellers to act, stacking their orders and stops at a predictable spot that the market can then sweep before continuing in the intended direction." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is inducement the same as a stop hunt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "They are closely related. Inducement is the bait; a stop hunt or liquidity sweep is the act of taking the resting orders it attracted. The inducement marks where the trap is set, and the sweep is where it is sprung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro detect inducement for me?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CPE Trade Pro is analysis software, not a broker. It can highlight structures and liquidity areas as context rather than a promise, and those reads fold into parts of its 0-10 quality score. Detection is a probability aid, not a certainty or a trade instruction." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Inducement and liquidity sweeps</span>
+    </nav>
+    <span class="eyebrow">Learn · Smart money</span>
+    <h1>Inducement (IDM) Explained: Why Price Traps You Before It Moves</h1>
+    <p class="lead">You enter on a textbook setup and it reverses against you seconds later. Often it is not bad luck — it is <strong>inducement</strong>. Here is how the trap is set, and how to stop falling for it.</p>
+    <div class="page-meta">
+      <span><b>9 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>If you have traded for any length of time, you know the feeling. You spot an obvious support, buy the bounce, and price knocks out your stop by a few ticks before finally doing exactly what you expected. It looks personal. It is not — it is structural. Price needs liquidity to move, and the most reliable pool of liquidity is the crowd's stop orders sitting just beyond an obvious level.</p>
+      <p>Smart-money concepts give that behaviour a name: <strong>inducement</strong>, often shortened to <strong>IDM</strong>. This guide explains what inducement is, how it connects to liquidity sweeps and stop hunts, why equal highs and lows are the classic bait, and how to fold it into a disciplined reading of the chart. Educational content only, nothing here is financial advice.</p>
+
+      <figure class="app-figure" style="padding:0"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=dark%20cinematic%20professional%20financial%20trading%20scene%20with%20monitors%20showing%20a%20candlestick%20chart%20piercing%20an%20obvious%20horizontal%20level%20then%20reversing%2C%20moody%20deep%20blue%20lighting%2C%20sharp%20focus%2C%20no%20text&image_size=landscape_16_9" alt="A dark, cinematic trading scene with monitors showing a candlestick chart piercing an obvious level then reversing" loading="lazy" style="border-radius:12px" /></figure>
+
+      <h2 id="what">What inducement is</h2>
+      <p>Inducement is a deliberately placed, easy-to-see swing that sits <em>before</em> the real area of interest. It exists to tempt impatient traders into acting early. Picture a big liquidity zone far below the current price. Between you and that zone, there is one clean little low that practically shouts "buy here". Traders buy, their stops stack just under it, and that tidy pool of orders becomes the fuel price needs to drive down into the real zone.</p>
+      <p>The trap works because it exploits a natural human instinct — the urge to trade the first opportunity you see instead of waiting for the one the market has been building toward. Inducement is not random noise. It is temptation placed on purpose, and once you can name it, you start to see it everywhere.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>The first obvious move is often the bait</strong>
+          When a setup looks almost too easy and sits in front of a bigger level, slow down. Ask what liquidity lies beyond it — the answer usually tells you where price is really headed.
+        </div>
+      </div>
+
+      <h2 id="sweeps">Liquidity sweeps and stop hunts</h2>
+      <p>Inducement is the bait; a <strong>liquidity sweep</strong> is the act of taking it. When price drives through an obvious high or low, it triggers the stop orders resting there and fills any pending orders, giving the market the counterparty volume it needs to reverse and continue in the intended direction. Traders often call this a <strong>stop hunt</strong>, because from their side it feels like the market hunted their stop.</p>
+      <p>The tell of a genuine sweep is speed and rejection. Price pokes through the level sharply, then snaps back and closes on the original side within a candle or two. A level that is simply broken — with price continuing and holding beyond it — is not a sweep; it is a real break. Confusing the two is expensive, which is why the way price behaves after the poke matters more than the poke itself.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A schematic candle chart where price sweeps an obvious low to trigger stops, then sharply reverses upward in the intended direction">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Inducement sweep · trap, then move</text>
+          <rect class="a-chip" x="586" y="12" width="116" height="24" rx="12"/>
+          <text class="a-m" x="644" y="28" text-anchor="middle">SWEEP &amp; GO</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="150" x2="700" y2="150"/>
+            <line x1="20" y1="210" x2="700" y2="210"/>
+            <line x1="20" y1="270" x2="700" y2="270"/>
+          </g>
+
+          <rect class="a-soft" x="40" y="196" width="640" height="16" rx="4"/>
+          <text class="a-s" x="52" y="190" style="fill:#94a3b8">obvious low · retail stops stacked below</text>
+
+          <g>
+            <line class="a-wbear" x1="70" y1="120" x2="70" y2="150"/><rect class="a-bear" x="62" y="126" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="110" y1="146" x2="110" y2="176"/><rect class="a-bear" x="102" y="152" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="150" y1="172" x2="150" y2="200"/><rect class="a-bear" x="142" y="178" width="16" height="16" rx="2"/>
+            <line class="a-wbull" x1="190" y1="196" x2="190" y2="220"/><rect class="a-bull" x="182" y="200" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="230" y1="180" x2="230" y2="204"/><rect class="a-bull" x="222" y="186" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="270" y1="160" x2="270" y2="186"/><rect class="a-bull" x="262" y="166" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="310" y1="150" x2="310" y2="182"/><rect class="a-bear" x="302" y="156" width="16" height="18" rx="2"/>
+            <line class="a-wbear" x1="350" y1="178" x2="350" y2="232"/><rect class="a-bear" x="342" y="184" width="16" height="48" rx="2"/>
+            <line class="a-wbull" x1="400" y1="150" x2="400" y2="220"/><rect class="a-bull" x="392" y="156" width="18" height="60" rx="2"/>
+            <line class="a-wbull" x1="450" y1="120" x2="450" y2="176"/><rect class="a-bull" x="442" y="126" width="16" height="44" rx="2"/>
+            <line class="a-wbull" x1="500" y1="100" x2="500" y2="150"/><rect class="a-bull" x="492" y="106" width="16" height="38" rx="2"/>
+            <line class="a-wbull" x1="550" y1="92" x2="550" y2="132"/><rect class="a-bull" x="542" y="98" width="16" height="28" rx="2"/>
+            <line class="a-wbull" x1="600" y1="90" x2="600" y2="126"/><rect class="a-bull" x="592" y="96" width="16" height="24" rx="2"/>
+            <line class="a-wbull" x1="650" y1="88" x2="650" y2="120"/><rect class="a-bull" x="642" y="94" width="16" height="22" rx="2"/>
+          </g>
+
+          <path class="aa-line" d="M70 134 L 150 190 L 310 158 L 358 236 L 452 128 L 660 100" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round" pathLength="1"/>
+
+          <g class="aa-reveal" style="animation-delay:.6s">
+            <circle class="a-numbub" cx="300" cy="146" r="12"/><text class="a-m" x="300" y="150" text-anchor="middle">IDM</text>
+            <circle class="a-numbub" cx="360" cy="248" r="12"/><text class="a-m" x="360" y="252" text-anchor="middle">1</text>
+            <circle class="a-numbub" cx="470" cy="120" r="12"/><text class="a-m" x="470" y="124" text-anchor="middle">2</text>
+          </g>
+
+          <text class="a-s" x="40" y="300" style="fill:#fbbf24">IDM = the small swing that baits early buys</text>
+          <text class="a-s" x="430" y="300" style="fill:#00e5a8">sweep of the low → then the real move</text>
+        </svg>
+        <figcaption><strong>The trap, then the move.</strong> The small pull-back (IDM) invites early buyers. Price then sweeps the obvious low to take their stops, and only then launches the move in the intended direction.</figcaption>
+      </figure>
+
+      <h2 id="equal">Equal highs and lows as bait</h2>
+      <p>The most visible bait of all is a pair of <strong>equal highs</strong> or <strong>equal lows</strong>. Two or more matched extremes look like a wall — resistance that price "cannot" break, or support that "must" hold. Traders place orders and stops around them, which is precisely why they attract a sweep.</p>
+      <p>Double tops and triple bottoms are the same story told with patterns. The second or third touch looks like a confirmation, but it is often just a fresh pool of trapped orders for the market to consume. When price finally pierces those equal lows, it is not a breakdown — very often it is the sweep that precedes a rally. Reading it that way flips a confusing move into a legible one.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A schematic candle chart with two equal lows forming an obvious support line, followed by a sweep below the equal lows and a sharp rally upward">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Equal lows · the bait of a "safe" level</text>
+          <rect class="a-chip" x="586" y="12" width="116" height="24" rx="12"/>
+          <text class="a-m" x="644" y="28" text-anchor="middle">SWEEP THE BAIT</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="150" x2="700" y2="150"/>
+            <line x1="20" y1="210" x2="700" y2="210"/>
+            <line x1="20" y1="270" x2="700" y2="270"/>
+          </g>
+
+          <path class="aa-line" d="M40 226 L 700 226" style="fill:none;stroke:#94a3b8;stroke-width:2;stroke-dasharray:6 5" pathLength="1"/>
+          <text class="a-s" x="500" y="220" style="fill:#94a3b8">equal lows · "support must hold"</text>
+
+          <g>
+            <line class="a-wbear" x1="70" y1="120" x2="70" y2="152"/><rect class="a-bear" x="62" y="126" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="110" y1="150" x2="110" y2="180"/><rect class="a-bear" x="102" y="156" width="16" height="16" rx="2"/>
+            <line class="a-wbear" x1="150" y1="176" x2="150" y2="222"/><rect class="a-bear" x="142" y="182" width="16" height="40" rx="2"/>
+            <line class="a-wbull" x1="190" y1="200" x2="190" y2="222"/><rect class="a-bull" x="182" y="204" width="16" height="14" rx="2"/>
+            <line class="a-wbull" x1="230" y1="182" x2="230" y2="206"/><rect class="a-bull" x="222" y="188" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="270" y1="170" x2="270" y2="222"/><rect class="a-bear" x="262" y="176" width="16" height="46" rx="2"/>
+            <line class="a-wbull" x1="310" y1="196" x2="310" y2="220"/><rect class="a-bull" x="302" y="200" width="16" height="14" rx="2"/>
+            <line class="a-wbear" x1="350" y1="198" x2="350" y2="268"/><rect class="a-bear" x="342" y="204" width="18" height="60" rx="2"/>
+            <line class="a-wbull" x1="400" y1="170" x2="400" y2="250"/><rect class="a-bull" x="392" y="176" width="18" height="70" rx="2"/>
+            <line class="a-wbull" x1="450" y1="140" x2="450" y2="196"/><rect class="a-bull" x="442" y="146" width="16" height="48" rx="2"/>
+            <line class="a-wbull" x1="500" y1="116" x2="500" y2="164"/><rect class="a-bull" x="492" y="122" width="16" height="40" rx="2"/>
+            <line class="a-wbull" x1="550" y1="102" x2="550" y2="140"/><rect class="a-bull" x="542" y="108" width="16" height="30" rx="2"/>
+            <line class="a-wbull" x1="600" y1="94" x2="600" y2="128"/><rect class="a-bull" x="592" y="100" width="16" height="26" rx="2"/>
+            <line class="a-wbull" x1="650" y1="90" x2="650" y2="122"/><rect class="a-bull" x="642" y="96" width="16" height="24" rx="2"/>
+          </g>
+
+          <path class="aa-line" d="M70 134 L 150 188 L 230 190 L 300 190 L 358 264 L 452 150 L 660 104" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round" pathLength="1"/>
+
+          <g class="aa-reveal" style="animation-delay:.6s">
+            <circle class="a-numbub" cx="150" cy="198" r="11"/><text class="a-m" x="150" y="202" text-anchor="middle">1</text>
+            <circle class="a-numbub" cx="300" cy="198" r="11"/><text class="a-m" x="300" y="202" text-anchor="middle">2</text>
+            <circle class="a-numbub" cx="370" cy="278" r="11"/><text class="a-m" x="370" y="282" text-anchor="middle">3</text>
+          </g>
+
+          <text class="a-s" x="40" y="316" style="fill:#fbbf24">two equal lows look safe · the third sweep takes the stops, then price runs</text>
+        </svg>
+        <figcaption><strong>Equal lows as bait.</strong> Two matched lows (1 and 2) look like unbreakable support. The third push pierces them (3) to trigger the stacked stops — and it is that sweep, not a real breakdown, that fuels the rally.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>What you see</th><th>Retail read</th><th>Smart-money read</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Clean tap of a level</td><td>"Good entry, get in now"</td><td>Possible inducement bait</td></tr>
+          <tr><td>Quick poke through a high/low</td><td>"It broke — chase it"</td><td>Likely a liquidity sweep</td></tr>
+          <tr><td>Equal highs or lows</td><td>"Strong wall of support/resistance"</td><td>A magnet for stop orders</td></tr>
+          <tr><td>Slow, holding break</td><td>"Same as a sweep"</td><td>An actual break of structure</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="avoid">How to avoid being trapped</h2>
+      <p>You cannot eliminate being swept — but you can stop feeding the pool. The first habit is <strong>patience</strong>: do not take the first obvious level you see, especially when a larger, more significant level sits just behind it. The second is <strong>placement</strong>: keep your invalidation beyond the liquidity, not in front of it, so a routine sweep does not remove you.</p>
+      <ul>
+        <li><strong>Wait for the sweep.</strong> Let price take the obvious low or high <em>first</em>, then look for your entry on the reaction.</li>
+        <li><strong>Stop under the pool, not above it.</strong> Give your stop room beyond where the crowd's stops sit.</li>
+        <li><strong>Prefer the higher-timeframe level.</strong> If two levels compete, the bigger one usually wins.</li>
+        <li><strong>Demand confirmation.</strong> A structure break or a clean rejection after the sweep is stronger than a guess before it.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>IDM is a probability, not a certainty</strong>
+          Not every obvious level is inducement, and not every sweep reverses. Treat these reads as improved odds, never as guarantees — sizing and risk control are what protect you when the read is wrong.
+        </div>
+      </div>
+
+      <div class="edu-cards">
+        <div class="edu-card cyan">
+          <span class="ec-ico">🎣</span>
+          <strong>Inducement</strong>
+          <span>A neat swing placed to bait early entries before the real move.</span>
+        </div>
+        <div class="edu-card purple">
+          <span class="ec-ico">💧</span>
+          <strong>Liquidity sweep</strong>
+          <span>Riding through a high or low to trigger stops and fill orders.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🪤</span>
+          <strong>Fake break</strong>
+          <span>Price pokes a level, then fails. Often the trap in action.</span>
+        </div>
+      </div>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>◆</i> IDM</span>
+        <span class="edu-chip green"><i>◆</i> Sweep</span>
+        <span class="edu-chip pink"><i>◆</i> Equal highs</span>
+        <span class="edu-chip purple"><i>◆</i> Equal lows</span>
+        <span class="edu-chip amber"><i>◆</i> Stop hunt</span>
+      </div>
+
+      <h2 id="combining">Combining IDM with order blocks and FVGs</h2>
+      <p>Inducement is most useful as part of a chain, not on its own. In practice you look for a significant <strong>order block</strong> or <strong>fair value gap</strong> — the area you actually want to trade from — then check whether there is an inducement sitting in front of it. If there is, you have a reason to wait: price may sweep the IDM, then run into your zone, giving a cleaner entry with a tighter invalidation.</p>
+      <p>The sequence is what makes it work: identify the real zone, spot the bait in front of it, wait for the sweep, then act on the reaction into the zone. Treated this way, inducement stops being a hazard and becomes a timing filter — it tells you when the market has finished gathering the liquidity it needs to move, which is often the best moment to be a buyer or seller with the crowd that got trapped.</p>
+      <p>CPE Trade Pro is analysis software, not a broker — it never holds your funds. It can highlight liquidity areas and structure as context rather than a promise, and those structural reads fold into parts of its existing quality framework. To be clear about that framework: the 0-10 score is built from five measurable parts — <strong>Clarity, Trend, Momentum, Volume and Levels</strong>, each worth up to 2 points. It is <em>not</em> a win rate, not a probability of profit and not an audited record, and no single IDM signal is a standalone instruction. If you want to see structure and liquidity areas marked on a live chart, <a href="/download.html">download CPE Trade Pro</a> and study it in DEMO mode — no exchange account required.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/what-is-liquidity-in-trading.html">What is liquidity in trading?</a></li>
+          <li><a href="/blog/fair-value-gap-explained.html">Fair value gaps explained</a></li>
+          <li><a href="/blog/order-block-strategy-guide.html">The order block strategy guide</a></li>
+          <li><a href="/academy.html">The built-in academy</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#what">What inducement is</a>
+          <a href="#sweeps">Liquidity sweeps and stop hunts</a>
+          <a href="#equal">Equal highs and lows as bait</a>
+          <a href="#avoid">How to avoid being trapped</a>
+          <a href="#combining">Combining IDM with order blocks and FVGs</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/what-is-liquidity-in-trading.html">Liquidity in trading</a>
+          <a href="/blog/fair-value-gap-explained.html">Fair value gaps</a>
+          <a href="/signal-guide.html">Signal guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read structure faster with the app</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Tape Reading and CVD Explained: Following the Real Buyers and Sellers</title>
+<meta name="description" content="How to read the tape (time and sales), aggressor flow, delta and cumulative volume delta (CVD) - plus absorption, divergence and how to combine tape with footprint and VWAP." />
+<meta name="keywords" content="tape reading, time and sales, cumulative volume delta, CVD, delta, aggressor flow, absorption, divergence" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/tape-reading-and-cvd.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Tape Reading and CVD Explained: Following the Real Buyers and Sellers" />
+<meta property="og:description" content="Time and sales, aggressor flow, delta and cumulative volume delta — how to follow the real buyers and sellers behind price." />
+<meta property="og:url" content="https://cpetradepro.com/blog/tape-reading-and-cvd.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tape Reading and CVD Explained" />
+<meta name="twitter:description" content="Reading the tape, aggressor flow, delta, cumulative volume delta, absorption and divergence — explained plainly." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tape Reading and CVD Explained: Following the Real Buyers and Sellers",
+  "description": "How to read the tape (time and sales), aggressor flow, delta and cumulative volume delta (CVD) - plus absorption, divergence and how to combine tape with footprint and VWAP.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/tape-reading-and-cvd.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Tape reading and CVD", "item": "https://cpetradepro.com/blog/tape-reading-and-cvd.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is tape reading still useful in crypto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, where trades print to a usable tick size and the venue publishes granular data. On liquid crypto pairs the tape and its derived delta can be read much as they are in futures. On thin markets the prints are sparse and less reliable." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does cumulative volume delta (CVD) measure?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CVD is the running total of delta across a session — aggressive buying volume minus aggressive selling volume, added up trade by trade. It is a scoreboard of which side has been the more aggressive, and where that aggression is fading." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro include a tape or CVD tool?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CPE Trade Pro focuses on volume analysis, order blocks, fair value gaps and market structure rather than a full time-and-sales tape or a CVD engine. Tape reading and CVD are covered here as education for order-flow traders." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>Tape reading and CVD</span>
+    </nav>
+    <span class="eyebrow">Learn · Order flow</span>
+    <h1>Tape Reading and CVD Explained: Following the Real Buyers and Sellers</h1>
+    <p class="lead">The order book shows orders <em>waiting</em>. The tape shows orders that actually happened. Here is how to read <strong>time &amp; sales</strong>, aggressor flow, <strong>delta</strong> and <strong>cumulative volume delta</strong>.</p>
+    <div class="page-meta">
+      <span><b>11 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Learn</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>Every trade that prints is a small confession. Someone chose to act <em>now</em>, at that price, with that size. The <strong>tape</strong> — time and sales — is the unedited record of those confessions, a second-by-second stream of price, size and the side that was in a hurry. Reading it separates "who is waiting" from "who is trading".</p>
+      <p>This guide covers what the tape is, how to read aggressor flow, delta and <strong>cumulative volume delta (CVD)</strong>, the tell-tale patterns of absorption and divergence, and how to combine the tape with footprint charts and VWAP. Educational content only — nothing here is financial advice.</p>
+
+      <figure class="app-figure" style="padding:0"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=dark%20cinematic%20professional%20trading%20desk%2C%20close-up%20of%20a%20screen%20showing%20a%20fast%20scrolling%20time%20and%20sales%20tape%20with%20green%20and%20red%20trade%20prints%2C%20focused%20trader%2C%20moody%20ambient%20light%2C%20shallow%20depth%20of%20field%2C%20photorealistic%2C%20no%20text&image_size=landscape_16_9" alt="A dark trading desk with a monitor scrolling a time and sales tape of green and red trade prints" loading="lazy" style="border-radius:12px" /></figure>
+
+      <h2 id="tape">What the tape is (time &amp; sales)</h2>
+      <p>The tape is a scrolling list of every executed trade: the time, the price and the size. On most platforms each print is also tagged by which side was the aggressor — a trade that hits the bid is a market <em>sell</em>, a trade that lifts the ask is a market <em>buy</em>. That tag is the whole point: it tells you who crossed the spread to get the trade done.</p>
+      <p>Beginners watch price; the tape rewards watching <em>size</em>. A stream of small prints means little. A burst of large prints at one price, all on the same side, is someone with real conviction acting right now. The tape is noisy by nature, so you read it in clusters, not one print at a time.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A time and sales tape listing trade prints with a coloured side marker, the time, the price and the trade size, with bar length showing size">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Time &amp; sales · the tape</text>
+          <rect class="a-chip" x="556" y="12" width="146" height="24" rx="12"/>
+          <text class="a-m" x="629" y="28" text-anchor="middle">GREEN = BUY · RED = SELL</text>
+
+          <g class="a-grid">
+            <line x1="40" y1="66" x2="680" y2="66"/>
+            <line x1="40" y1="102" x2="680" y2="102"/>
+            <line x1="40" y1="138" x2="680" y2="138"/>
+            <line x1="40" y1="174" x2="680" y2="174"/>
+            <line x1="40" y1="210" x2="680" y2="210"/>
+            <line x1="40" y1="246" x2="680" y2="246"/>
+          </g>
+
+          <text class="a-s" x="40" y="58">TIME</text>
+          <text class="a-s" x="150" y="58">PRICE</text>
+          <text class="a-s" x="290" y="58">SIZE</text>
+
+          <circle cx="50" cy="84" r="6" fill="#22c55e"/>
+          <text class="a-s" x="70" y="88">12:04:01</text><text class="a-t" x="150" y="88">67,243</text><text class="a-m" x="290" y="88">1.2</text>
+          <rect class="a-fill-teal aa-pop" x="340" y="76" width="60" height="14" rx="3"/>
+
+          <circle cx="50" cy="120" r="6" fill="#22c55e"/>
+          <text class="a-s" x="70" y="124">12:04:01</text><text class="a-t" x="150" y="124">67,243</text><text class="a-m" x="290" y="124">3.8</text>
+          <rect class="a-fill-teal aa-pop" x="340" y="112" width="170" height="14" rx="3" style="animation-delay:.12s"/>
+
+          <circle cx="50" cy="156" r="6" fill="#ef4444"/>
+          <text class="a-s" x="70" y="160">12:04:02</text><text class="a-t" x="150" y="160">67,242</text><text class="a-m" x="290" y="160">0.9</text>
+          <rect class="a-fill-red aa-pop" x="340" y="148" width="45" height="14" rx="3" style="animation-delay:.24s"/>
+
+          <circle cx="50" cy="192" r="6" fill="#22c55e"/>
+          <text class="a-s" x="70" y="196">12:04:02</text><text class="a-t" x="150" y="196">67,244</text><text class="a-m" x="290" y="196">6.4</text>
+          <rect class="a-fill-teal aa-pop" x="340" y="184" width="255" height="14" rx="3" style="animation-delay:.36s"/>
+
+          <circle cx="50" cy="228" r="6" fill="#ef4444"/>
+          <text class="a-s" x="70" y="232">12:04:03</text><text class="a-t" x="150" y="232">67,241</text><text class="a-m" x="290" y="232">2.1</text>
+          <rect class="a-fill-red aa-pop" x="340" y="220" width="100" height="14" rx="3" style="animation-delay:.48s"/>
+
+          <text class="a-s" x="360" y="300" text-anchor="middle">one large green print (6.4) can matter more than twenty small ones</text>
+        </svg>
+        <figcaption><strong>The tape.</strong> Each line is a real trade. Green marks buys that lifted the offer; red marks sells that hit the bid. The bar length is size — and the 6.4 lot at 67,244 is the print that tells you what the smaller ones only hint at.</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Print</th><th>Aggressor</th><th>Usually means</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Hits the bid</strong></td><td>Seller</td><td>A market order to sell — supply coming in now</td></tr>
+          <tr><td><strong>Lifts the ask</strong></td><td>Buyer</td><td>A market order to buy — demand chasing price up</td></tr>
+          <tr><td><strong>Large, at the bid</strong></td><td>Seller</td><td>Heavy supply, or panic — watch for exhaustion</td></tr>
+          <tr><td><strong>Large, at the ask</strong></td><td>Buyer</td><td>Momentum buyers, or the start of a breakout</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="aggressor">Reading aggressor flow</h2>
+      <p>Aggressor flow is the balance of that tagging over a short window. If most prints are lifting the offer, buyers are in a hurry and price usually drifts up; if most are hitting the bid, sellers are in control. The useful skill is not counting ticks but spotting <em>where</em> the size concentrates — at which price a wall of green or red prints keeps appearing.</p>
+      <p>Context changes everything, though. Heavy buying into a level that refuses to break is not strength; it may be sellers quietly absorbing every buy. That is why aggressor flow is read alongside the price response, never on its own.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Watch the effort, then the result</strong>
+          Compare how much aggression appears with how far price actually moves. Big effort that produces little movement is the most informative thing the tape can show you — and it points straight to absorption.
+        </div>
+      </div>
+
+      <h2 id="delta">Delta and cumulative volume delta (CVD)</h2>
+      <p><strong>Delta</strong> turns the tape into a single number: aggressive buy volume minus aggressive sell volume, for a bar or a price row. Positive delta means buyers led; negative means sellers led. <strong>Cumulative volume delta (CVD)</strong> simply adds that up trade by trade through the session, producing a running scoreboard of which side has been the more aggressive.</p>
+      <p>CVD is powerful because it can be compared with price. When price and CVD move together, aggression and result agree. When they part ways, you are looking at a <em>divergence</em> — the first warning that the current move is losing its engine.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A two panel chart: the top shows price making higher highs while the bottom shows cumulative volume delta making lower highs, a bearish divergence">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Price vs CVD · divergence</text>
+          <rect class="a-chip" x="556" y="12" width="146" height="24" rx="12"/>
+          <text class="a-m" x="629" y="28" text-anchor="middle">EFFORT ≠ RESULT</text>
+
+          <rect class="a-soft" x="20" y="46" width="680" height="110" rx="8"/>
+          <text class="a-s" x="34" y="64">Price</text>
+          <g class="a-grid">
+            <line x1="34" y1="90" x2="686" y2="90"/>
+            <line x1="34" y1="126" x2="686" y2="126"/>
+          </g>
+          <path class="aa-line" d="M50 132 L 150 108 L 250 118 L 360 92 L 470 100 L 580 74 L 680 82" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round" pathLength="1"/>
+          <text class="a-s" x="672" y="72" text-anchor="end" style="fill:#22d3ee">higher highs</text>
+
+          <rect class="a-soft" x="20" y="176" width="680" height="110" rx="8"/>
+          <text class="a-s" x="34" y="194">Cumulative delta</text>
+          <g class="a-grid">
+            <line x1="34" y1="220" x2="686" y2="220"/>
+            <line x1="34" y1="256" x2="686" y2="256"/>
+          </g>
+          <path class="aa-line" d="M50 212 L 150 224 L 250 218 L 360 234 L 470 244 L 580 258 L 680 268" style="fill:none;stroke:#fb7185;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;animation-delay:.3s" pathLength="1"/>
+          <text class="a-s" x="672" y="282" text-anchor="end" style="fill:#fb7185">lower highs</text>
+
+          <text class="a-s" x="360" y="312" text-anchor="middle">price grinds higher while the aggression behind it fades</text>
+        </svg>
+        <figcaption><strong>A bearish divergence.</strong> Price (top, cyan) keeps making higher highs, but CVD (bottom, pink) keeps making lower highs. The rally is being pushed by less and less aggression — a warning, not a guarantee, of a turn.</figcaption>
+      </figure>
+
+      <h2 id="absorption">Absorption and divergence</h2>
+      <p><strong>Absorption</strong> is the tape's quietest message. It happens when aggressive orders pour in but price barely moves, because a passive counterparty is soaking them up. Buyers lift the offer again and again, yet the price stalls — someone larger is selling into every print without budging the level.</p>
+      <p><strong>Divergence</strong> is absorption seen over time. Price makes a new high, but CVD does not; or price makes a new low, but CVD holds firm. In both cases the effort no longer matches the result, and the trend is running on fumes rather than fuel. Note the word "warning" — divergence can resolve with a reversal or with a burst that repairs it.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A two panel chart: the top shows price flat against a resistance level while the bottom shows large positive delta bars, illustrating absorption">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="30">Absorption · big effort, no progress</text>
+          <rect class="a-chip" x="566" y="12" width="136" height="24" rx="12"/>
+          <text class="a-m" x="634" y="28" text-anchor="middle">BUYS SOAKED UP</text>
+
+          <rect class="a-soft" x="20" y="46" width="680" height="110" rx="8"/>
+          <text class="a-s" x="34" y="64">Price · stuck at the level</text>
+          <g class="a-grid">
+            <line x1="34" y1="96" x2="686" y2="96"/>
+          </g>
+          <path class="aa-line" d="M50 128 L 150 96 L 250 104 L 360 94 L 470 100 L 580 96 L 680 102" style="fill:none;stroke:#fbbf24;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round" pathLength="1"/>
+          <text class="a-s" x="672" y="86" text-anchor="end" style="fill:#fbbf24">resistance</text>
+
+          <rect class="a-soft" x="20" y="176" width="680" height="110" rx="8"/>
+          <text class="a-s" x="34" y="194">Per-bar delta · all buyers</text>
+          <line class="a-grid" x1="34" y1="256" x2="686" y2="256"/>
+          <rect class="a-fill-teal aa-pop" x="70" y="212" width="26" height="44" rx="3"/>
+          <rect class="a-fill-teal aa-pop" x="150" y="204" width="26" height="52" rx="3" style="animation-delay:.15s"/>
+          <rect class="a-fill-teal aa-pop" x="230" y="208" width="26" height="48" rx="3" style="animation-delay:.3s"/>
+          <rect class="a-fill-teal aa-pop" x="310" y="200" width="26" height="56" rx="3" style="animation-delay:.45s"/>
+          <rect class="a-fill-teal aa-pop" x="390" y="210" width="26" height="46" rx="3" style="animation-delay:.6s"/>
+          <rect class="a-fill-teal aa-pop" x="470" y="202" width="26" height="54" rx="3" style="animation-delay:.75s"/>
+          <rect class="a-fill-teal aa-pop" x="550" y="206" width="26" height="50" rx="3" style="animation-delay:.9s"/>
+          <rect class="a-fill-teal aa-pop" x="630" y="210" width="26" height="46" rx="3" style="animation-delay:1.05s"/>
+        </svg>
+        <figcaption><strong>Absorption.</strong> Delta bars are strongly positive — buyers keep lifting offers — yet price sits flat against the same resistance. Someone is filling every buy. This is a passive seller at work, and it often precedes a sharp move once the buyers give up.</figcaption>
+      </figure>
+
+      <div class="edu-cards">
+        <div class="edu-card green">
+          <span class="ec-ico">📈</span>
+          <strong>Agreement</strong>
+          <span>Price and CVD rise together. Aggression and result match — the move is healthy.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🧲</span>
+          <strong>Absorption</strong>
+          <span>Big delta, flat price. A passive counterparty is eating the aggression.</span>
+        </div>
+        <div class="edu-card pink">
+          <span class="ec-ico">↔️</span>
+          <strong>Divergence</strong>
+          <span>Price and CVD make opposite extremes. Effort no longer matches result.</span>
+        </div>
+      </div>
+
+      <div class="edu-chips">
+        <span class="edu-chip cyan"><i>◆</i> The tape</span>
+        <span class="edu-chip green"><i>◆</i> Aggressor flow</span>
+        <span class="edu-chip blue"><i>◆</i> Delta</span>
+        <span class="edu-chip purple"><i>◆</i> CVD</span>
+        <span class="edu-chip amber"><i>◆</i> Absorption</span>
+        <span class="edu-chip pink"><i>◆</i> Divergence</span>
+      </div>
+
+      <h2 id="combine">Combining tape with footprint and VWAP</h2>
+      <p>No single tool is complete. The tape tells you the pace and side of executions; a <a href="/blog/footprint-charts-explained.html">footprint chart</a> tells you at which prices they happened; and <a href="/blog/vwap-explained.html">VWAP</a> gives you the average price participants have paid, which is a natural line of reference for whether buyers or sellers are in profit on the day.</p>
+      <p>A practical stack: use VWAP to set the daily context, the footprint to see where volume and imbalance sit at each price, and the tape to judge who is currently winning that price. When all three agree — price above VWAP, ask-heavy footprint at an old level, and steady buying on the tape — you have a coherent story. When they disagree, that disagreement <em>is</em> the signal to slow down. For the wider toolkit, see our <a href="/blog/order-flow-tools-explained.html">order flow tools guide</a>.</p>
+      <p>Practise on live, quiet markets before you rely on any of this. Reading the tape is a skill, not a setting.</p>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/footprint-charts-explained.html">Footprint charts: reading buying and selling pressure</a></li>
+          <li><a href="/blog/vwap-explained.html">VWAP explained: the average price that matters</a></li>
+          <li><a href="/blog/order-flow-tools-explained.html">Order flow tools: reading the real market</a></li>
+          <li><a href="/blog/how-cpe-trade-pro-analyses-a-chart.html">How CPE Trade Pro analyses a chart</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>See the analysis yourself</h4>
+        <p>BUY / SELL / HOLD with entry, stop, two targets and a 0-10 quality score — plus DEMO mode to practise first.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#tape">What the tape is</a>
+          <a href="#aggressor">Reading aggressor flow</a>
+          <a href="#delta">Delta and CVD</a>
+          <a href="#absorption">Absorption and divergence</a>
+          <a href="#combine">Combining with footprint and VWAP</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/footprint-charts-explained.html">Footprint charts</a>
+          <a href="/blog/vwap-explained.html">VWAP explained</a>
+          <a href="/blog/volume-analysis-guide.html">Volume analysis guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Read structure faster with the app</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>

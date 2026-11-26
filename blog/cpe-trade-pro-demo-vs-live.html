@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>DEMO vs LIVE in CPE Trade Pro: Practise First, Then Connect</title>
+<meta name="description" content="How DEMO and LIVE modes work in CPE Trade Pro - what each one does, how to connect your own exchange or broker with Binance API keys or MetaTrader, why to start in DEMO, and the safety rules that matter." />
+<meta name="keywords" content="CPE Trade Pro demo mode, CPE Trade Pro live mode, connect Binance API, MetaTrader, paper trading, trading app safety" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0a0f1d" />
+<link rel="canonical" href="https://cpetradepro.com/blog/cpe-trade-pro-demo-vs-live.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="DEMO vs LIVE in CPE Trade Pro: Practise First, Then Connect" />
+<meta property="og:description" content="What DEMO mode is, what LIVE mode is, how to connect your exchange or broker, why to start in DEMO and the safety rules that protect you." />
+<meta property="og:url" content="https://cpetradepro.com/blog/cpe-trade-pro-demo-vs-live.html" />
+<meta property="og:site_name" content="CPE Trade Pro" />
+<meta property="og:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="DEMO vs LIVE in CPE Trade Pro: Practise First, Then Connect" />
+<meta name="twitter:description" content="DEMO mode with no real money, LIVE mode with your own API keys - and why the order matters." />
+<meta name="twitter:image" content="https://cpetradepro.com/assets/screenshots/chart.jpg" />
+
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/pages.css?v=20261122e" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DEMO vs LIVE in CPE Trade Pro: Practise First, Then Connect",
+  "description": "How DEMO and LIVE modes work in CPE Trade Pro - what each one does, how to connect your own exchange or broker with Binance API keys or MetaTrader, why to start in DEMO, and the safety rules that matter.",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "CPE Trade Pro" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CPE Trade Pro",
+    "logo": { "@type": "ImageObject", "url": "https://cpetradepro.com/assets/screenshots/spot-desk.jpg" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cpetradepro.com/blog/cpe-trade-pro-demo-vs-live.html" },
+  "image": "https://cpetradepro.com/assets/screenshots/chart.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cpetradepro.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://cpetradepro.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "DEMO vs LIVE", "item": "https://cpetradepro.com/blog/cpe-trade-pro-demo-vs-live.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I use CPE Trade Pro without connecting an account?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. DEMO mode works without any exchange or broker account, so you can study signals, charts and the learning modules with no real money involved. Connecting an account is only needed for LIVE mode." }
+    },
+    {
+      "@type": "Question",
+      "name": "What API permissions should I give when connecting?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Only the permissions your use case actually needs, and never withdrawal permission. On Binance, for example, enable trading if you intend to trade, but leave withdrawals disabled. The app is analysis software and never holds your funds or asks for a fee to withdraw." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CPE Trade Pro hold my money in LIVE mode?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. In LIVE mode the app connects to your own exchange or broker using API keys you control; funds stay with that venue, not with the app. CPE Trade Pro is not a broker or exchange and never holds your funds." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C33DKTW"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark">CPE</span>
+      <span class="logo-text">Trade&nbsp;Pro</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/blog/">Guides</a>
+      <a href="/packages.html">Packages</a>
+      <a href="/download.html">Download</a>
+    </nav>
+    <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats nav-cta">💬 WhatsApp</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/blog/">Blog</a><span class="sep">/</span>
+      <span>DEMO vs LIVE</span>
+    </nav>
+    <span class="eyebrow">Product</span>
+    <h1>DEMO vs LIVE in CPE Trade Pro: Practise First, Then Connect</h1>
+    <p class="lead">Two modes, one clear order. <strong>DEMO</strong> lets you rehearse with no real money; <strong>LIVE</strong> connects to your own exchange or broker. Here is what each does and how to connect safely.</p>
+    <div class="page-meta">
+      <span><b>6 min</b> read</span>
+      <span>Updated <b>2026</b></span>
+      <span>Category <b>Product</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container page-grid">
+
+    <article class="prose">
+
+      <p>CPE Trade Pro keeps it simple: you either practise, or you trade with your own account connected. The two are separated on purpose, because the gap between reading a signal on a screen and putting real money behind it is exactly where beginners get hurt.</p>
+      <p>This short guide explains DEMO and LIVE, how to connect an exchange or broker when you are ready, why the practise-first order matters, and the safety rules that protect your account. Educational content only — nothing here is financial advice.</p>
+
+      <figure class="app-figure" style="padding:0"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=dark%20cinematic%20scene%20of%20a%20trader%20hand%20switching%20a%20glowing%20toggle%20between%20two%20screens%20one%20showing%20practice%20charts%20and%20one%20showing%20live%20candlestick%20charts%2C%20blue%20and%20teal%20lighting%2C%20professional%20fintech%20atmosphere%2C%20shallow%20depth%20of%20field%2C%20no%20text&image_size=landscape_16_9" alt="A hand switching a glowing toggle between a practice chart screen and a live candlestick chart screen in a dark room" loading="lazy" style="border-radius:12px" /></figure>
+
+      <h2 id="demo">What DEMO mode is</h2>
+      <p>DEMO is a practice environment. You see the same signals, the same entry, stop, targets and 0-10 quality score, and the same Chart Lab — but there is no real money involved and no account needed. It is where you learn how the app reads a chart and, just as importantly, where you rehearse your own routine and rules without paying for your mistakes.</p>
+      <p>Treat DEMO as a rehearsal room, not a game. If you take it seriously — same position sizing logic, same patience, same journal — it will teach you far more than a week of watching videos.</p>
+
+      <h2 id="live">What LIVE mode is</h2>
+      <p>LIVE is where the app connects to <strong>your own</strong> exchange or broker using API keys you control, so you can act on signals with real money either manually or with auto trading. The important word is <em>your</em>: the funds sit with the venue you connect, not with CPE Trade Pro. The app is analysis software — it is not a broker or exchange, never holds your funds and never asks for a fee to withdraw.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A diagram comparing DEMO mode, which needs no account, with LIVE mode, which connects to your own exchange or broker through API keys">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="32">DEMO vs LIVE</text>
+          <rect class="a-chip" x="576" y="14" width="124" height="24" rx="12"/>
+          <text class="a-m" x="638" y="30" text-anchor="middle">PRACTISE FIRST</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="170" x2="700" y2="170"/>
+            <line x1="20" y1="250" x2="700" y2="250"/>
+          </g>
+
+          <rect class="a-fill-teal aa-pop" x="30" y="60" width="320" height="240" rx="10"/>
+          <text class="a-t" x="52" y="96" style="fill:#00e5a8">DEMO</text>
+          <text class="a-s" x="52" y="128" style="fill:#00e5a8">no account needed</text>
+          <text class="a-s" x="52" y="168">same signals + score</text>
+          <text class="a-s" x="52" y="200">same Chart Lab</text>
+          <text class="a-s" x="52" y="232">no real money</text>
+          <text class="a-s" x="52" y="264">rehearse the routine</text>
+
+          <rect class="a-fill-red aa-pop" x="370" y="60" width="320" height="240" rx="10" style="animation-delay:.3s"/>
+          <text class="a-t" x="392" y="96" style="fill:#fb7185">LIVE</text>
+          <text class="a-s" x="392" y="128" style="fill:#fb7185">connect your own venue</text>
+          <text class="a-s" x="392" y="168">your exchange / broker</text>
+          <text class="a-s" x="392" y="200">your API keys</text>
+          <text class="a-s" x="392" y="232">manual or auto</text>
+          <text class="a-s" x="392" y="264">risk is real here</text>
+
+          <text class="a-s" x="360" y="322" text-anchor="middle">the app never holds your funds in either mode</text>
+        </svg>
+        <figcaption><strong>Two modes, one boundary.</strong> DEMO needs nothing and risks nothing. LIVE connects to your venue with your keys — and that is where real risk begins.</figcaption>
+      </figure>
+
+      <h2 id="connect">How to connect your exchange or broker</h2>
+      <p>Connecting happens only for LIVE, and it takes three ideas: generate API keys at your venue, give them the minimum permissions, and enter them in the app.</p>
+      <p>For <strong>Binance</strong>, create an API key in your account settings. Enable the trading permission only if you intend to trade through the app, and leave <strong>withdrawal permission disabled</strong> — there is no reason for an analysis tool to be able to move funds out. Restrict the key to your own IP where the venue allows it. If you are new to Binance, our guide to <a href="/blog/binance-trading-from-zero.html">Binance trading from zero</a> covers the basics.</p>
+      <p>For <strong>Forex and metals</strong>, the app works with OANDA, FXCM and MetaTrader 4/5, so you connect through your existing MetaTrader or broker setup. The broader picture of venues, rules and how brokers differ is in <a href="/blog/trading-platforms-brokers-and-regulation.html">trading platforms, brokers and regulation</a>.</p>
+
+      <figure class="app-figure">
+        <svg viewBox="0 0 720 340" role="img" aria-label="A flow diagram showing the app connecting through API keys to your own exchange or broker, with funds staying at the venue">
+          <rect class="a-panel" x="0" y="0" width="720" height="340" rx="14"/>
+          <text class="a-h" x="24" y="32">How LIVE connects</text>
+          <rect class="a-chip" x="556" y="14" width="144" height="24" rx="12"/>
+          <text class="a-m" x="628" y="30" text-anchor="middle">YOUR KEYS, YOUR FUNDS</text>
+
+          <g class="a-grid">
+            <line x1="20" y1="90" x2="700" y2="90"/>
+            <line x1="20" y1="170" x2="700" y2="170"/>
+            <line x1="20" y1="250" x2="700" y2="250"/>
+          </g>
+
+          <rect class="a-soft" x="34" y="120" width="180" height="96" rx="10"/>
+          <text class="a-t" x="124" y="160" text-anchor="middle">CPE Trade Pro</text>
+          <text class="a-s" x="124" y="188" text-anchor="middle">signals + analysis</text>
+
+          <rect class="a-soft" x="270" y="120" width="180" height="96" rx="10"/>
+          <text class="a-t" x="360" y="160" text-anchor="middle">API keys</text>
+          <text class="a-s" x="360" y="188" text-anchor="middle">trading only, no withdrawal</text>
+
+          <rect class="a-soft" x="506" y="120" width="180" height="96" rx="10"/>
+          <text class="a-t" x="596" y="160" text-anchor="middle">Your venue</text>
+          <text class="a-s" x="596" y="188" text-anchor="middle">exchange / broker</text>
+
+          <path class="aa-line" d="M214 168 L 270 168" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linecap:round" pathLength="1"/>
+          <path class="aa-line" d="M450 168 L 506 168" style="fill:none;stroke:#22d3ee;stroke-width:3.5;stroke-linecap:round;animation-delay:.4s" pathLength="1"/>
+
+          <text class="a-s" x="360" y="270" text-anchor="middle" style="fill:#22d3ee">funds stay with the venue · the app only sends orders</text>
+        </svg>
+        <figcaption><strong>Connect, do not hand over.</strong> The app talks to your venue through your API keys. Money stays at the exchange or broker; you keep custody and control.</figcaption>
+      </figure>
+
+      <h2 id="why">Why start in DEMO</h2>
+      <p>Live markets charge for education. DEMO lets you make those mistakes for free — and you will make mistakes, because following a signal calmly is a skill that has to be built. Starting in DEMO lets you learn the interface, test your routines, get familiar with the 0-10 quality score and its five parts (<em>Clarity, Trend, Momentum, Volume and Levels</em>), and find out how you behave when a position moves against you, all without losing money.</p>
+      <p>Our fuller discussion of this is in <a href="/blog/demo-trading-before-live.html">demo trading before live</a> — but the short version is that time spent in DEMO is the cheapest training you will ever get.</p>
+
+      <div class="callout tip">
+        <span class="co-ico">💡</span>
+        <div>
+          <strong>Earn your way to LIVE</strong>
+          Set a rule: a stretch of DEMO trades with a consistent, followed process before you connect a real account. Discipline in DEMO is the best predictor of how you will behave in LIVE.
+        </div>
+      </div>
+
+      <h2 id="risk">Risk and safety rules</h2>
+      <table>
+        <thead>
+          <tr><th>Rule</th><th>Why it matters</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Never enable withdrawal permission</td><td>An analysis tool never needs to move funds off your venue</td></tr>
+          <tr><td>Use IP restrictions where offered</td><td>Limits where the key can be used from</td></tr>
+          <tr><td>Start with small size</td><td>Real execution surprises people who only practised</td></tr>
+          <tr><td>Keep a fixed risk per trade</td><td>Losses on one idea cannot damage the account</td></tr>
+          <tr><td>Set a daily loss cap</td><td>Stops a bad day becoming a bad month</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <span class="co-ico">⚠️</span>
+        <div>
+          <strong>LIVE means real risk</strong>
+          The 0-10 score is not a win rate or a probability of profit, and neither mode removes risk. Auto trading executes faster, not smarter — set your limits before you connect, not after.
+        </div>
+      </div>
+
+      <div class="edu-cards">
+        <div class="edu-card green">
+          <span class="ec-ico">🧪</span>
+          <strong>DEMO</strong>
+          <span>No account, no money — the place to build the habit.</span>
+        </div>
+        <div class="edu-card cyan">
+          <span class="ec-ico">🔗</span>
+          <strong>LIVE</strong>
+          <span>Your venue, your keys, your control — real risk begins.</span>
+        </div>
+        <div class="edu-card amber">
+          <span class="ec-ico">🔒</span>
+          <strong>Safe keys</strong>
+          <span>Trading permission only; withdrawal always off.</span>
+        </div>
+      </div>
+
+      <p class="fineprint">Educational content only. Nothing here is financial advice. CPE Trade Pro is analysis software, not a broker, exchange or fund manager — it never holds your funds and never asks for a fee to withdraw. The 0-10 quality score is not a win rate, a probability of profit or an audited performance record. Trading involves risk, and past signal results do not guarantee future performance.</p>
+
+      <div class="related">
+        <h3>Keep reading</h3>
+        <ul>
+          <li><a href="/blog/demo-trading-before-live.html">Demo trading before live</a></li>
+          <li><a href="/blog/trading-platforms-brokers-and-regulation.html">Trading platforms, brokers and regulation</a></li>
+          <li><a href="/blog/binance-trading-from-zero.html">Binance trading from zero</a></li>
+          <li><a href="/blog/spot-futures-and-trading-modes.html">Spot, futures and trading modes</a></li>
+        </ul>
+      </div>
+
+    </article>
+
+    <aside class="side">
+      <div class="side-card side-cta">
+        <h4>Start in DEMO today</h4>
+        <p>No account needed to practise. Signals with entry, stop, two targets and a 0-10 quality score — connect your own venue only when you are ready.</p>
+        <a href="/download.html" class="btn btn-primary">Download Free</a>
+        <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats">💬 +94774940944</a>
+      </div>
+      <div class="side-card">
+        <h4>On this page</h4>
+        <nav class="side-links">
+          <a href="#demo">What DEMO mode is</a>
+          <a href="#live">What LIVE mode is</a>
+          <a href="#connect">How to connect your venue</a>
+          <a href="#why">Why start in DEMO</a>
+          <a href="#risk">Risk and safety rules</a>
+        </nav>
+      </div>
+      <div class="side-card">
+        <h4>More articles</h4>
+        <nav class="side-links">
+          <a href="/blog/">All blog articles</a>
+          <a href="/blog/demo-trading-before-live.html">Demo before live</a>
+          <a href="/blog/trading-platforms-brokers-and-regulation.html">Platforms and brokers</a>
+          <a href="/blog/binance-trading-from-zero.html">Binance from zero</a>
+          <a href="/signal-guide.html">Signal guide</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Practise in DEMO, then connect when you're ready</h2>
+    <p>Download CPE Trade Pro free and put every feature to work — 590+ crypto pairs and Forex, BUY / SELL / HOLD signals with a 0-10 quality score, LIVE and DEMO modes, auto or manual trading, real signal history, a built-in academy and 15 interface languages all in one app. Practise in DEMO first, then activate when you are ready.</p>
+    <div class="hero-cta">
+      <a href="/download.html" class="btn btn-primary btn-lg">Download Free</a>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener" class="btn btn-whats btn-lg">💬 WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <span class="logo-mark">CPE</span>
+        <span class="logo-text">Trade&nbsp;Pro</span>
+      </a>
+      <p class="footer-desc">Spot · Futures · Forex — signals, charts and learning in one app.</p>
+    </div>
+    <div>
+      <h4>App</h4>
+      <a href="/features.html">Features</a>
+      <a href="/app-screens.html">App screens</a>
+      <a href="/paper-trading.html">Paper trades</a>
+      <a href="/signal-guide.html">Signal guide</a>
+      <a href="/markets.html">Markets</a>
+      <a href="/download.html">Download</a>
+    </div>
+    <div>
+      <h4>Learn</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/academy.html">Academy</a>
+      <a href="/crypto-signals.html">Crypto signals</a>
+      <a href="/forex-signals.html">Forex signals</a>
+      <a href="/order-block-signals.html">Order blocks</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="https://wa.me/94774940944" target="_blank" rel="noopener">WhatsApp: +94774940944</a>
+      <a href="mailto:Anurasiri123@gmail.com">Anurasiri123@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <nav class="footer-legal">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refund.html">Refund policy</a>
+      <a href="/risk-disclosure.html">Risk disclosure</a>
+      <a href="/verify-download.html">Verify download</a>
+    </nav>
+    <p>© <span id="year"></span> CPE Trade Pro. All rights reserved.</p>
+    <p class="risk">Risk warning: Trading involves risk. Past signals do not guarantee future results. Trade responsibly.</p>
+  </div>
+</footer>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5C33DKTW');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/main.js"></script>
+</body>
+</html>
