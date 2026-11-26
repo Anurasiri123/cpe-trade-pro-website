@@ -487,6 +487,55 @@ function initTracking(){
 }
 
 /* ------------------------------------------------------------
+   Custom Google Translate switcher.
+   Injected into every page's navbar by JS, so the whole site
+   (root pages + blog) gets the language button automatically.
+   ------------------------------------------------------------ */
+function googleTranslateElementInit(){
+  if(!(window.google && google.translate && google.translate.TranslateElement)) return;
+  new google.translate.TranslateElement({
+    pageLanguage: "en",
+    includedLanguages: "en,si,ta",
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, "google_translate_element");
+}
+
+function initTranslate(){
+  const nav = document.querySelector(".nav-inner");
+  if(!nav || document.getElementById("google_translate_element")) return;
+
+  // Build the switcher
+  const wrap = document.createElement("div");
+  wrap.className = "custom-translate-wrapper";
+  wrap.innerHTML =
+    '<span class="translate-icon" aria-hidden="true">🌐</span>' +
+    '<div id="google_translate_element"></div>';
+
+  // Group it with the existing navbar actions (WhatsApp button + menu toggle)
+  const cta = nav.querySelector(".nav-cta");
+  const toggle = nav.querySelector(".nav-toggle");
+  let actions = nav.querySelector(".nav-actions");
+  if(!actions){
+    actions = document.createElement("div");
+    actions.className = "nav-actions";
+    if(cta) nav.insertBefore(actions, cta); else nav.appendChild(actions);
+    if(cta) actions.appendChild(cta);
+    if(toggle) actions.appendChild(toggle);
+  }
+  actions.insertBefore(wrap, actions.firstChild);
+
+  // Load the Google Translate engine once
+  if(!document.getElementById("google-translate-script")){
+    const s = document.createElement("script");
+    s.id = "google-translate-script";
+    s.async = true;
+    s.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    document.head.appendChild(s);
+  }
+}
+
+/* ------------------------------------------------------------
    Boot
    ------------------------------------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -502,6 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTestimonials();
   initPaperCalculator();
   initTracking();
+  initTranslate();
   setYear();
   initReveal();
 });
