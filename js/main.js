@@ -571,6 +571,8 @@ function updateLangTrigger(code){
   });
 }
 
+function setPrefLang(code){ try { localStorage.setItem("cpe_lang_pref", code || "en"); } catch(e){} }
+
 /* Switch language without reloading the page. A reload before Google's
    hidden select exists can loop on mobile browsers where the widget is
    delayed or blocked. The cookie covers Google initialising after a choice. */
@@ -697,175 +699,13 @@ function initTranslate(){
   else window.addEventListener("load", loadEngine, { once: true });
 }
 
-/* ------------------------------------------------------------
-   Automatic language detection (website only — the desktop and
-   mobile apps are not touched by any of this).
-
-   A first-time visitor is shown the site in their own language:
-   the browser's preferred language first, then their country as a
-   fallback. Everything else is left alone —
-     * a language picked from the dropdown is an explicit choice and
-       is remembered, so detection never overrides the visitor;
-     * search-engine bots are skipped entirely, so crawlers always
-       receive the original English page on its normal canonical URL
-       (no cloaking, nothing that could hurt SEO).
-   ------------------------------------------------------------ */
-
-/* Country -> primary language, used only when the IP lookup gives us
-   nothing better. Limited to countries with one clear national language. */
-const COUNTRY_LANG = {
-  LK: "si", IN: "hi", BD: "bn", PK: "ur", NP: "ne",
-  TH: "th", VN: "vi", ID: "id", MY: "ms", PH: "tl", CN: "zh-CN",
-  TW: "zh-TW", HK: "zh-TW", JP: "ja", KR: "ko", KH: "km", LA: "lo", MM: "my",
-  SA: "ar", AE: "ar", QA: "ar", KW: "ar", BH: "ar", OM: "ar", JO: "ar", EG: "ar",
-  DZ: "ar", TN: "ar", MA: "ar", IQ: "ar", YE: "ar", LY: "ar", IR: "fa",
-  TR: "tr", IL: "he", RU: "ru", UA: "uk", KZ: "kk", UZ: "uz", AZ: "az",
-  GE: "ka", AM: "hy", DE: "de", AT: "de", FR: "fr", NL: "nl", BE: "fr",
-  ES: "es", MX: "es", AR: "es", CO: "es", CL: "es", PE: "es", VE: "es",
-  EC: "es", GT: "es", BO: "es", CU: "es", DO: "es", BR: "pt", PT: "pt",
-  IT: "it", GR: "el", PL: "pl", RO: "ro", CZ: "cs", SK: "sk", HU: "hu",
-  BG: "bg", HR: "hr", RS: "sr", SI: "sl", SE: "sv", NO: "no", DK: "da",
-  FI: "fi", IS: "is", ET: "am"
-};
-
-function isSupportedLang(code){
-  if(!code) return false;
-  for(let i = 0; i < GT_LANGS.length; i++){ if(GT_LANGS[i][0] === code) return true; }
-  return false;
+function clearLegacyAutoTranslation(){
+  try {
+    if(localStorage.getItem("cpe_auto_lang_rollback_v1") === "1") return;
+    writeGoogTrans("");
+    localStorage.setItem("cpe_auto_lang_rollback_v1", "1");
+  } catch(e){}
 }
-
-/* "si-LK" -> "si", "zh-Hans" -> "zh-CN", "" when Google has no match. */
-function normalizeLang(raw){
-  if(!raw) return "";
-  const lc = String(raw).toLowerCase();
-  const alias = {
-    "zh": "zh-CN", "zh-cn": "zh-CN", "zh-hans": "zh-CN", "zh-sg": "zh-CN",
-    "zh-tw": "zh-TW", "zh-hant": "zh-TW", "zh-hk": "zh-TW", "zh-mo": "zh-TW",
-    "pt-br": "pt", "pt-pt": "pt", "nb": "no", "nn": "no",
-    "iw": "he", "in": "id", "fil": "tl"
-  };
-  if(alias[lc]) return alias[lc];
-  const base = lc.split("-")[0];
-  if(alias[base]) return alias[base];
-  return isSupportedLang(base) ? base : "";
-}
-
-function getPrefLang(){ try { return localStorage.getItem("cpe_lang_pref") || ""; } catch(e){ return ""; } }
-function setPrefLang(code){ try { localStorage.setItem("cpe_lang_pref", code || "en"); } catch(e){} }
-
-/* The visitor's own preference order, first usable entry wins. */
-function browserLang(){
-  const list = (navigator.languages && navigator.languages.length)
-    ? navigator.languages : [navigator.language || ""];
-  for(let i = 0; i < list.length; i++){
-    const code = normalizeLang(list[i]);
-    if(!code) continue;
-    return code; // "en" included — an English browser is respected
-  }
-  return "";
-}
-
-function isSearchBot(){
-  return /bot|crawler|spider|crawl|slurp|bingbot|googlebot|yandex|duckduck|baidu|facebookexternalhit|embedly|preview|semrush|ahrefs|screaming/i
-    .test(navigator.userAgent || "");
-}
-
-/* Ask an IP service for the country, then pick its main language.
-   Resolves "" on any failure so a blocked request never delays the page. */
-function countryLang(){
-  return new Promise(function(resolve){
-    if(!window.fetch) return resolve("");
-    let done = false;
-    const finish = function(code){ if(!done){ done = true; resolve(code); } };
-    const ctrl = ("AbortController" in window) ? new AbortController() : null;
-    setTimeout(function(){ if(ctrl) ctrl.abort(); finish(""); }, 2500);
-    fetch("https://ipapi.co/json/", ctrl ? { signal: ctrl.signal, cache: "no-store" } : { cache: "no-store" })
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        // 1) the country's own language list, most used first
-        const langs = String((d && d.languages) || "").split(",");
-        for(let i = 0; i < langs.length; i++){
-          const code = normalizeLang(langs[i].split("-")[0]);
-          if(code && code !== "en") return finish(code);
-        }
-        // 2) our own country table as a back-up
-        const cc = d && d.country_code;
-        const mapped = cc && COUNTRY_LANG[String(cc).toUpperCase()];
-        finish(isSupportedLang(mapped) ? mapped : "");
-      })
-      .catch(function(){ finish(""); });
-  });
-}
-
-/* Small, dismissible notice so an automatic translation is never a trap. */
-function showLangNotice(code){
-  if(!code || code === "en" || document.getElementById("langNotice")) return;
-  try { if(sessionStorage.getItem("cpe_notice_off") === "1") return; } catch(e){}
-
-  const bar = document.createElement("div");
-  bar.className = "lang-notice";
-  bar.id = "langNotice";
-  bar.innerHTML =
-    '<span class="ln-ico" aria-hidden="true">🌐</span>' +
-    '<span class="ln-text">Shown in <strong>' + gtLangName(code) + '</strong> for your language.</span>' +
-    '<button type="button" class="ln-btn" id="lnOriginal">Show original (English)</button>' +
-    '<button type="button" class="ln-close" id="lnClose" aria-label="Dismiss">×</button>';
-  document.body.appendChild(bar);
-
-  document.getElementById("lnClose").addEventListener("click", function(){
-    try { sessionStorage.setItem("cpe_notice_off", "1"); } catch(e){}
-    bar.remove();
-  });
-  document.getElementById("lnOriginal").addEventListener("click", function(){
-    setPrefLang("en");            // explicit: never auto-translate again
-    applyLang("en");
-  });
-}
-
-function initAutoLang(){
-  const applied = currentLangCode();
-  if(applied){
-    // Already translated (Google keeps its own cookie) — just keep the
-    // notice visible for the rest of this browsing session.
-    let remembered = "";
-    try { remembered = sessionStorage.getItem("cpe_auto_lang") || ""; } catch(e){}
-    if(remembered === applied) showLangNotice(applied);
-    return;
-  }
-  if(getPrefLang() || isSearchBot()) return;
-
-  const b = browserLang();
-  if(b && b !== "en"){ autoApplyLang(b); return; }
-
-  // Browser asked for English or gave nothing usable — fall back to country.
-  countryLang().then(function(code){ if(code) autoApplyLang(code); });
-}
-
-/* Apply the detected language. Deliberately never reloads the page: if a
-   locked-down browser blocks cookies and storage together, a reload here
-   would repeat forever. Instead the googtrans cookie (which Google reads on
-   load) is set, and the widget is driven as soon as it exists. */
-function autoApplyLang(code){
-  if(!code || code === "en") return;
-  try { sessionStorage.setItem("cpe_auto_lang", code); } catch(e){}
-  setPrefLang(code);      // an explicit choice now — never auto-try again
-  writeGoogTrans(code);   // Google picks this up when it initialises
-  let tries = 0;
-  const tick = setInterval(function(){
-    const combo = document.querySelector(".goog-te-combo");
-    if(combo){
-      clearInterval(tick);
-      combo.value = code;
-      combo.dispatchEvent(new Event("change"));
-      updateLangTrigger(code);
-      showLangNotice(code);
-    } else if(++tries > 40){   // ~20s — give up, the cookie still applies later
-      clearInterval(tick);
-      showLangNotice(code);
-    }
-  }, 500);
-}
-
 /* ------------------------------------------------------------
    Boot
    ------------------------------------------------------------ */
@@ -882,8 +722,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initTestimonials();
   initPaperCalculator();
   initTracking();
+  clearLegacyAutoTranslation();
   initTranslate();
-  initAutoLang();
   setYear();
   initReveal();
 });
