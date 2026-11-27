@@ -571,21 +571,24 @@ function updateLangTrigger(code){
   });
 }
 
-/* Switch language: drive Google's hidden <select> when it is ready,
-   otherwise fall back to the googtrans cookie + a reload. Picking a
-   language here is an explicit choice, so it is remembered and the
-   automatic detection below will never override it. */
+/* Switch language without reloading the page. A reload before Google's
+   hidden select exists can loop on mobile browsers where the widget is
+   delayed or blocked. The cookie covers Google initialising after a choice. */
 function applyLang(code){
   setPrefLang(code || "en");
   writeGoogTrans(code);
-  const combo = document.querySelector(".goog-te-combo");
-  if(combo){
-    combo.value = (code && code !== "en") ? code : "";
-    combo.dispatchEvent(new Event("change"));
-    updateLangTrigger(code);
-    return;
-  }
-  location.reload();
+  let tries = 0;
+  const tick = setInterval(function(){
+    const combo = document.querySelector(".goog-te-combo");
+    if(combo){
+      clearInterval(tick);
+      combo.value = (code && code !== "en") ? code : "";
+      combo.dispatchEvent(new Event("change"));
+      updateLangTrigger(code);
+    } else if(++tries > 40){
+      clearInterval(tick);
+    }
+  }, 500);
 }
 
 function bindLangSwitcher(){
