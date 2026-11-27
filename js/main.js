@@ -1,17 +1,17 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿/* ============================================================
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿/* ============================================================
    CPE Trade Pro — Landing site scripts
    ============================================================ */
 
 /* ------------------------------------------------------------
-   Public download bundle. All platforms are v6.3.0 (low-RAM
-   optimisation for Android — Samsung J2 freeze fix + lazy-loaded
-   learning/guide packs + reduced scan candle count on mobile).
+   Public download bundle. Android is v6.3.1 (ANR fix: reduced
+   scan load on mobile — fewer candles/symbols, skipped higher-TF
+   confirmation, capped SMC lookback). Desktop / iOS stay v6.3.0.
    ------------------------------------------------------------ */
 const DOWNLOADS = {
   windows:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-Setup-6.3.0.exe",
   macX64:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-x64.dmg",
   macArm:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-arm64.dmg",
-  android:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0.apk",
+  android:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.1/CPE-Trade-Pro-6.3.1.apk",
   ios:      "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-unsigned.ipa"
 };
 
@@ -370,7 +370,7 @@ const INSTALL_GUIDES = {
       "If <strong>Play Protect</strong> says the app is unsafe, tap <strong>More details → Install anyway</strong>.",
       "Tap <strong>Install</strong>, then <strong>Open</strong>."
     ],
-    file: "CPE-Trade-Pro-6.3.0.apk"
+    file: "CPE-Trade-Pro-6.3.1.apk"
   },
   ios: {
     title: "Install on iPhone / iOS",
