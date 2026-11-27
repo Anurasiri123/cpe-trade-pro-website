@@ -838,10 +838,29 @@ function initAutoLang(){
   countryLang().then(function(code){ if(code) autoApplyLang(code); });
 }
 
+/* Apply the detected language. Deliberately never reloads the page: if a
+   locked-down browser blocks cookies and storage together, a reload here
+   would repeat forever. Instead the googtrans cookie (which Google reads on
+   load) is set, and the widget is driven as soon as it exists. */
 function autoApplyLang(code){
   if(!code || code === "en") return;
   try { sessionStorage.setItem("cpe_auto_lang", code); } catch(e){}
-  applyLang(code);
+  setPrefLang(code);      // an explicit choice now — never auto-try again
+  writeGoogTrans(code);   // Google picks this up when it initialises
+  let tries = 0;
+  const tick = setInterval(function(){
+    const combo = document.querySelector(".goog-te-combo");
+    if(combo){
+      clearInterval(tick);
+      combo.value = code;
+      combo.dispatchEvent(new Event("change"));
+      updateLangTrigger(code);
+      showLangNotice(code);
+    } else if(++tries > 40){   // ~20s — give up, the cookie still applies later
+      clearInterval(tick);
+      showLangNotice(code);
+    }
+  }, 500);
 }
 
 /* ------------------------------------------------------------
