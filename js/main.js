@@ -3,15 +3,15 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   Public download bundle. Android is v6.3.1 (ANR fix: reduced
-   scan load on mobile — fewer candles/symbols, skipped higher-TF
-   confirmation, capped SMC lookback). Desktop / iOS stay v6.3.0.
+   Public download bundle. Android is v6.3.2 (minSdk 21 so it
+   installs on Android 5+/J2, ES2015-transpiled web layer, and a
+   parallel scan fetch that is ~4x faster). Desktop / iOS stay 6.3.0.
    ------------------------------------------------------------ */
 const DOWNLOADS = {
   windows:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-Setup-6.3.0.exe",
   macX64:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-x64.dmg",
   macArm:   "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-arm64.dmg",
-  android:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.1/CPE-Trade-Pro-6.3.1.apk",
+  android:  "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.2/CPE-Trade-Pro-6.3.2.apk",
   ios:      "https://github.com/Anurasiri123/cpe-trade-pro-website/releases/download/v6.3.0/CPE-Trade-Pro-6.3.0-unsigned.ipa"
 };
 
@@ -370,7 +370,7 @@ const INSTALL_GUIDES = {
       "If <strong>Play Protect</strong> says the app is unsafe, tap <strong>More details → Install anyway</strong>.",
       "Tap <strong>Install</strong>, then <strong>Open</strong>."
     ],
-    file: "CPE-Trade-Pro-6.3.1.apk"
+    file: "CPE-Trade-Pro-6.3.2.apk"
   },
   ios: {
     title: "Install on iPhone / iOS",
