@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿/* ============================================================
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿/* ============================================================
    CPE Trade Pro — Landing site scripts
    ============================================================ */
 
@@ -573,24 +573,23 @@ function updateLangTrigger(code){
 
 function setPrefLang(code){ try { localStorage.setItem("cpe_lang_pref", code || "en"); } catch(e){} }
 
-/* Switch language without reloading the page. A reload before Google's
-   hidden select exists can loop on mobile browsers where the widget is
-   delayed or blocked. The cookie covers Google initialising after a choice. */
+/* Apply the choice by reloading once with the googtrans cookie set. Google's
+   widget is created with InlineLayout.SIMPLE, which replaces the
+   .goog-te-combo <select> with its own menu markup, so there is no select to
+   drive. With the cookie present Google translates the page on load instead.
+   The reload only ever runs from a click and the guard skips a repeat click
+   for the language already applied, so it cannot loop. */
 function applyLang(code){
-  setPrefLang(code || "en");
-  writeGoogTrans(code);
-  let tries = 0;
-  const tick = setInterval(function(){
-    const combo = document.querySelector(".goog-te-combo");
-    if(combo){
-      clearInterval(tick);
-      combo.value = (code && code !== "en") ? code : "";
-      combo.dispatchEvent(new Event("change"));
-      updateLangTrigger(code);
-    } else if(++tries > 40){
-      clearInterval(tick);
-    }
-  }, 500);
+  const target = (code && code !== "en") ? code : "";
+  setPrefLang(target || "en");
+  writeGoogTrans(target);
+  updateLangTrigger(target);
+  const stamp = (target || "en") + "@" + location.pathname;
+  try {
+    if(sessionStorage.getItem("cpe_lang_applied") === stamp) return;
+    sessionStorage.setItem("cpe_lang_applied", stamp);
+  } catch(e){}
+  location.reload();
 }
 
 function bindLangSwitcher(){
