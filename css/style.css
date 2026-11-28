@@ -814,44 +814,57 @@ body{top:0px !important}
 .lang-code{font-size:.66rem;letter-spacing:.06em;color:#64748b;flex:0 0 auto}
 .lang-item.active .lang-code{color:#00e5a8}
 
-.coin-strip{
-  flex:1 1 0;min-width:0;height:24px;overflow:hidden;position:relative;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);
+/* Live market ticker: top gainers scroll on the left, top losers on the right */
+.tick-strip{
+  flex:1 1 0;min-width:0;height:26px;overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
 }
-.coin-track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;animation:coinScroll 14s linear infinite;will-change:transform}
-.coin-strip.reverse .coin-track{animation-direction:reverse}
-.coin{
-  width:24px;height:24px;border-radius:50%;flex:0 0 auto;margin-right:14px;
-  display:grid;place-items:center;font:800 12px/1 'Sora',sans-serif;
-  box-shadow:0 2px 8px rgba(0,0,0,.35),inset 0 -2px 4px rgba(0,0,0,.2);
-  animation:coinRoll 3s linear infinite;backface-visibility:hidden;
+.tick-track{
+  position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;
+  animation:tickScroll 34s linear infinite;will-change:transform;
 }
-.coin:nth-child(2n){animation-delay:-.6s}
-.coin:nth-child(3n){animation-delay:-1.2s}
-.coin:nth-child(5n){animation-delay:-1.8s}
-.coin.btc{background:linear-gradient(145deg,#f7931a,#b76b09);color:#2a1400}
-.coin.eth{background:linear-gradient(145deg,#8a92f5,#5b64d6);color:#0b0f2a}
-.coin.sol{background:linear-gradient(145deg,#9945ff,#14f195);color:#0b1020}
-.coin.bnb{background:linear-gradient(145deg,#f3ba2f,#c99310);color:#241a00}
-.coin.usd{background:linear-gradient(145deg,#00e5a8,#00a37a);color:#052b21}
-.coin.eur{background:linear-gradient(145deg,#3b82f6,#1d4ed8);color:#eaf1ff}
-.coin.gbp{background:linear-gradient(145deg,#ef4444,#b91c1c);color:#fff}
-.coin.jpy{background:linear-gradient(145deg,#f472b6,#be185d);color:#fff}
+.tick-strip.reverse .tick-track{animation-direction:reverse}
+.tick-strip:hover .tick-track{animation-play-state:paused}
+.tick{
+  display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;margin-right:18px;
+  font:600 11px/1 'Inter',system-ui,sans-serif;white-space:nowrap;
+}
+.tick-sym{color:#cfdcee;letter-spacing:.02em}
+.tick-price{color:#94a3b8;font-weight:500;font-variant-numeric:tabular-nums}
+.tick-pct{font-variant-numeric:tabular-nums;font-weight:700;padding:2px 6px;border-radius:6px}
+.tick.up .tick-pct{color:#00e5a8;background:rgba(0,229,168,.13)}
+.tick.down .tick-pct{color:#ff7a7a;background:rgba(239,68,68,.14)}
+@keyframes tickScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-@keyframes coinScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes coinRoll{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+/* Home page: live "top mover" chips above the hero */
+.movers-bar{padding-top:14px}
+.movers{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.mover{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;
+  border:1px solid var(--line);background:rgba(255,255,255,.03);
+  font:600 12px/1 'Inter',system-ui,sans-serif;white-space:nowrap;
+}
+.mover.up{border-color:rgba(0,229,168,.35);background:rgba(0,229,168,.07)}
+.mover.down{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.07)}
+.mover .m-label{color:var(--muted)}
+.mover .m-sym{color:#fff;font-weight:800;letter-spacing:.03em}
+.mover .m-price{color:#cbd5e1;font-variant-numeric:tabular-nums}
+.mover .m-pct{font-variant-numeric:tabular-nums;font-weight:800}
+.mover.up .m-pct{color:#00e5a8}
+.mover.down .m-pct{color:#ff7a7a}
 
 @media(max-width:720px){
   .lang-bar .container{min-height:40px;gap:10px}
   .custom-translate-wrapper{padding:3px 8px}
   .lang-label{display:none}
   .goog-te-gadget-simple{font-size:12px !important}
-  .coin{width:20px;height:20px;font-size:11px;margin-right:12px}
+  .tick{font-size:10px;margin-right:14px}
   .lang-menu{width:94vw;max-height:68vh}
   .lang-list{grid-template-columns:repeat(2,minmax(0,1fr));padding:8px}
   .lang-item{padding:11px 10px;font-size:.9rem}
+  .mover{font-size:11px;padding:7px 11px}
 }
 @media(prefers-reduced-motion:reduce){
-  .coin-track,.coin{animation:none}
+  .tick-track{animation:none}
 }

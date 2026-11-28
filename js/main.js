@@ -664,15 +664,6 @@ function initTranslate(){
   const header = document.getElementById("nav");
   if(!header) return;
 
-  // Rolling crypto + forex coins used on both sides of the switcher
-  const coins = [
-    ["btc","₿"],["eth","Ξ"],["sol","◎"],["bnb","⬡"],
-    ["usd","$"],["eur","€"],["gbp","£"],["jpy","¥"]
-  ];
-  const coinHtml = coins.map(c => '<span class="coin ' + c[0] + '">' + c[1] + '</span>').join("");
-  // Duplicated once so the marquee loops seamlessly
-  const strip = '<div class="coin-track">' + coinHtml + coinHtml + '</div>';
-
   const langItems = GT_LANGS.map(function(l){
     return '<button type="button" class="lang-item" role="option" data-code="' + l[0] + '">' +
              '<span class="lang-name">' + l[1] + '</span>' +
@@ -684,7 +675,7 @@ function initTranslate(){
   bar.className = "lang-bar";
   bar.innerHTML =
     '<div class="container">' +
-      '<div class="coin-strip" aria-hidden="true">' + strip + '</div>' +
+      '<div class="tick-strip notranslate" id="tickGainers" translate="no" aria-label="Top gaining coins"></div>' +
       '<div class="custom-translate-wrapper notranslate" translate="no">' +
         '<button class="lang-trigger" id="langTrigger" type="button" aria-haspopup="true" aria-expanded="false">' +
           '<span class="translate-icon" aria-hidden="true">🌐</span>' +
@@ -699,7 +690,7 @@ function initTranslate(){
         '</div>' +
         '<div id="google_translate_element" class="gt-hidden" aria-hidden="true"></div>' +
       '</div>' +
-      '<div class="coin-strip reverse" aria-hidden="true">' + strip + '</div>' +
+      '<div class="tick-strip reverse notranslate" id="tickLosers" translate="no" aria-label="Top losing coins"></div>' +
     '</div>';
   header.insertAdjacentElement("afterend", bar);
 
@@ -730,6 +721,148 @@ function initTranslate(){
   else window.addEventListener("load", loadEngine, { once: true });
 }
 
+/* ------------------------------------------------------------
+   Live market ticker — top gainers / losers from Binance's public
+   24h stats. A curated symbol list keeps the payload small so the
+   ticker stays light on phones.
+   ------------------------------------------------------------ */
+const TICKER_BASES = [
+  "BTC","ETH","BNB","SOL","XRP","ADA","DOGE","AVAX","LINK","DOT",
+  "TRX","LTC","BCH","SHIB","UNI","ATOM","XLM","ETC","FIL","APT",
+  "ARB","OP","NEAR","INJ","SUI","SEI","TIA","RUNE","AAVE","IMX",
+  "GRT","ALGO","VET","ICP","HBAR","EOS","SAND","MANA","AXS","GALA",
+  "CHZ","ENJ","CRV","MKR","SNX","COMP","ZEC","DASH","NEO","IOTA",
+  "THETA","EGLD","KSM","ZIL","ONE","ROSE","CFX","LDO","PEPE","WIF",
+  "BONK","FLOKI","JUP","PYTH","STRK","WLD","ORDI","FET","TAO","ENA","ETHFI"
+];
+const TICKER_HOSTS = [
+  "https://api.binance.com/api/v3/ticker/24hr",
+  "https://data-api.binance.vision/api/v3/ticker/24hr"
+];
+const TICKER_MS = 15000;
+const TICKER_MIN_VOLUME = 300000;
+
+function tickerUrl(host){
+  const want = TICKER_BASES.map(function(b){ return b + "USDT"; });
+  return host + "?type=MINI&symbols=" + encodeURIComponent(JSON.stringify(want));
+}
+
+function fetchTickers(hostIndex){
+  const i = hostIndex || 0;
+  return fetch(tickerUrl(TICKER_HOSTS[i]), { cache: "no-store" }).then(function(r){
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  }).catch(function(e){
+    if(i + 1 < TICKER_HOSTS.length) return fetchTickers(i + 1);
+    throw e;
+  });
+}
+
+function rankTickers(rows){
+  const list = [];
+  rows.forEach(function(t){
+    const last = parseFloat(t.lastPrice), open = parseFloat(t.openPrice), vol = parseFloat(t.quoteVolume);
+    if(!isFinite(last) || !isFinite(open) || open <= 0 || !isFinite(vol)) return;
+    if(vol < TICKER_MIN_VOLUME) return;
+    list.push({ sym: t.symbol.replace(/USDT$/, ""), price: last, pct: ((last - open) / open) * 100 });
+  });
+  list.sort(function(a, b){ return b.pct - a.pct; });
+  return { gainers: list.slice(0, 10), losers: list.slice(-10).reverse() };
+}
+
+function fmtPrice(n){
+  const abs = Math.abs(n);
+  const d = abs >= 1000 ? 2 : abs >= 1 ? 3 : abs >= 0.01 ? 4 : abs >= 0.0001 ? 6 : 8;
+  return "$" + n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+}
+
+function fmtPct(p){ return (p >= 0 ? "+" : "-") + Math.abs(p).toFixed(2) + "%"; }
+
+/* Rewrite the track's children only, so the marquee animation keeps running. */
+function fillStrip(el, items){
+  if(!el || !items.length) return;
+  let track = el.querySelector(".tick-track");
+  if(!track){
+    track = document.createElement("div");
+    track.className = "tick-track";
+    el.appendChild(track);
+  }
+  const half = items.map(function(it){
+    return '<span class="tick ' + (it.pct >= 0 ? "up" : "down") + '">' +
+             '<span class="tick-sym">' + it.sym + '</span>' +
+             '<span class="tick-price">' + fmtPrice(it.price) + '</span>' +
+             '<span class="tick-pct">' + fmtPct(it.pct) + '</span>' +
+           '</span>';
+  }).join("");
+  track.innerHTML = half + half;
+}
+
+/* Home page only: a small "top mover" chip row above the hero. */
+function buildMovers(){
+  if(!/^\/(index\.html)?$/.test(location.pathname)) return null;
+  const hero = document.querySelector(".hero");
+  if(!hero || !hero.parentNode) return null;
+  const host = document.createElement("section");
+  host.className = "movers-bar";
+  host.style.display = "none";
+  host.innerHTML =
+    '<div class="container">' +
+      '<div class="movers notranslate" id="heroMovers" translate="no"></div>' +
+    '</div>';
+  hero.parentNode.insertBefore(host, hero);
+  return host;
+}
+
+function moverHtml(label, it, dir){
+  return '<span class="mover ' + dir + '">' +
+           '<span class="m-label">' + label + '</span>' +
+           '<span class="m-sym">' + it.sym + '</span>' +
+           '<span class="m-price">' + fmtPrice(it.price) + '</span>' +
+           '<span class="m-pct">' + fmtPct(it.pct) + '</span>' +
+         '</span>';
+}
+
+function fillMovers(host, top, bottom){
+  if(!host || !top || !bottom) return;
+  host.querySelector("#heroMovers").innerHTML =
+    moverHtml("Top gainer", top, "up") + moverHtml("Top loser", bottom, "down");
+  host.style.display = "";
+}
+
+function initMarketTicker(){
+  const left   = document.getElementById("tickGainers");
+  const right  = document.getElementById("tickLosers");
+  const movers = buildMovers();
+  if(!left && !right && !movers) return;
+
+  let timer = null;
+
+  function load(){
+    fetchTickers(0).then(function(rows){
+      const data = rankTickers(rows);
+      fillStrip(left, data.gainers);
+      fillStrip(right, data.losers);
+      fillMovers(movers, data.gainers[0], data.losers[0]);
+    }).catch(function(){ /* keep the last good values */ });
+  }
+
+  function start(){
+    if(timer) return;
+    load();
+    timer = setInterval(load, TICKER_MS);
+  }
+  function stop(){
+    if(!timer) return;
+    clearInterval(timer);
+    timer = null;
+  }
+
+  start();
+  document.addEventListener("visibilitychange", function(){
+    if(document.hidden) stop(); else start();
+  });
+}
+
 function clearLegacyAutoTranslation(){
   try {
     if(localStorage.getItem("cpe_auto_lang_rollback_v1") === "1") return;
@@ -755,6 +888,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTracking();
   clearLegacyAutoTranslation();
   initTranslate();
+  initMarketTicker();
   setYear();
   initReveal();
 });
