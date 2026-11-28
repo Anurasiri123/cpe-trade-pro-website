@@ -85,9 +85,10 @@ ul{list-style:none}
 .btn-whats:hover{transform:translateY(-2px)}
 
 /* ===================== HERO ===================== */
-.hero{position:relative;padding:5rem 0 4rem;overflow:hidden}
+.hero-stage{position:relative;isolation:isolate;overflow:visible}
+.hero{position:relative;z-index:1;padding:5rem 0 4rem;overflow:hidden}
 .hero-bg{
-  position:absolute;inset:0;z-index:0;
+  position:absolute;top:-44px;right:0;bottom:0;left:0;z-index:0;
   background:
     radial-gradient(900px 500px at 15% 10%,rgba(0,229,168,.14),transparent 60%),
     radial-gradient(700px 500px at 90% 30%,rgba(59,130,246,.16),transparent 60%),
@@ -763,7 +764,7 @@ body{top:0px !important}
 .goog-te-gadget-simple .goog-te-menu-value span:last-child{font-size:10px !important;color:#94a3b8 !important}
 
 /* Language bar: centered switcher with rolling crypto/forex coins on both sides */
-.lang-bar{border-bottom:1px solid var(--line);background:rgba(10,15,29,.55)}
+.lang-bar{position:relative;z-index:2;border-bottom:1px solid var(--line);background:var(--bg)}
 .lang-bar .container{display:flex;justify-content:center;align-items:center;gap:16px;min-height:44px}
 .lang-label{font-size:.82rem;font-weight:600;color:var(--muted);margin-right:8px;letter-spacing:.02em;white-space:nowrap}
 .lang-trigger .lang-label{margin-right:0}
@@ -837,8 +838,11 @@ body{top:0px !important}
 .tick.down .tick-pct{color:#ff7a7a;background:rgba(239,68,68,.14)}
 @keyframes tickScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* Home page: live "top mover" chips above the hero */
-.movers-bar{padding-top:14px}
+/* Home page: mover chips share the continuous hero background */
+.movers-bar{
+  position:relative;z-index:1;
+  padding-top:14px;background:transparent;
+}
 .movers{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .mover{
   display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;

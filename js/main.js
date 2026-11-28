@@ -797,11 +797,12 @@ function fillStrip(el, items){
   track.innerHTML = half + half;
 }
 
-/* Home page only: a small "top mover" chip row above the hero. */
+/* Home page only: share one background layer across the movers and hero. */
 function buildMovers(){
   if(!/^\/(index\.html)?$/.test(location.pathname)) return null;
   const hero = document.querySelector(".hero");
-  if(!hero || !hero.parentNode) return null;
+  const heroBg = hero && hero.querySelector(".hero-bg");
+  if(!hero || !heroBg || !hero.parentNode) return null;
   const host = document.createElement("section");
   host.className = "movers-bar";
   host.style.display = "none";
@@ -809,7 +810,12 @@ function buildMovers(){
     '<div class="container">' +
       '<div class="movers notranslate" id="heroMovers" translate="no"></div>' +
     '</div>';
-  hero.parentNode.insertBefore(host, hero);
+  const stage = document.createElement("div");
+  stage.className = "hero-stage";
+  hero.parentNode.insertBefore(stage, hero);
+  stage.appendChild(heroBg);
+  stage.appendChild(host);
+  stage.appendChild(hero);
   return host;
 }
 
