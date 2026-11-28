@@ -563,13 +563,35 @@ function gtLangName(code){
 }
 
 /* Reflect the active language on the trigger + highlight the row. */
+let renderedLangCode;
 function updateLangTrigger(code){
+  if(renderedLangCode === code) return;
+  renderedLangCode = code;
   const label = document.querySelector("#langTrigger .lang-label");
   if(label) label.textContent = (code && code !== "en") ? gtLangName(code) : "Read in your language";
   document.querySelectorAll(".lang-item").forEach(function(b){
     b.classList.toggle("active", b.getAttribute("data-code") === code);
   });
 }
+
+/* The active language can also change from outside our dropdown — the browser's
+   own "translate this page" and Google's banner rewrite the page in place.
+   Read Google's own <select> when it exists, then fall back to the googtrans
+   cookie, and treat the removal of Google's "translated-…" marker on <html> as
+   "we are back on the original text" so a stale name never sticks. */
+let sawTranslated = false;
+function detectActiveLang(){
+  const combo = document.querySelector(".goog-te-combo");
+  if(combo && typeof combo.value === "string" && combo.value){
+    return combo.value === "en" ? "" : combo.value;
+  }
+  const translated = /(?:^|\s)translated-(?:ltr|rtl)(?:\s|$)/.test(document.documentElement.className || "");
+  if(translated) sawTranslated = true;
+  if(!translated && sawTranslated) return "";
+  return currentLangCode();
+}
+
+function syncLangLabel(){ updateLangTrigger(detectActiveLang()); }
 
 function setPrefLang(code){ try { localStorage.setItem("cpe_lang_pref", code || "en"); } catch(e){} }
 
@@ -682,7 +704,17 @@ function initTranslate(){
   header.insertAdjacentElement("afterend", bar);
 
   bindLangSwitcher();
-  updateLangTrigger(currentLangCode());
+  syncLangLabel();
+
+  // Keep the label in step when the language is switched from outside our
+  // dropdown (browser translate / Google's banner). Google toggles a class on
+  // <html>, so watch that, with a light poll as a safety net.
+  try {
+    new MutationObserver(syncLangLabel).observe(document.documentElement, {
+      attributes: true, attributeFilter: ["class", "lang"]
+    });
+  } catch(e){}
+  setInterval(syncLangLabel, 1500);
 
   // Load the Google Translate engine only after the page has finished
   // loading, so it never competes with the first paint.
