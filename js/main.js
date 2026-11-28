@@ -663,7 +663,7 @@ function initTranslate(){
   bar.innerHTML =
     '<div class="container">' +
       '<div class="coin-strip" aria-hidden="true">' + strip + '</div>' +
-      '<div class="custom-translate-wrapper">' +
+      '<div class="custom-translate-wrapper notranslate" translate="no">' +
         '<button class="lang-trigger" id="langTrigger" type="button" aria-haspopup="true" aria-expanded="false">' +
           '<span class="translate-icon" aria-hidden="true">🌐</span>' +
           '<span class="lang-label">Read in your language</span>' +
